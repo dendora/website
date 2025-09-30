@@ -4,7 +4,6 @@
 - **Build command**: `npm run build`  
 - **Build output directory**: `dist`
 - **Root directory**: `/` (if repo root)
-- **Node.js version**: `20` (specified in .nvmrc)
 
 ## Environment Variables
 None required for this static site.

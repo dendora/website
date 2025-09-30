@@ -4,10 +4,15 @@
 - **Build command**: `npm run build`  
 - **Build output directory**: `dist`
 - **Root directory**: `/` (if repo root)
-- **Node.js version**: `18` or `20`
+- **Node.js version**: `20` (specified in .nvmrc)
 
 ## Environment Variables
 None required for this static site.
+
+## Important Notes
+- Uses npm (not yarn) - yarn.lock has been removed
+- All peer dependencies are properly installed
+- Node.js 20 specified for consistent builds
 
 ## Custom Domain
 1. Add your custom domain in Cloudflare Pages dashboard

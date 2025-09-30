@@ -31,7 +31,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
         <div className="mx-auto max-w-4xl px-4 py-4">
           <button 
             onClick={onBack}
-            className="inline-flex items-center gap-2 text-sm text-black/70 hover:text-black transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-black/70 hover:text-black transition-colors cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to work
@@ -149,7 +149,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             <div className="mt-8 flex justify-center gap-4">
               <button 
                 onClick={onBack}
-                className="inline-flex items-center gap-2 rounded-lg border border-black/20 px-4 py-2 text-sm font-medium text-black/80 hover:bg-black/5 transition-colors"
+                className="inline-flex items-center gap-2 rounded-lg border border-black/20 px-4 py-2 text-sm font-medium text-black/80 hover:bg-black/5 transition-colors cursor-pointer"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Back to work

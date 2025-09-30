@@ -232,7 +232,7 @@ export const DendoraLandingPage: React.FC = () => {
           <div className="grid gap-6 md:grid-cols-3">
             {[{
             name: 'FoundryPulse',
-            desc: 'A modern manufacturing operations platform built with Next.js 15 and TypeScript',
+            desc: 'A comprehensive modern manufacturing operations platform built with Next.js and TypeScript for real-time production monitoring',
             brandBg: 'bg-[#0B0D10]',
             image: {
               src: '/foundrypulse-wordmark.png',

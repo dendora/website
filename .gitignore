@@ -7,10 +7,36 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependencies
 node_modules
+jspm_packages
+
+# Build outputs
 dist
 dist-ssr
-*.local
+build
+*.tgz
+*.tar.gz
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache directories
+.cache
+.parcel-cache
+.npm
+.eslintcache
+.stylelintcache
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +48,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*~
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Coverage reports
+coverage
+*.lcov
+.nyc_output
+
+# Local development
+*.local
+.vercel
+.netlify

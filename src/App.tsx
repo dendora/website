@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Container, Theme } from './settings/types';
 // %IMPORT_STATEMENT
-import { DendoraLandingPage } from './components/generated/DendoraLandingPage'
+import { DendoraLandingPage } from './components/DendoraLandingPage'
 
 let theme: Theme = 'light';
 // only use 'centered' container for standalone components, never for full page apps or websites.

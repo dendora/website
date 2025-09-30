@@ -1,8 +1,13 @@
 {
-  "name": "component-forge",
-  "private": true,
-  "version": "0.0.0",
+  "name": "dendora-website",
+  "private": false,
+  "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
+  "description": "Dendora Software Development - Modern web applications and cloud infrastructure",
+  "keywords": ["react", "typescript", "vite", "tailwind", "website"],
+  "author": "Dendora Software Development",
+  "homepage": "https://dendora.hu",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

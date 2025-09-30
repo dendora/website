@@ -1,14 +1,16 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Mail, Github, Globe, Menu, X, CheckCircle2 } from 'lucide-react';
-import { useIsMobile } from '../../hooks/use-mobile';
-import { cn } from '../../lib/utils';
+import { useIsMobile } from '../hooks/use-mobile';
+import { cn } from '../lib/utils';
+import FoundryPulseDetails from './FoundryPulseDetails';
 
 // @component: DendoraLandingPage
 export const DendoraLandingPage: React.FC = () => {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [showFoundryPulseDetails, setShowFoundryPulseDetails] = React.useState(false);
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -74,6 +76,10 @@ export const DendoraLandingPage: React.FC = () => {
     </button>;
 
   // @return
+  if (showFoundryPulseDetails) {
+    return <FoundryPulseDetails onBack={() => setShowFoundryPulseDetails(false)} />
+  }
+
   return <div className="min-h-dvh w-full bg-white text-black antialiased">
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">
@@ -191,7 +197,7 @@ export const DendoraLandingPage: React.FC = () => {
               </div>
               <div className="mt-6 rounded-xl border border-black/10 bg-gradient-to-br from-black/[0.02] to-transparent p-4">
                 <p className="text-sm text-black/70">
-                  <span>Focused, high-quality engineering with an eye for design. We partner with startups and teams to launch and grow products.</span>
+                  <span>Full-stack development from frontend to infrastructure. We build scalable applications with modern React frontends and robust Go backends, deployed on Kubernetes.</span>
                 </p>
               </div>
             </motion.div>
@@ -209,8 +215,8 @@ export const DendoraLandingPage: React.FC = () => {
 
           <div className="grid gap-4 md:grid-cols-3">
             <Feature title="Product Strategy" desc="Scope, roadmap, and validation. We make sure we build the right thing before building it right." />
-            <Feature title="Design & UX" desc="Minimal, accessible interfaces that focus on clarity and speed. Prototypes to production-ready design systems." />
-            <Feature title="Full‑stack Development" desc="Modern web apps with React, TypeScript, and cloud-native backends. Performance and maintainability first." />
+            <Feature title="Frontend & Design" desc="React, TypeScript, and modern frameworks. Minimal, accessible interfaces with production-ready design systems." />
+            <Feature title="Backend & Infrastructure" desc="Go microservices, PostgreSQL databases, Docker containers, and Kubernetes clusters. Scalable cloud-native architecture." />
           </div>
         </div>
       </section>
@@ -226,60 +232,78 @@ export const DendoraLandingPage: React.FC = () => {
           <div className="grid gap-6 md:grid-cols-3">
             {[{
             name: 'FoundryPulse',
-            desc: 'Automating corporate workflows with robust orchestration and clear oversight.',
+            desc: 'A modern manufacturing operations platform built with Next.js 15 and TypeScript',
             brandBg: 'bg-[#0B0D10]',
             image: {
               src: '/foundrypulse-wordmark.png',
               alt: 'FoundryPulse wordmark with pouring ladle and pulse icon'
             }
           }, {
-            name: 'SaaS Dashboard',
-            desc: 'Composable analytics with real‑time updates and role‑based access.',
-            brandBg: 'bg-[linear-gradient(120deg,rgba(0,0,0,0.06),transparent)]',
+            name: 'Analytics Platform',
+            desc: 'Real-time data processing with Go microservices, PostgreSQL, and React dashboards deployed on Kubernetes',
+            brandBg: 'bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)]',
             image: undefined
           }, {
-            name: 'E‑commerce Revamp',
-            desc: 'Headless storefront with lightning‑fast navigation and checkout.',
-            brandBg: 'bg-[linear-gradient(120deg,rgba(0,0,0,0.06),transparent)]',
+            name: 'Cloud Infrastructure',
+            desc: 'Docker containerization with GitHub Actions CI/CD pipelines, monitoring, and automated Kubernetes deployments',
+            brandBg: 'bg-[linear-gradient(135deg,#f093fb_0%,#f5576c_100%)]',
             image: undefined
-          }].map((p, i) => <motion.article key={p.name} initial={prefersReducedMotion ? undefined : {
-            opacity: 0,
-            y: 8
-          }} whileInView={prefersReducedMotion ? undefined : {
-            opacity: 1,
-            y: 0
-          }} viewport={{
-            once: true,
-            margin: '-50px'
-          }} transition={{
-            duration: 0.4,
-            delay: i * 0.05
-          }} className="group relative overflow-hidden rounded-xl border border-black/10 bg-white">
+          }].map((p, i) => <motion.article 
+            key={p.name} 
+            initial={prefersReducedMotion ? undefined : {
+              opacity: 0,
+              y: 8
+            }} 
+            whileInView={prefersReducedMotion ? undefined : {
+              opacity: 1,
+              y: 0
+            }} 
+            viewport={{
+              once: true,
+              margin: '-50px'
+            }} 
+            transition={{
+              duration: 0.4,
+              delay: i * 0.05
+            }} 
+            onClick={p.name === 'FoundryPulse' ? () => setShowFoundryPulseDetails(true) : undefined}
+            className={cn(
+              "group relative overflow-hidden rounded-xl border border-black/10 bg-white",
+              p.name === 'FoundryPulse' ? "cursor-pointer hover:shadow-lg transition-shadow" : ""
+            )}>
                 <div className={cn("aspect-[16/10]", p.brandBg)}>
-                  <div className="flex h-full w-full items-center justify-between px-4 py-3">
-                    <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-white">
-                      {p.image ? <picture>
-                          <source srcSet={p.image.src} />
-                          <img src={p.image.src} alt={p.image.alt} className="h-6 w-auto" />
-                        </picture> : <div className="relative h-8 w-8" aria-hidden="true">
+                  {p.image ? (
+                    <div className="flex h-full w-full items-center justify-center p-8">
+                      <picture>
+                        <source srcSet={p.image.src} />
+                        <img src={p.image.src} alt={p.image.alt} className="max-h-full max-w-full object-contain brightness-0 invert" />
+                      </picture>
+                    </div>
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-between px-4 py-3">
+                      <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-white">
+                        <div className="relative h-8 w-8" aria-hidden="true">
                           <div className="absolute inset-0 rounded-[6px] bg-white/10" />
                           <div className="absolute left-1 top-1 h-6 w-6 rounded-[5px] bg-white" />
                           <div className="absolute right-1 top-1 h-6 w-2.5 rounded-r-[5px] bg-black/80" />
-                        </div>}
-                      <span className="text-sm font-medium tracking-tight">{p.name}</span>
+                        </div>
+                        <span className="text-sm font-medium tracking-tight">{p.name}</span>
+                      </div>
+                      <div className="text-[10px] uppercase tracking-[0.18em] text-white/70">
+                        <span>Case study</span>
+                      </div>
                     </div>
-                    <div className="text-[10px] uppercase tracking-[0.18em] text-white/70">
-                      <span>Case study</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="text-base font-semibold"><span>{p.name}</span></h3>
                   <p className="mt-1 text-sm text-black/60"><span>{p.desc}</span></p>
-                  <div className="mt-3 inline-flex items-center gap-1 text-sm text-black/70">
-                    <span>Details</span>
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                  </div>
+                  {p.name === 'FoundryPulse' && (
+                    <div className="mt-3 inline-flex items-center gap-1 text-sm text-black/70">
+                      <span>Details</span>
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </div>
+                  )}
                 </div>
               </motion.article>)}
           </div>

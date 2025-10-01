@@ -1,0 +1,28 @@
+---
+import { getProject, getProjectSlugs, type ProjectData } from '../../lib/projects-json';
+import { ProjectDetailsPage } from '../../components/pages';
+import WorkLayout from '../../layouts/WorkLayout.astro';
+import { t } from '../../lib/translations';
+
+export async function getStaticPaths() {
+  const slugs = getProjectSlugs();
+  return slugs.map((slug) => ({
+    params: { id: slug },
+  }));
+}
+
+const { id } = Astro.params;
+const lang = 'hu' as const;
+const project = getProject(id!, lang);
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+const title = project.metadata.title + ' - Dendora';
+const description = project.metadata.description;
+---
+
+<WorkLayout title={title} description={description} lang={lang}>
+  <ProjectDetailsPage project={project} language={lang} client:only="react" />
+</WorkLayout>

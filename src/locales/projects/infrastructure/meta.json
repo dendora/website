@@ -1,0 +1,25 @@
+{
+  "id": "infrastructure",
+  "slug": "infrastructure",
+  "year": "2024",
+  "status": "in-progress",
+  "category": "infrastructure",
+  "techStack": [
+    "Docker",
+    "Kubernetes",
+    "GitHub Actions",
+    "Terraform",
+    "Prometheus",
+    "Grafana",
+    "Nginx"
+  ],
+  "images": {
+    "hero": "/dendora-sw-dev-logo.png",
+    "gallery": []
+  },
+  "links": {
+    "website": null,
+    "github": null,
+    "demo": null
+  }
+}

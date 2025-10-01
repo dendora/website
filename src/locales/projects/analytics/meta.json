@@ -1,0 +1,25 @@
+{
+  "id": "analytics",
+  "slug": "analytics",
+  "year": "2024",
+  "status": "in-progress",
+  "category": "data-platform",
+  "techStack": [
+    "Vue.js",
+    "Python",
+    "FastAPI",
+    "ClickHouse",
+    "Redis",
+    "Apache Kafka",
+    "Kubernetes"
+  ],
+  "images": {
+    "hero": "/dendora-sw-dev-logo.png",
+    "gallery": []
+  },
+  "links": {
+    "website": null,
+    "github": null,
+    "demo": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Cloud Infrastructure",
+  "subtitle": "Docker containerization with GitHub Actions CI/CD pipelines",
+  "description": "Docker containerization with GitHub Actions CI/CD pipelines, monitoring, and automated Kubernetes deployments",
+  "content": {
+    "overview": "Comprehensive cloud infrastructure platform that enables scalable and reliable application deployments.",
+    "challenge": "Modern applications require complex infrastructure requirements for scalability and reliability.",
+    "solution": "Automated CI/CD pipelines and containerized applications with Kubernetes orchestration."
+  },
+  "features": [
+    {
+      "title": "Docker containerization",
+      "description": "Running applications in isolated containers"
+    },
+    {
+      "title": "GitHub Actions CI/CD",
+      "description": "Automated build and deployment processes"
+    },
+    {
+      "title": "Kubernetes orchestration",
+      "description": "Scalable container management"
+    },
+    {
+      "title": "Monitoring and logging",
+      "description": "Comprehensive application monitoring"
+    }
+  ]
+}

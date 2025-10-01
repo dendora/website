@@ -1,0 +1,28 @@
+{
+  "title": "Felhő Infrastruktúra",
+  "subtitle": "Docker konténerizáció GitHub Actions CI/CD pipeline-okkal",
+  "description": "Docker konténerizáció GitHub Actions CI/CD pipeline-okkal, monitorozással és automatizált Kubernetes telepítésekkel",
+  "content": {
+    "overview": "Átfogó felhő infrastruktúra platform, amely lehetővé teszi a skálázható és megbízható alkalmazások telepítését.",
+    "challenge": "A modern alkalmazások komplex infrastruktúra követelményeket támasztanak a skálázhatóság és megbízhatóság terén.",
+    "solution": "Automatizált CI/CD pipeline-ok és konténerizált alkalmazások Kubernetes orchestrációval."
+  },
+  "features": [
+    {
+      "title": "Docker konténerizáció",
+      "description": "Alkalmazások izolált konténerekben futtatása"
+    },
+    {
+      "title": "GitHub Actions CI/CD",
+      "description": "Automatizált build és telepítési folyamatok"
+    },
+    {
+      "title": "Kubernetes orchestráció",
+      "description": "Skálázható konténer menedzsment"
+    },
+    {
+      "title": "Monitoring és logging",
+      "description": "Teljes körű alkalmazás monitorozás"
+    }
+  ]
+}

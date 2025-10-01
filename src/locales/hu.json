@@ -70,7 +70,8 @@
         "description": "Docker konténerizáció GitHub Actions CI/CD pipeline-okkal, monitorozással és automatizált Kubernetes telepítésekkel"
       }
     },
-    "caseStudy": "Esettanulmány"
+    "caseStudy": "Esettanulmány",
+    "viewProject": "Projekt megtekintése"
   },
   "about": {
     "title": "Szándékosan építve",

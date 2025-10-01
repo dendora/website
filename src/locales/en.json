@@ -70,7 +70,8 @@
         "description": "Docker containerization with GitHub Actions CI/CD pipelines, monitoring, and automated Kubernetes deployments"
       }
     },
-    "caseStudy": "Case study"
+    "caseStudy": "Case study",
+    "viewProject": "View project"
   },
   "about": {
     "title": "Built with intention",

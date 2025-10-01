@@ -1,0 +1,24 @@
+{
+  "title": "Analytics Platform",
+  "subtitle": "Advanced data analytics platform",
+  "description": "Real-time data processing with Go microservices, PostgreSQL, and React dashboards deployed on Kubernetes",
+  "content": {
+    "overview": "The Analytics Platform is a modern solution in the field of business intelligence and data analysis.",
+    "challenge": "Companies generate increasingly large amounts of data that are difficult to manage and analyze.",
+    "solution": "A scalable platform that automates data processing and provides interactive visualizations."
+  },
+  "features": [
+    {
+      "title": "High-performance processing",
+      "description": "Millisecond response times for large datasets"
+    },
+    {
+      "title": "Interactive dashboards",
+      "description": "Drag-and-drop dashboard builder"
+    },
+    {
+      "title": "API integration",
+      "description": "RESTful API for external systems"
+    }
+  ]
+}

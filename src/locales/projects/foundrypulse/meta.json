@@ -1,0 +1,25 @@
+{
+  "id": "foundrypulse",
+  "slug": "foundrypulse",
+  "year": "2025",
+  "status": "in-progress",
+  "category": "web-application",
+  "techStack": [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "WebSocket",
+    "Chart.js",
+    "Docker"
+  ],
+  "images": {
+    "hero": "/foundrypulse-wordmark.png",
+    "gallery": []
+  },
+  "links": {
+    "website": null,
+    "github": null,
+    "demo": null
+  }
+}

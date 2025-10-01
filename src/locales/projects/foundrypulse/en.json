@@ -1,0 +1,24 @@
+{
+  "title": "FoundryPulse",
+  "subtitle": "Real-time manufacturing performance monitoring",
+  "description": "A comprehensive modern manufacturing operations platform built with Next.js and TypeScript for real-time production monitoring",
+  "content": {
+    "overview": "FoundryPulse is a comprehensive manufacturing monitoring platform that helps manufacturers optimize their processes and increase efficiency.",
+    "challenge": "Manufacturers often struggle with real-time tracking and analysis of production data.",
+    "solution": "We created an intuitive dashboard that displays key performance indicators in real-time."
+  },
+  "features": [
+    {
+      "title": "Real-time monitoring",
+      "description": "Instant insights into manufacturing processes"
+    },
+    {
+      "title": "Predictive analytics",
+      "description": "Machine learning-based predictions"
+    },
+    {
+      "title": "Customizable dashboard",
+      "description": "Personalized reports and metrics"
+    }
+  ]
+}

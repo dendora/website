@@ -1,0 +1,24 @@
+{
+  "title": "Analitikai Platform",
+  "subtitle": "Fejlett adatelemzési platform",
+  "description": "Valós idejű adatfeldolgozás Go mikroszolgáltatásokkal, PostgreSQL-lel és React dashboardokkal Kubernetes-en telepítve",
+  "content": {
+    "overview": "Az Analytics Platform egy modern megoldás az üzleti intelligencia és adatelemzés területén.",
+    "challenge": "A vállalatok egyre nagyobb mennyiségű adatot generálnak, amelyet nehéz kezelni és elemezni.",
+    "solution": "Egy skálázható platform, amely automatizálja az adatfeldolgozást és interaktív vizualizációkat biztosít."
+  },
+  "features": [
+    {
+      "title": "Nagy teljesítményű feldolgozás",
+      "description": "Milliszekundumos válaszidő nagy adathalmazoknál"
+    },
+    {
+      "title": "Interaktív dashboardok",
+      "description": "Drag-and-drop dashboard építő"
+    },
+    {
+      "title": "API integráció",
+      "description": "RESTful API külső rendszerekhez"
+    }
+  ]
+}

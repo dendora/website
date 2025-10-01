@@ -16,15 +16,15 @@ const baseUrl = 'https://dendora.hu';
 
 // Generate hreflang URLs
 const hreflangs = {
-  hu: lang === 'en' && currentPath.startsWith('/en/') 
-    ? currentPath.replace('/en/', '/') 
+  hu: currentPath.startsWith('/en/') 
+    ? currentPath.replace('/en/', '/').replace('/en', '/') 
     : currentPath,
-  en: lang === 'hu' && !currentPath.startsWith('/en/') 
+  en: !currentPath.startsWith('/en/') 
     ? `/en${currentPath === '/' ? '' : currentPath}`
     : currentPath
 };
 
-// Clean up URLs
+// Ensure clean URLs
 if (hreflangs.hu === '/') hreflangs.hu = '/';
 if (hreflangs.en === '/en') hreflangs.en = '/en/';
 ---

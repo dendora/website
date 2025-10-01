@@ -64,14 +64,14 @@ export const DendoraLandingPage: React.FC = () => {
     className,
     children,
     ...props
-  }) => <button {...props} className={cn('inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 cursor-pointer', className)}>
+  }) => <button {...props} className={cn('inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30', className)}>
       {children}
     </button>;
   const OutlineButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
     className,
     children,
     ...props
-  }) => <button {...props} className={cn('inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:border-black/20 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10 cursor-pointer', className)}>
+  }) => <button {...props} className={cn('inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:border-black/20 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10', className)}>
       {children}
     </button>;
 
@@ -84,7 +84,7 @@ export const DendoraLandingPage: React.FC = () => {
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <button onClick={() => scrollTo('home')} className="group flex items-center gap-3 cursor-pointer" aria-label="Dendora home">
+          <button onClick={() => scrollTo('home')} className="group flex items-center gap-3" aria-label="Dendora home">
             {/* Logo */}
             <div className="relative h-8 w-8">
               <div className="absolute inset-0 rounded-lg bg-black" />
@@ -99,17 +99,17 @@ export const DendoraLandingPage: React.FC = () => {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-6 md:flex">
-            {navItems.map(n => <button key={n.id} onClick={() => scrollTo(n.id)} className="text-sm text-black/70 transition hover:text-black cursor-pointer">
+            {navItems.map(n => <button key={n.id} onClick={() => scrollTo(n.id)} className="text-sm text-black/70 transition hover:text-black">
                 <span>{n.label}</span>
               </button>)}
-            <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer">
+            <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/85">
               <Mail className="h-4 w-4" />
               <span>Contact</span>
             </a>
           </nav>
 
           {/* Mobile menu button */}
-          <button className="inline-flex items-center justify-center rounded-md p-2 hover:bg-black/5 md:hidden cursor-pointer" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
+          <button className="inline-flex items-center justify-center rounded-md p-2 hover:bg-black/5 md:hidden" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
@@ -118,10 +118,10 @@ export const DendoraLandingPage: React.FC = () => {
         {menuOpen && <div className="border-t border-black/5 bg-white md:hidden">
             <nav className="mx-auto max-w-6xl px-4 py-2">
               <div className="grid gap-1">
-                {navItems.map(n => <button key={n.id} onClick={() => scrollTo(n.id)} className="w-full rounded-md px-2 py-2 text-left text-sm text-black/80 hover:bg-black/5 cursor-pointer">
+                {navItems.map(n => <button key={n.id} onClick={() => scrollTo(n.id)} className="w-full rounded-md px-2 py-2 text-left text-sm text-black/80 hover:bg-black/5">
                     <span>{n.label}</span>
                   </button>)}
-                <a href="mailto:hello@dendora.hu" className="mt-1 inline-flex items-center gap-2 rounded-md bg-black px-3 py-2 text-sm font-medium text-white cursor-pointer">
+                <a href="mailto:hello@dendora.hu" className="mt-1 inline-flex items-center gap-2 rounded-md bg-black px-3 py-2 text-sm font-medium text-white">
                   <Mail className="h-4 w-4" />
                   <span>Contact</span>
                 </a>
@@ -232,7 +232,7 @@ export const DendoraLandingPage: React.FC = () => {
           <div className="grid gap-6 md:grid-cols-3">
             {[{
             name: 'FoundryPulse',
-            desc: 'A comprehensive modern manufacturing operations platform built with Next.js and TypeScript for real-time production monitoring',
+            desc: 'A modern manufacturing operations platform built with Next.js 15 and TypeScript',
             brandBg: 'bg-[#0B0D10]',
             image: {
               src: '/foundrypulse-wordmark.png',
@@ -332,7 +332,7 @@ export const DendoraLandingPage: React.FC = () => {
               </ul>
               <div className="mt-7 flex gap-3">
                 <OutlineButton onClick={() => scrollTo('contact')}><span>Let’s talk</span></OutlineButton>
-                <a href="https://dendora.hu" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5 cursor-pointer">
+                <a href="https://dendora.hu" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5">
                   <Globe className="h-4 w-4" />
                   <span>dendora.hu</span>
                 </a>
@@ -375,15 +375,15 @@ export const DendoraLandingPage: React.FC = () => {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer">
+              <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/85">
                 <Mail className="h-4 w-4" />
                 <span>hello@dendora.hu</span>
               </a>
-              <a href="https://dendora.hu" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5 cursor-pointer">
+              <a href="https://dendora.hu" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5">
                 <Globe className="h-4 w-4" />
                 <span>dendora.hu</span>
               </a>
-              <a href="https://github.com/dendora" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5 cursor-pointer">
+              <a href="https://github.com/dendora" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5">
                 <Github className="h-4 w-4" />
                 <span>GitHub</span>
               </a>
@@ -404,11 +404,11 @@ export const DendoraLandingPage: React.FC = () => {
             <span>© {new Date().getFullYear()} Dendora. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="https://dendora.hu" className="inline-flex items-center gap-1 hover:text-black cursor-pointer">
+            <a href="https://dendora.hu" className="inline-flex items-center gap-1 hover:text-black">
               <Globe className="h-4 w-4" />
               <span>dendora.hu</span>
             </a>
-            <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-1 hover:text-black cursor-pointer">
+            <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-1 hover:text-black">
               <Mail className="h-4 w-4" />
               <span>hello@dendora.hu</span>
             </a>

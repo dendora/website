@@ -111,8 +111,8 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
                 </div>
                 <p className="text-gray-600 italic text-lg leading-relaxed">
                   {language === 'hu' 
-                    ? '"A Dendora csapat segítségével 3 hónap alatt felépítettük a FoundryPulse platformot. Professzionális, megbízható partnerek."'
-                    : '"With Dendora\'s help, we built the FoundryPulse platform in 3 months. Professional, reliable partners."'
+                    ? '"A Dendora csapat segítségével 3 hónap alatt modernizáltuk a gyártási folyamatainkat. Professzionális munkavégzés nemzetközi szinten."'
+                    : '"With Dendora\'s help, we modernized our manufacturing processes in 3 months. Professional work at international level."'
                   }
                 </p>
               </div>
@@ -122,7 +122,7 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
-                    {language === 'hu' ? 'Helyi Ügyfelünk' : 'Local Client'}
+                    {language === 'hu' ? 'Autóipari Ügyfél' : 'Automotive Client'}
                   </div>
                   <div className="text-gray-600 text-sm">FoundryPulse</div>
                 </div>
@@ -183,8 +183,8 @@ export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language, scrollTo
                   </h2>
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
                     {language === 'hu' 
-                      ? 'Modern platform React és TypeScript technológiákkal, amely segít a helyi gyártóknak optimalizálni folyamataikat.'
-                      : 'Modern platform built with React and TypeScript, helping local manufacturers optimize their processes.'
+                      ? 'Modern React és TypeScript platform komplex gyártási környezethez.'
+                      : 'Modern React and TypeScript platform for complex manufacturing environment.'
                     }
                   </p>
                 </div>

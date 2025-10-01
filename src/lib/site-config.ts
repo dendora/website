@@ -87,7 +87,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     content: {
       emphasizeLocal: true,
       showTechDetails: false,
-      casStudyFocus: 'foundrypulse',
+      casStudyFocus: 'all',
       contactApproach: 'personal',
       valueProposition: 'local-partnership',
       useVariantTranslations: true,

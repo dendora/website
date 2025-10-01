@@ -35,8 +35,8 @@ export const LocalPresenceSection: React.FC<LocalPresenceSectionProps> = ({ lang
       icon: Award,
       title: language === 'hu' ? 'Helyi referenciák' : 'Local References',
       description: language === 'hu'
-        ? 'Magyarországi ügyfelek és sikeres projektek, mint a FoundryPulse.'
-        : 'Hungarian clients and successful projects like FoundryPulse.',
+        ? 'Magyarországi ügyfelek és sikeres nemzetközi projektek.'
+        : 'Hungarian clients and successful international projects.',
     },
   ];
 
@@ -82,8 +82,8 @@ export const LocalPresenceSection: React.FC<LocalPresenceSectionProps> = ({ lang
                 </h3>
                 <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                   {language === 'hu'
-                    ? 'Értjük a helyi üzleti kultúrát, az EU szabályozásokat, és a regionális kihívásokat. A FoundryPulse projektünk tökéletes példa arra, hogyan segíthetünk helyi vállalatoknak modern technológiával.'
-                    : 'We understand local business culture, EU regulations, and regional challenges. Our FoundryPulse project is a perfect example of how we help local companies with modern technology.'
+                    ? 'Értjük a helyi üzleti kultúrát, az EU szabályozásokat, és a regionális kihívásokat. Tapasztalatunk nemzetközi autóipari projektekben és helyi partneri kapcsolatokban.'
+                    : 'We understand local business culture, EU regulations, and regional challenges. Experience in international automotive projects and local partnerships.'
                   }
                 </p>
                 <div className="flex items-center gap-4 text-sm text-gray-600">
@@ -111,12 +111,12 @@ export const LocalPresenceSection: React.FC<LocalPresenceSectionProps> = ({ lang
                       className="h-8 w-auto mx-auto mb-4"
                     />
                     <div className="text-2xl font-bold text-gray-900 mb-2">
-                      {language === 'hu' ? 'Helyi siker' : 'Local Success'}
+                      {language === 'hu' ? 'Autóipari projekt' : 'Automotive Project'}
                     </div>
                     <p className="text-gray-700">
                       {language === 'hu'
-                        ? 'Magyar gyártó cég számára fejlesztett platform'
-                        : 'Platform developed for a Hungarian manufacturing company'
+                        ? 'Nemzetközi öntöde modernizálása'
+                        : 'International foundry modernization'
                       }
                     </p>
                   </div>

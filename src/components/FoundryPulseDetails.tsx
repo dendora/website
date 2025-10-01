@@ -1,27 +1,29 @@
+import React, { useEffect } from 'react'
 import { ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useTranslation } from '../hooks/useTranslation'
 
 interface FoundryPulseDetailsProps {
   onBack: () => void
 }
 
 export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps) {
+  const { t } = useTranslation()
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  const features = [
-    "Real-time Operations Dashboard - Live monitoring of production lines and equipment status",
-    "Multi-language Support - Internationalized interface with next-intl", 
-    "Role-based Access Control - Secure JWT authentication with granular permissions",
-    "Production Analytics - Data-driven insights for manufacturing optimization",
-    "Configurable Storage - Flexible S3/filesystem integration for document management"
-  ]
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
+  const features = t('foundryPulse.features')
+  
   const techStack = [
-    { category: "Frontend", tech: "Next.js 15 App Router, React 19, TypeScript, Tailwind CSS" },
-    { category: "Backend", tech: "PostgreSQL with Drizzle ORM for type-safe database operations" },
-    { category: "Architecture", tech: "Service-oriented design with centralized business logic" },
-    { category: "UI Components", tech: "Radix UI primitives with shadcn/ui styling" },
-    { category: "Testing", tech: "Vitest for comprehensive test coverage" }
+    { category: t('foundryPulse.techStack.frontend.category'), tech: t('foundryPulse.techStack.frontend.tech') },
+    { category: t('foundryPulse.techStack.backend.category'), tech: t('foundryPulse.techStack.backend.tech') },
+    { category: t('foundryPulse.techStack.architecture.category'), tech: t('foundryPulse.techStack.architecture.tech') },
+    { category: t('foundryPulse.techStack.ui.category'), tech: t('foundryPulse.techStack.ui.tech') },
+    { category: t('foundryPulse.techStack.testing.category'), tech: t('foundryPulse.techStack.testing.tech') }
   ]
 
   return (
@@ -34,7 +36,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             className="inline-flex items-center gap-2 text-sm text-black/70 hover:text-black transition-colors cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to work
+            {t('foundryPulse.backToWork')}
           </button>
         </div>
       </header>
@@ -53,20 +55,20 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
                 src="/foundrypulse-wordmark.png" 
                 alt="FoundryPulse wordmark with pouring ladle and pulse icon"
                 className="max-h-full max-w-full object-contain brightness-0 invert"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">FoundryPulse</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('foundryPulse.title')}</h1>
           <p className="text-lg text-black/70 mb-8">
-            A modern manufacturing operations platform built with Next.js 15 and TypeScript
+            {t('foundryPulse.subtitle')}
           </p>
           
           <div className="prose prose-gray max-w-none">
             <p className="text-black/65 leading-relaxed">
-              FoundryPulse is a comprehensive production management system designed for manufacturing environments. 
-              It features real-time factory monitoring, equipment tracking, and production analytics with a clean, 
-              responsive interface built on React 19 and Tailwind CSS.
+              {t('foundryPulse.description')}
             </p>
           </div>
         </motion.div>
@@ -81,7 +83,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Key Features</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('foundryPulse.keyFeatures')}</h2>
             <div className="space-y-4">
               {features.map((feature, index) => (
                 <motion.div
@@ -112,7 +114,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Technical Stack</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('foundryPulse.technicalStack')}</h2>
             <div className="grid gap-4 md:gap-6">
               {techStack.map((item, index) => (
                 <motion.div
@@ -143,7 +145,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             className="text-center"
           >
             <p className="text-black/65 leading-relaxed max-w-2xl mx-auto">
-              Built for scalability and maintainability with modern development practices and clean architecture patterns.
+              {t('foundryPulse.conclusion')}
             </p>
             
             <div className="mt-8 flex justify-center gap-4">
@@ -152,7 +154,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
                 className="inline-flex items-center gap-2 rounded-lg border border-black/20 px-4 py-2 text-sm font-medium text-black/80 hover:bg-black/5 transition-colors cursor-pointer"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back to work
+                {t('foundryPulse.backToWork')}
               </button>
             </div>
           </motion.div>

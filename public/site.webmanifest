@@ -1,0 +1,22 @@
+{
+  "name": "Dendora - Software Development",
+  "short_name": "Dendora",
+  "description": "Minimal software, maximal impact. Full-stack development with React, TypeScript, Go, and Kubernetes.",
+  "icons": [
+    {
+      "src": "/dendora-d-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/dendora-d-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

@@ -1,0 +1,148 @@
+{
+  "navigation": {
+    "home": "Főoldal",
+    "services": "Szolgáltatások",
+    "work": "Munkáink", 
+    "about": "Rólunk",
+    "contact": "Kapcsolat",
+    "ariaLabels": {
+      "dendoraHome": "Dendora főoldal",
+      "toggleMenu": "Menü váltása"
+    }
+  },
+  "hero": {
+    "title": "Minimális szoftver, maximális hatás.",
+    "subtitle": "Karcsú, megbízható web és mobil termékeket építünk. Stratégia, design és fejlesztés — egyértelmű megoldásokkal.",
+    "cta": {
+      "startProject": "Projekt indítása",
+      "seeWork": "Munkáink megtekintése"
+    },
+    "stats": {
+      "experience": {
+        "value": "10+ év",
+        "label": "Tapasztalat"
+      },
+      "remote": {
+        "value": "100%",
+        "label": "Távmunka"
+      }
+    },
+    "brandCard": {
+      "companyName": "DENDORA",
+      "tagline": "Szoftverfejlesztés",
+      "description": "Full-stack fejlesztés a frontend-től az infrastruktúráig. Skálázható alkalmazásokat építünk modern React frontend-ekkel és robusztus Go backend-ekkel, Kubernetes-en telepítve."
+    }
+  },
+  "services": {
+    "title": "Mit csinálunk",
+    "subtitle": "Karcsú, megbízható, kiszállított.",
+    "features": {
+      "strategy": {
+        "title": "Termékstratégia",
+        "description": "Hatókör, ütemterv és validáció. Biztosítjuk, hogy a megfelelő dolgot építsük fel, mielőtt jól építenénk fel."
+      },
+      "frontend": {
+        "title": "Frontend és Design",
+        "description": "React, TypeScript és modern keretrendszerek. Minimális, akadálymentes felületek termelésre kész design rendszerekkel."
+      },
+      "backend": {
+        "title": "Backend és Infrastruktúra", 
+        "description": "Go mikroszolgáltatások, PostgreSQL adatbázisok, Docker konténerek és Kubernetes klaszterek. Skálázható felhő-natív architektúra."
+      }
+    }
+  },
+  "work": {
+    "title": "Kiválasztott munkák",
+    "subtitle": "Legújabb kiemelések",
+    "projects": {
+      "foundryPulse": {
+        "name": "FoundryPulse",
+        "description": "Átfogó modern gyártási műveletirányítási platform Next.js-sel és TypeScript-tel építve valós idejű termelésmonitorozáshoz",
+        "details": "Részletek",
+        "imageAlt": "FoundryPulse szómárka öntőkanállal és pulzus ikonnal"
+      },
+      "analytics": {
+        "name": "Analitikai Platform", 
+        "description": "Valós idejű adatfeldolgozás Go mikroszolgáltatásokkal, PostgreSQL-lel és React dashboardokkal Kubernetes-en telepítve"
+      },
+      "infrastructure": {
+        "name": "Felhő Infrastruktúra",
+        "description": "Docker konténerizáció GitHub Actions CI/CD pipeline-okkal, monitorozással és automatizált Kubernetes telepítésekkel"
+      }
+    },
+    "caseStudy": "Esettanulmány"
+  },
+  "about": {
+    "title": "Szándékosan építve",
+    "description": "Egy kis csapat vagyunk, aki kevesebb meetinget és több eredményt preferál. Világos hatókörök, pragmatikus stackek és egyenletes iteráció.",
+    "features": {
+      "engineering": "Senior gyakorlatias fejlesztés",
+      "delivery": "Átlátható becslések és szállítás",
+      "maintainability": "Hosszú távú karbantarthatóság"
+    },
+    "cta": "Beszéljünk",
+    "cards": {
+      "stack": {
+        "title": "Stack",
+        "description": "TypeScript, React, Node.js, Go, Kubernetes"
+      },
+      "approach": {
+        "title": "Megközelítés",
+        "description": "Kicsi szállítás, gyors iteráció"
+      },
+      "principles": {
+        "title": "Elvek",
+        "description": "Akadálymentesség és teljesítmény"
+      },
+      "engagement": {
+        "title": "Együttműködés",
+        "description": "Projekt vagy fenntartói"
+      }
+    }
+  },
+  "contact": {
+    "title": "Építsünk valami minimálisat",
+    "subtitle": "Egyszerű e-maileket preferálunk. Írj nekünk közvetlenül — nincsenek űrlapok."
+  },
+  "footer": {
+    "copyright": "© {year} Dendora. Minden jog fenntartva."
+  },
+  "foundryPulse": {
+    "backToWork": "Vissza a munkákhoz",
+    "title": "FoundryPulse",
+    "subtitle": "Modern gyártási műveletirányítási platform Next.js-sel és TypeScript-tel építve",
+    "description": "A FoundryPulse egy átfogó termelésirányítási rendszer, amelyet gyártási környezetekhez terveztek. Valós idejű gyári monitorozást, berendezéskövetést és termelési analitikát kínál tiszta, reszponzív felülettel, amely React-ra és Tailwind CSS-re épül.",
+    "keyFeatures": "Főbb Funkciók",
+    "technicalStack": "Technikai Stack",
+    "conclusion": "Skálázhatóságra és karbantarthatóságra építve modern fejlesztési gyakorlatokkal és tiszta architektúrális mintákkal.",
+    "features": [
+      "Valós idejű Műveleti Dashboard - Élő monitoring a termelési sorokról és berendezések állapotáról",
+      "Többnyelvű Támogatás - Nemzetköziesített felület next-intl-lel",
+      "Szerepalapú Hozzáférés-vezérlés - Biztonságos JWT hitelesítés granulált engedélyekkel",
+      "Termelési Analitika - Adatvezérelt betekintések a gyártási optimalizáláshoz",
+      "Konfigurálható Tárolás - Rugalmas S3/fájlrendszer integráció dokumentumkezeléshez"
+    ],
+    "techStack": {
+      "frontend": {
+        "category": "Frontend",
+        "tech": "Next.js App Router, React, TypeScript, Tailwind CSS"
+      },
+      "backend": {
+        "category": "Backend",
+        "tech": "PostgreSQL Drizzle ORM-mel típusbiztos adatbázis műveletekhez"
+      },
+      "architecture": {
+        "category": "Architektúra",
+        "tech": "Szolgáltatás-orientált design központosított üzleti logikával"
+      },
+      "ui": {
+        "category": "UI Komponensek",
+        "tech": "Radix UI primitívek shadcn/ui stílusokkal"
+      },
+      "testing": {
+        "category": "Tesztelés",
+        "tech": "Vitest átfogó teszt lefedettséghez"
+      }
+    }
+  }
+}

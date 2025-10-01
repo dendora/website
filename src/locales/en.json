@@ -1,0 +1,148 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services", 
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "ariaLabels": {
+      "dendoraHome": "Dendora home",
+      "toggleMenu": "Toggle menu"
+    }
+  },
+  "hero": {
+    "title": "Minimal software, maximal impact.",
+    "subtitle": "We build lean, dependable web and mobile products. Strategy, design, and engineering — delivered with clarity.",
+    "cta": {
+      "startProject": "Start a project",
+      "seeWork": "See our work"
+    },
+    "stats": {
+      "experience": {
+        "value": "10+ yrs",
+        "label": "Experience"
+      },
+      "remote": {
+        "value": "100%",
+        "label": "Remote-first"
+      }
+    },
+    "brandCard": {
+      "companyName": "DENDORA",
+      "tagline": "Software Development",
+      "description": "Full-stack development from frontend to infrastructure. We build scalable applications with modern React frontends and robust Go backends, deployed on Kubernetes."
+    }
+  },
+  "services": {
+    "title": "What we do",
+    "subtitle": "Lean, reliable, shipped.",
+    "features": {
+      "strategy": {
+        "title": "Product Strategy",
+        "description": "Scope, roadmap, and validation. We make sure we build the right thing before building it right."
+      },
+      "frontend": {
+        "title": "Frontend & Design", 
+        "description": "React, TypeScript, and modern frameworks. Minimal, accessible interfaces with production-ready design systems."
+      },
+      "backend": {
+        "title": "Backend & Infrastructure",
+        "description": "Go microservices, PostgreSQL databases, Docker containers, and Kubernetes clusters. Scalable cloud-native architecture."
+      }
+    }
+  },
+  "work": {
+    "title": "Selected work",
+    "subtitle": "Recent highlights",
+    "projects": {
+      "foundryPulse": {
+        "name": "FoundryPulse",
+        "description": "A comprehensive modern manufacturing operations platform built with Next.js and TypeScript for real-time production monitoring",
+        "details": "Details",
+        "imageAlt": "FoundryPulse wordmark with pouring ladle and pulse icon"
+      },
+      "analytics": {
+        "name": "Analytics Platform",
+        "description": "Real-time data processing with Go microservices, PostgreSQL, and React dashboards deployed on Kubernetes"
+      },
+      "infrastructure": {
+        "name": "Cloud Infrastructure",
+        "description": "Docker containerization with GitHub Actions CI/CD pipelines, monitoring, and automated Kubernetes deployments"
+      }
+    },
+    "caseStudy": "Case study"
+  },
+  "about": {
+    "title": "Built with intention",
+    "description": "We're a small team that prefers fewer meetings and more results. Clear scopes, pragmatic stacks, and steady iteration.",
+    "features": {
+      "engineering": "Senior hands‑on engineering",
+      "delivery": "Transparent estimates and delivery", 
+      "maintainability": "Long‑term maintainability"
+    },
+    "cta": "Let's talk",
+    "cards": {
+      "stack": {
+        "title": "Stack",
+        "description": "TypeScript, React, Node.js, Go, Kubernetes"
+      },
+      "approach": {
+        "title": "Approach",
+        "description": "Ship small, iterate fast"
+      },
+      "principles": {
+        "title": "Principles",
+        "description": "Accessibility and performance"
+      },
+      "engagement": {
+        "title": "Engagement",
+        "description": "Project or retainer"
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's build something minimal",
+    "subtitle": "We prefer simple emails. Reach us directly — no forms."
+  },
+  "footer": {
+    "copyright": "© {year} Dendora. All rights reserved."
+  },
+  "foundryPulse": {
+    "backToWork": "Back to work",
+    "title": "FoundryPulse",
+    "subtitle": "A modern manufacturing operations platform built with Next.js and TypeScript",
+    "description": "FoundryPulse is a comprehensive production management system designed for manufacturing environments. It features real-time factory monitoring, equipment tracking, and production analytics with a clean, responsive interface built on React and Tailwind CSS.",
+    "keyFeatures": "Key Features",
+    "technicalStack": "Technical Stack",
+    "conclusion": "Built for scalability and maintainability with modern development practices and clean architecture patterns.",
+    "features": [
+      "Real-time Operations Dashboard - Live monitoring of production lines and equipment status",
+      "Multi-language Support - Internationalized interface with next-intl",
+      "Role-based Access Control - Secure JWT authentication with granular permissions",
+      "Production Analytics - Data-driven insights for manufacturing optimization",
+      "Configurable Storage - Flexible S3/filesystem integration for document management"
+    ],
+    "techStack": {
+      "frontend": {
+        "category": "Frontend",
+        "tech": "Next.js App Router, React, TypeScript, Tailwind CSS"
+      },
+      "backend": {
+        "category": "Backend", 
+        "tech": "PostgreSQL with Drizzle ORM for type-safe database operations"
+      },
+      "architecture": {
+        "category": "Architecture",
+        "tech": "Service-oriented design with centralized business logic"
+      },
+      "ui": {
+        "category": "UI Components",
+        "tech": "Radix UI primitives with shadcn/ui styling"
+      },
+      "testing": {
+        "category": "Testing",
+        "tech": "Vitest for comprehensive test coverage"
+      }
+    }
+  }
+}

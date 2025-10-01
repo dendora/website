@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Container, Theme } from './settings/types';
+import { LanguageProvider } from './hooks/useTranslation';
 // %IMPORT_STATEMENT
 import { DendoraLandingPage } from './components/DendoraLandingPage'
 
@@ -20,7 +21,11 @@ function App() {
 
   const generatedComponent = useMemo(() => {
     // THIS IS WHERE THE TOP LEVEL GENRATED COMPONENT WILL BE RETURNED!
-    return <DendoraLandingPage />; // %EXPORT_STATEMENT%
+    return (
+      <LanguageProvider>
+        <DendoraLandingPage />
+      </LanguageProvider>
+    ); // %EXPORT_STATEMENT%
   }, []);
 
   if (container === 'centered') {

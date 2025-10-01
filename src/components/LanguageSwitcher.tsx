@@ -1,35 +1,34 @@
 import React from 'react';
 import { Globe } from 'lucide-react';
-import { useTranslation, Language } from '../hooks/useTranslation';
 
 interface LanguageSwitcherProps {
+  currentLang: 'hu' | 'en';
   className?: string;
 }
 
-export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) => {
-  const { language, setLanguage } = useTranslation();
-
-  const languages: { code: Language; name: string; flag: string }[] = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'hu', name: 'Magyar', flag: '🇭🇺' },
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ 
+  currentLang, 
+  className = '' 
+}) => {
+  const languages = [
+    { code: 'hu' as const, name: 'Magyar', flag: '🇭🇺', href: '/' },
+    { code: 'en' as const, name: 'English', flag: '🇺🇸', href: '/en/' },
   ];
 
-  const currentLang = languages.find(lang => lang.code === language);
+  const currentLangData = languages.find(lang => lang.code === currentLang);
+  const otherLang = languages.find(lang => lang.code !== currentLang);
 
   return (
     <div className={`relative inline-block ${className}`}>
-      <button
+      <a
+        href={otherLang?.href}
         className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-black transition hover:bg-black/5 cursor-pointer"
-        onClick={() => {
-          const nextLanguage = language === 'en' ? 'hu' : 'en';
-          setLanguage(nextLanguage);
-        }}
-        aria-label="Switch language"
+        aria-label={`Switch to ${otherLang?.name}`}
       >
         <Globe className="h-4 w-4" />
-        <span>{currentLang?.flag}</span>
-        <span>{currentLang?.code.toUpperCase()}</span>
-      </button>
+        <span>{currentLangData?.flag}</span>
+        <span>{currentLangData?.code.toUpperCase()}</span>
+      </a>
     </div>
   );
 };

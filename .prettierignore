@@ -2,6 +2,7 @@
 dist/
 build/
 out/
+.astro/
 
 # Dependencies
 node_modules/
@@ -18,11 +19,10 @@ coverage/
 
 # Misc
 .DS_Store
+
+# Environment variables
 .env*
-!.env.example
 
-# Debug
-npm-debug.log*
-
-# TypeScript
-*.tsbuildinfo
+# Editor
+.vscode/
+.idea/

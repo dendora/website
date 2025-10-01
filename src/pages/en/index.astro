@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { DendoraLanding } from '../../components/DendoraLanding.tsx';
+import { t } from '../../lib/translations.ts';
+
+const lang = 'en' as const;
+const title = t(lang, 'hero.title') + ' - Dendora';
+const description = t(lang, 'hero.subtitle');
+---
+
+<Layout title={title} description={description} lang={lang}>
+  <DendoraLanding language={lang} client:load />
+</Layout>

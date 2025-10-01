@@ -1,9 +1,40 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  lang: 'hu' | 'en';
+  canonical?: string;
+}
+
+const { title, description, lang, canonical } = Astro.props;
+
+// Get current URL for hreflang
+const currentPath = Astro.url.pathname;
+const baseUrl = 'https://dendora.hu';
+
+// Generate hreflang URLs
+const hreflangs = {
+  hu: lang === 'en' && currentPath.startsWith('/en/') 
+    ? currentPath.replace('/en/', '/') 
+    : currentPath,
+  en: lang === 'hu' && !currentPath.startsWith('/en/') 
+    ? `/en${currentPath === '/' ? '' : currentPath}`
+    : currentPath
+};
+
+// Clean up URLs
+if (hreflangs.hu === '/') hreflangs.hu = '/';
+if (hreflangs.en === '/en') hreflangs.en = '/en/';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dendora - Software Development & Web Applications</title>
+    <title>{title}</title>
     
     <!-- Preload critical font -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
@@ -13,28 +44,36 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Dendora builds minimal, high-impact web and mobile applications with 10+ years experience. Full-stack development with React, TypeScript, Go, and Kubernetes. Strategy, design, and engineering delivered with clarity." />
+    <meta name="description" content={description} />
     <meta name="keywords" content="software development, web development, mobile apps, React, TypeScript, Go, Kubernetes, full-stack development, frontend, backend, cloud infrastructure" />
     <meta name="author" content="Dendora" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
-    <link rel="canonical" href="https://dendora.hu" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical || `${baseUrl}${currentPath}`} />
+    
+    <!-- Hreflang for multilingual SEO -->
+    <link rel="alternate" hreflang="hu" href={`${baseUrl}${hreflangs.hu}`} />
+    <link rel="alternate" hreflang="en" href={`${baseUrl}${hreflangs.en}`} />
+    <link rel="alternate" hreflang="x-default" href={`${baseUrl}${hreflangs.hu}`} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dendora.hu" />
-    <meta property="og:title" content="Dendora - Software Development & Web Applications" />
-    <meta property="og:description" content="We build lean, dependable web and mobile products. Strategy, design, and engineering — delivered with clarity." />
-    <meta property="og:image" content="https://dendora.hu/dendora-sw-dev-logo.png" />
+    <meta property="og:url" content={`${baseUrl}${currentPath}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
     <meta property="og:site_name" content="Dendora" />
+    <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_US'} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://dendora.hu" />
-    <meta property="twitter:title" content="Dendora - Software Development & Web Applications" />
-    <meta property="twitter:description" content="We build lean, dependable web and mobile products. Strategy, design, and engineering — delivered with clarity." />
-    <meta property="twitter:image" content="https://dendora.hu/dendora-sw-dev-logo.png" />
+    <meta property="twitter:url" content={`${baseUrl}${currentPath}`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/dendora-d-logo.png" />
@@ -113,7 +152,6 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <slot />
   </body>
 </html>

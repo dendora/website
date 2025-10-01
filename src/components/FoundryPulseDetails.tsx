@@ -1,46 +1,34 @@
 import React, { useEffect } from 'react'
-import { ArrowLeft, Check, ExternalLink } from 'lucide-react'
+import { ArrowLeft, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useTranslation } from '../hooks/useTranslation'
+import { t, type Language } from '../lib/translations'
 
 interface FoundryPulseDetailsProps {
-  onBack: () => void
+  language: Language;
 }
 
-export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps) {
-  const { t } = useTranslation()
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+export default function FoundryPulseDetails({ language }: FoundryPulseDetailsProps) {
+  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
 
   // Scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0)
+    }
   }, [])
 
-  const features = t('foundryPulse.features')
+  const features = t(language, 'foundryPulse.features')
   
   const techStack = [
-    { category: t('foundryPulse.techStack.frontend.category'), tech: t('foundryPulse.techStack.frontend.tech') },
-    { category: t('foundryPulse.techStack.backend.category'), tech: t('foundryPulse.techStack.backend.tech') },
-    { category: t('foundryPulse.techStack.architecture.category'), tech: t('foundryPulse.techStack.architecture.tech') },
-    { category: t('foundryPulse.techStack.ui.category'), tech: t('foundryPulse.techStack.ui.tech') },
-    { category: t('foundryPulse.techStack.testing.category'), tech: t('foundryPulse.techStack.testing.tech') }
+    { category: t(language, 'foundryPulse.techStack.frontend.category'), tech: t(language, 'foundryPulse.techStack.frontend.tech') },
+    { category: t(language, 'foundryPulse.techStack.backend.category'), tech: t(language, 'foundryPulse.techStack.backend.tech') },
+    { category: t(language, 'foundryPulse.techStack.architecture.category'), tech: t(language, 'foundryPulse.techStack.architecture.tech') },
+    { category: t(language, 'foundryPulse.techStack.ui.category'), tech: t(language, 'foundryPulse.techStack.ui.tech') },
+    { category: t(language, 'foundryPulse.techStack.testing.category'), tech: t(language, 'foundryPulse.techStack.testing.tech') }
   ]
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-black/5 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="mx-auto max-w-4xl px-4 py-4">
-          <button 
-            onClick={onBack}
-            className="inline-flex items-center gap-2 text-sm text-black/70 hover:text-black transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {t('foundryPulse.backToWork')}
-          </button>
-        </div>
-      </header>
-
+    <div className="bg-white">
       {/* Hero Section */}
       <section className="mx-auto max-w-4xl px-4 py-12">
         <motion.div
@@ -60,15 +48,10 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
               />
             </div>
           </div>
-
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('foundryPulse.title')}</h1>
-          <p className="text-lg text-black/70 mb-8">
-            {t('foundryPulse.subtitle')}
-          </p>
           
           <div className="prose prose-gray max-w-none">
-            <p className="text-black/65 leading-relaxed">
-              {t('foundryPulse.description')}
+            <p className="text-black/65 leading-relaxed text-lg">
+              {t(language, 'foundryPulse.description')}
             </p>
           </div>
         </motion.div>
@@ -83,9 +66,9 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('foundryPulse.keyFeatures')}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t(language, 'foundryPulse.keyFeatures')}</h2>
             <div className="space-y-4">
-              {features.map((feature, index) => (
+              {features.map((feature: string, index: number) => (
                 <motion.div
                   key={index}
                   initial={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
@@ -114,7 +97,7 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('foundryPulse.technicalStack')}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t(language, 'foundryPulse.technicalStack')}</h2>
             <div className="grid gap-4 md:gap-6">
               {techStack.map((item, index) => (
                 <motion.div
@@ -145,17 +128,17 @@ export default function FoundryPulseDetails({ onBack }: FoundryPulseDetailsProps
             className="text-center"
           >
             <p className="text-black/65 leading-relaxed max-w-2xl mx-auto">
-              {t('foundryPulse.conclusion')}
+              {t(language, 'foundryPulse.conclusion')}
             </p>
             
             <div className="mt-8 flex justify-center gap-4">
-              <button 
-                onClick={onBack}
-                className="inline-flex items-center gap-2 rounded-lg border border-black/20 px-4 py-2 text-sm font-medium text-black/80 hover:bg-black/5 transition-colors cursor-pointer"
+              <a 
+                href={language === 'hu' ? '/' : '/en/'}
+                className="inline-flex items-center gap-2 rounded-lg border border-black/20 px-4 py-2 text-sm font-medium text-black/80 hover:bg-black/5 transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
-                {t('foundryPulse.backToWork')}
-              </button>
+                {t(language, 'foundryPulse.backToWork')}
+              </a>
             </div>
           </motion.div>
         </div>

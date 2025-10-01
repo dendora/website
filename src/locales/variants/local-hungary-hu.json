@@ -1,0 +1,69 @@
+{
+  "navigation": {
+    "home": "Főoldal",
+    "services": "Szolgáltatások",
+    "work": "Munkáink", 
+    "about": "Rólunk",
+    "contact": "Kapcsolat",
+    "ariaLabels": {
+      "dendoraHome": "Dendora főoldal",
+      "toggleMenu": "Menü váltása"
+    }
+  },
+  "hero": {
+    "title": "Magyar szoftverfejlesztő csapat.",
+    "subtitle": "Helyi vállalkozások számára építünk megbízható web és mobil alkalmazásokat. Személyes kapcsolat, gyors kommunikáció.",
+    "cta": {
+      "startProject": "Projekt indítása",
+      "seeWork": "Munkáink megtekintése"
+    },
+    "stats": {
+      "experience": {
+        "value": "10+ év",
+        "label": "Tapasztalat"
+      },
+      "remote": {
+        "value": "100%",
+        "label": "Magyarul"
+      }
+    },
+    "brandCard": {
+      "companyName": "DENDORA",
+      "tagline": "Szoftverfejlesztés",
+      "description": "Magyar csapat, nemzetközi tapasztalat. Helyi ügyfelekkel dolgozunk közvetlenül, személyes kapcsolatra építve. A FoundryPulse projektünk példája ennek."
+    }
+  },
+  "services": {
+    "title": "Hogyan segítünk",
+    "subtitle": "Egyszerű, megbízható, hatékony.",
+    "features": {
+      "strategy": {
+        "title": "Projekt tervezés",
+        "description": "Közösen megtervezzük a projektet, hogy pontosan azt kapja, amire szüksége van."
+      },
+      "frontend": {
+        "title": "Modern weboldalak",
+        "description": "React alapú, gyors és felhasználóbarát weboldalak és alkalmazások."
+      },
+      "backend": {
+        "title": "Megbízható háttérrendszer",
+        "description": "Biztonságos adatkezelés, gyors működés, könnyű karbantartás."
+      }
+    }
+  },
+  "work": {
+    "title": "Referenciáink",
+    "subtitle": "Helyi és regionális sikereink"
+  },
+  "contact": {
+    "title": "Beszélgessünk!",
+    "subtitle": "Szívesen megbeszéljük a projektjét akár kávé mellett is.",
+    "cta": {
+      "email": "Írjon nekünk",
+      "phone": "Hívjon fel"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Dendora Kft. Minden jog fenntartva."
+  }
+}

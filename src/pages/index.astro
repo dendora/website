@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { DendoraLanding } from '../components/pages';
+import { ConfigurableLanding } from '../components/pages';
 import { t } from '../lib/translations.ts';
 
 const lang = 'hu' as const;
@@ -9,5 +9,5 @@ const description = t(lang, 'hero.subtitle');
 ---
 
 <Layout title={title} description={description} lang={lang}>
-  <DendoraLanding language={lang} client:only="react" />
+  <ConfigurableLanding language={lang} client:only="react" />
 </Layout>

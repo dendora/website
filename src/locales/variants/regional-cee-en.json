@@ -1,0 +1,69 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services", 
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "ariaLabels": {
+      "dendoraHome": "Dendora home",
+      "toggleMenu": "Toggle menu"
+    }
+  },
+  "hero": {
+    "title": "Central European software development.",
+    "subtitle": "We build reliable web and mobile applications for regional businesses. Local presence, international standards.",
+    "cta": {
+      "startProject": "Start a project",
+      "seeWork": "See our work"
+    },
+    "stats": {
+      "experience": {
+        "value": "10+ yrs",
+        "label": "Experience"
+      },
+      "remote": {
+        "value": "EU",
+        "label": "Based"
+      }
+    },
+    "brandCard": {
+      "companyName": "DENDORA",
+      "tagline": "Software Development",
+      "description": "Hungarian team with international experience. We work directly with regional clients, building personal relationships. Our FoundryPulse project exemplifies this approach."
+    }
+  },
+  "services": {
+    "title": "How we help",
+    "subtitle": "Regional expertise, global standards.",
+    "features": {
+      "strategy": {
+        "title": "Regional Strategy",
+        "description": "Understanding local markets, EU regulations, and regional business culture."
+      },
+      "frontend": {
+        "title": "Modern Applications", 
+        "description": "React-based, fast and user-friendly web applications with multilingual support."
+      },
+      "backend": {
+        "title": "Reliable Infrastructure",
+        "description": "Secure data handling, GDPR compliance, scalable cloud-native architecture."
+      }
+    }
+  },
+  "work": {
+    "title": "Our Work",
+    "subtitle": "Regional and international projects"
+  },
+  "contact": {
+    "title": "Let's discuss your project",
+    "subtitle": "Same timezone, direct communication, personal relationships.",
+    "cta": {
+      "email": "Send us an email",
+      "phone": "Schedule a call"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Dendora Ltd. All rights reserved."
+  }
+}

@@ -233,14 +233,16 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                       <span>{description}</span>
                     </p>
                     {isFoundryPulse && (
-                      <a 
-                        href={projectUrl}
-                        className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors"
-                        onClick={(e) => e.stopPropagation()}
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.location.href = projectUrl;
+                        }}
+                        className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors bg-transparent border-none cursor-pointer"
                       >
                         <span>{t(language, 'work.projects.foundryPulse.details')}</span>
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                      </a>
+                      </button>
                     )}
                   </div>
                 </motion.article>

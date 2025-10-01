@@ -103,7 +103,11 @@
   },
   "contact": {
     "title": "Építsünk valami minimálisat",
-    "subtitle": "Egyszerű e-maileket preferálunk. Írj nekünk közvetlenül — nincsenek űrlapok."
+    "subtitle": "Egyszerű e-maileket preferálunk. Írj nekünk közvetlenül — nincsenek űrlapok.",
+    "cta": {
+      "email": "Küldj egy emailt",
+      "schedule": "Időpont egyeztetés"
+    }
   },
   "footer": {
     "copyright": "© {year} Dendora. Minden jog fenntartva."

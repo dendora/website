@@ -112,6 +112,16 @@
   "footer": {
     "copyright": "© {year} Dendora. Minden jog fenntartva."
   },
+  "projectDetails": {
+    "challenge": "Kihívás",
+    "solution": "Megoldás",
+    "keyFeatures": "Főbb Funkciók",
+    "technicalStack": "Technikai Stack",
+    "projectGallery": "Projekt Galéria",
+    "backToHome": "Vissza a főoldalra",
+    "liveSite": "Élő Oldal",
+    "github": "GitHub"
+  },
   "foundryPulse": {
     "backToWork": "Vissza a munkákhoz",
     "title": "FoundryPulse",

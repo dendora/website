@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ArrowLeft, Check, ExternalLink, Github } from 'lucide-react'
-import { type Language } from '../../lib/translations'
+import { type Language, t } from '../../lib/translations'
 import { type ProjectData } from '../../lib/projects-json'
 import { MotionFade, SectionHeader, Card, Button } from '../ui'
 
@@ -67,13 +67,13 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
           <div className="grid md:grid-cols-2 gap-8">
             <MotionFade delay={0.1} duration={0.6}>
               <div>
-                <h3 className="text-xl font-semibold text-black mb-4">Challenge</h3>
+                <h3 className="text-xl font-semibold text-black mb-4">{t(language, 'projectDetails.challenge')}</h3>
                 <p className="text-black/70 leading-relaxed">{localizedChallenge}</p>
               </div>
             </MotionFade>
             <MotionFade delay={0.2} duration={0.6}>
               <div>
-                <h3 className="text-xl font-semibold text-black mb-4">Solution</h3>
+                <h3 className="text-xl font-semibold text-black mb-4">{t(language, 'projectDetails.solution')}</h3>
                 <p className="text-black/70 leading-relaxed">{localizedSolution}</p>
               </div>
             </MotionFade>
@@ -86,7 +86,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
         <div className="mx-auto max-w-4xl px-4 py-12">
           <MotionFade delay={0.1} duration={0.6}>
             <SectionHeader 
-              title="Key Features"
+              title={t(language, 'projectDetails.keyFeatures')}
               alignment="left"
             />
             <div className="space-y-4">
@@ -121,7 +121,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
         <div className="mx-auto max-w-4xl px-4 py-12">
           <MotionFade delay={0.2} duration={0.6}>
             <SectionHeader 
-              title="Technical Stack"
+              title={t(language, 'projectDetails.technicalStack')}
               alignment="left"
             />
             <div className="flex flex-wrap gap-3">
@@ -147,7 +147,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
           <div className="mx-auto max-w-4xl px-4 py-12">
             <MotionFade delay={0.3} duration={0.6}>
               <SectionHeader 
-                title="Project Gallery"
+                title={t(language, 'projectDetails.projectGallery')}
                 alignment="left"
               />
               <div className="grid gap-4 md:grid-cols-2">
@@ -184,7 +184,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
               className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:border-black/20 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10 cursor-pointer"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Home
+              {t(language, 'projectDetails.backToHome')}
             </a>
             
             <div className="flex gap-3">
@@ -196,7 +196,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
                   className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer"
                 >
                   <ExternalLink className="h-4 w-4" />
-                  Live Site
+                  {t(language, 'projectDetails.liveSite')}
                 </a>
               )}
               
@@ -208,7 +208,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
                   className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5 cursor-pointer"
                 >
                   <Github className="h-4 w-4" />
-                  GitHub
+                  {t(language, 'projectDetails.github')}
                 </a>
               )}
             </div>

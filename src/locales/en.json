@@ -103,10 +103,24 @@
   },
   "contact": {
     "title": "Let's build something minimal",
-    "subtitle": "We prefer simple emails. Reach us directly — no forms."
+    "subtitle": "We prefer simple emails. Reach us directly — no forms.",
+    "cta": {
+      "email": "Send an email",
+      "schedule": "Schedule a call"
+    }
   },
   "footer": {
     "copyright": "© {year} Dendora. All rights reserved."
+  },
+  "projectDetails": {
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "keyFeatures": "Key Features",
+    "technicalStack": "Technical Stack",
+    "projectGallery": "Project Gallery",
+    "backToHome": "Back to Home",
+    "liveSite": "Live Site",
+    "github": "GitHub"
   },
   "foundryPulse": {
     "backToWork": "Back to work",

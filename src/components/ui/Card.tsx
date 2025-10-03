@@ -9,6 +9,7 @@ export interface CardProps {
   title?: string;
   description?: string;
   icon?: React.ReactNode;
+  showIcon?: boolean;
   brandBg?: string;
   image?: {
     src: string;
@@ -25,6 +26,7 @@ const Card: React.FC<CardProps> = ({
   title,
   description,
   icon,
+  showIcon = true,
   brandBg,
   image,
   onClick,
@@ -43,9 +45,11 @@ const Card: React.FC<CardProps> = ({
     <div className={cn(baseStyles, variants[variant], className)} onClick={onClick}>
       {variant === 'feature' && (
         <>
-          <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white">
-            {icon || <CheckCircle2 className="h-4 w-4" />}
-          </div>
+          {showIcon && (
+            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white">
+              {icon || <CheckCircle2 className="h-4 w-4" />}
+            </div>
+          )}
           {title && <h3 className="text-base font-semibold tracking-tight">{title}</h3>}
           {description && <p className="mt-2 text-sm text-black/60">{description}</p>}
           <div className="pointer-events-none absolute inset-0 rounded-xl ring-0 ring-black/5 transition group-hover:ring-2" />

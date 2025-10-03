@@ -124,7 +124,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
         <div className="lg:pl-12">
           <MotionFade delay={0.4}>
-            <Card className="p-8 bg-white shadow-xl border border-gray-100">
+            <Card className="p-8 bg-white shadow-xl border border-gray-100" showIcon={false}>
               <div className="space-y-6">
                 <div className="flex items-center gap-3">
                   <Logo size="sm" />

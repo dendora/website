@@ -151,8 +151,9 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
             subtitle={t(language, 'work.subtitle')} 
           />
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project, i) => {
+              const isDetailProject = ['foundrypulse', 'andihealth'].includes(project.id);
               const isFoundryPulse = project.id === 'foundrypulse';
               const projectUrl = language === 'hu' 
                 ? `/work/${project.slug}` 
@@ -164,6 +165,8 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
               // Define background gradients for non-FoundryPulse projects
               const getProjectBackground = (projectId: string) => {
                 switch (projectId) {
+                  case 'andihealth':
+                    return 'bg-[#494949]';
                   case 'analytics':
                     return 'bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)]';
                   case 'infrastructure':
@@ -194,7 +197,7 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                   }} 
                   className={cn(
                     "group relative overflow-hidden rounded-xl border border-black/10 bg-white",
-                    isFoundryPulse && "cursor-pointer hover:border-black/20 transition-colors"
+                    isDetailProject && "cursor-pointer hover:border-black/20 transition-colors"
                   )}
                 >
                   <div className={cn("aspect-[16/10]", isFoundryPulse ? "bg-black" : getProjectBackground(project.id))}>
@@ -209,6 +212,12 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                           />
                         </picture>
                       </div>
+                    ) : project.images.hero && isDetailProject ? (
+                      <img 
+                        src={project.images.hero} 
+                        alt={title} 
+                        className="w-full h-full object-cover" 
+                      />
                     ) : (
                       <div className="flex h-full w-full items-center justify-between px-4 py-3">
                         <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-white">
@@ -232,7 +241,7 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                     <p className="mt-1 text-sm text-black/60">
                       <span>{description}</span>
                     </p>
-                    {isFoundryPulse && (
+                    {isDetailProject && (
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
@@ -240,7 +249,7 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                         }}
                         className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors bg-transparent border-none cursor-pointer"
                       >
-                        <span>{t(language, 'work.projects.foundryPulse.details')}</span>
+                        <span>{t(language, 'work.viewProject')}</span>
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                       </button>
                     )}
@@ -248,7 +257,7 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                 </motion.article>
               );
 
-              return isFoundryPulse ? (
+              return isDetailProject ? (
                 <a key={project.id} href={projectUrl} className="block">
                   {cardContent}
                 </a>

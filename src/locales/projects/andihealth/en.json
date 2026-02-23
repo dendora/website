@@ -1,0 +1,28 @@
+{
+  "title": "AndiHealth",
+  "subtitle": "Bilingual fitness booking platform on the edge",
+  "description": "A bilingual website and appointment booking system for a medical fitness instructor, built on Cloudflare Workers with Hono and D1 — zero external dependencies, fully server-rendered.",
+  "content": {
+    "overview": "AndiHealth is a bilingual (Hungarian/English) website and online booking platform for a certified medical fitness and Pilates instructor based in Esztergom, Hungary. The site serves as both a public-facing presence and a full appointment management system — from session scheduling and client bookings to pass management and admin controls.",
+    "challenge": "The client needed a fast, reliable, and cost-effective platform that could handle bilingual content, real-time session availability, an online booking flow, and an admin panel — all without the overhead of traditional hosting or complex frameworks.",
+    "solution": "We built the entire application on Cloudflare's edge platform using Hono for server-side rendered JSX, D1 (SQLite) for the database, and Tailwind CSS via CDN for styling. The result is a zero-dependency, globally fast application running entirely on the Cloudflare free tier with no client-side JavaScript frameworks."
+  },
+  "features": [
+    {
+      "title": "Online session booking",
+      "description": "Clients can browse available group sessions by date, book spots, and receive confirmations — all without authentication"
+    },
+    {
+      "title": "Bilingual HU/EN support",
+      "description": "Full Hungarian and English content with automatic locale routing and SEO-optimized alternate links"
+    },
+    {
+      "title": "Admin panel",
+      "description": "Password-protected dashboard to manage sessions, cancellations, clients, passes, and view booking overviews"
+    },
+    {
+      "title": "Pass & credit system",
+      "description": "Multi-session pass management with automatic credit deduction and expiry tracking"
+    }
+  ]
+}

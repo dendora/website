@@ -68,6 +68,12 @@
       "infrastructure": {
         "name": "Cloud Infrastructure",
         "description": "Docker containerization with GitHub Actions CI/CD pipelines, monitoring, and automated Kubernetes deployments"
+      },
+      "andiHealth": {
+        "name": "AndiHealth",
+        "description": "Bilingual fitness booking platform built on Cloudflare Workers with Hono and D1",
+        "details": "Details",
+        "imageAlt": "AndiHealth medical fitness logo"
       }
     },
     "caseStudy": "Case study",

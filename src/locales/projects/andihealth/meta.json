@@ -1,0 +1,24 @@
+{
+  "id": "andihealth",
+  "slug": "andihealth",
+  "year": "2025",
+  "status": "completed",
+  "category": "web-application",
+  "techStack": [
+    "Hono",
+    "TypeScript",
+    "Cloudflare Workers",
+    "Cloudflare D1",
+    "Tailwind CSS",
+    "SSR/JSX"
+  ],
+  "images": {
+    "hero": "/andihealth-logo.jpg",
+    "gallery": []
+  },
+  "links": {
+    "website": "https://andihealth.hu",
+    "github": null,
+    "demo": null
+  }
+}

@@ -88,6 +88,51 @@ export const projectsData: Record<Language, Record<string, ProjectData>> = {
       ],
       conclusion: 'A FoundryPulse projekt demonstrálja modern, skálázható ipari IoT megoldás fejlesztését. A mikroszolgáltatás architektúra és valós idejű adatfeldolgozás kombinációja megbízható és hatékony rendszert eredményez.'
     },
+    andihealth: {
+      id: 'andihealth',
+      slug: 'andihealth',
+      title: 'AndiHealth',
+      subtitle: 'Kétnyelvű fitness foglalási platform az edge-en',
+      description: 'Kétnyelvű weboldal és időpontfoglaló rendszer egy medical fitness oktató számára, Cloudflare Workers-ön Hono és D1 technológiával — külső függőségek nélkül, szerver oldali renderelés.',
+      features: [
+        {
+          title: 'Online órafoglalás',
+          description: 'Csoportos órák böngészése és helyfoglalás regisztráció nélkül'
+        },
+        {
+          title: 'Kétnyelvű HU/EN támogatás',
+          description: 'Teljes magyar és angol tartalom automatikus nyelvi útválasztással'
+        },
+        {
+          title: 'Admin felület',
+          description: 'Jelszóval védett irányítópult órák, ügyfelek és bérletek kezeléséhez'
+        },
+        {
+          title: 'Bérlet- és kreditrendszer',
+          description: 'Többalkalmas bérletkezelés automatikus kreditlevonással'
+        }
+      ],
+      techStack: [
+        {
+          category: 'Keretrendszer',
+          tech: 'Hono, TypeScript, JSX/SSR'
+        },
+        {
+          category: 'Platform',
+          tech: 'Cloudflare Workers, Cloudflare D1 (SQLite)'
+        },
+        {
+          category: 'Frontend',
+          tech: 'Tailwind CSS (CDN), szerver oldali renderelés'
+        },
+        {
+          category: 'Tesztelés',
+          tech: 'Vitest, Miniflare'
+        }
+      ],
+      conclusion: 'Az AndiHealth projekt bemutatja, hogyan lehet modern, gyors és költséghatékony webalkalmazást építeni kizárólag edge technológiákkal — külső függőségek és kliens oldali keretrendszerek nélkül.',
+      liveUrl: 'https://andihealth.hu'
+    },
     analytics: {
       id: 'analytics',
       slug: 'analytics',
@@ -178,6 +223,51 @@ export const projectsData: Record<Language, Record<string, ProjectData>> = {
         }
       ],
       conclusion: 'The FoundryPulse project demonstrates the development of a modern, scalable industrial IoT solution. The combination of microservice architecture and real-time data processing results in a reliable and efficient system.'
+    },
+    andihealth: {
+      id: 'andihealth',
+      slug: 'andihealth',
+      title: 'AndiHealth',
+      subtitle: 'Bilingual fitness booking platform on the edge',
+      description: 'A bilingual website and appointment booking system for a medical fitness instructor, built on Cloudflare Workers with Hono and D1 — zero external dependencies, fully server-rendered.',
+      features: [
+        {
+          title: 'Online session booking',
+          description: 'Browse available group sessions by date and book spots without authentication'
+        },
+        {
+          title: 'Bilingual HU/EN support',
+          description: 'Full Hungarian and English content with automatic locale routing'
+        },
+        {
+          title: 'Admin panel',
+          description: 'Password-protected dashboard for managing sessions, clients, and passes'
+        },
+        {
+          title: 'Pass & credit system',
+          description: 'Multi-session pass management with automatic credit deduction'
+        }
+      ],
+      techStack: [
+        {
+          category: 'Framework',
+          tech: 'Hono, TypeScript, JSX/SSR'
+        },
+        {
+          category: 'Platform',
+          tech: 'Cloudflare Workers, Cloudflare D1 (SQLite)'
+        },
+        {
+          category: 'Frontend',
+          tech: 'Tailwind CSS (CDN), server-side rendering'
+        },
+        {
+          category: 'Testing',
+          tech: 'Vitest, Miniflare'
+        }
+      ],
+      conclusion: 'The AndiHealth project demonstrates how to build a modern, fast, and cost-effective web application using edge technologies exclusively — with zero external dependencies and no client-side JavaScript frameworks.',
+      liveUrl: 'https://andihealth.hu'
     },
     analytics: {
       id: 'analytics',

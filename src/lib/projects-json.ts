@@ -57,6 +57,7 @@ export interface ProjectData {
 import foundrypulseMeta from '../locales/projects/foundrypulse/meta.json';
 import analyticsMeta from '../locales/projects/analytics/meta.json';
 import infrastructureMeta from '../locales/projects/infrastructure/meta.json';
+import andihealthMeta from '../locales/projects/andihealth/meta.json';
 
 // Import project content files
 import foundrypulseEn from '../locales/projects/foundrypulse/en.json';
@@ -65,6 +66,8 @@ import analyticsEn from '../locales/projects/analytics/en.json';
 import analyticsHu from '../locales/projects/analytics/hu.json';
 import infrastructureEn from '../locales/projects/infrastructure/en.json';
 import infrastructureHu from '../locales/projects/infrastructure/hu.json';
+import andihealthEn from '../locales/projects/andihealth/en.json';
+import andihealthHu from '../locales/projects/andihealth/hu.json';
 
 const projectContentMap = {
   foundrypulse: {
@@ -78,11 +81,16 @@ const projectContentMap = {
   infrastructure: {
     en: infrastructureEn,
     hu: infrastructureHu
+  },
+  andihealth: {
+    en: andihealthEn,
+    hu: andihealthHu
   }
 };
 
 const projectMetaMap = new Map<string, ProjectMeta>([
   ['foundrypulse', foundrypulseMeta as ProjectMeta],
+  ['andihealth', andihealthMeta as ProjectMeta],
   ['analytics', analyticsMeta as ProjectMeta],
   ['infrastructure', infrastructureMeta as ProjectMeta],
 ]);

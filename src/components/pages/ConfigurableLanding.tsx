@@ -188,9 +188,14 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
       ? projects.filter(p => p.id === 'foundrypulse')
       : projects;
 
-    // Define background gradients for non-FoundryPulse projects
+    // Projects with detail pages (clickable cards)
+    const detailProjects = new Set(['foundrypulse', 'andihealth']);
+
+    // Define background gradients for non-detail projects
     const getProjectBackground = (projectId: string) => {
       switch (projectId) {
+        case 'andihealth':
+          return 'bg-[#494949]';
         case 'analytics':
           return 'bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)]';
         case 'infrastructure':
@@ -210,8 +215,9 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
               subtitle={t(language, 'work.subtitle')}
             />
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2">
               {filteredProjects.map((project, index) => {
+                const isDetailProject = detailProjects.has(project.id);
                 const isFoundryPulse = project.id === 'foundrypulse';
                 const projectUrl = language === 'hu' 
                   ? `/work/${project.slug}` 
@@ -238,7 +244,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                     }} 
                     className={cn(
                       "group relative overflow-hidden rounded-xl border border-black/10 bg-white",
-                      isFoundryPulse && "cursor-pointer hover:border-black/20 transition-colors"
+                      isDetailProject && "cursor-pointer hover:border-black/20 transition-colors"
                     )}
                   >
                     <div className={cn("aspect-[16/10]", isFoundryPulse ? "bg-black" : getProjectBackground(project.id))}>
@@ -253,6 +259,12 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                             />
                           </picture>
                         </div>
+                      ) : project.images.hero && isDetailProject ? (
+                        <img 
+                          src={project.images.hero} 
+                          alt={project.metadata.title} 
+                          className="w-full h-full object-cover" 
+                        />
                       ) : (
                         <div className="flex h-full w-full items-center justify-between px-4 py-3">
                           <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-white">
@@ -276,7 +288,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                       <p className="mt-1 text-sm text-black/60">
                         <span>{project.metadata.description}</span>
                       </p>
-                      {isFoundryPulse && (
+                      {isDetailProject && (
                         <button 
                           onClick={(e) => {
                             e.stopPropagation();
@@ -284,7 +296,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                           }}
                           className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors bg-transparent border-none cursor-pointer"
                         >
-                          <span>{t(language, 'work.projects.foundryPulse.details')}</span>
+                          <span>{t(language, 'work.viewProject')}</span>
                           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                         </button>
                       )}
@@ -292,7 +304,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                   </motion.article>
                 );
 
-                return isFoundryPulse ? (
+                return isDetailProject ? (
                   <a key={project.id} href={projectUrl} className="block">
                     {cardContent}
                   </a>
@@ -303,8 +315,6 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
         </section>
       );
     }
-
-    // Other variants use modern card styling
 
     // Other variants use modern card styling
     return (
@@ -319,15 +329,16 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
             className="mb-16"
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project, index) => {
+              const isDetailProject = detailProjects.has(project.id);
               const isFoundryPulse = project.id === 'foundrypulse';
               const projectUrl = `/${language === 'en' ? 'en/' : ''}work/${project.slug}`;
               
               const cardContent = (
                 <Card className={cn(
                   "group hover:shadow-xl transition-all duration-300 overflow-hidden",
-                  isFoundryPulse && "cursor-pointer hover:border-black/20"
+                  isDetailProject && "cursor-pointer hover:border-black/20"
                 )}>
                   <div className={cn(
                     "aspect-video relative overflow-hidden",
@@ -341,6 +352,12 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                           className="max-h-full max-w-full object-contain brightness-0 invert"
                         />
                       </div>
+                    ) : project.images.hero && isDetailProject ? (
+                      <img
+                        src={project.images.hero}
+                        alt={project.metadata.title}
+                        className="w-full h-full object-cover"
+                      />
                     ) : project.images.hero ? (
                       <img
                         src={project.images.hero}
@@ -380,7 +397,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                         </span>
                       ))}
                     </div>
-                    {isFoundryPulse && (
+                    {isDetailProject && (
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
@@ -388,7 +405,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                         }}
                         className="mt-4 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors bg-transparent border-none cursor-pointer"
                       >
-                        <span>{t(language, 'work.projects.foundryPulse.details')}</span>
+                        <span>{t(language, 'work.viewProject')}</span>
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                       </button>
                     )}
@@ -398,7 +415,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
               return (
                 <MotionFade key={project.id} delay={index * 0.1}>
-                  {isFoundryPulse ? (
+                  {isDetailProject ? (
                     <a href={projectUrl} className="block">
                       {cardContent}
                     </a>

@@ -68,6 +68,12 @@
       "infrastructure": {
         "name": "Felhő Infrastruktúra",
         "description": "Docker konténerizáció GitHub Actions CI/CD pipeline-okkal, monitorozással és automatizált Kubernetes telepítésekkel"
+      },
+      "andiHealth": {
+        "name": "AndiHealth",
+        "description": "Kétnyelvű fitness foglalási platform Cloudflare Workers-ön Hono és D1 technológiával",
+        "details": "Részletek",
+        "imageAlt": "AndiHealth medical fitness logó"
       }
     },
     "caseStudy": "Esettanulmány",

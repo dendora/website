@@ -1,10 +1,10 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
 import { ArrowRight, Mail, Github, Globe, CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects } from '../../lib/projects-json';
 import { getCurrentSiteConfig } from '../../lib/runtime-variant';
+import { CONTACT_EMAIL } from '../../lib/site-config';
 import { 
   Navigation, 
   SectionHeader, 
@@ -110,9 +110,47 @@ const DefaultHero: React.FC<{ language: Language; showStats: boolean }> = ({ lan
   </section>
 );
 
+// Lightweight scroll-triggered fade for work cards (replaces motion.article)
+const ScrollFadeArticle: React.FC<{
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}> = ({ children, delay = 0, className }) => {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      { rootMargin: '-50px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <article
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(8px)',
+        transition: `opacity 0.4s ease-out ${delay}s, transform 0.4s ease-out ${delay}s`,
+      }}
+    >
+      {children}
+    </article>
+  );
+};
+
 export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) => {
   const { language = 'hu' } = props || {};
-  const prefersReducedMotion = useReducedMotion();
   const projects = getAllProjects(language);
   const config = getCurrentSiteConfig();
   
@@ -171,7 +209,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
   const renderWork = () => {
     if (!config.layout.showSections.work) return null;
 
-    const filteredProjects = config.content.casStudyFocus === 'foundrypulse' 
+    const filteredProjects = config.content.caseStudyFocus === 'foundrypulse' 
       ? projects.filter(p => p.id === 'foundrypulse')
       : projects;
 
@@ -211,24 +249,8 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                   : `/en/work/${project.slug}`;
                 
                 const cardContent = (
-                  <motion.article 
-                    key={project.id} 
-                    initial={prefersReducedMotion ? undefined : {
-                      opacity: 0,
-                      y: 8
-                    }} 
-                    whileInView={prefersReducedMotion ? undefined : {
-                      opacity: 1,
-                      y: 0
-                    }} 
-                    viewport={{
-                      once: true,
-                      margin: '-50px'
-                    }} 
-                    transition={{
-                      duration: 0.4,
-                      delay: index * 0.05
-                    }} 
+                  <ScrollFadeArticle
+                    delay={index * 0.05}
                     className={cn(
                       "group relative overflow-hidden rounded-xl border border-black/10 bg-white",
                       isDetailProject && "cursor-pointer hover:border-black/20 transition-colors"
@@ -242,7 +264,11 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                             <img 
                               src={project.images.hero} 
                               alt={project.metadata.title} 
-                              className="max-h-full max-w-full object-contain brightness-0 invert" 
+                              className="max-h-full max-w-full object-contain brightness-0 invert"
+                              width={850}
+                              height={295}
+                              loading="lazy"
+                              decoding="async"
                             />
                           </picture>
                         </div>
@@ -250,7 +276,9 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                         <img 
                           src={project.images.hero} 
                           alt={project.metadata.title} 
-                          className="w-full h-full object-cover" 
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-between px-4 py-3">
@@ -282,7 +310,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                         </span>
                       )}
                     </div>
-                  </motion.article>
+                  </ScrollFadeArticle>
                 );
 
                 return isDetailProject ? (
@@ -529,7 +557,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
           <MotionFade delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:hello@dendora.hu"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className={cn(
                   "inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium transition cursor-pointer group",
                   isPersonal 
@@ -545,7 +573,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
               </a>
               {isLocal && (
                 <a
-                  href="mailto:hello@dendora.hu"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="inline-flex items-center gap-2 rounded-full border border-orange-600 text-orange-600 hover:bg-orange-50 px-6 py-3 text-base font-medium transition cursor-pointer"
                 >
                   {language === 'hu' ? 'Személyes találkozó' : 'Meet in person'}

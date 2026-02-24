@@ -1,17 +1,13 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Phone } from 'lucide-react';
 import { MotionFade } from '../ui';
 import { t, type Language } from '../../lib/variant-translations';
-import { useIsMobile } from '../../hooks/use-mobile';
 
 interface HeroMinimalProps {
   language: Language;
 }
 
 export const HeroMinimal: React.FC<HeroMinimalProps> = ({ language }) => {
-  const isMobile = useIsMobile();
-
   return (
     <section className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-4xl mx-auto text-center">
@@ -56,7 +52,7 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
             <div className="flex items-center gap-2 mb-6 text-orange-600">
               <MapPin className="h-5 w-5" />
               <span className="text-sm font-medium">
-                {language === 'hu' ? 'Magyarország' : 'Hungary'}
+                {t(language, 'hero.variants.location')}
               </span>
             </div>
           </MotionFade>
@@ -85,7 +81,7 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full border border-orange-600 text-orange-600 px-6 py-3 text-base font-medium transition hover:bg-orange-50 cursor-pointer"
               >
-                {language === 'hu' ? 'Beszélgessünk' : 'Let\'s talk'}
+                {t(language, 'hero.variants.letsTalk')}
                 <Phone className="ml-2 h-4 w-4" />
               </a>
             </div>
@@ -101,11 +97,8 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
                     <div key={i} className="w-5 h-5 bg-orange-400 rounded-full"></div>
                   ))}
                 </div>
-                <p className="text-gray-600 italic text-lg leading-relaxed">
-                  {language === 'hu' 
-                    ? '"A Dendora csapat segítségével 3 hónap alatt modernizáltuk a gyártási folyamatainkat. Professzionális munkavégzés nemzetközi szinten."'
-                    : '"With Dendora\'s help, we modernized our manufacturing processes in 3 months. Professional work at international level."'
-                  }
+                <p className="text-gray-700 italic text-lg leading-relaxed">
+                  &ldquo;{t(language, 'hero.variants.testimonial.quote')}&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-4">
@@ -114,9 +107,9 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
-                    {language === 'hu' ? 'Autóipari Ügyfél' : 'Automotive Client'}
+                    {t(language, 'hero.variants.testimonial.clientName')}
                   </div>
-                  <div className="text-gray-600 text-sm">FoundryPulse</div>
+                  <div className="text-gray-700 text-sm">{t(language, 'hero.variants.testimonial.clientProject')}</div>
                 </div>
               </div>
             </div>
@@ -139,7 +132,7 @@ export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language }) => {
           <MotionFade>
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              {language === 'hu' ? 'Legutóbbi Projektünk' : 'Latest Project'}
+              {t(language, 'hero.variants.caseStudy.badge')}
             </div>
           </MotionFade>
           
@@ -165,18 +158,16 @@ export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language }) => {
                     src="/foundrypulse-wordmark.png" 
                     alt="FoundryPulse" 
                     className="h-8 w-auto mb-4"
+                    width={850}
+                    height={295}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                    {language === 'hu' 
-                      ? 'Valós idejű gyártási monitoring'
-                      : 'Real-time Manufacturing Monitoring'
-                    }
+                    {t(language, 'hero.variants.caseStudy.projectTitle')}
                   </h2>
-                  <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    {language === 'hu' 
-                      ? 'Modern React és TypeScript platform komplex gyártási környezethez.'
-                      : 'Modern React and TypeScript platform for complex manufacturing environment.'
-                    }
+                  <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                    {t(language, 'hero.variants.caseStudy.projectDescription')}
                   </p>
                 </div>
                 
@@ -193,13 +184,13 @@ export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language }) => {
                     href="#work"
                     className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-medium text-white transition hover:bg-blue-700 cursor-pointer"
                   >
-                    {language === 'hu' ? 'Projekt részletei' : 'Project Details'}
+                    {t(language, 'hero.variants.caseStudy.viewDetails')}
                   </a>
                   <a 
                     href="#contact"
                     className="inline-flex items-center gap-2 rounded-full border border-blue-600 text-blue-600 px-6 py-3 text-base font-medium transition hover:bg-blue-50 cursor-pointer"
                   >
-                    {language === 'hu' ? 'Hasonló projektet szeretnék' : 'I want something similar'}
+                    {t(language, 'hero.variants.caseStudy.wantSimilar')}
                   </a>
                 </div>
               </div>
@@ -212,10 +203,10 @@ export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language }) => {
                     </div>
                   </div>
                   <div className="text-2xl font-bold mb-2">
-                    {language === 'hu' ? '3 hónap' : '3 months'}
+                    {t(language, 'hero.variants.caseStudy.devTime')}
                   </div>
                   <div className="text-blue-200">
-                    {language === 'hu' ? 'Fejlesztési idő' : 'Development time'}
+                    {t(language, 'hero.variants.caseStudy.devTimeLabel')}
                   </div>
                 </div>
               </div>

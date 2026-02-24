@@ -31,6 +31,24 @@
       "companyName": "DENDORA",
       "tagline": "AI-alapú szoftverfejlesztés",
       "description": "Full-stack fejlesztés mesterséges intelligenciával kiegészítve. Skálázható alkalmazásokat építünk modern React frontend-ekkel, robusztus Go backend-ekkel és LLM-alapú funkciókkal — Kubernetesre telepítve."
+    },
+    "variants": {
+      "location": "Magyarország",
+      "letsTalk": "Beszélgessünk",
+      "testimonial": {
+        "quote": "A Dendora csapat segítségével 3 hónap alatt modernizáltuk a gyártási folyamatainkat. Professzionális munkavégzés nemzetközi szinten.",
+        "clientName": "Autóipari Ügyfél",
+        "clientProject": "FoundryPulse"
+      },
+      "caseStudy": {
+        "badge": "Legutóbbi Projektünk",
+        "projectTitle": "Valós idejű gyártási monitoring",
+        "projectDescription": "Modern React és TypeScript platform komplex gyártási környezethez.",
+        "viewDetails": "Projekt részletei",
+        "wantSimilar": "Hasonló projektet szeretnék",
+        "devTime": "3 hónap",
+        "devTimeLabel": "Fejlesztési idő"
+      }
     }
   },
   "services": {

@@ -67,7 +67,7 @@ const Card: React.FC<CardProps> = ({
             <div className={cn("aspect-[16/10]", brandBg)}>
               {image ? (
                 <div className="flex h-full w-full items-center justify-center p-8">
-                  <img src={image.src} alt={image.alt} className="max-h-full max-w-full object-contain brightness-0 invert" />
+                  <img src={image.src} alt={image.alt} className="max-h-full max-w-full object-contain brightness-0 invert" loading="lazy" decoding="async" />
                 </div>
               ) : (
                 children

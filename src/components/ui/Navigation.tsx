@@ -4,6 +4,7 @@ import { Logo } from './Logo';
 import { Button } from './Button';
 import { LanguageSwitcher } from '../features/LanguageSwitcher';
 import { t, type Language } from '../../lib/translations';
+import { CONTACT_EMAIL } from '../../lib/site-config';
 import { cn } from '../../lib/utils';
 
 export interface NavigationProps {
@@ -105,7 +106,7 @@ const Navigation: React.FC<NavigationProps> = ({
           
           <LanguageSwitcher currentLang={language} />
           
-          <a href="mailto:hello@dendora.hu" className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer">
             <Mail className="h-4 w-4" />
             <span>{t(language, 'navigation.contact')}</span>
           </a>
@@ -143,7 +144,7 @@ const Navigation: React.FC<NavigationProps> = ({
               </div>
               
               <a 
-                href="mailto:hello@dendora.hu" 
+                href={`mailto:${CONTACT_EMAIL}`} 
                 className="mt-1 inline-flex items-center gap-2 rounded-md bg-black px-3 py-2 text-sm font-medium text-white cursor-pointer"
               >
                 <Mail className="h-4 w-4" />

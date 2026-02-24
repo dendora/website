@@ -31,6 +31,24 @@
       "companyName": "DENDORA",
       "tagline": "AI-Powered Software Development",
       "description": "AI-augmented full-stack development. We build scalable applications with modern React frontends, robust Go backends, and LLM-powered features — deployed on Kubernetes."
+    },
+    "variants": {
+      "location": "Hungary",
+      "letsTalk": "Let's talk",
+      "testimonial": {
+        "quote": "With Dendora's help, we modernized our manufacturing processes in 3 months. Professional work at international level.",
+        "clientName": "Automotive Client",
+        "clientProject": "FoundryPulse"
+      },
+      "caseStudy": {
+        "badge": "Latest Project",
+        "projectTitle": "Real-time Manufacturing Monitoring",
+        "projectDescription": "Modern React and TypeScript platform for complex manufacturing environment.",
+        "viewDetails": "Project Details",
+        "wantSimilar": "I want something similar",
+        "devTime": "3 months",
+        "devTimeLabel": "Development time"
+      }
     }
   },
   "services": {

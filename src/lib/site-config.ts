@@ -21,7 +21,7 @@ export interface SiteConfig {
   content: {
     emphasizeLocal: boolean;
     showTechDetails: boolean;
-    casStudyFocus: 'foundrypulse' | 'all' | 'international';
+    caseStudyFocus: 'foundrypulse' | 'all' | 'international';
     contactApproach: 'professional' | 'personal' | 'local';
     valueProposition: 'technical-excellence' | 'local-partnership' | 'regional-expertise' | 'minimal-impact';
     useVariantTranslations: boolean; // Whether to use variant-specific translation files
@@ -55,7 +55,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     content: {
       emphasizeLocal: false,
       showTechDetails: true,
-      casStudyFocus: 'all',
+      caseStudyFocus: 'all',
       contactApproach: 'professional',
       valueProposition: 'technical-excellence',
       useVariantTranslations: false,
@@ -87,7 +87,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     content: {
       emphasizeLocal: true,
       showTechDetails: false,
-      casStudyFocus: 'all',
+      caseStudyFocus: 'all',
       contactApproach: 'personal',
       valueProposition: 'local-partnership',
       useVariantTranslations: true,
@@ -119,7 +119,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     content: {
       emphasizeLocal: true,
       showTechDetails: true,
-      casStudyFocus: 'foundrypulse',
+      caseStudyFocus: 'foundrypulse',
       contactApproach: 'professional',
       valueProposition: 'regional-expertise',
       useVariantTranslations: true,
@@ -151,7 +151,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     content: {
       emphasizeLocal: false,
       showTechDetails: true,
-      casStudyFocus: 'all',
+      caseStudyFocus: 'all',
       contactApproach: 'professional',
       valueProposition: 'minimal-impact',
       useVariantTranslations: false,
@@ -162,6 +162,10 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     },
   },
 };
+
+// Centralized contact info
+export const CONTACT_EMAIL = 'hello@dendora.hu';
+export const SITE_URL = 'https://dendora.hu';
 
 // Simple config switcher - change this single line to test different variants
 export const CURRENT_SITE_VARIANT: SiteVariant = 'international';

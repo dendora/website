@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { MapPin, Clock, Users, Award } from 'lucide-react';
 import { MotionFade, SectionHeader } from '../ui';
 import { t, type Language } from '../../lib/variant-translations';
@@ -109,6 +108,10 @@ export const LocalPresenceSection: React.FC<LocalPresenceSectionProps> = ({ lang
                       src="/foundrypulse-wordmark.png" 
                       alt="FoundryPulse" 
                       className="h-8 w-auto mx-auto mb-4"
+                      width={850}
+                      height={295}
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="text-2xl font-bold text-gray-900 mb-2">
                       {language === 'hu' ? 'Autóipari projekt' : 'Automotive Project'}

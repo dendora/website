@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
 
 export interface MotionFadeProps {
   children: React.ReactNode;
@@ -20,42 +19,62 @@ const MotionFade: React.FC<MotionFadeProps> = ({
   once = true,
   margin = '-50px'
 }) => {
-  const prefersReducedMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Respect prefers-reduced-motion
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      return;
+    }
+
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (once) observer.unobserve(el);
+        } else if (!once) {
+          setIsVisible(false);
+        }
+      },
+      { rootMargin: margin }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [once, margin, prefersReducedMotion]);
 
   if (prefersReducedMotion) {
     return <div className={className}>{children}</div>;
   }
 
-  const directions = {
-    up: { opacity: 0, y: 8 },
-    down: { opacity: 0, y: -8 },
-    left: { opacity: 0, x: 8 },
-    right: { opacity: 0, x: -8 },
-    scale: { opacity: 0, scale: 0.98 }
+  const transforms: Record<string, string> = {
+    up: 'translateY(8px)',
+    down: 'translateY(-8px)',
+    left: 'translateX(8px)',
+    right: 'translateX(-8px)',
+    scale: 'scale(0.98)',
   };
 
-  const animate = {
-    up: { opacity: 1, y: 0 },
-    down: { opacity: 1, y: 0 },
-    left: { opacity: 1, x: 0 },
-    right: { opacity: 1, x: 0 },
-    scale: { opacity: 1, scale: 1 }
+  const style: React.CSSProperties = {
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'none' : transforms[direction],
+    transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
+    willChange: isVisible ? 'auto' : 'opacity, transform',
   };
 
   return (
-    <motion.div
-      initial={directions[direction]}
-      whileInView={animate[direction]}
-      viewport={{ once, margin }}
-      transition={{
-        duration,
-        ease: 'easeOut',
-        delay
-      }}
-      className={className}
-    >
+    <div ref={ref} style={style} className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 

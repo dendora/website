@@ -162,6 +162,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
                       alt={`${localizedTitle} - Image ${index + 1}`}
                       className="rounded-lg border border-black/10"
                       loading="lazy"
+                      decoding="async"
                     />
                   </MotionFade>
                 ))}

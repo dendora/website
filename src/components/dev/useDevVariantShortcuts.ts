@@ -36,7 +36,6 @@ export function useDevVariantShortcuts() {
         case 'r':
         case 'R':
           // Random variant
-          const variants = getAvailableVariants();
           const randomIndex = Math.floor(Math.random() * variants.length);
           targetVariant = variants[randomIndex].key;
           break;

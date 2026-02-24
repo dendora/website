@@ -3,7 +3,7 @@
     "home": "Home",
     "services": "Services", 
     "work": "Work",
-    "about": "About",
+    "about": "Why Us",
     "contact": "Contact",
     "ariaLabels": {
       "dendoraHome": "Dendora home",
@@ -11,8 +11,8 @@
     }
   },
   "hero": {
-    "title": "Central European software development.",
-    "subtitle": "We build reliable web and mobile applications for regional businesses. Local presence, international standards.",
+    "title": "AI-powered software from Central Europe.",
+    "subtitle": "We build reliable, intelligent web and mobile applications for regional businesses, with LLM integrations and agentic workflows. Local presence, international standards.",
     "cta": {
       "startProject": "Start a project",
       "seeWork": "See our work"
@@ -29,8 +29,8 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "Software Development",
-      "description": "Hungarian team with international experience. Local presence for global projects and regional partnerships."
+      "tagline": "AI-Powered Software Development",
+      "description": "Hungarian team with international experience. AI-native development with local presence for global projects and regional partnerships."
     }
   },
   "services": {

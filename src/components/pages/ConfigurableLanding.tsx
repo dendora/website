@@ -36,18 +36,9 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
   // Development shortcuts for variant switching
   useDevVariantShortcuts();
   
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  };
-
   // Hero Component Selection
   const renderHero = () => {
-    const heroProps = { language, scrollTo };
+    const heroProps = { language };
     
     switch (config.layout.heroStyle) {
       case 'minimal':
@@ -62,7 +53,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
   };
 
   // Default Hero (existing hero)
-  const DefaultHero: React.FC<{ language: Language; scrollTo: (id: string) => void }> = ({ language, scrollTo }) => (
+  const DefaultHero: React.FC<{ language: Language }> = ({ language }) => (
     <section id="hero" className="min-h-screen flex items-center px-4 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
         <div className="space-y-8">
@@ -80,21 +71,19 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
           <MotionFade delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={() => scrollTo('contact')}
-                size="lg"
-                className="group"
+              <a 
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition hover:bg-black/85 cursor-pointer group"
               >
                 {t(language, 'hero.cta.startProject')}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button 
-                onClick={() => scrollTo('work')}
-                variant="outline"
-                size="lg"
+              </a>
+              <a 
+                href="#work"
+                className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-base font-medium text-black transition hover:border-black/20 hover:bg-black/5 cursor-pointer"
               >
                 {t(language, 'hero.cta.seeWork')}
-              </Button>
+              </a>
             </div>
           </MotionFade>
 
@@ -161,8 +150,8 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
             className="mb-16"
           />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {['strategy', 'frontend', 'backend'].map((service, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {['strategy', 'frontend', 'backend', 'ai'].map((service, index) => (
               <MotionFade key={service} delay={index * 0.1}>
                 <Card className="p-8 h-full hover:shadow-lg transition-shadow duration-300">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -431,6 +420,85 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
     );
   };
 
+  // Why Us Section
+  const renderWhyUs = () => {
+    if (!config.layout.showSections.about) return null;
+
+    return (
+      <section id="why-us" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 md:grid-cols-2">
+            <div>
+              <MotionFade>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  {t(language, 'about.title')}
+                </h2>
+              </MotionFade>
+              <MotionFade delay={0.1}>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  {t(language, 'about.description')}
+                </p>
+              </MotionFade>
+              <MotionFade delay={0.2}>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <CheckCircle2 className="h-5 w-5 text-black flex-shrink-0" />
+                    <span>{t(language, 'about.features.engineering')}</span>
+                  </li>
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <CheckCircle2 className="h-5 w-5 text-black flex-shrink-0" />
+                    <span>{t(language, 'about.features.delivery')}</span>
+                  </li>
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <CheckCircle2 className="h-5 w-5 text-black flex-shrink-0" />
+                    <span>{t(language, 'about.features.maintainability')}</span>
+                  </li>
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <CheckCircle2 className="h-5 w-5 text-black flex-shrink-0" />
+                    <span>{t(language, 'about.features.ai')}</span>
+                  </li>
+                </ul>
+              </MotionFade>
+              <MotionFade delay={0.3}>
+                <div className="mt-8">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer"
+                  >
+                    {t(language, 'about.cta')}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </MotionFade>
+            </div>
+            <div>
+              <MotionFade delay={0.2}>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Card className="p-6 hover:shadow-md transition-shadow">
+                    <div className="font-semibold text-gray-900 mb-1">{t(language, 'about.cards.stack.title')}</div>
+                    <p className="text-sm text-gray-600">{t(language, 'about.cards.stack.description')}</p>
+                  </Card>
+                  <Card className="p-6 hover:shadow-md transition-shadow">
+                    <div className="font-semibold text-gray-900 mb-1">{t(language, 'about.cards.approach.title')}</div>
+                    <p className="text-sm text-gray-600">{t(language, 'about.cards.approach.description')}</p>
+                  </Card>
+                  <Card className="p-6 hover:shadow-md transition-shadow">
+                    <div className="font-semibold text-gray-900 mb-1">{t(language, 'about.cards.principles.title')}</div>
+                    <p className="text-sm text-gray-600">{t(language, 'about.cards.principles.description')}</p>
+                  </Card>
+                  <Card className="p-6 hover:shadow-md transition-shadow">
+                    <div className="font-semibold text-gray-900 mb-1">{t(language, 'about.cards.engagement.title')}</div>
+                    <p className="text-sm text-gray-600">{t(language, 'about.cards.engagement.description')}</p>
+                  </Card>
+                </div>
+              </MotionFade>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  };
+
   // Contact Section
   const renderContact = () => {
     if (!config.layout.showSections.contact) return null;
@@ -515,6 +583,8 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
           return <div key="services">{renderServices()}</div>;
         case 'work':
           return <div key="work">{renderWork()}</div>;
+        case 'about':
+          return <div key="about">{renderWhyUs()}</div>;
         case 'localPresence':
           return config.layout.showSections.localPresence ? (
             <LocalPresenceSection key="localPresence" language={language} />

@@ -45,7 +45,7 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     
     <!-- SEO Meta Tags -->
     <meta name="description" content={description} />
-    <meta name="keywords" content="software development, web development, mobile apps, React, TypeScript, Go, Kubernetes, full-stack development, frontend, backend, cloud infrastructure" />
+    <meta name="keywords" content="AI software development, LLM integration, agentic workflows, intelligent automation, web development, mobile apps, React, TypeScript, Go, Kubernetes, full-stack development, AI agency" />
     <meta name="author" content="Dendora" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#000000" />
@@ -87,7 +87,7 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Dendora",
-      "description": "Software development company specializing in web and mobile applications",
+      "description": "AI-native software development agency specializing in LLM integrations, agentic workflows, and full-stack web and mobile applications",
       "url": "https://dendora.hu",
       "logo": "https://dendora.hu/dendora-sw-dev-logo.png",
       "email": "hello@dendora.hu",
@@ -101,6 +101,10 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
       "foundingDate": "2014",
       "numberOfEmployees": "2-10",
       "knowsAbout": [
+        "Artificial Intelligence",
+        "Large Language Models",
+        "Agentic AI Workflows",
+        "LLM Integration",
         "Web Development",
         "Mobile Development",
         "React",
@@ -110,7 +114,9 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
         "Full-stack Development"
       ],
       "serviceType": [
-        "Software Development",
+        "AI Software Development",
+        "LLM Integration",
+        "Agentic Workflow Development",
         "Web Application Development", 
         "Mobile Application Development",
         "Cloud Infrastructure",
@@ -145,6 +151,14 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
               "name": "Backend & Infrastructure",
               "description": "Go microservices, PostgreSQL, Docker, and Kubernetes cloud-native architecture"
             }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI & Agentic Solutions",
+              "description": "LLM integrations, agentic workflows, and intelligent automation for real business problems"
+            }
           }
         ]
       }
@@ -153,5 +167,19 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
   </head>
   <body>
     <slot />
+    <script>
+      // Scroll to hash target after React components have mounted
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        const tryScroll = () => {
+          const el = document.querySelector(hash);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        };
+        // Try after a short delay to allow React hydration
+        setTimeout(tryScroll, 300);
+      }
+    </script>
   </body>
 </html>

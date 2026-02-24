@@ -3,7 +3,7 @@
     "home": "Főoldal",
     "services": "Szolgáltatások",
     "work": "Munkáink", 
-    "about": "Rólunk",
+    "about": "Miért mi",
     "contact": "Kapcsolat",
     "ariaLabels": {
       "dendoraHome": "Dendora főoldal",
@@ -11,8 +11,8 @@
     }
   },
   "hero": {
-    "title": "Minimális szoftver, maximális hatás.",
-    "subtitle": "Karcsú, megbízható web és mobil termékeket építünk. Stratégia, design és fejlesztés — egyértelmű megoldásokkal.",
+    "title": "AI-natív szoftver, ami termel.",
+    "subtitle": "Karcsú, intelligens web és mobil termékeket építünk — LLM-ekkel és ágensalapú munkafolyamatokkal. Stratégia, dizájn és fejlesztés — AI-val a középpontban.",
     "cta": {
       "startProject": "Projekt indítása",
       "seeWork": "Munkáink megtekintése"
@@ -29,13 +29,13 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "Szoftverfejlesztés",
-      "description": "Full-stack fejlesztés a frontend-től az infrastruktúráig. Skálázható alkalmazásokat építünk modern React frontend-ekkel és robusztus Go backend-ekkel, Kubernetes-en telepítve."
+      "tagline": "AI-alapú szoftverfejlesztés",
+      "description": "Full-stack fejlesztés mesterséges intelligenciával kiegészítve. Skálázható alkalmazásokat építünk modern React frontend-ekkel, robusztus Go backend-ekkel és LLM-alapú funkciókkal — Kubernetesre telepítve."
     }
   },
   "services": {
     "title": "Mit csinálunk",
-    "subtitle": "Karcsú, megbízható, kiszállított.",
+    "subtitle": "Karcsú, intelligens, kiszállítva.",
     "features": {
       "strategy": {
         "title": "Termékstratégia",
@@ -48,6 +48,10 @@
       "backend": {
         "title": "Backend és Infrastruktúra", 
         "description": "Go mikroszolgáltatások, PostgreSQL adatbázisok, Docker konténerek és Kubernetes klaszterek. Skálázható felhő-natív architektúra."
+      },
+      "ai": {
+        "title": "AI és ágens megoldások",
+        "description": "LLM-integrációk, ágensalapú munkafolyamatok és intelligens automatizálás. Olyan AI-alapú funkciókat építünk, amelyek valós üzleti problémákat oldanak meg."
       }
     }
   },
@@ -80,30 +84,31 @@
     "viewProject": "Projekt megtekintése"
   },
   "about": {
-    "title": "Szándékosan építve",
-    "description": "Egy kis csapat vagyunk, aki kevesebb meetinget és több eredményt preferál. Világos hatókörök, pragmatikus stackek és egyenletes iteráció.",
+    "title": "Miért válasszon minket",
+    "description": "Kis, tapasztalt csapat vagyunk, akik nap mint nap AI-val dolgoznak — nem csak beszélnek róla. Világos hatókörök, pragmatikus technológiai döntések és stabil szállítás — az első commit-tól a produkcióig.",
     "features": {
       "engineering": "Senior gyakorlatias fejlesztés",
       "delivery": "Átlátható becslések és szállítás",
-      "maintainability": "Hosszú távú karbantarthatóság"
+      "maintainability": "Hosszú távú karbantarthatóság",
+      "ai": "AI-natív fejlesztési munkafolyamat"
     },
     "cta": "Beszéljünk",
     "cards": {
       "stack": {
         "title": "Stack",
-        "description": "TypeScript, React, Node.js, Go, Kubernetes"
+        "description": "TypeScript, React, Go, Kubernetes, LLM-ek"
       },
       "approach": {
         "title": "Megközelítés",
-        "description": "Kicsi szállítás, gyors iteráció"
+        "description": "Kicsi szállítás, gyors iteráció, AI-val támogatott automatizálás"
       },
       "principles": {
         "title": "Elvek",
-        "description": "Akadálymentesség és teljesítmény"
+        "description": "Teljesítmény, akadálymentesség, intelligencia"
       },
       "engagement": {
         "title": "Együttműködés",
-        "description": "Projekt vagy fenntartói"
+        "description": "Projekt vagy hosszú távú együttműködés"
       }
     }
   },

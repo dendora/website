@@ -5,7 +5,7 @@ import { useIsMobile } from '../../hooks/use-mobile';
 import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/translations';
 import { getAllProjects } from '../../lib/projects-json';
-import { Navigation, SectionHeader, Card, Button, MotionFade, Logo } from '../ui';
+import { Navigation, SectionHeader, Card, MotionFade, Logo } from '../ui';
 import { Footer } from '../layout';
 
 interface DendoraLandingProps {
@@ -17,15 +17,6 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const projects = getAllProjects(language);
-  
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  };
   
   const Stat: React.FC<{
     value: string;
@@ -66,13 +57,13 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button variant="primary" onClick={() => scrollTo('contact')}>
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer">
                 <span>{t(language, 'hero.cta.startProject')}</span>
                 <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" onClick={() => scrollTo('work')}>
+              </a>
+              <a href="#work" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:border-black/20 hover:bg-black/5 cursor-pointer">
                 <span>{t(language, 'hero.cta.seeWork')}</span>
-              </Button>
+              </a>
             </div>
 
             <div className="mt-10 grid grid-cols-3 gap-6 md:max-w-md">
@@ -288,7 +279,7 @@ export const DendoraLanding: React.FC<DendoraLandingProps> = (props) => {
                 </li>
               </ul>
               <div className="mt-7 flex gap-3">
-                <Button variant="outline" onClick={() => scrollTo('contact')}><span>{t(language, 'about.cta')}</span></Button>
+                <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:border-black/20 hover:bg-black/5 cursor-pointer"><span>{t(language, 'about.cta')}</span></a>
                 <a href="https://dendora.hu" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5 cursor-pointer">
                   <Globe className="h-4 w-4" />
                   <span>dendora.hu</span>

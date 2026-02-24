@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for sticky nav (h-16 = 4rem + 1rem buffer) */
+}

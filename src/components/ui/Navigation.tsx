@@ -21,27 +21,14 @@ const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-    setMenuOpen(false);
-  };
-  
   const navItems = [{
-    id: 'home',
-    label: t(language, 'navigation.home')
-  }, {
     id: 'services',
     label: t(language, 'navigation.services')
   }, {
     id: 'work',
     label: t(language, 'navigation.work')
   }, {
-    id: 'about',
+    id: 'why-us',
     label: t(language, 'navigation.about')
   }, {
     id: 'contact',
@@ -54,8 +41,8 @@ const Navigation: React.FC<NavigationProps> = ({
     <header className={cn('sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur', className)}>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {variant === 'landing' ? (
-          <button 
-            onClick={() => scrollTo('home')} 
+          <a 
+            href={logoUrl} 
             className="group flex items-center gap-3 cursor-pointer" 
             aria-label={t(language, 'navigation.ariaLabels.dendoraHome')}
           >
@@ -67,7 +54,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 tagline: t(language, 'hero.brandCard.tagline')
               }}
             />
-          </button>
+          </a>
         ) : (
           <a 
             href={logoUrl} 
@@ -88,13 +75,13 @@ const Navigation: React.FC<NavigationProps> = ({
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
           {variant === 'landing' && navItems.map(n => (
-            <button 
+            <a 
               key={n.id} 
-              onClick={() => scrollTo(n.id)} 
+              href={`#${n.id}`} 
               className="text-sm text-black/70 transition hover:text-black cursor-pointer"
             >
               <span>{n.label}</span>
-            </button>
+            </a>
           ))}
           
           <LanguageSwitcher currentLang={language} />
@@ -122,13 +109,14 @@ const Navigation: React.FC<NavigationProps> = ({
           <nav className="mx-auto max-w-6xl px-4 py-2">
             <div className="grid gap-1">
               {variant === 'landing' && navItems.map(n => (
-                <button 
+                <a 
                   key={n.id} 
-                  onClick={() => scrollTo(n.id)} 
-                  className="w-full rounded-md px-2 py-2 text-left text-sm text-black/80 hover:bg-black/5 cursor-pointer"
+                  href={`#${n.id}`} 
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full rounded-md px-2 py-2 text-left text-sm text-black/80 hover:bg-black/5 cursor-pointer block"
                 >
                   <span>{n.label}</span>
-                </button>
+                </a>
               ))}
               
               <div className="mt-2 mb-1 flex justify-center">

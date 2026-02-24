@@ -3,7 +3,7 @@
     "home": "Főoldal",
     "services": "Szolgáltatások",
     "work": "Munkáink", 
-    "about": "Rólunk",
+    "about": "Miért mi",
     "contact": "Kapcsolat",
     "ariaLabels": {
       "dendoraHome": "Dendora főoldal",
@@ -11,8 +11,8 @@
     }
   },
   "hero": {
-    "title": "Magyar szoftverfejlesztő csapat.",
-    "subtitle": "Helyi vállalkozások számára építünk megbízható web és mobil alkalmazásokat. Személyes kapcsolat, gyors kommunikáció.",
+    "title": "Magyar AI-natív szoftverfejlesztő csapat.",
+    "subtitle": "Helyi vállalkozások számára építünk intelligens web és mobil alkalmazásokat. LLM-integrációk, ágensalapú munkafolyamatok — személyes kapcsolat, gyors kommunikáció.",
     "cta": {
       "startProject": "Projekt indítása",
       "seeWork": "Munkáink megtekintése"
@@ -29,8 +29,8 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "Szoftverfejlesztés",
-      "description": "Magyar csapat, nemzetközi tapasztalat. Helyi jelenlét, nemzetközi projektekkel dolgozunk."
+      "tagline": "AI-alapú szoftverfejlesztés",
+      "description": "Magyar csapat, nemzetközi tapasztalat. AI-natív fejlesztés helyi jelenléttel, nemzetközi projektekkel."
     }
   },
   "services": {

@@ -31,11 +31,11 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
           {/* Hero Image */}
           {project.images.hero && (
             <div className="mb-8 flex justify-center">
-              <div className="bg-black rounded-xl p-8 w-full max-w-md aspect-[16/10] flex items-center justify-center">
+              <div className="rounded-xl p-8 w-full max-w-md aspect-[16/10] flex items-center justify-center bg-black/5">
                 <img 
                   src={project.images.hero} 
                   alt={localizedTitle}
-                  className="max-h-full max-w-full object-contain brightness-0 invert"
+                  className="max-h-full max-w-full object-contain"
                   loading="lazy"
                   decoding="async"
                 />

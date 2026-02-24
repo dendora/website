@@ -1,16 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Phone } from 'lucide-react';
-import { Button, MotionFade } from '../ui';
+import { MotionFade } from '../ui';
 import { t, type Language } from '../../lib/variant-translations';
 import { useIsMobile } from '../../hooks/use-mobile';
 
 interface HeroMinimalProps {
   language: Language;
-  scrollTo: (id: string) => void;
 }
 
-export const HeroMinimal: React.FC<HeroMinimalProps> = ({ language, scrollTo }) => {
+export const HeroMinimal: React.FC<HeroMinimalProps> = ({ language }) => {
   const isMobile = useIsMobile();
 
   return (
@@ -30,15 +29,13 @@ export const HeroMinimal: React.FC<HeroMinimalProps> = ({ language, scrollTo }) 
 
         <MotionFade delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => scrollTo('work')}
-              variant="primary"
-              size="lg"
-              className="group"
+            <a 
+              href="#work"
+              className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition hover:bg-black/85 cursor-pointer group"
             >
               {t(language, 'hero.cta.seeWork')}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+            </a>
           </div>
         </MotionFade>
       </div>
@@ -48,10 +45,9 @@ export const HeroMinimal: React.FC<HeroMinimalProps> = ({ language, scrollTo }) 
 
 interface HeroTestimonialFocusedProps {
   language: Language;
-  scrollTo: (id: string) => void;
 }
 
-export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ language, scrollTo }) => {
+export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ language }) => {
   return (
     <section className="min-h-screen flex items-center px-4 bg-gradient-to-br from-orange-50 to-amber-50">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
@@ -79,23 +75,19 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
 
           <MotionFade delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button 
-                onClick={() => scrollTo('work')}
-                variant="primary"
-                size="lg"
-                className="bg-orange-600 hover:bg-orange-700"
+              <a 
+                href="#work"
+                className="inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3 text-base font-medium text-white transition hover:bg-orange-700 cursor-pointer"
               >
                 {t(language, 'hero.cta.seeWork')}
-              </Button>
-              <Button 
-                onClick={() => scrollTo('contact')}
-                variant="outline"
-                size="lg"
-                className="border-orange-600 text-orange-600 hover:bg-orange-50"
+              </a>
+              <a 
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-orange-600 text-orange-600 px-6 py-3 text-base font-medium transition hover:bg-orange-50 cursor-pointer"
               >
                 {language === 'hu' ? 'Beszélgessünk' : 'Let\'s talk'}
                 <Phone className="ml-2 h-4 w-4" />
-              </Button>
+              </a>
             </div>
           </MotionFade>
         </div>
@@ -137,10 +129,9 @@ export const HeroTestimonialFocused: React.FC<HeroTestimonialFocusedProps> = ({ 
 
 interface HeroCaseStudyProps {
   language: Language;
-  scrollTo: (id: string) => void;
 }
 
-export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language, scrollTo }) => {
+export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language }) => {
   return (
     <section className="min-h-screen flex items-center px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto">
@@ -198,21 +189,18 @@ export const HeroCaseStudy: React.FC<HeroCaseStudyProps> = ({ language, scrollTo
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    onClick={() => scrollTo('work')}
-                    size="lg"
-                    className="bg-blue-600 hover:bg-blue-700"
+                  <a 
+                    href="#work"
+                    className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-medium text-white transition hover:bg-blue-700 cursor-pointer"
                   >
                     {language === 'hu' ? 'Projekt részletei' : 'Project Details'}
-                  </Button>
-                  <Button 
-                    onClick={() => scrollTo('contact')}
-                    variant="outline"
-                    size="lg"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                  </a>
+                  <a 
+                    href="#contact"
+                    className="inline-flex items-center gap-2 rounded-full border border-blue-600 text-blue-600 px-6 py-3 text-base font-medium transition hover:bg-blue-50 cursor-pointer"
                   >
                     {language === 'hu' ? 'Hasonló projektet szeretnék' : 'I want something similar'}
-                  </Button>
+                  </a>
                 </div>
               </div>
               

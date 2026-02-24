@@ -17,7 +17,7 @@ const lang = Astro.currentLocale as 'hu' | 'en'
 
 const breadcrumbItems = [
   { label: t(lang, 'navigation.home'), href: lang === 'hu' ? '/' : '/en/' },
-  { label: t(lang, 'navigation.work') },
+  { label: t(lang, 'navigation.work'), href: (lang === 'hu' ? '/' : '/en/') + '#work' },
   ...(projectTitle ? [{ label: projectTitle, current: true }] : [])
 ]
 ---

@@ -3,7 +3,7 @@
     "home": "Home",
     "services": "Services", 
     "work": "Work",
-    "about": "About",
+    "about": "Why Us",
     "contact": "Contact",
     "ariaLabels": {
       "dendoraHome": "Dendora home",
@@ -11,8 +11,8 @@
     }
   },
   "hero": {
-    "title": "Minimal software, maximal impact.",
-    "subtitle": "We build lean, dependable web and mobile products. Strategy, design, and engineering — delivered with clarity.",
+    "title": "AI-native software, built to ship.",
+    "subtitle": "We build lean, intelligent web and mobile products — powered by LLMs and agentic workflows. Strategy, design, and engineering with AI at the core.",
     "cta": {
       "startProject": "Start a project",
       "seeWork": "See our work"
@@ -29,13 +29,13 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "Software Development",
-      "description": "Full-stack development from frontend to infrastructure. We build scalable applications with modern React frontends and robust Go backends, deployed on Kubernetes."
+      "tagline": "AI-Powered Software Development",
+      "description": "AI-augmented full-stack development. We build scalable applications with modern React frontends, robust Go backends, and LLM-powered features — deployed on Kubernetes."
     }
   },
   "services": {
     "title": "What we do",
-    "subtitle": "Lean, reliable, shipped.",
+    "subtitle": "Lean, intelligent, shipped.",
     "features": {
       "strategy": {
         "title": "Product Strategy",
@@ -48,6 +48,10 @@
       "backend": {
         "title": "Backend & Infrastructure",
         "description": "Go microservices, PostgreSQL databases, Docker containers, and Kubernetes clusters. Scalable cloud-native architecture."
+      },
+      "ai": {
+        "title": "AI & Agentic Solutions",
+        "description": "LLM integrations, agentic workflows, and intelligent automation. We build AI-powered features that solve real business problems."
       }
     }
   },
@@ -80,26 +84,27 @@
     "viewProject": "View project"
   },
   "about": {
-    "title": "Built with intention",
-    "description": "We're a small team that prefers fewer meetings and more results. Clear scopes, pragmatic stacks, and steady iteration.",
+    "title": "Why work with us",
+    "description": "We're a small, senior team that builds with AI daily — not just talk about it. Clear scopes, pragmatic technology choices, and steady delivery — from first commit to production.",
     "features": {
-      "engineering": "Senior hands‑on engineering",
-      "delivery": "Transparent estimates and delivery", 
-      "maintainability": "Long‑term maintainability"
+      "engineering": "Senior hands-on engineering",
+      "delivery": "Transparent estimates and delivery",
+      "maintainability": "Long-term maintainability",
+      "ai": "AI-native development workflow"
     },
     "cta": "Let's talk",
     "cards": {
       "stack": {
         "title": "Stack",
-        "description": "TypeScript, React, Node.js, Go, Kubernetes"
+        "description": "TypeScript, React, Go, Kubernetes, LLMs"
       },
       "approach": {
         "title": "Approach",
-        "description": "Ship small, iterate fast"
+        "description": "Ship small, iterate fast, automate with AI"
       },
       "principles": {
         "title": "Principles",
-        "description": "Accessibility and performance"
+        "description": "Performance, accessibility, intelligence"
       },
       "engagement": {
         "title": "Engagement",

@@ -24,5 +24,5 @@ const description = project.metadata.description;
 ---
 
 <WorkLayout title={title} description={description} lang={lang}>
-  <ProjectDetailsPage project={project} language={lang} client:only="react" />
+  <ProjectDetailsPage project={project} language={lang} client:load />
 </WorkLayout>

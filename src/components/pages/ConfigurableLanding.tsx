@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Mail, Github, Globe, CheckCircle2 } from 'lucide-react';
-import { useIsMobile } from '../../hooks/use-mobile';
 import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects } from '../../lib/projects-json';
@@ -26,9 +25,93 @@ interface ConfigurableLandingProps {
   language: Language;
 }
 
+// Extracted to module scope to avoid remounting on every parent render
+const DefaultHero: React.FC<{ language: Language; showStats: boolean }> = ({ language, showStats }) => (
+  <section id="hero" className="min-h-screen flex items-center px-4 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="space-y-8">
+        <MotionFade>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            {t(language, 'hero.title')}
+          </h1>
+        </MotionFade>
+        
+        <MotionFade delay={0.1}>
+          <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+            {t(language, 'hero.subtitle')}
+          </p>
+        </MotionFade>
+
+        <MotionFade delay={0.2}>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a 
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition hover:bg-black/85 cursor-pointer group"
+            >
+              {t(language, 'hero.cta.startProject')}
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a 
+              href="#work"
+              className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-base font-medium text-black transition hover:border-black/20 hover:bg-black/5 cursor-pointer"
+            >
+              {t(language, 'hero.cta.seeWork')}
+            </a>
+          </div>
+        </MotionFade>
+
+        {showStats && (
+          <MotionFade delay={0.3}>
+            <div className="flex gap-8 pt-8">
+              <div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {t(language, 'hero.stats.experience.value')}
+                </div>
+                <div className="text-gray-700">
+                  {t(language, 'hero.stats.experience.label')}
+                </div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {t(language, 'hero.stats.remote.value')}
+                </div>
+                <div className="text-gray-700">
+                  {t(language, 'hero.stats.remote.label')}
+                </div>
+              </div>
+            </div>
+          </MotionFade>
+        )}
+      </div>
+
+      <div className="lg:pl-12">
+        <MotionFade delay={0.4}>
+          <Card className="p-8 bg-white shadow-xl border border-gray-100" showIcon={false}>
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <Logo size="sm" />
+                <div>
+                  <div className="font-bold text-gray-900">
+                    {t(language, 'hero.brandCard.companyName')}
+                  </div>
+                  <div className="text-sm text-gray-700">
+                    {t(language, 'hero.brandCard.tagline')}
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                {t(language, 'hero.brandCard.description')}
+              </p>
+            </div>
+          </Card>
+        </MotionFade>
+      </div>
+    </div>
+  </section>
+);
+
 export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) => {
   const { language = 'hu' } = props || {};
-  const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const projects = getAllProjects(language);
   const config = getCurrentSiteConfig();
@@ -48,94 +131,9 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
       case 'case-study-hero':
         return <HeroCaseStudy {...heroProps} />;
       default:
-        return <DefaultHero {...heroProps} />;
+        return <DefaultHero {...heroProps} showStats={config.layout.showSections.stats} />;
     }
   };
-
-  // Default Hero (existing hero)
-  const DefaultHero: React.FC<{ language: Language }> = ({ language }) => (
-    <section id="hero" className="min-h-screen flex items-center px-4 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        <div className="space-y-8">
-          <MotionFade>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              {t(language, 'hero.title')}
-            </h1>
-          </MotionFade>
-          
-          <MotionFade delay={0.1}>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-              {t(language, 'hero.subtitle')}
-            </p>
-          </MotionFade>
-
-          <MotionFade delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a 
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition hover:bg-black/85 cursor-pointer group"
-              >
-                {t(language, 'hero.cta.startProject')}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a 
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-base font-medium text-black transition hover:border-black/20 hover:bg-black/5 cursor-pointer"
-              >
-                {t(language, 'hero.cta.seeWork')}
-              </a>
-            </div>
-          </MotionFade>
-
-          {config.layout.showSections.stats && (
-            <MotionFade delay={0.3}>
-              <div className="flex gap-8 pt-8">
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">
-                    {t(language, 'hero.stats.experience.value')}
-                  </div>
-                  <div className="text-gray-600">
-                    {t(language, 'hero.stats.experience.label')}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">
-                    {t(language, 'hero.stats.remote.value')}
-                  </div>
-                  <div className="text-gray-600">
-                    {t(language, 'hero.stats.remote.label')}
-                  </div>
-                </div>
-              </div>
-            </MotionFade>
-          )}
-        </div>
-
-        <div className="lg:pl-12">
-          <MotionFade delay={0.4}>
-            <Card className="p-8 bg-white shadow-xl border border-gray-100" showIcon={false}>
-              <div className="space-y-6">
-                <div className="flex items-center gap-3">
-                  <Logo size="sm" />
-                  <div>
-                    <div className="font-bold text-gray-900">
-                      {t(language, 'hero.brandCard.companyName')}
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {t(language, 'hero.brandCard.tagline')}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-gray-700 leading-relaxed">
-                  {t(language, 'hero.brandCard.description')}
-                </p>
-              </div>
-            </Card>
-          </MotionFade>
-        </div>
-      </div>
-    </section>
-  );
 
   // Services Section
   const renderServices = () => {
@@ -274,30 +272,24 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                       <h3 className="text-base font-semibold">
                         <span>{project.metadata.title}</span>
                       </h3>
-                      <p className="mt-1 text-sm text-black/60">
+                      <p className="mt-1 text-sm text-black/70">
                         <span>{project.metadata.description}</span>
                       </p>
                       {isDetailProject && (
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.location.href = projectUrl;
-                          }}
-                          className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors bg-transparent border-none cursor-pointer"
-                        >
+                        <span className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 group-hover:text-black transition-colors">
                           <span>{t(language, 'work.viewProject')}</span>
                           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                        </button>
+                        </span>
                       )}
                     </div>
                   </motion.article>
                 );
 
                 return isDetailProject ? (
-                  <a key={project.id} href={projectUrl} className="block">
+                  <a key={project.id} href={projectUrl} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 rounded-xl">
                     {cardContent}
                   </a>
-                ) : cardContent;
+                ) : <React.Fragment key={project.id}>{cardContent}</React.Fragment>;
               })}
             </div>
           </div>
@@ -373,7 +365,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {project.metadata.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-2">
+                    <p className="text-gray-700 mb-4 line-clamp-2">
                       {project.metadata.subtitle}
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -387,16 +379,10 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                       ))}
                     </div>
                     {isDetailProject && (
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.location.href = projectUrl;
-                        }}
-                        className="mt-4 inline-flex items-center gap-1 text-sm text-black/70 hover:text-black transition-colors bg-transparent border-none cursor-pointer"
-                      >
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm text-black/70 group-hover:text-black transition-colors">
                         <span>{t(language, 'work.viewProject')}</span>
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                      </button>
+                      </span>
                     )}
                   </div>
                 </Card>
@@ -405,7 +391,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
               return (
                 <MotionFade key={project.id} delay={index * 0.1}>
                   {isDetailProject ? (
-                    <a href={projectUrl} className="block">
+                    <a href={projectUrl} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 rounded-xl">
                       {cardContent}
                     </a>
                   ) : (
@@ -542,10 +528,10 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
           <MotionFade delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
+              <a
+                href="mailto:hello@dendora.hu"
                 className={cn(
-                  "group",
+                  "inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium transition cursor-pointer group",
                   isPersonal 
                     ? "bg-orange-600 hover:bg-orange-700 text-white" 
                     : "bg-white text-gray-900 hover:bg-gray-100"
@@ -556,15 +542,14 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                   ? (language === 'hu' ? 'Írjon nekünk' : 'Write to us')
                   : t(language, 'contact.cta.email')
                 }
-              </Button>
+              </a>
               {isLocal && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-orange-600 text-orange-600 hover:bg-orange-50"
+                <a
+                  href="mailto:hello@dendora.hu"
+                  className="inline-flex items-center gap-2 rounded-full border border-orange-600 text-orange-600 hover:bg-orange-50 px-6 py-3 text-base font-medium transition cursor-pointer"
                 >
                   {language === 'hu' ? 'Személyes találkozó' : 'Meet in person'}
-                </Button>
+                </a>
               )}
             </div>
           </MotionFade>
@@ -608,7 +593,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
         language={language} 
       />
       
-      <main>
+      <main id="main-content">
         {renderSections()}
       </main>
 

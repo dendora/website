@@ -14,15 +14,29 @@ interface Props {
 
 const { title, description, projectTitle, projectSubtitle } = Astro.props
 const lang = Astro.currentLocale as 'hu' | 'en'
+const baseUrl = 'https://dendora.hu'
 
 const breadcrumbItems = [
   { label: t(lang, 'navigation.home'), href: lang === 'hu' ? '/' : '/en/' },
   { label: t(lang, 'navigation.work'), href: (lang === 'hu' ? '/' : '/en/') + '#work' },
   ...(projectTitle ? [{ label: projectTitle, current: true }] : [])
 ]
+
+// Structured data for breadcrumb (SEO)
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.label,
+    ...(item.href ? { "item": `${baseUrl}${item.href}` } : {})
+  }))
+})
 ---
 
 <Layout title={title} description={description} lang={lang}>
+  <script type="application/ld+json" set:html={breadcrumbJsonLd} />
   <div class="min-h-dvh w-full bg-white text-black antialiased">
     {/* Header */}
     <header class="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">

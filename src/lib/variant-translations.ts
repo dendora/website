@@ -46,18 +46,26 @@ function mergeTranslations(base: Translations, variant?: Translations): Translat
   return merge(base, variant);
 }
 
+// Cache merged translations to avoid repeated deep merges
+const mergedCache = new Map<string, Translations>();
+
 export function getTranslations(language: Language) {
   const config = getCurrentSiteConfig();
-  const base = baseTranslations[language];
   
   if (!config.content.useVariantTranslations) {
-    return base;
+    return baseTranslations[language];
   }
+  
+  const cacheKey = `${config.variant}:${language}`;
+  const cached = mergedCache.get(cacheKey);
+  if (cached) return cached;
   
   const variantKey = config.variant as keyof typeof variantTranslations;
   const variant = variantTranslations[variantKey]?.[language];
+  const merged = mergeTranslations(baseTranslations[language], variant);
   
-  return mergeTranslations(base, variant);
+  mergedCache.set(cacheKey, merged);
+  return merged;
 }
 
 export function t(language: Language, key: string, params?: Record<string, string | number>): any {

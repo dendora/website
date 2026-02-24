@@ -10,7 +10,7 @@ interface FooterProps {
 export default function Footer({ language }: FooterProps) {
   return (
     <footer className="border-t border-black/5">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-black/60 md:flex-row">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-black/70 md:flex-row">
         <div className="flex items-center gap-3">
           <Logo size="sm" />
           <span>{t(language, 'footer.copyright', { year: new Date().getFullYear() })}</span>

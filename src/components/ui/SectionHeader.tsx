@@ -23,7 +23,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     return (
       <div className={cn('mb-8 flex flex-col', alignmentStyles[alignment], className)}>
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{title}</h2>
-        {subtitle && <span className="mt-2 text-sm text-black/60">{subtitle}</span>}
+        {subtitle && <span className="mt-2 text-sm text-black/70">{subtitle}</span>}
       </div>
     );
   }
@@ -31,7 +31,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div className={cn('mb-8 flex', alignmentStyles[alignment], className)}>
       <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{title}</h2>
-      {subtitle && <span className="text-sm text-black/60">{subtitle}</span>}
+      {subtitle && <span className="text-sm text-black/70">{subtitle}</span>}
     </div>
   );
 };

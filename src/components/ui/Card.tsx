@@ -42,7 +42,11 @@ const Card: React.FC<CardProps> = ({
   };
 
   const cardContent = (
-    <div className={cn(baseStyles, variants[variant], className)} onClick={onClick}>
+    <div
+      className={cn(baseStyles, variants[variant], className)}
+      onClick={onClick}
+      {...(onClick && { role: 'button', tabIndex: 0, onKeyDown: (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } } })}
+    >
       {variant === 'feature' && (
         <>
           {showIcon && (
@@ -51,7 +55,7 @@ const Card: React.FC<CardProps> = ({
             </div>
           )}
           {title && <h3 className="text-base font-semibold tracking-tight">{title}</h3>}
-          {description && <p className="mt-2 text-sm text-black/60">{description}</p>}
+          {description && <p className="mt-2 text-sm text-black/70">{description}</p>}
           <div className="pointer-events-none absolute inset-0 rounded-xl ring-0 ring-black/5 transition group-hover:ring-2" />
           {children}
         </>
@@ -72,7 +76,7 @@ const Card: React.FC<CardProps> = ({
           )}
           <div className="p-4">
             {title && <h3 className="text-base font-semibold">{title}</h3>}
-            {description && <p className="mt-1 text-sm text-black/60">{description}</p>}
+            {description && <p className="mt-1 text-sm text-black/70">{description}</p>}
           </div>
         </>
       )}
@@ -80,7 +84,7 @@ const Card: React.FC<CardProps> = ({
       {(variant === 'info' || variant === 'tech') && (
         <>
           {title && <div className="text-sm font-semibold">{title}</div>}
-          {description && <p className="mt-1 text-sm text-black/60">{description}</p>}
+          {description && <p className="mt-1 text-sm text-black/70">{description}</p>}
           {children}
         </>
       )}

@@ -20,6 +20,17 @@ const Navigation: React.FC<NavigationProps> = ({
   className = ''
 }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+
+  // Close mobile menu on Escape key
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
   
   const navItems = [{
     id: 'services',
@@ -38,7 +49,15 @@ const Navigation: React.FC<NavigationProps> = ({
   const logoUrl = homeUrl || (language === 'hu' ? '/' : '/en/');
 
   return (
-    <header className={cn('sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur', className)}>
+    <>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+      >
+        {language === 'hu' ? 'Ugrás a tartalomhoz' : 'Skip to main content'}
+      </a>
+      <header className={cn('sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur', className)}>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {variant === 'landing' ? (
           <a 
@@ -135,6 +154,7 @@ const Navigation: React.FC<NavigationProps> = ({
         </div>
       )}
     </header>
+    </>
   );
 };
 

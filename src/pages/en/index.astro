@@ -9,5 +9,5 @@ const description = t(lang, 'hero.subtitle');
 ---
 
 <Layout title={title} description={description} lang={lang}>
-  <ConfigurableLanding language={lang} client:only="react" />
+  <ConfigurableLanding language={lang} client:load />
 </Layout>

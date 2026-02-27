@@ -77,7 +77,7 @@ export function t(language: Language, key: string, params?: Record<string, strin
     if (value && typeof value === 'object' && k in value) {
       value = value[k];
     } else {
-      console.warn(`Translation key "${key}" not found for language "${language}"`);
+      if (import.meta.env?.DEV) console.warn(`Translation key "${key}" not found for language "${language}"`);
       return key; // Fallback to key if translation not found
     }
   }

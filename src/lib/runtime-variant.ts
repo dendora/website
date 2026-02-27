@@ -28,7 +28,7 @@ export function getRuntimeVariant(): SiteVariant | null {
 
 export function getCurrentSiteConfig() {
   const runtime = getRuntimeVariant();
-  if (runtime && process.env.NODE_ENV === 'development') {
+  if (runtime && import.meta.env?.DEV) {
     return siteConfigs[runtime];
   }
   return getSiteConfig();

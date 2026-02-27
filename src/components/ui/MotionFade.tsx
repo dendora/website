@@ -21,14 +21,13 @@ const MotionFade: React.FC<MotionFadeProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  // Respect prefers-reduced-motion
-  const prefersReducedMotion =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
+  // Check prefers-reduced-motion inside useEffect to avoid SSR/hydration mismatch
   useEffect(() => {
-    if (prefersReducedMotion) {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mql.matches) {
+      setPrefersReducedMotion(true);
       setIsVisible(true);
       return;
     }
@@ -50,7 +49,7 @@ const MotionFade: React.FC<MotionFadeProps> = ({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [once, margin, prefersReducedMotion]);
+  }, [once, margin]);
 
   if (prefersReducedMotion) {
     return <div className={className}>{children}</div>;

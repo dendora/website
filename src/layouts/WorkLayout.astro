@@ -8,7 +8,7 @@ import { t } from '../lib/translations'
 interface Props {
   title: string
   description: string
-  projectTitle: string
+  projectTitle?: string
   projectSubtitle?: string
 }
 
@@ -63,7 +63,8 @@ const breadcrumbJsonLd = JSON.stringify({
             <span>{t(lang, 'navigation.contact')}</span>
           </a>
         </div>
-      </header>
+      </div>
+    </header>
 
       {/* Work Section Header */}
       <section class="border-b border-black/5 bg-gray-50/30">

@@ -23,7 +23,7 @@ export const DevVariantSwitcher: React.FC<DevVariantSwitcherProps> = ({ onVarian
   }, []);
 
   // Don't render in production
-  if (process.env.NODE_ENV === 'production') {
+  if (!import.meta.env?.DEV) {
     return null;
   }
 

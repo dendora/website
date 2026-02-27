@@ -8,7 +8,7 @@ import { type SiteVariant } from '../../lib/site-config';
  */
 export function useDevVariantShortcuts() {
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return;
+    if (!import.meta.env?.DEV) return;
 
     const handleKeyPress = (event: KeyboardEvent) => {
       // Only trigger when Ctrl/Cmd + Shift is held

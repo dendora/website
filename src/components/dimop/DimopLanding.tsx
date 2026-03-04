@@ -6,7 +6,7 @@ import { Logo, MotionFade } from '../ui';
 import { DimopHero } from './DimopHero';
 import { ProblemSection } from './ProblemSection';
 import { SolutionSection } from './SolutionSection';
-import { PackagesSection } from './PackagesSection';
+import { ServicesSection } from './ServicesSection';
 import { AiServicesSection } from './AiServicesSection';
 import { LeadQualificationForm } from './LeadQualificationForm';
 import { FaqSection } from './FaqSection';
@@ -20,7 +20,7 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   const links = [
-    { href: '#packages', label: dt(language, 'navigation.packages') },
+    { href: '#services', label: dt(language, 'navigation.services') },
     { href: '#ai', label: dt(language, 'navigation.ai') },
     { href: '#faq', label: dt(language, 'navigation.faq') },
   ];
@@ -187,7 +187,7 @@ export const DimopLanding: React.FC<DimopLandingProps> = ({ language }) => {
         <DimopHero language={language} />
         <ProblemSection language={language} />
         <SolutionSection language={language} />
-        <PackagesSection language={language} />
+        <ServicesSection language={language} />
         <AiServicesSection language={language} />
         <LeadQualificationForm language={language} />
         <FaqSection language={language} />

@@ -14,15 +14,14 @@ const { title, description, keywords, lang, canonical } = Astro.props;
 const baseUrl = 'https://dendora.hu';
 const currentPath = Astro.url.pathname;
 
-// Hreflang: /dimop = hu, /en/dimop = en
+// Single-language page (Hungarian only)
 const hreflangs = {
   hu: '/dimop',
-  en: '/en/dimop',
 };
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="hu">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,11 +39,10 @@ const hreflangs = {
     <meta name="theme-color" content="#059669" />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href={canonical || `${baseUrl}${currentPath}`} />
+    <link rel="canonical" href={`${baseUrl}/dimop`} />
     
-    <!-- Hreflang for multilingual SEO -->
+    <!-- Single language, no hreflang alternates needed -->
     <link rel="alternate" hreflang="hu" href={`${baseUrl}${hreflangs.hu}`} />
-    <link rel="alternate" hreflang="en" href={`${baseUrl}${hreflangs.en}`} />
     <link rel="alternate" hreflang="x-default" href={`${baseUrl}${hreflangs.hu}`} />
     
     <!-- Open Graph -->
@@ -54,7 +52,7 @@ const hreflangs = {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
     <meta property="og:site_name" content="Dendora" />
-    <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_US'} />
+    <meta property="og:locale" content="hu_HU" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -75,7 +73,7 @@ const hreflangs = {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Dendora - DIMOP Digitalizációs Partner",
-      "description": "Teljes digitális szintlépés 90%-os pályázati támogatásból. Hardware, szoftver és AI megoldások KKV-k számára.",
+      "description": "DIMOP Plusz-1.2.6/B-26 pályázati kivitelezés. 90%-os támogatásból teljes digitális szintlépés Budapesten kívüli mikro- és kisvállalkozásoknak.",
       "url": "https://dendora.hu/dimop",
       "logo": "https://dendora.hu/dendora-sw-dev-logo.png",
       "email": "hello@dendora.hu",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Shield, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Shield, TrendingUp, CalendarClock } from 'lucide-react';
 import { dt, type DimopLanguage } from '../../lib/dimop-translations';
 import { MotionFade } from '../ui';
 
@@ -10,7 +10,7 @@ interface DimopHeroProps {
 const statIcons = [
   <Shield key="shield" className="h-5 w-5 text-emerald-600" />,
   <TrendingUp key="trending" className="h-5 w-5 text-emerald-600" />,
-  <Users key="users" className="h-5 w-5 text-emerald-600" />,
+  <CalendarClock key="calendar" className="h-5 w-5 text-emerald-600" />,
 ];
 
 export const DimopHero: React.FC<DimopHeroProps> = ({ language }) => {
@@ -52,7 +52,7 @@ export const DimopHero: React.FC<DimopHeroProps> = ({ language }) => {
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#packages"
+              href="#services"
               className="inline-flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-8 py-4 text-lg font-semibold text-gray-900 transition hover:border-gray-300 hover:bg-gray-50 cursor-pointer"
             >
               {dt(language, 'hero.cta.secondary')}
@@ -62,7 +62,7 @@ export const DimopHero: React.FC<DimopHeroProps> = ({ language }) => {
 
         <MotionFade delay={0.4}>
           <div className="mt-14 flex flex-wrap justify-center gap-8 md:gap-12">
-            {(['support', 'maxGrant', 'clients'] as const).map((key, i) => (
+            {(['support', 'maxGrant', 'deadline'] as const).map((key, i) => (
               <div key={key} className="flex items-center gap-3">
                 {statIcons[i]}
                 <div className="text-left">

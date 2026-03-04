@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { ArrowRight, CheckCircle2, Send, User, Mail, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Send, User, Mail, Phone, AlertCircle, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { dt, type DimopLanguage } from '../../lib/dimop-translations';
 import { CONTACT_EMAIL } from '../../lib/site-config';
@@ -25,6 +25,8 @@ export const LeadQualificationForm: React.FC<LeadQualificationFormProps> = ({ la
 
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     answers: {},
     name: '',
@@ -47,28 +49,55 @@ export const LeadQualificationForm: React.FC<LeadQualificationFormProps> = ({ la
     }, 300);
   }, [totalSteps]);
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    // Build mailto body with form data
-    const body = [
-      `Név: ${formData.name}`,
-      `Email: ${formData.email}`,
-      formData.phone ? `Telefon: ${formData.phone}` : '',
-      '',
-      '--- Előminősítő válaszok ---',
-      ...questions.map((q) => `${q.question}: ${formData.answers[q.id] || 'N/A'}`),
-    ]
-      .filter(Boolean)
-      .join('\n');
+    setSubmitting(true);
+    setError(null);
 
-    const subject = encodeURIComponent(
-      language === 'hu' ? 'DIMOP Előminősítés' : 'DIMOP Pre-Qualification'
-    );
-    const encodedBody = encodeURIComponent(body);
+    const payload = {
+      source: 'dimop',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      answers: questions.map((q) => ({
+        question: q.question,
+        answer: formData.answers[q.id] || 'N/A',
+      })),
+    };
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodedBody}`;
-    setSubmitted(true);
-  }, [formData, questions, language]);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error('Hálózati hiba');
+      }
+
+      setSubmitted(true);
+    } catch {
+      // Fallback to mailto if API fails
+      const body = [
+        `Név: ${formData.name}`,
+        `Email: ${formData.email}`,
+        formData.phone ? `Telefon: ${formData.phone}` : '',
+        '',
+        '--- Felmérő válaszok ---',
+        ...questions.map((q) => `${q.question}: ${formData.answers[q.id] || 'N/A'}`),
+      ]
+        .filter(Boolean)
+        .join('\n');
+
+      const subject = encodeURIComponent('DIMOP Konzultáció');
+      const encodedBody = encodeURIComponent(body);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodedBody}`;
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
+  }, [formData, questions]);
 
   if (submitted) {
     return (
@@ -232,9 +261,14 @@ export const LeadQualificationForm: React.FC<LeadQualificationFormProps> = ({ la
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 text-white font-semibold hover:bg-emerald-700 shadow-lg shadow-emerald-600/25 transition cursor-pointer"
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 text-white font-semibold hover:bg-emerald-700 shadow-lg shadow-emerald-600/25 transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="h-4 w-4" />
+                  {submitting ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
                   {dt(language, 'qualification.submit')}
                 </button>
               </div>

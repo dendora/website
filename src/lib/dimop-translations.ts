@@ -1,11 +1,9 @@
 import dimopHu from '../locales/dimop/hu.json';
-import dimopEn from '../locales/dimop/en.json';
 
-export type DimopLanguage = 'hu' | 'en';
+export type DimopLanguage = 'hu';
 
 const dimopTranslations: Record<DimopLanguage, Record<string, any>> = {
   hu: dimopHu,
-  en: dimopEn,
 };
 
 /**

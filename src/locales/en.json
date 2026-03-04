@@ -29,7 +29,7 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "AI-Powered Software Development",
+      "tagline": "Software Engineering · AI",
       "description": "AI-augmented full-stack development. We build scalable applications with modern React frontends, robust Go backends, and LLM-powered features — deployed on Kubernetes."
     },
     "variants": {

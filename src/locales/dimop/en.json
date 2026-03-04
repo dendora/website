@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "DIMOP Digitalization — 90% EU Grant Funding | Dendora",
+    "description": "Complete digital transformation with 90% EU grant funding. Hardware, software, and AI solutions for SMBs — turnkey implementation.",
+    "keywords": "DIMOP grant, 90% digitalization grant, SMB digitalization EU funding, CRM implementation grant, AI solutions SMB, digital transformation Hungary"
+  },
+  "hero": {
+    "badge": "DIMOP 2026 — Grant Implementation",
+    "title": "Complete digital upgrade with 90% EU grant funding.",
+    "subtitle": "Hardware, software, and AI solutions — turnkey implementation. You make the decision, we handle everything else.",
+    "cta": {
+      "primary": "Free Pre-Qualification →",
+      "secondary": "View Packages"
+    },
+    "stats": {
+      "support": { "value": "90%", "label": "Grant Coverage" },
+      "maxGrant": { "value": "€30K", "label": "Max Grant Value" },
+      "clients": { "value": "10+", "label": "Years Experience" }
+    },
+    "trust": "We're a dev team, not a grant-writing agency. We deliver the entire project."
+  },
+  "problem": {
+    "title": "72% of Hungarian SMBs compete at a digital disadvantage.",
+    "subtitle": "Sound familiar?",
+    "items": [
+      {
+        "title": "No systems, no visibility",
+        "description": "Spreadsheets, paper records, scattered data. Customers, orders, and finances aren't in one place."
+      },
+      {
+        "title": "Competitors already digitalized",
+        "description": "Those with CRM, webshop, and automation serve customers faster and cheaper. The gap grows every day."
+      },
+      {
+        "title": "No time, no IT person",
+        "description": "As a business owner, there's no time for IT projects. You need someone who doesn't just advise — but delivers."
+      },
+      {
+        "title": "Fear of grant bureaucracy",
+        "description": "Complex accounting, uncertainty — but with 90% funding, this is the best opportunity in years."
+      }
+    ]
+  },
+  "solution": {
+    "title": "We're not grant writers. We're digital implementation partners.",
+    "subtitle": "Complete solution, not just consulting.",
+    "steps": [
+      {
+        "step": "1",
+        "title": "Pre-qualification & assessment",
+        "description": "Find out in 2 minutes if you're eligible. We assess your digital maturity and needs."
+      },
+      {
+        "step": "2",
+        "title": "Tailored plan",
+        "description": "A hardware + software + AI package customized for your business — with grant-compliant specifications."
+      },
+      {
+        "step": "3",
+        "title": "Full implementation",
+        "description": "We deliver hardware, deploy software, train your team. Accounting documentation included."
+      },
+      {
+        "step": "4",
+        "title": "Operations & support",
+        "description": "The project doesn't end at deployment. Ongoing support, maintenance, and development."
+      }
+    ]
+  },
+  "packages": {
+    "title": "Our Packages",
+    "subtitle": "Every package is grant-compliant with turnkey implementation.",
+    "popular": "Most Popular",
+    "cta": "Select Package",
+    "items": [
+      {
+        "name": "Basic",
+        "price": "€8–13K",
+        "grantNote": "Up to 90% from grant funding",
+        "selfPay": "Your cost: ~€800–1,300",
+        "description": "Digital foundations — website, CRM, basic IT security.",
+        "features": [
+          "Professional company website",
+          "CRM system setup (HubSpot / Pipedrive)",
+          "Cloud collaboration (M365 / Google Workspace)",
+          "IT security essentials",
+          "Basic training and documentation"
+        ],
+        "idealFor": "Micro businesses, sole proprietors"
+      },
+      {
+        "name": "Business",
+        "price": "€13–21K",
+        "grantNote": "Up to 90% from grant funding",
+        "selfPay": "Your cost: ~€1,300–2,100",
+        "description": "Full digitalization — webshop, automation, AI chatbot.",
+        "popular": true,
+        "features": [
+          "Everything in Basic package",
+          "Webshop or customer portal",
+          "AI chatbot for customer service",
+          "Project management system (Linear / ClickUp)",
+          "Email marketing automation",
+          "Developer workstation + laptop",
+          "Advanced training and 3-month support"
+        ],
+        "idealFor": "Small businesses with 5–20 person teams"
+      },
+      {
+        "name": "Advanced",
+        "price": "€21–32K",
+        "grantNote": "Up to 90% from grant funding",
+        "selfPay": "Your cost: ~€2,100–3,200",
+        "description": "AI-driven transformation — with custom solutions.",
+        "features": [
+          "Everything in Business package",
+          "Custom AI document processing system",
+          "RAG-based internal knowledge base",
+          "Sales automation & lead scoring AI",
+          "ERP/business management integration",
+          "NAS + backup system",
+          "Network infrastructure upgrade",
+          "12-month premium support"
+        ],
+        "idealFor": "Growing SMBs with 20+ person teams"
+      }
+    ]
+  },
+  "ai": {
+    "title": "AI solutions — our real strength.",
+    "subtitle": "We don't sell templates. We build working, custom AI systems for your business problems.",
+    "items": [
+      {
+        "title": "AI Chatbot",
+        "description": "24/7 virtual assistant on your website. FAQ automation, lead qualification, customer service — without human intervention.",
+        "roi": "Average 40% reduction in support workload"
+      },
+      {
+        "title": "Document Processing",
+        "description": "Automatic processing of invoices, contracts, and PDFs. Data extraction, categorization, system import — in minutes, not hours.",
+        "roi": "20+ hours of admin work saved monthly"
+      },
+      {
+        "title": "Sales Automation",
+        "description": "Automatic lead scoring, personalized email drafts, CRM enrichment. Your sales team can focus on what matters.",
+        "roi": "30% more conversions in the sales funnel"
+      },
+      {
+        "title": "Internal Knowledge Base (RAG)",
+        "description": "Internal documents, policies, procedures — in one smart search system. Onboard new colleagues in hours instead of days.",
+        "roi": "60% reduction in onboarding time"
+      }
+    ]
+  },
+  "qualification": {
+    "title": "Are you eligible for 90% EU grant funding?",
+    "subtitle": "Fill out the quick pre-qualifier — 2 minutes to find out.",
+    "submit": "Submit Pre-Qualification",
+    "success": "Thank you! We'll contact you within 24 hours.",
+    "questions": [
+      {
+        "id": "companySize",
+        "question": "How many people in your company?",
+        "options": ["1–4 people", "5–9 people", "10–19 people", "20–49 people", "50+ people"]
+      },
+      {
+        "id": "industry",
+        "question": "What industry are you in?",
+        "options": ["Retail", "Services", "Manufacturing", "Hospitality", "Other"]
+      },
+      {
+        "id": "digitalLevel",
+        "question": "Your current digitalization level?",
+        "options": ["Paper-based, no systems", "Have a website but no CRM", "Have CRM but no webshop", "Partially digitalized", "Other"]
+      },
+      {
+        "id": "budget",
+        "question": "Which package interests you most?",
+        "options": ["Basic (€8–13K)", "Business (€13–21K)", "Advanced (€21–32K)", "Not sure yet"]
+      },
+      {
+        "id": "timeline",
+        "question": "When would you like to start?",
+        "options": ["Immediately", "Within 1–3 months", "Within 3–6 months", "Just exploring"]
+      }
+    ],
+    "contact": {
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@company.com",
+      "phone": "Phone (optional)",
+      "phonePlaceholder": "+36 20 123 4567"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about the DIMOP digitalization grant.",
+    "items": [
+      {
+        "question": "Who is eligible for the DIMOP digitalization grant?",
+        "answer": "Micro and small businesses with low digital intensity. Exact eligibility criteria depend on the grant call — our pre-qualifier tells you in 2 minutes."
+      },
+      {
+        "question": "Is the support really 90%?",
+        "answer": "Yes, the DIMOP grant offers up to 90% non-refundable support. Your contribution is only 10% — for an €21K project, that's about €2,100."
+      },
+      {
+        "question": "What can be claimed under the grant?",
+        "answer": "Hardware (computers, servers, network equipment), off-the-shelf/SaaS software (CRM, ERP, project management), and related services (implementation, training, consulting)."
+      },
+      {
+        "question": "How are you different from a grant-writing agency?",
+        "answer": "Grant writers handle paperwork. We implement the entire project: hardware procurement, software deployment, AI solution development, training, and operations. We're a dev team, not consultants."
+      },
+      {
+        "question": "How long does a project take?",
+        "answer": "Basic package typically takes 4–6 weeks, Business 6–10 weeks, Advanced 10–16 weeks. This includes assessment, implementation, and training."
+      },
+      {
+        "question": "What happens after the project?",
+        "answer": "We provide ongoing support and maintenance. Business package includes 3 months, Advanced includes 12 months of premium support. After that, we offer affordable monthly maintenance plans."
+      },
+      {
+        "question": "Can custom software development be covered?",
+        "answer": "Custom development directly cannot, but off-the-shelf/SaaS software implementation, customization, and related consulting can. All our AI solutions are delivered in a grant-compliant structure."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Don't miss the 90% EU grant funding.",
+    "subtitle": "Grant budget is limited. The sooner you act, the more certain your spot.",
+    "primary": "Free Pre-Qualification",
+    "secondary": "Have questions? Write to us."
+  },
+  "navigation": {
+    "home": "Home",
+    "problem": "Why Now?",
+    "packages": "Packages",
+    "ai": "AI Solutions",
+    "faq": "FAQ",
+    "cta": "Pre-Qualify"
+  }
+}

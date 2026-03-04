@@ -1,0 +1,164 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords: string;
+  lang: 'hu' | 'en';
+  canonical?: string;
+}
+
+const { title, description, keywords, lang, canonical } = Astro.props;
+
+const baseUrl = 'https://dendora.hu';
+const currentPath = Astro.url.pathname;
+
+// Hreflang: /dimop = hu, /en/dimop = en
+const hreflangs = {
+  hu: '/dimop',
+  en: '/en/dimop',
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    
+    <!-- Self-hosted Inter font -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Dendora" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#059669" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical || `${baseUrl}${currentPath}`} />
+    
+    <!-- Hreflang for multilingual SEO -->
+    <link rel="alternate" hreflang="hu" href={`${baseUrl}${hreflangs.hu}`} />
+    <link rel="alternate" hreflang="en" href={`${baseUrl}${hreflangs.en}`} />
+    <link rel="alternate" hreflang="x-default" href={`${baseUrl}${hreflangs.hu}`} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${baseUrl}${currentPath}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
+    <meta property="og:site_name" content="Dendora" />
+    <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_US'} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`${baseUrl}${currentPath}`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/dendora-d-logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/dendora-d-logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/dendora-d-logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- DIMOP-specific Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Dendora - DIMOP Digitalizációs Partner",
+      "description": "Teljes digitális szintlépés 90%-os pályázati támogatásból. Hardware, szoftver és AI megoldások KKV-k számára.",
+      "url": "https://dendora.hu/dimop",
+      "logo": "https://dendora.hu/dendora-sw-dev-logo.png",
+      "email": "hello@dendora.hu",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "HU"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Hungary"
+      },
+      "serviceType": [
+        "DIMOP Pályázati Kivitelezés",
+        "KKV Digitalizáció",
+        "CRM Bevezetés",
+        "Weboldal Fejlesztés",
+        "AI Chatbot",
+        "Dokumentumfeldolgozó AI",
+        "Sales Automation",
+        "IT Infrastruktúra"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "DIMOP Digitalizációs Csomagok",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Basic Csomag",
+            "description": "Digitális alapok — weboldal, CRM, alapvető IT biztonság",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "3000000-5000000",
+              "priceCurrency": "HUF"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Business Csomag",
+            "description": "Teljes digitalizáció — webshop, automatizálás, AI chatbot",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "5000000-8000000",
+              "priceCurrency": "HUF"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Advanced Csomag",
+            "description": "AI-vezérelt transzformáció — egyedi megoldásokkal",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "8000000-12000000",
+              "priceCurrency": "HUF"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+      // Scroll to hash on load
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+    </script>
+  </body>
+</html>

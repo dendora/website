@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "DIMOP Digitalizáció 90% Támogatással | Dendora",
+    "description": "Teljes digitális szintlépés 90%-os pályázati támogatásból. Hardware, szoftver és AI megoldások KKV-k számára — kulcsrakész kivitelezéssel.",
+    "keywords": "DIMOP pályázat, 90%-os digitalizációs pályázat, KKV digitalizáció támogatás, CRM bevezetés pályázatból, AI megoldás KKV, digitális transzformáció, DIMOP támogatás 2026"
+  },
+  "hero": {
+    "badge": "DIMOP 2026 — Pályázati Kivitelezés",
+    "title": "90%-os támogatásból teljes digitális szintlépés.",
+    "subtitle": "Hardware, szoftver és AI megoldások — kulcsrakész kivitelezéssel. Ön csak a döntést hozza meg, mi mindent megoldunk.",
+    "cta": {
+      "primary": "Ingyenes előminősítés →",
+      "secondary": "Csomagok megtekintése"
+    },
+    "stats": {
+      "support": { "value": "90%", "label": "Támogatási intenzitás" },
+      "maxGrant": { "value": "12M Ft", "label": "Maximális támogatás" },
+      "clients": { "value": "10+", "label": "Év tapasztalat" }
+    },
+    "trust": "Fejlesztői csapat, nem pályázatíró iroda. A teljes projektet szállítjuk."
+  },
+  "problem": {
+    "title": "A magyar KKV-k 72%-a digitálisan lemaradva versenyez.",
+    "subtitle": "Ismerős problémák?",
+    "items": [
+      {
+        "title": "Nincs rendszer, nincs átláthatóság",
+        "description": "Excel táblázatok, papír alapú nyilvántartás, szétszórt adatok. Az ügyfelek, megrendelések és pénzügyek nincsenek egy helyen."
+      },
+      {
+        "title": "A versenytársak már digitalizáltak",
+        "description": "Akinek van CRM-je, webshopja és automatizálása, az gyorsabban és olcsóbban tud kiszolgálni. Minden nap nő a hátrány."
+      },
+      {
+        "title": "Nincs idő, nincs IT-s ember",
+        "description": "Vállalkozóként nem jut idő IT projektekre. Kellene valaki, aki nemcsak tanácsot ad, hanem le is szállítja."
+      },
+      {
+        "title": "Félelem a pályázati bürokráciától",
+        "description": "Bonyolult elszámolás, bizonytalanság — de 90%-os támogatás mellett ez a legjobb lehetőség évek óta."
+      }
+    ]
+  },
+  "solution": {
+    "title": "Nem pályázatírók vagyunk. Digitális kivitelezési partnerek.",
+    "subtitle": "Komplett megoldás, nem csak tanácsadás.",
+    "steps": [
+      {
+        "step": "1",
+        "title": "Előminősítés és felmérés",
+        "description": "2 perc alatt kiderül, jogosult-e a pályázatra. Felmérjük a digitális szintjét és igényeit."
+      },
+      {
+        "step": "2",
+        "title": "Személyre szabott terv",
+        "description": "Az Ön vállalkozásához illeszkedő hardver + szoftver + AI csomag — pályázatkonform specifikációval."
+      },
+      {
+        "step": "3",
+        "title": "Teljes kivitelezés",
+        "description": "Mi szállítjuk a hardvert, bevezetjük a szoftvert, betanítjuk a csapatot. Elszámolási dokumentáció inklúzív."
+      },
+      {
+        "step": "4",
+        "title": "Üzemeltetés és támogatás",
+        "description": "A projekt nem a bevezetéssel ér véget. Folyamatos támogatás, karbantartás és fejlesztés."
+      }
+    ]
+  },
+  "packages": {
+    "title": "Csomagjaink",
+    "subtitle": "Minden csomag pályázatkonform, kulcsrakész kivitelezéssel.",
+    "popular": "Legnépszerűbb",
+    "cta": "Csomag kiválasztása",
+    "items": [
+      {
+        "name": "Basic",
+        "price": "3–5M Ft",
+        "grantNote": "Ebből max. 90% pályázatból",
+        "selfPay": "Önerő: ~300–500e Ft",
+        "description": "Digitális alapok — weboldal, CRM, alapvető IT biztonság.",
+        "features": [
+          "Professzionális céges weboldal",
+          "CRM rendszer bevezetés (HubSpot / Pipedrive)",
+          "Cloud collaboration (M365 / Google Workspace)",
+          "IT security alapcsomag",
+          "Alapvető betanítás és dokumentáció"
+        ],
+        "idealFor": "Mikrovállalkozások, egyéni vállalkozók"
+      },
+      {
+        "name": "Business",
+        "price": "5–8M Ft",
+        "grantNote": "Ebből max. 90% pályázatból",
+        "selfPay": "Önerő: ~500–800e Ft",
+        "description": "Teljes digitalizáció — webshop, automatizálás, AI chatbot.",
+        "popular": true,
+        "features": [
+          "Minden, ami a Basic csomagban",
+          "Webshop vagy ügyfélportál",
+          "AI chatbot ügyfélszolgálatra",
+          "Projektmenedzsment rendszer (Linear / ClickUp)",
+          "E-mail marketing automatizálás",
+          "Fejlesztői workstation + laptop",
+          "Haladó betanítás és 3 hónapos támogatás"
+        ],
+        "idealFor": "Kisvállalkozások 5–20 fős csapattal"
+      },
+      {
+        "name": "Advanced",
+        "price": "8–12M Ft",
+        "grantNote": "Ebből max. 90% pályázatból",
+        "selfPay": "Önerő: ~800e–1.2M Ft",
+        "description": "AI-vezérelt transzformáció — egyedi megoldásokkal.",
+        "features": [
+          "Minden, ami a Business csomagban",
+          "Egyedi AI dokumentumfeldolgozó rendszer",
+          "RAG-alapú belső tudásbázis",
+          "Sales automation és lead scoring AI",
+          "ERP/vállalatirányítási integráció",
+          "NAS + backup rendszer",
+          "Hálózati infrastruktúra upgrade",
+          "12 hónapos prémium támogatás"
+        ],
+        "idealFor": "Növekvő KKV-k 20+ fős csapattal"
+      }
+    ]
+  },
+  "ai": {
+    "title": "AI megoldások — a mi igazi erősségünk.",
+    "subtitle": "Nem sablonokat adunk. Működő, egyedi AI rendszereket építünk az Ön üzleti problémáira.",
+    "items": [
+      {
+        "title": "AI Chatbot",
+        "description": "Éjjel-nappal elérhető virtuális asszisztens a weboldalán. FAQ automatizálás, lead minősítés, ügyfélszolgálat — emberi beavatkozás nélkül.",
+        "roi": "Átlagosan 40%-kal kevesebb ügyfélszolgálati teher"
+      },
+      {
+        "title": "Dokumentumfeldolgozás",
+        "description": "Számlák, szerződések, PDF-ek automatikus feldolgozása. Adatkinyerés, kategorizálás, rendszerbe töltés — percek alatt, nem órák alatt.",
+        "roi": "Havi 20+ óra adminisztráció megtakarítás"
+      },
+      {
+        "title": "Sales Automation",
+        "description": "Automatikus lead scoring, személyre szabott e-mail vázlatok, CRM gazdagítás. Az értékesítési csapat arra fókuszálhat, ami számít.",
+        "roi": "30%-kal több konverzió az értékesítési funnelben"
+      },
+      {
+        "title": "Belső Tudásbázis (RAG)",
+        "description": "Belső dokumentumok, szabályzatok, eljárásrendek — egy okos keresőrendszerben. Új kollégák betanítása napok helyett órák alatt.",
+        "roi": "Betanítási idő 60%-os csökkenése"
+      }
+    ]
+  },
+  "qualification": {
+    "title": "Jogosult a 90%-os támogatásra?",
+    "subtitle": "Töltse ki a gyors előminősítőt — 2 perc, és kiderül.",
+    "submit": "Előminősítés elküldése",
+    "success": "Köszönjük! 24 órán belül felvesszük Önnel a kapcsolatot.",
+    "questions": [
+      {
+        "id": "companySize",
+        "question": "Hány fős a vállalkozása?",
+        "options": ["1–4 fő", "5–9 fő", "10–19 fő", "20–49 fő", "50+ fő"]
+      },
+      {
+        "id": "industry",
+        "question": "Milyen iparágban tevékenykedik?",
+        "options": ["Kereskedelem", "Szolgáltatás", "Gyártás", "Vendéglátás", "Egyéb"]
+      },
+      {
+        "id": "digitalLevel",
+        "question": "Jelenlegi digitalizációs szintje?",
+        "options": ["Papír alapú, nincs rendszer", "Van weboldal, de nincs CRM", "Van CRM, de nincs webshop", "Részben digitalizált", "Egyéb"]
+      },
+      {
+        "id": "budget",
+        "question": "Melyik csomag érdekli leginkább?",
+        "options": ["Basic (3–5M Ft)", "Business (5–8M Ft)", "Advanced (8–12M Ft)", "Nem tudom még"]
+      },
+      {
+        "id": "timeline",
+        "question": "Mikor szeretné elkezdeni a projektet?",
+        "options": ["Azonnal", "1–3 hónapon belül", "3–6 hónapon belül", "Csak tájékozódom"]
+      }
+    ],
+    "contact": {
+      "name": "Név",
+      "namePlaceholder": "Teljes neve",
+      "email": "E-mail cím",
+      "emailPlaceholder": "email@vallalkozas.hu",
+      "phone": "Telefonszám (opcionális)",
+      "phonePlaceholder": "+36 20 123 4567"
+    }
+  },
+  "faq": {
+    "title": "Gyakran Ismételt Kérdések",
+    "subtitle": "Minden, amit a DIMOP digitalizációs pályázatról tudni kell.",
+    "items": [
+      {
+        "question": "Ki jogosult a DIMOP digitalizációs pályázatra?",
+        "answer": "Mikro- és kisvállalkozások, amelyek alacsony digitális intenzitással rendelkeznek. A pontos jogosultsági feltételek a pályázati kiírástól függenek — az előminősítőnkkel 2 perc alatt kiderül."
+      },
+      {
+        "question": "Tényleg 90%-os a támogatás?",
+        "answer": "Igen, a DIMOP pályázat keretében akár 90%-os vissza nem térítendő támogatás érhető el. Az önerő tehát mindössze 10% — egy 8 milliós projektnél ez kb. 800 ezer forint."
+      },
+      {
+        "question": "Mit lehet elszámolni a pályázatban?",
+        "answer": "Hardver (számítógépek, szerverek, hálózati eszközök), dobozos/SaaS szoftver (CRM, ERP, projektmenedzsment), és kapcsolódó szolgáltatások (bevezetés, betanítás, tanácsadás)."
+      },
+      {
+        "question": "Mi a különbség köztetek és egy pályázatíró iroda között?",
+        "answer": "A pályázatíró megírja a papírt. Mi megvalósítjuk a teljes projektet: hardware beszerzés, szoftver bevezetés, AI megoldások fejlesztése, betanítás és üzemeltetés. Fejlesztői csapat vagyunk, nem tanácsadók."
+      },
+      {
+        "question": "Mennyi idő egy projekt megvalósítása?",
+        "answer": "A Basic csomag jellemzően 4–6 hét, a Business 6–10 hét, az Advanced 10–16 hét. Ez magában foglalja a felmérést, kivitelezést és betanítást."
+      },
+      {
+        "question": "Mi történik a projekt után?",
+        "answer": "Folyamatos támogatást és karbantartást nyújtunk. A Business csomagnál 3 hónap, az Advanced-nél 12 hónap prémium support jár. Ezután kedvezményes havi üzemeltetési díjjal folytathatjuk."
+      },
+      {
+        "question": "Egyedi fejlesztéseket is el lehet számolni?",
+        "answer": "Egyedi szoftverfejlesztés közvetlenül nem, de dobozos/SaaS szoftverek bevezetése, testreszabása és a kapcsolódó tanácsadás igen. Az AI megoldásaink mindegyike pályázatkonform struktúrában kerül szállításra."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ne hagyja ki a 90%-os támogatást.",
+    "subtitle": "A pályázati keret véges. Minél hamarabb lép, annál biztosabb a hely.",
+    "primary": "Ingyenes előminősítés",
+    "secondary": "Kérdése van? Írjon nekünk."
+  },
+  "navigation": {
+    "home": "Főoldal",
+    "problem": "Miért most?",
+    "packages": "Csomagok",
+    "ai": "AI Megoldások",
+    "faq": "GYIK",
+    "cta": "Előminősítés"
+  }
+}

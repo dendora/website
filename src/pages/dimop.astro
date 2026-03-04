@@ -1,0 +1,13 @@
+---
+import DimopLayout from '../layouts/DimopLayout.astro';
+import { DimopLanding } from '../components/dimop';
+
+const lang = 'hu' as const;
+const title = 'DIMOP Digitalizáció 90% Támogatással | Dendora';
+const description = 'Teljes digitális szintlépés 90%-os pályázati támogatásból. Hardware, szoftver és AI megoldások KKV-k számára — kulcsrakész kivitelezéssel.';
+const keywords = 'DIMOP pályázat, 90%-os digitalizációs pályázat, KKV digitalizáció támogatás, CRM bevezetés pályázatból, AI megoldás KKV, digitális transzformáció, DIMOP támogatás 2026';
+---
+
+<DimopLayout title={title} description={description} keywords={keywords} lang={lang}>
+  <DimopLanding language={lang} client:load />
+</DimopLayout>

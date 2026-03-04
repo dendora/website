@@ -29,7 +29,7 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "AI-alapú szoftverfejlesztés",
+      "tagline": "Szoftverfejlesztés · AI",
       "description": "Full-stack fejlesztés mesterséges intelligenciával kiegészítve. Skálázható alkalmazásokat építünk modern React frontend-ekkel, robusztus Go backend-ekkel és LLM-alapú funkciókkal — Kubernetesre telepítve."
     },
     "variants": {

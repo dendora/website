@@ -122,7 +122,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Dendora <noreply@dendora.hu>',
+        from: 'Dendora <noreply@mail.dendora.hu>',
         to: [recipientEmail],
         reply_to: data.email,
         subject: buildSubject(data),

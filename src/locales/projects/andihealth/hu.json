@@ -1,7 +1,7 @@
 {
   "title": "AndiHealth",
   "subtitle": "Kétnyelvű fitness foglalási platform az edge-en",
-  "description": "Kétnyelvű weboldal és időpontfoglaló rendszer egy medical fitness oktató számára, Cloudflare Workers-ön Hono és D1 technológiával — külső függőségek nélkül, szerver oldali renderelés.",
+  "description": "Kétnyelvű weboldal és online időpontfoglalás egy medical fitness oktató számára.",
   "content": {
     "overview": "Az AndiHealth egy kétnyelvű (magyar/angol) weboldal és online foglalási platform egy diplomás medical fitness és Pilates oktatónak Esztergomban. Az oldal egyszerre szolgál nyilvános bemutatkozásként és teljes időpontkezelő rendszerként — az órarend kezeléstől a foglalásokon át a bérletkezelésig és admin felületig.",
     "challenge": "Az ügyfélnek egy gyors, megbízható és költséghatékony platformra volt szüksége, amely kezelni tudja a kétnyelvű tartalmat, a valós idejű óra-elérhetőséget, az online foglalási folyamatot és az adminisztrációs felületet — mindezt hagyományos hosting és komplex keretrendszerek nélkül.",

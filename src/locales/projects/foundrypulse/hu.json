@@ -1,7 +1,7 @@
 {
   "title": "FoundryPulse",
   "subtitle": "Valós idejű gyártási teljesítmény monitoring",
-  "description": "Átfogó modern gyártási művelitirányítási platform Next.js-sel és TypeScript-tel építve valós idejű termelésmonitorozáshoz",
+  "description": "Valós idejű termelési átláthatóság és teljesítménymutatók — tiszta, gyors dashboardon.",
   "content": {
     "overview": "A FoundryPulse egy átfogó gyártási monitoring platform, amely segít a gyártóknak optimalizálni folyamataikat és növelni hatékonyságukat.",
     "challenge": "A gyártók gyakran küzdenek a termelési adatok valós idejű nyomon követésével és elemzésével.",

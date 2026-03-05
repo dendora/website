@@ -12,7 +12,7 @@
     }
   },
   "hero": {
-    "title": "AI-native software, built to ship.",
+    "title": "AI-native software that delivers.",
     "subtitle": "We build lean, intelligent web and mobile products — powered by LLMs and agentic workflows. Strategy, design, and engineering with AI at the core.",
     "cta": {
       "startProject": "Start a project",
@@ -31,7 +31,7 @@
     "brandCard": {
       "companyName": "DENDORA",
       "tagline": "Software Engineering · AI",
-      "description": "AI-augmented full-stack development. We build scalable applications with modern React frontends, robust Go backends, and LLM-powered features — deployed on Kubernetes."
+      "description": "AI-augmented full-stack development. We build scalable products with modern frontends, robust backends, and LLM-powered features — deployed on modern cloud infrastructure."
     },
     "variants": {
       "location": "Hungary",
@@ -54,7 +54,7 @@
   },
   "services": {
     "title": "What we do",
-    "subtitle": "Lean, intelligent, shipped.",
+    "subtitle": "Lean, intelligent — production-ready.",
     "features": {
       "strategy": {
         "title": "Product Strategy",
@@ -104,7 +104,7 @@
   },
   "about": {
     "title": "Why work with us",
-    "description": "We're a small, senior team that builds with AI daily — not just talk about it. Clear scopes, pragmatic technology choices, and steady delivery — from first commit to production.",
+    "description": "We're a small, senior team that builds with AI daily — not just talk about it. Clear scopes, pragmatic technology choices, and steady delivery — from first plan to production.",
     "features": {
       "engineering": "Senior hands-on engineering",
       "delivery": "Transparent estimates and delivery",
@@ -119,7 +119,7 @@
       },
       "approach": {
         "title": "Approach",
-        "description": "Ship small, iterate fast, automate with AI"
+        "description": "Deliver in small increments, iterate fast, automate with AI"
       },
       "principles": {
         "title": "Principles",
@@ -127,7 +127,7 @@
       },
       "engagement": {
         "title": "Engagement",
-        "description": "Project or retainer"
+        "description": "Project or ongoing support"
       }
     }
   },
@@ -182,7 +182,7 @@
     }
   },
   "contact": {
-    "title": "Let's build something minimal",
+    "title": "Let's discuss your project",
     "subtitle": "Describe your project — we typically reply within 24 hours.",
     "form": {
       "name": "Name",
@@ -193,7 +193,7 @@
       "messagePlaceholder": "Tell us about your project…",
       "submit": "Send message",
       "sending": "Sending…",
-      "success": "Thanks! We'll be in touch soon.",
+      "success": "Thanks. We'll be in touch soon.",
       "error": "Something went wrong. Please try again."
     },
     "fallback": "or email us directly:",

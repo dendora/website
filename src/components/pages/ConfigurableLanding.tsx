@@ -286,7 +286,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
             subtitle={t(language, 'work.subtitle')}
           />
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 md:auto-rows-fr">
             {projects.map((project, index) => {
               const isDetailProject = detailProjects.has(project.id);
               const isFoundryPulse = project.id === 'foundrypulse';
@@ -298,7 +298,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                 <ScrollFadeArticle
                   delay={index * 0.05}
                   className={cn(
-                    "group relative overflow-hidden rounded-xl border border-black/10 bg-white",
+                    "group relative overflow-hidden rounded-xl border border-black/10 bg-white h-full flex flex-col",
                     isDetailProject && "cursor-pointer hover:border-black/20 transition-colors"
                   )}
                 >
@@ -342,15 +342,15 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                       </div>
                     )}
                   </div>
-                  <div className="p-4">
+                  <div className="p-4 flex flex-col flex-1">
                     <h3 className="text-base font-semibold">
                       <span>{project.metadata.title}</span>
                     </h3>
-                    <p className="mt-1 text-sm text-black/70">
+                    <p className="mt-1 text-sm text-black/70 line-clamp-3">
                       <span>{project.metadata.description}</span>
                     </p>
                     {isDetailProject && (
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 group-hover:text-black transition-colors">
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 group-hover:text-black transition-colors mt-auto">
                         <span>{t(language, 'work.viewProject')}</span>
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                       </span>
@@ -360,7 +360,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
               );
 
               return isDetailProject ? (
-                <a key={project.id} href={projectUrl} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 rounded-xl">
+                <a key={project.id} href={projectUrl} className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 rounded-xl">
                   {cardContent}
                 </a>
               ) : <React.Fragment key={project.id}>{cardContent}</React.Fragment>;

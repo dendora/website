@@ -31,11 +31,11 @@
     "brandCard": {
       "companyName": "DENDORA",
       "tagline": "Szoftverfejlesztés · AI",
-      "description": "Full-stack fejlesztés mesterséges intelligenciával kiegészítve. Skálázható alkalmazásokat építünk modern React frontend-ekkel, robusztus Go backend-ekkel és LLM-alapú funkciókkal — Kubernetesre telepítve."
+      "description": "Full-stack fejlesztés mesterséges intelligenciával kiegészítve. Skálázható termékeket építünk modern felületekkel, robusztus backenddel és LLM-alapú funkciókkal — modern felhős infrastruktúrán."
     },
     "variants": {
       "location": "Magyarország",
-      "letsTalk": "Beszélgessünk",
+      "letsTalk": "Beszéljünk",
       "testimonial": {
         "quote": "A Dendora csapat segítségével 3 hónap alatt modernizáltuk a gyártási folyamatainkat. Professzionális munkavégzés nemzetközi szinten.",
         "clientName": "Autóipari Ügyfél",
@@ -54,7 +54,7 @@
   },
   "services": {
     "title": "Mit csinálunk",
-    "subtitle": "Karcsú, intelligens, kiszállítva.",
+    "subtitle": "Karcsú, intelligens — üzletre hangolva.",
     "features": {
       "strategy": {
         "title": "Termékstratégia",
@@ -104,7 +104,7 @@
   },
   "about": {
     "title": "Miért válasszon minket",
-    "description": "Kis, tapasztalt csapat vagyunk, akik nap mint nap AI-val dolgoznak — nem csak beszélnek róla. Világos hatókörök, pragmatikus technológiai döntések és stabil szállítás — az első commit-tól a produkcióig.",
+    "description": "Kis, tapasztalt csapat vagyunk, akik nap mint nap AI-val dolgoznak — nem csak beszélnek róla. Világos hatókörök, pragmatikus technológiai döntések és stabil szállítás — az első tervezéstől a produkcióig.",
     "features": {
       "engineering": "Senior gyakorlatias fejlesztés",
       "delivery": "Átlátható becslések és szállítás",
@@ -182,7 +182,7 @@
     }
   },
   "contact": {
-    "title": "Építsünk valami minimálisat",
+    "title": "Beszéljünk a projektjéről",
     "subtitle": "Írja le projektötletét — jellemzően 24 órán belül válaszolunk.",
     "form": {
       "name": "Név",
@@ -193,12 +193,12 @@
       "messagePlaceholder": "Meséljen a projektjéről…",
       "submit": "Üzenet küldése",
       "sending": "Küldés…",
-      "success": "Köszönjük! Hamarosan jelentkezünk.",
+      "success": "Köszönjük. Hamarosan jelentkezünk.",
       "error": "Hiba történt. Kérjük próbálja újra."
     },
     "fallback": "vagy írjon közvetlenül:",
     "cta": {
-      "email": "Küldj egy emailt",
+      "email": "E-mail küldése",
       "schedule": "Időpont egyeztetés"
     }
   },

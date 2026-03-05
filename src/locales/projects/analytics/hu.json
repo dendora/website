@@ -1,7 +1,7 @@
 {
   "title": "Analitikai Platform",
   "subtitle": "Fejlett adatelemzési platform",
-  "description": "Valós idejű adatfeldolgozás Go mikroszolgáltatásokkal, PostgreSQL-lel és React dashboardokkal Kubernetes-en telepítve",
+  "description": "Valós idejű analitika és interaktív riportok, nagy adatmennyiségre tervezve.",
   "content": {
     "overview": "Az Analytics Platform egy modern megoldás az üzleti intelligencia és adatelemzés területén.",
     "challenge": "A vállalatok egyre nagyobb mennyiségű adatot generálnak, amelyet nehéz kezelni és elemezni.",

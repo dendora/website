@@ -1,7 +1,7 @@
 {
   "title": "AndiHealth",
   "subtitle": "Bilingual fitness booking platform on the edge",
-  "description": "A bilingual website and appointment booking system for a medical fitness instructor, built on Cloudflare Workers with Hono and D1 — zero external dependencies, fully server-rendered.",
+  "description": "A bilingual website with online booking for a medical fitness instructor.",
   "content": {
     "overview": "AndiHealth is a bilingual (Hungarian/English) website and online booking platform for a certified medical fitness and Pilates instructor based in Esztergom, Hungary. The site serves as both a public-facing presence and a full appointment management system — from session scheduling and client bookings to pass management and admin controls.",
     "challenge": "The client needed a fast, reliable, and cost-effective platform that could handle bilingual content, real-time session availability, an online booking flow, and an admin panel — all without the overhead of traditional hosting or complex frameworks.",

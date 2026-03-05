@@ -177,20 +177,22 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
                 <p className="text-sm text-red-400">{t(language, 'contact.form.error')}</p>
               )}
 
-              <button
-                type="submit"
-                disabled={isBusy}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-medium text-gray-900 transition hover:bg-gray-100 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isBusy ? (
-                  <Loader2 className="h-5 w-5 animate-spin" />
-                ) : (
-                  <Send className="h-4 w-4" />
-                )}
-                {isBusy
-                  ? t(language, 'contact.form.sending')
-                  : t(language, 'contact.form.submit')}
-              </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={isBusy}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-medium text-gray-900 transition hover:bg-gray-100 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isBusy ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                  {isBusy
+                    ? t(language, 'contact.form.sending')
+                    : t(language, 'contact.form.submit')}
+                </button>
+              </div>
             </form>
           </MotionFade>
         )}

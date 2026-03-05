@@ -12,3 +12,4 @@ export { HeroMinimal, HeroTestimonialFocused, HeroCaseStudy } from './HeroVarian
 
 // Section Components
 export { LocalPresenceSection } from './LocalPresenceSection';
+export { PricingSection, type PricingSectionProps } from './PricingSection';

@@ -15,7 +15,8 @@ import {
   HeroMinimal,
   HeroTestimonialFocused,
   HeroCaseStudy,
-  LocalPresenceSection 
+  LocalPresenceSection,
+  PricingSection 
 } from '../ui';
 import { Footer } from '../layout';
 import { DevVariantSwitcher } from '../dev/DevVariantSwitcher';
@@ -601,6 +602,10 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
         case 'localPresence':
           return config.layout.showSections.localPresence ? (
             <LocalPresenceSection key="localPresence" language={language} />
+          ) : null;
+        case 'pricing':
+          return config.layout.showSections.pricing ? (
+            <PricingSection key="pricing" language={language} />
           ) : null;
         case 'contact':
           return <div key="contact">{renderContact()}</div>;

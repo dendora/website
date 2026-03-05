@@ -16,6 +16,7 @@ export interface SiteConfig {
       contact: boolean;
       localPresence: boolean;
       techStack: boolean;
+      pricing: boolean;
     };
   };
   content: {
@@ -40,7 +41,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
       heroStyle: 'default',
       navigationStyle: 'default',
       footerStyle: 'default',
-      sectionsOrder: ['hero', 'stats', 'services', 'work', 'about', 'contact'],
+      sectionsOrder: ['hero', 'stats', 'services', 'work', 'pricing', 'about', 'contact'],
       showSections: {
         stats: true,
         services: true,
@@ -50,6 +51,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
         contact: true,
         localPresence: false,
         techStack: true,
+        pricing: true,
       },
     },
     content: {
@@ -72,7 +74,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
       heroStyle: 'testimonial-focused',
       navigationStyle: 'simple',
       footerStyle: 'contact-heavy',
-      sectionsOrder: ['hero', 'localPresence', 'work', 'services', 'about', 'contact'],
+      sectionsOrder: ['hero', 'localPresence', 'work', 'services', 'pricing', 'about', 'contact'],
       showSections: {
         stats: false,
         services: true,
@@ -82,6 +84,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
         contact: true,
         localPresence: true,
         techStack: false,
+        pricing: true,
       },
     },
     content: {
@@ -104,7 +107,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
       heroStyle: 'case-study-hero',
       navigationStyle: 'default',
       footerStyle: 'default',
-      sectionsOrder: ['hero', 'work', 'services', 'localPresence', 'about', 'contact'],
+      sectionsOrder: ['hero', 'work', 'services', 'localPresence', 'pricing', 'about', 'contact'],
       showSections: {
         stats: true,
         services: true,
@@ -114,6 +117,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
         contact: true,
         localPresence: true,
         techStack: true,
+        pricing: true,
       },
     },
     content: {
@@ -146,6 +150,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
         contact: true,
         localPresence: false,
         techStack: true,
+        pricing: false,
       },
     },
     content: {

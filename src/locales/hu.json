@@ -130,6 +130,56 @@
       }
     }
   },
+  "pricing": {
+    "title": "Üzemeltetési csomagok",
+    "subtitle": "Gondoskodunk a weboldaláról, hogy Ön az üzletére koncentrálhasson.",
+    "cta": "Ajánlatot kérek",
+    "emailSubject": "Érdeklődés: {tier} csomag",
+    "note": "Minden csomag éves számlázással. Egyedi igényekhez kérjen személyre szabott ajánlatot.",
+    "tiers": {
+      "seed": {
+        "name": "Seed",
+        "price": "24 900 Ft",
+        "period": "/ év",
+        "description": "Egyszerű weboldal karbantartáshoz",
+        "features": [
+          "Domain regisztráció és kezelés",
+          "SSL tanúsítvány",
+          "Hosting és napi backup",
+          "Biztonsági frissítések",
+          "Évi 1 monitoring riport"
+        ]
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "49 900 Ft",
+        "period": "/ év",
+        "description": "Aktív weboldalakhoz, tartalmi támogatással",
+        "badge": "Népszerű",
+        "features": [
+          "Minden, ami a Seed-ben",
+          "Évi 5 tartalmi módosítás",
+          "Negyedéves analitikai riport",
+          "Teljesítmény-optimalizálás",
+          "E-mail támogatás 48 órán belül"
+        ]
+      },
+      "scale": {
+        "name": "Scale",
+        "price": "99 900 Ft",
+        "period": "/ év",
+        "description": "Prémium support és korlátlan módosítások",
+        "features": [
+          "Minden, ami a Growth-ban",
+          "Korlátlan apró módosítás",
+          "Havi analitikai riport",
+          "Prioritás support 24 órán belül",
+          "Uptime monitoring és riasztás",
+          "SEO alap-optimalizálás"
+        ]
+      }
+    }
+  },
   "contact": {
     "title": "Építsünk valami minimálisat",
     "subtitle": "Egyszerű e-maileket preferálunk. Írj nekünk közvetlenül — nincsenek űrlapok.",

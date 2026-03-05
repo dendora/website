@@ -130,6 +130,56 @@
       }
     }
   },
+  "pricing": {
+    "title": "Maintenance Plans",
+    "subtitle": "We take care of your website so you can focus on your business.",
+    "cta": "Get a quote",
+    "emailSubject": "Inquiry: {tier} plan",
+    "note": "All plans billed annually. Contact us for custom requirements.",
+    "tiers": {
+      "seed": {
+        "name": "Seed",
+        "price": "€65",
+        "period": "/ year",
+        "description": "For simple website maintenance",
+        "features": [
+          "Domain registration & management",
+          "SSL certificate",
+          "Hosting with daily backups",
+          "Security updates",
+          "1 monitoring report per year"
+        ]
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "€130",
+        "period": "/ year",
+        "description": "For active websites with content support",
+        "badge": "Popular",
+        "features": [
+          "Everything in Seed",
+          "5 content updates per year",
+          "Quarterly analytics report",
+          "Performance optimization",
+          "Email support within 48 hours"
+        ]
+      },
+      "scale": {
+        "name": "Scale",
+        "price": "€260",
+        "period": "/ year",
+        "description": "Premium support with unlimited updates",
+        "features": [
+          "Everything in Growth",
+          "Unlimited minor updates",
+          "Monthly analytics report",
+          "Priority support within 24 hours",
+          "Uptime monitoring & alerts",
+          "Basic SEO optimization"
+        ]
+      }
+    }
+  },
   "contact": {
     "title": "Let's build something minimal",
     "subtitle": "We prefer simple emails. Reach us directly — no forms.",

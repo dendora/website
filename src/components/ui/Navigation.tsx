@@ -1,10 +1,8 @@
 import React from 'react';
-import { Menu, X, Mail } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
-import { Button } from './Button';
 import { LanguageSwitcher } from '../features/LanguageSwitcher';
 import { t, type Language } from '../../lib/translations';
-import { CONTACT_EMAIL } from '../../lib/site-config';
 import { cn } from '../../lib/utils';
 
 export interface NavigationProps {
@@ -34,11 +32,14 @@ const Navigation: React.FC<NavigationProps> = ({
   }, [menuOpen]);
   
   const navItems = [{
-    id: 'services',
-    label: t(language, 'navigation.services')
-  }, {
     id: 'work',
     label: t(language, 'navigation.work')
+  }, {
+    id: 'pricing',
+    label: t(language, 'navigation.pricing')
+  }, {
+    id: 'services',
+    label: t(language, 'navigation.services')
   }, {
     id: 'why-us',
     label: t(language, 'navigation.about')
@@ -105,11 +106,6 @@ const Navigation: React.FC<NavigationProps> = ({
           ))}
           
           <LanguageSwitcher currentLang={language} />
-          
-          <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer">
-            <Mail className="h-4 w-4" />
-            <span>{t(language, 'navigation.contact')}</span>
-          </a>
         </nav>
 
         {/* Mobile menu button */}
@@ -142,14 +138,6 @@ const Navigation: React.FC<NavigationProps> = ({
               <div className="mt-2 mb-1 flex justify-center">
                 <LanguageSwitcher currentLang={language} />
               </div>
-              
-              <a 
-                href={`mailto:${CONTACT_EMAIL}`} 
-                className="mt-1 inline-flex items-center gap-2 rounded-md bg-black px-3 py-2 text-sm font-medium text-white cursor-pointer"
-              >
-                <Mail className="h-4 w-4" />
-                <span>{t(language, 'navigation.contact')}</span>
-              </a>
             </div>
           </nav>
         </div>

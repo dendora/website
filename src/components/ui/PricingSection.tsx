@@ -48,8 +48,8 @@ export interface PricingSectionProps {
 
 const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
   return (
-    <section id="pricing" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="border-t border-black/5">
+      <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
         <SectionHeader
           title={t(language, 'pricing.title')}
           subtitle={t(language, 'pricing.subtitle')}

@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { ArrowLeft, Check, ExternalLink, Github } from 'lucide-react'
 import { type Language, t } from '../../lib/translations'
 import { type ProjectData } from '../../lib/projects-json'
-import { MotionFade, SectionHeader, Card, Button } from '../ui'
+import { MotionFade, SectionHeader } from '../ui'
+import { Card } from '../ui/Card'
+import { Button } from '../ui/Button'
 
 interface ProjectDetailsPageProps {
   language: Language;

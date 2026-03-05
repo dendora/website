@@ -1,169 +1,47 @@
-export type SiteVariant = 'international' | 'local-hungary' | 'regional-cee' | 'minimal-tech';
+export type SiteVariant = 'default' | 'minimal';
 
 export interface SiteConfig {
   variant: SiteVariant;
   layout: {
-    heroStyle: 'default' | 'minimal' | 'testimonial-focused' | 'case-study-hero';
-    navigationStyle: 'default' | 'simple' | 'local-focused';
-    footerStyle: 'default' | 'contact-heavy' | 'minimal';
     sectionsOrder: string[];
     showSections: {
-      stats: boolean;
       services: boolean;
       work: boolean;
-      testimonials: boolean;
       about: boolean;
       contact: boolean;
-      localPresence: boolean;
-      techStack: boolean;
       pricing: boolean;
     };
   };
-  content: {
-    emphasizeLocal: boolean;
-    showTechDetails: boolean;
-    caseStudyFocus: 'foundrypulse' | 'all' | 'international';
-    contactApproach: 'professional' | 'personal' | 'local';
-    valueProposition: 'technical-excellence' | 'local-partnership' | 'regional-expertise' | 'minimal-impact';
-    useVariantTranslations: boolean; // Whether to use variant-specific translation files
-  };
-  styling: {
-    colorScheme: 'default' | 'warm' | 'minimal' | 'professional';
-    typography: 'default' | 'friendly' | 'technical' | 'elegant';
-  };
 }
 
-// Site variant configurations
+// Two variants: full site and stripped-down portfolio link
 export const siteConfigs: Record<SiteVariant, SiteConfig> = {
-  'international': {
-    variant: 'international',
+  'default': {
+    variant: 'default',
     layout: {
-      heroStyle: 'default',
-      navigationStyle: 'default',
-      footerStyle: 'default',
-      sectionsOrder: ['hero', 'stats', 'services', 'work', 'pricing', 'about', 'contact'],
+      // Proof-first: show work before promises
+      sectionsOrder: ['hero', 'work', 'pricing', 'services', 'about', 'contact'],
       showSections: {
-        stats: true,
         services: true,
         work: true,
-        testimonials: false,
         about: true,
         contact: true,
-        localPresence: false,
-        techStack: true,
         pricing: true,
       },
     },
-    content: {
-      emphasizeLocal: false,
-      showTechDetails: true,
-      caseStudyFocus: 'all',
-      contactApproach: 'professional',
-      valueProposition: 'technical-excellence',
-      useVariantTranslations: false,
-    },
-    styling: {
-      colorScheme: 'default',
-      typography: 'default',
-    },
   },
-  
-  'local-hungary': {
-    variant: 'local-hungary',
+
+  'minimal': {
+    variant: 'minimal',
     layout: {
-      heroStyle: 'testimonial-focused',
-      navigationStyle: 'simple',
-      footerStyle: 'contact-heavy',
-      sectionsOrder: ['hero', 'localPresence', 'work', 'services', 'pricing', 'about', 'contact'],
+      sectionsOrder: ['hero', 'work', 'contact'],
       showSections: {
-        stats: false,
-        services: true,
-        work: true,
-        testimonials: true,
-        about: true,
-        contact: true,
-        localPresence: true,
-        techStack: false,
-        pricing: true,
-      },
-    },
-    content: {
-      emphasizeLocal: true,
-      showTechDetails: false,
-      caseStudyFocus: 'all',
-      contactApproach: 'personal',
-      valueProposition: 'local-partnership',
-      useVariantTranslations: true,
-    },
-    styling: {
-      colorScheme: 'warm',
-      typography: 'friendly',
-    },
-  },
-  
-  'regional-cee': {
-    variant: 'regional-cee',
-    layout: {
-      heroStyle: 'case-study-hero',
-      navigationStyle: 'default',
-      footerStyle: 'default',
-      sectionsOrder: ['hero', 'work', 'services', 'localPresence', 'pricing', 'about', 'contact'],
-      showSections: {
-        stats: true,
-        services: true,
-        work: true,
-        testimonials: true,
-        about: true,
-        contact: true,
-        localPresence: true,
-        techStack: true,
-        pricing: true,
-      },
-    },
-    content: {
-      emphasizeLocal: true,
-      showTechDetails: true,
-      caseStudyFocus: 'foundrypulse',
-      contactApproach: 'professional',
-      valueProposition: 'regional-expertise',
-      useVariantTranslations: true,
-    },
-    styling: {
-      colorScheme: 'professional',
-      typography: 'default',
-    },
-  },
-  
-  'minimal-tech': {
-    variant: 'minimal-tech',
-    layout: {
-      heroStyle: 'minimal',
-      navigationStyle: 'simple',
-      footerStyle: 'minimal',
-      sectionsOrder: ['hero', 'work', 'techStack', 'contact'],
-      showSections: {
-        stats: false,
         services: false,
         work: true,
-        testimonials: false,
         about: false,
         contact: true,
-        localPresence: false,
-        techStack: true,
         pricing: false,
       },
-    },
-    content: {
-      emphasizeLocal: false,
-      showTechDetails: true,
-      caseStudyFocus: 'all',
-      contactApproach: 'professional',
-      valueProposition: 'minimal-impact',
-      useVariantTranslations: false,
-    },
-    styling: {
-      colorScheme: 'minimal',
-      typography: 'technical',
     },
   },
 };
@@ -172,8 +50,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
 export const CONTACT_EMAIL = 'hello@dendora.hu';
 export const SITE_URL = 'https://dendora.hu';
 
-// Simple config switcher - change this single line to test different variants
-export const CURRENT_SITE_VARIANT: SiteVariant = 'international';
+export const CURRENT_SITE_VARIANT: SiteVariant = 'default';
 
 export function getSiteConfig(): SiteConfig {
   return siteConfigs[CURRENT_SITE_VARIANT];

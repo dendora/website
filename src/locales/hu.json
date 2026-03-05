@@ -2,7 +2,8 @@
   "navigation": {
     "home": "Főoldal",
     "services": "Szolgáltatások",
-    "work": "Munkáink", 
+    "work": "Munkáink",
+    "pricing": "Csomagok",
     "about": "Miért mi",
     "contact": "Kapcsolat",
     "ariaLabels": {

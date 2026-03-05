@@ -1,8 +1,9 @@
 {
   "navigation": {
     "home": "Home",
-    "services": "Services", 
+    "services": "Services",
     "work": "Work",
+    "pricing": "Plans",
     "about": "Why Us",
     "contact": "Contact",
     "ariaLabels": {

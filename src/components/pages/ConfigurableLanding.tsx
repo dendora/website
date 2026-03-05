@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { ArrowRight, Mail, CheckCircle2 } from 'lucide-react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { ArrowRight, Mail, CheckCircle2, Send, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects } from '../../lib/projects-json';
@@ -56,6 +56,162 @@ const ScrollFadeArticle: React.FC<{
     </article>
   );
 };
+
+// ─── Contact form component ──────────────────────────────────────────────────
+
+type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+
+const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    },
+    [],
+  );
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setStatus('sending');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ source: 'main', ...formData }),
+        });
+
+        if (!res.ok) throw new Error('send failed');
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } catch {
+        setStatus('error');
+      }
+    },
+    [formData],
+  );
+
+  const isBusy = status === 'sending';
+
+  return (
+    <section id="contact" className="bg-gray-900">
+      <div className="mx-auto max-w-2xl px-4 py-16 md:py-20">
+        <MotionFade>
+          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl text-white mb-2 text-center">
+            {t(language, 'contact.title')}
+          </h2>
+        </MotionFade>
+        <MotionFade delay={0.1}>
+          <p className="text-base text-gray-400 mb-10 text-center">
+            {t(language, 'contact.subtitle')}
+          </p>
+        </MotionFade>
+
+        {status === 'success' ? (
+          <MotionFade>
+            <div className="flex flex-col items-center gap-4 py-8">
+              <CheckCircle2 className="h-10 w-10 text-emerald-400" />
+              <p className="text-lg text-white font-medium">
+                {t(language, 'contact.form.success')}
+              </p>
+            </div>
+          </MotionFade>
+        ) : (
+          <MotionFade delay={0.2}>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="contact-name" className="sr-only">
+                    {t(language, 'contact.form.name')}
+                  </label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder={t(language, 'contact.form.namePlaceholder')}
+                    disabled={isBusy}
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/25 focus:outline-none focus:ring-1 focus:ring-white/25 transition disabled:opacity-50"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="sr-only">
+                    {t(language, 'contact.form.email')}
+                  </label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder={t(language, 'contact.form.emailPlaceholder')}
+                    disabled={isBusy}
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/25 focus:outline-none focus:ring-1 focus:ring-white/25 transition disabled:opacity-50"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="contact-message" className="sr-only">
+                  {t(language, 'contact.form.message')}
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder={t(language, 'contact.form.messagePlaceholder')}
+                  disabled={isBusy}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/25 focus:outline-none focus:ring-1 focus:ring-white/25 transition resize-none disabled:opacity-50"
+                />
+              </div>
+
+              {status === 'error' && (
+                <p className="text-sm text-red-400">{t(language, 'contact.form.error')}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isBusy}
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-medium text-gray-900 transition hover:bg-gray-100 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isBusy ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <Send className="h-4 w-4" />
+                )}
+                {isBusy
+                  ? t(language, 'contact.form.sending')
+                  : t(language, 'contact.form.submit')}
+              </button>
+            </form>
+          </MotionFade>
+        )}
+
+        <MotionFade delay={0.3}>
+          <p className="mt-10 text-center text-sm text-gray-500">
+            {t(language, 'contact.fallback')}{' '}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-gray-300 underline underline-offset-2 hover:text-white transition"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </p>
+        </MotionFade>
+      </div>
+    </section>
+  );
+};
+
+// ─── Main landing component ──────────────────────────────────────────────────
 
 export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) => {
   const { language = 'hu' } = props || {};
@@ -308,35 +464,11 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
     );
   };
 
-  // Contact
+  // Contact — inline form + email fallback
   const renderContact = () => {
     if (!config.layout.showSections.contact) return null;
 
-    return (
-      <section id="contact" className="bg-gray-900">
-        <div className="mx-auto max-w-4xl px-4 py-16 md:py-20 text-center">
-          <MotionFade>
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl text-white mb-4">
-              {t(language, 'contact.title')}
-            </h2>
-          </MotionFade>
-          <MotionFade delay={0.1}>
-            <p className="text-lg text-gray-400 mb-8">
-              {t(language, 'contact.subtitle')}
-            </p>
-          </MotionFade>
-          <MotionFade delay={0.2}>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-medium text-gray-900 transition hover:bg-gray-100 cursor-pointer group"
-            >
-              <Mail className="h-5 w-5" />
-              {t(language, 'contact.cta.email')}
-            </a>
-          </MotionFade>
-        </div>
-      </section>
-    );
+    return <ContactSection language={language} />;
   };
 
   // Section router - driven by config.layout.sectionsOrder

@@ -183,7 +183,20 @@
   },
   "contact": {
     "title": "Let's build something minimal",
-    "subtitle": "We prefer simple emails. Reach us directly — no forms.",
+    "subtitle": "Describe your project — we typically reply within 24 hours.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Jane Doe",
+      "email": "Email",
+      "emailPlaceholder": "jane@company.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project…",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "success": "Thanks! We'll be in touch soon.",
+      "error": "Something went wrong. Please try again."
+    },
+    "fallback": "or email us directly:",
     "cta": {
       "email": "Send an email",
       "schedule": "Schedule a call"

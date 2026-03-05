@@ -183,7 +183,20 @@
   },
   "contact": {
     "title": "Építsünk valami minimálisat",
-    "subtitle": "Egyszerű e-maileket preferálunk. Írj nekünk közvetlenül — nincsenek űrlapok.",
+    "subtitle": "Írja le projektötletét — jellemzően 24 órán belül válaszolunk.",
+    "form": {
+      "name": "Név",
+      "namePlaceholder": "Kovács János",
+      "email": "E-mail",
+      "emailPlaceholder": "janos@cegnev.hu",
+      "message": "Üzenet",
+      "messagePlaceholder": "Meséljen a projektjéről…",
+      "submit": "Üzenet küldése",
+      "sending": "Küldés…",
+      "success": "Köszönjük! Hamarosan jelentkezünk.",
+      "error": "Hiba történt. Kérjük próbálja újra."
+    },
+    "fallback": "vagy írjon közvetlenül:",
     "cta": {
       "email": "Küldj egy emailt",
       "schedule": "Időpont egyeztetés"

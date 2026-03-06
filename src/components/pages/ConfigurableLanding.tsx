@@ -294,7 +294,6 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
           <div className="grid gap-6 md:grid-cols-2 items-start">
             {projects.map((project, index) => {
               const isDetailProject = detailProjects.has(project.id);
-              const isFoundryPulse = project.id === 'foundrypulse';
               const projectUrl = language === 'hu'
                 ? `/work/${project.slug}`
                 : `/en/work/${project.slug}`;
@@ -312,7 +311,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                   {/* Gradient hero area with pattern overlay */}
                   <div
                     className="relative aspect-[16/10] overflow-hidden"
-                    style={isFoundryPulse ? { background: '#000' } : getProjectBackgroundStyle(project)}
+                    style={getProjectBackgroundStyle(project)}
                   >
                     {/* Dot pattern overlay */}
                     <div className="card-pattern absolute inset-0 z-[1]" />
@@ -333,31 +332,18 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
                     {/* Center content: logo / icon / project identity */}
                     <div className="relative z-[2] flex h-full w-full items-center justify-center">
-                      {project.images.hero && isFoundryPulse ? (
-                        <div className="flex items-center justify-center p-8">
-                          <picture>
-                            <source srcSet={project.images.hero} />
-                            <img
-                              src={project.images.hero}
-                              alt={project.metadata.title}
-                              className="max-h-full max-w-[70%] object-contain brightness-0 invert"
-                              width={850}
-                              height={295}
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </picture>
-                        </div>
-                      ) : project.images.heroHtml && isDetailProject ? (
+                      {project.images.heroHtml && isDetailProject ? (
                         <div className="flex items-center justify-center p-6" dangerouslySetInnerHTML={{ __html: project.images.heroHtml }} />
                       ) : project.images.hero && isDetailProject ? (
-                        <img
-                          src={project.images.hero}
-                          alt={project.metadata.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
+                        <div className="flex items-center justify-center p-8">
+                          <img
+                            src={project.images.hero}
+                            alt={project.metadata.title}
+                            className="max-h-full max-w-[65%] object-contain brightness-0 invert drop-shadow-lg"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
                       ) : (
                         <div className="flex flex-col items-center gap-3">
                           <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm">

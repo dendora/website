@@ -1,7 +1,9 @@
 {
   "id": "andihealth",
   "slug": "andihealth",
-  "year": "2025",
+  "year": "2026",
+  "sortOrder": 2,
+  "cardBackground": "linear-gradient(135deg,#3a3a3a_0%,#1a1a2e_100%)",
   "status": "completed",
   "category": "web-application",
   "techStack": [

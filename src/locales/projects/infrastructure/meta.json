@@ -2,6 +2,8 @@
   "id": "infrastructure",
   "slug": "infrastructure",
   "year": "2024",
+  "sortOrder": 5,
+  "cardBackground": "linear-gradient(135deg,#9333ea_0%,#c026d3_100%)",
   "status": "in-progress",
   "category": "infrastructure",
   "techStack": [

@@ -267,15 +267,13 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
   const renderWork = () => {
     if (!config.layout.showSections.work) return null;
 
-    const detailProjects = new Set(['foundrypulse', 'andihealth']);
+    const detailProjects = new Set(['foundrypulse', 'andihealth', 'ariel-pilismarot']);
 
-    const getProjectBackground = (projectId: string) => {
-      switch (projectId) {
-        case 'andihealth': return 'bg-[#494949]';
-        case 'analytics': return 'bg-[linear-gradient(135deg,#667eea_0%,#764ba2_100%)]';
-        case 'infrastructure': return 'bg-[linear-gradient(135deg,#f093fb_0%,#f5576c_100%)]';
-        default: return 'bg-black';
+    const getProjectBackgroundStyle = (project: typeof projects[number]): React.CSSProperties => {
+      if (project.cardBackground) {
+        return { background: project.cardBackground.replace(/_/g, ' ') };
       }
+      return { background: 'linear-gradient(135deg, #111827 0%, #1f2937 100%)' };
     };
 
     return (
@@ -302,7 +300,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                     isDetailProject && "cursor-pointer hover:border-black/20 transition-colors"
                   )}
                 >
-                  <div className={cn("aspect-[16/10]", isFoundryPulse ? "bg-black" : getProjectBackground(project.id))}>
+                  <div className="aspect-[16/10]" style={isFoundryPulse ? { background: '#000' } : getProjectBackgroundStyle(project)}>
                     {project.images.hero && isFoundryPulse ? (
                       <div className="flex h-full w-full items-center justify-center p-8">
                         <picture>
@@ -318,6 +316,8 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
                           />
                         </picture>
                       </div>
+                    ) : project.images.heroHtml && isDetailProject ? (
+                      <div className="flex h-full w-full items-center justify-center p-6" dangerouslySetInnerHTML={{ __html: project.images.heroHtml }} />
                     ) : project.images.hero && isDetailProject ? (
                       <img
                         src={project.images.hero}

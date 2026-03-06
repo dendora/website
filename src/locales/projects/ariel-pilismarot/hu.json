@@ -1,0 +1,32 @@
+{
+  "title": "Ariel Pilismarót Vendégház",
+  "subtitle": "Többnyelvű bemutatkozó oldal dunakanyari vendégház számára",
+  "description": "Többnyelvű (HU/EN/DE) bemutatkozó weboldal közvetlen foglalásra optimalizált UX-szel egy dunakanyari vendégház számára.",
+  "content": {
+    "overview": "Az Ariel Pilismarót Vendégház egy háromnyelvű (magyar/angol/német) bemutatkozó weboldal egy dunakanyari szálláshely számára. Az oldal elsődleges célja a közvetlen foglalások maximalizálása — a telefonhívás és az e-mail jelenti a fő konverziós csatornát, közvetítő platformok (Booking.com, Szállás.hu) nélkül.",
+    "challenge": "A vendégháznak egy gyors, mobilbarát weboldalra volt szüksége, amely három nyelven mutatja be a szálláshelyet és környékét, miközben a látogatókat közvetlenül telefonos vagy e-mailes foglalásra ösztönzi — közvetítői jutalékok nélkül.",
+    "solution": "Az Astro statikus site generátorral készült weboldal zero JavaScript-et küld a kliensnek alapértelmezetten, így villámgyors betöltést biztosít. A Tailwind CSS responsive dizájnt, a Cloudflare Pages pedig globális CDN-t és megbízható hostingot nyújt — mindezt költséghatékonyan."
+  },
+  "features": [
+    {
+      "title": "Háromnyelvű támogatás (HU/EN/DE)",
+      "description": "Teljes magyar, angol és német tartalom locale-alapú routing-gal a nemzetközi vendégek kiszolgálásához"
+    },
+    {
+      "title": "Közvetlen foglalásra optimalizált UX",
+      "description": "Telefonhívás és e-mail mint elsődleges konverziós csatorna, közvetítő platformok megkerülésével"
+    },
+    {
+      "title": "Galériaszekció szűrőkkel",
+      "description": "Képgaléria beltér, kültér és környék kategóriákkal a szálláshely vizuális bemutatásához"
+    },
+    {
+      "title": "Környékbemutató és étteremajánló",
+      "description": "Dedikált szekciók a Dunakanyar látnivalóinak és a környék éttermei ajánlásának"
+    },
+    {
+      "title": "SEO-optimalizált",
+      "description": "Strukturált meta adatok, sitemap és Open Graph integráció a keresőoptimalizáláshoz"
+    }
+  ]
+}

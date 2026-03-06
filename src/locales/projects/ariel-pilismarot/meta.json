@@ -1,0 +1,24 @@
+{
+  "id": "ariel-pilismarot",
+  "slug": "ariel-pilismarot",
+  "year": "2026",
+  "sortOrder": 1,
+  "cardBackground": "linear-gradient(135deg,#2d4a4a_0%,#1a3535_100%)",
+  "status": "completed",
+  "category": "website",
+  "techStack": [
+    "Astro",
+    "Tailwind CSS",
+    "Cloudflare Pages"
+  ],
+  "images": {
+    "hero": "",
+    "heroHtml": "<div class='flex items-center gap-4'><img src='/ariel-pilismarot-icon-512.png' alt='' class='h-14 w-auto' style='filter:brightness(0) invert(1)'><div class='flex flex-col'><span style='font-family:Georgia,serif;font-size:1.25rem;font-weight:700;color:white;line-height:1.1'>Ariel</span><span style='font-size:0.625rem;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.7);line-height:1.1'>Pilismarót Vendégház</span></div></div>",
+    "gallery": []
+  },
+  "links": {
+    "website": "https://ariel-pilismarot.hu",
+    "github": null,
+    "demo": null
+  }
+}

@@ -12,8 +12,8 @@
     }
   },
   "hero": {
-    "title": "AI-natív szoftver, ami termel.",
-    "subtitle": "Karcsú, intelligens web és mobil termékeket építünk — LLM-ekkel és ágensalapú munkafolyamatokkal. Stratégia, dizájn és fejlesztés — AI-val a középpontban.",
+    "title": "Szoftver, amire építhetsz.",
+    "subtitle": "Digitális termékeket tervezünk és fejlesztünk — az ötlettől a működő rendszerig, egy helyen.",
     "cta": {
       "startProject": "Projekt indítása",
       "seeWork": "Munkáink megtekintése"
@@ -30,8 +30,8 @@
     },
     "brandCard": {
       "companyName": "DENDORA",
-      "tagline": "Szoftverfejlesztés · AI",
-      "description": "Full-stack fejlesztés mesterséges intelligenciával kiegészítve. Skálázható termékeket építünk modern felületekkel, robusztus backenddel és LLM-alapú funkciókkal — modern felhős infrastruktúrán."
+      "tagline": "Szoftverfejlesztés",
+      "description": "Full-stack fejlesztés modern eszközökkel. Skálázható termékeket építünk modern felületekkel, robusztus backenddel és okos automatizálással — modern felhős infrastruktúrán."
     },
     "variants": {
       "location": "Magyarország",
@@ -54,29 +54,29 @@
   },
   "services": {
     "title": "Mit csinálunk",
-    "subtitle": "Karcsú, intelligens — üzletre hangolva.",
+    "subtitle": "Fókusz, minőség, szállítás.",
     "features": {
       "strategy": {
         "title": "Termékstratégia",
-        "description": "Hatókör, ütemterv és validáció. Biztosítjuk, hogy a megfelelő dolgot építsük fel, mielőtt jól építenénk fel."
+        "description": "Megértjük az üzleti célt, megtervezzük a terméket, és csak utána kezdünk építeni."
       },
       "frontend": {
         "title": "Frontend és Design",
-        "description": "React, TypeScript és modern keretrendszerek. Minimális, akadálymentes felületek termelésre kész design rendszerekkel."
+        "description": "React, TypeScript, modern eszközök. Gyors, letisztult felületek, amik jól néznek ki és jól működnek."
       },
       "backend": {
-        "title": "Backend és Infrastruktúra", 
-        "description": "Go mikroszolgáltatások, PostgreSQL adatbázisok, Docker konténerek és Kubernetes klaszterek. Skálázható felhő-natív architektúra."
+        "title": "Backend és Infrastruktúra",
+        "description": "Stabil backend, skálázható infra. Go, PostgreSQL, Kubernetes — bevált eszközökkel."
       },
       "ai": {
-        "title": "AI és ágens megoldások",
-        "description": "LLM-integrációk, ágensalapú munkafolyamatok és intelligens automatizálás. Olyan AI-alapú funkciókat építünk, amelyek valós üzleti problémákat oldanak meg."
+        "title": "AI és automatizálás",
+        "description": "LLM-integrációk, munkafolyamat-automatizálás és okos funkciók ott, ahol valódi értéket adnak — nem AI az AI kedvéért."
       }
     }
   },
   "work": {
-    "title": "Kiválasztott munkák",
-    "subtitle": "Legújabb kiemelések",
+    "title": "Munkáink",
+    "subtitle": "Amire büszék vagyunk.",
     "projects": {
       "foundryPulse": {
         "name": "FoundryPulse",
@@ -104,26 +104,26 @@
   },
   "about": {
     "title": "Miért válasszon minket",
-    "description": "Kis, tapasztalt csapat vagyunk, akik nap mint nap AI-val dolgoznak — nem csak beszélnek róla. Világos hatókörök, pragmatikus technológiai döntések és stabil szállítás — az első tervezéstől a produkcióig.",
+    "description": "Kicsi csapat, nagy tapasztalat. Tiszta keretek, pragmatikus döntések, és ami kész, az működik.",
     "features": {
-      "engineering": "Senior gyakorlatias fejlesztés",
+      "engineering": "Tapasztalt, kézzel fogható fejlesztés",
       "delivery": "Átlátható becslések és szállítás",
       "maintainability": "Hosszú távú karbantarthatóság",
-      "ai": "AI-natív fejlesztési munkafolyamat"
+      "ai": "Modern AI-támogatott eszközök"
     },
     "cta": "Beszéljünk",
     "cards": {
       "stack": {
         "title": "Stack",
-        "description": "TypeScript, React, Go, Kubernetes, LLM-ek"
+        "description": "TypeScript, React, Go, Kubernetes"
       },
       "approach": {
         "title": "Megközelítés",
-        "description": "Kicsi szállítás, gyors iteráció, AI-val támogatott automatizálás"
+        "description": "Rövid ciklusok, gyakori szállítás, okos automatizálás"
       },
       "principles": {
         "title": "Elvek",
-        "description": "Teljesítmény, akadálymentesség, intelligencia"
+        "description": "Gyorsaság, használhatóság, minőség"
       },
       "engagement": {
         "title": "Együttműködés",
@@ -132,52 +132,139 @@
     }
   },
   "pricing": {
-    "title": "Üzemeltetési csomagok",
-    "subtitle": "Gondoskodunk a weboldaláról, hogy Ön az üzletére koncentrálhasson.",
-    "cta": "Ajánlatot kérek",
-    "emailSubject": "Érdeklődés: {tier} csomag",
-    "note": "Minden csomag éves számlázással. Egyedi igényekhez kérjen személyre szabott ajánlatot.",
-    "tiers": {
-      "seed": {
-        "name": "Seed",
-        "price": "24 900 Ft",
-        "period": "/ év",
-        "description": "Egyszerű weboldal karbantartáshoz",
-        "features": [
-          "Domain regisztráció és kezelés",
-          "SSL tanúsítvány",
-          "Hosting és napi backup",
-          "Biztonsági frissítések",
-          "Évi 1 monitoring riport"
-        ]
-      },
-      "growth": {
-        "name": "Growth",
-        "price": "49 900 Ft",
-        "period": "/ év",
-        "description": "Aktív weboldalakhoz, tartalmi támogatással",
-        "badge": "Népszerű",
-        "features": [
-          "Minden, ami a Seed-ben",
-          "Évi 5 tartalmi módosítás",
-          "Negyedéves analitikai riport",
-          "Teljesítmény-optimalizálás",
-          "E-mail támogatás 48 órán belül"
-        ]
-      },
-      "scale": {
-        "name": "Scale",
-        "price": "99 900 Ft",
-        "period": "/ év",
-        "description": "Prémium support és korlátlan módosítások",
-        "features": [
-          "Minden, ami a Growth-ban",
-          "Korlátlan apró módosítás",
-          "Havi analitikai riport",
-          "Prioritás support 24 órán belül",
-          "Uptime monitoring és riasztás",
-          "SEO alap-optimalizálás"
-        ]
+    "note": "Árak EUR-ban. Egyedi igényekhez vagy kombinált ajánlatokért keressen minket.",
+    "recommendedForLabel": "Ajánlott",
+    "build": {
+      "title": "Weboldal Fejlesztés",
+      "subtitle": "Átlátható árazás kisvállalkozások professzionális weboldalaihoz.",
+      "cta": "Projekt indítása",
+      "emailSubject": "Érdeklődés: {tier} weboldal készítés",
+      "tiers": {
+        "starter": {
+          "name": "Starter",
+          "price": "€990",
+          "period": "egyszeri",
+          "description": "Egyszerű online jelenléthez.",
+          "features": [
+            "1–3 oldal",
+            "Mobilbarát, reszponzív design",
+            "Alap SEO beállítás",
+            "Kapcsolati űrlap",
+            "Domain és DNS beállítás",
+            "Cloudflare beállítás",
+            "Élesítés"
+          ],
+          "recommendedFor": [
+            "Vendégházak",
+            "Éttermek",
+            "Kis helyi vállalkozások"
+          ]
+        },
+        "business": {
+          "name": "Business",
+          "price": "€1790",
+          "period": "egyszeri",
+          "description": "Professzionális üzleti weboldal.",
+          "badge": "Legnépszerűbb",
+          "features": [
+            "Minden, ami a Starter-ben",
+            "Akár 6 oldal",
+            "Egyedi elrendezés",
+            "Képoptimalizálás",
+            "Analitika beállítás",
+            "Átirányítási és domain stratégia",
+            "Foglalás / külső integrációk",
+            "Teljesítmény-optimalizálás"
+          ],
+          "recommendedFor": [
+            "Vendéglátó vállalkozások",
+            "Szolgáltató cégek",
+            "Tanácsadók",
+            "Növekvő kisvállalkozások"
+          ]
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "€2990",
+          "period": "egyszeri",
+          "description": "Haladó weboldal egyedi designnal és optimalizálással.",
+          "features": [
+            "Minden, ami a Business-ben",
+            "Egyedi UI design",
+            "Arculati igazítások",
+            "Haladó SEO beállítás",
+            "Teljesítmény-optimalizálás",
+            "Egyedi integrációk",
+            "Kiemelt támogatás a fejlesztés során"
+          ],
+          "recommendedFor": [
+            "Nagyobb vállalkozások",
+            "Marketing-központú weboldalak",
+            "Egyedi designt igénylő márkák"
+          ]
+        }
+      }
+    },
+    "maintenance": {
+      "title": "Weboldal Karbantartás",
+      "subtitle": "Tartsa weboldalát biztonságosnak, gyorsnak és naprakésznek.",
+      "cta": "Csomag választása",
+      "emailSubject": "Érdeklődés: {tier} karbantartási csomag",
+      "tiers": {
+        "lite": {
+          "name": "Lite",
+          "price": "€25",
+          "period": "/ hó",
+          "description": "Alap weboldal karbantartás.",
+          "features": [
+            "Hosting",
+            "Domain megújítás kezelése",
+            "SSL monitoring",
+            "DNS és Cloudflare kezelés",
+            "Biztonsági frissítések",
+            "Kisebb javítások"
+          ],
+          "recommendedFor": [
+            "Egyszerű weboldalak",
+            "Statikus oldalak",
+            "Ritkán frissülő oldalak"
+          ]
+        },
+        "standard": {
+          "name": "Standard",
+          "price": "€45",
+          "period": "/ hó",
+          "description": "A legnépszerűbb karbantartási csomag.",
+          "badge": "Ajánlott",
+          "features": [
+            "Minden, ami a Lite-ban",
+            "Havi mentések",
+            "Analitika monitoring",
+            "Kisebb tartalmi módosítások",
+            "Kiemelt támogatás"
+          ],
+          "recommendedFor": [
+            "Aktív üzleti weboldalak",
+            "Rendszeres tartalommal frissülő oldalak"
+          ]
+        },
+        "pro": {
+          "name": "Pro",
+          "price": "€90",
+          "period": "/ hó",
+          "description": "Gyakran változó, aktív weboldalakhoz.",
+          "features": [
+            "Minden, ami a Standard-ban",
+            "Landing oldal készítés",
+            "SEO finomhangolás",
+            "Marketing frissítések",
+            "Havi 2–3 óra módosítás"
+          ],
+          "recommendedFor": [
+            "Marketing-központú oldalak",
+            "Gyakran frissülő vállalkozások"
+          ]
+        }
       }
     }
   },

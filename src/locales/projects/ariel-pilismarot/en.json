@@ -1,0 +1,32 @@
+{
+  "title": "Ariel Pilismarót Guesthouse",
+  "subtitle": "Multilingual showcase website for a Danube Bend guesthouse",
+  "description": "A trilingual (HU/EN/DE) showcase website with direct-booking-optimized UX for a guesthouse in the Danube Bend, Hungary.",
+  "content": {
+    "overview": "Ariel Pilismarót Guesthouse is a trilingual (Hungarian/English/German) showcase website for an accommodation in the Danube Bend region of Hungary. The site's primary goal is to maximize direct bookings — phone calls and email serve as the main conversion channels, bypassing intermediary platforms like Booking.com.",
+    "challenge": "The guesthouse needed a fast, mobile-friendly website that presents the property and its surroundings in three languages, while encouraging visitors to book directly via phone or email — eliminating intermediary commission fees.",
+    "solution": "Built with Astro's static site generator, the website ships zero JavaScript to the client by default, ensuring lightning-fast load times. Tailwind CSS provides responsive design, and Cloudflare Pages delivers global CDN and reliable hosting — all cost-effectively."
+  },
+  "features": [
+    {
+      "title": "Trilingual support (HU/EN/DE)",
+      "description": "Full Hungarian, English, and German content with locale-based routing to serve international guests"
+    },
+    {
+      "title": "Direct-booking-optimized UX",
+      "description": "Phone calls and email as primary conversion channels, bypassing intermediary booking platforms"
+    },
+    {
+      "title": "Gallery with filters",
+      "description": "Photo gallery with interior, exterior, and surroundings categories for visual property showcase"
+    },
+    {
+      "title": "Area guide & restaurant recommendations",
+      "description": "Dedicated sections showcasing Danube Bend attractions and local restaurant recommendations"
+    },
+    {
+      "title": "SEO-optimized",
+      "description": "Structured meta tags, sitemap, and Open Graph integration for search engine visibility"
+    }
+  ]
+}

@@ -2,6 +2,8 @@
   "id": "analytics",
   "slug": "analytics",
   "year": "2024",
+  "sortOrder": 4,
+  "cardBackground": "linear-gradient(135deg,#4338ca_0%,#6d28d9_100%)",
   "status": "in-progress",
   "category": "data-platform",
   "techStack": [

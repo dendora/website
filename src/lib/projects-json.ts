@@ -19,6 +19,7 @@ export interface ProjectFeature {
 
 export interface ProjectImages {
   hero: string;
+  heroHtml?: string;
   gallery: string[];
 }
 
@@ -32,6 +33,8 @@ export interface ProjectMeta {
   id: string;
   slug: string;
   year: string;
+  sortOrder?: number;
+  cardBackground?: string;
   status: 'completed' | 'in-progress' | 'planned';
   category: string;
   techStack: string[];
@@ -43,6 +46,8 @@ export interface ProjectData {
   id: string;
   slug: string;
   year: string;
+  sortOrder?: number;
+  cardBackground?: string;
   status: 'completed' | 'in-progress' | 'planned';
   category: string;
   techStack: string[];
@@ -58,6 +63,7 @@ import foundrypulseMeta from '../locales/projects/foundrypulse/meta.json';
 import analyticsMeta from '../locales/projects/analytics/meta.json';
 import infrastructureMeta from '../locales/projects/infrastructure/meta.json';
 import andihealthMeta from '../locales/projects/andihealth/meta.json';
+import arielPilismarotMeta from '../locales/projects/ariel-pilismarot/meta.json';
 
 // Import project content files
 import foundrypulseEn from '../locales/projects/foundrypulse/en.json';
@@ -68,6 +74,8 @@ import infrastructureEn from '../locales/projects/infrastructure/en.json';
 import infrastructureHu from '../locales/projects/infrastructure/hu.json';
 import andihealthEn from '../locales/projects/andihealth/en.json';
 import andihealthHu from '../locales/projects/andihealth/hu.json';
+import arielPilismarotEn from '../locales/projects/ariel-pilismarot/en.json';
+import arielPilismarotHu from '../locales/projects/ariel-pilismarot/hu.json';
 
 const projectContentMap = {
   foundrypulse: {
@@ -85,6 +93,10 @@ const projectContentMap = {
   andihealth: {
     en: andihealthEn,
     hu: andihealthHu
+  },
+  'ariel-pilismarot': {
+    en: arielPilismarotEn,
+    hu: arielPilismarotHu
   }
 };
 
@@ -93,6 +105,7 @@ const projectMetaMap = new Map<string, ProjectMeta>([
   ['andihealth', andihealthMeta as ProjectMeta],
   ['analytics', analyticsMeta as ProjectMeta],
   ['infrastructure', infrastructureMeta as ProjectMeta],
+  ['ariel-pilismarot', arielPilismarotMeta as ProjectMeta],
 ]);
 
 export function getProject(id: string, language: Language): ProjectData | undefined {
@@ -119,7 +132,8 @@ export function getAllProjects(language: Language): ProjectData[] {
   const projectIds = Array.from(projectMetaMap.keys());
   return projectIds
     .map(id => getProject(id, language))
-    .filter((project): project is ProjectData => project !== undefined);
+    .filter((project): project is ProjectData => project !== undefined)
+    .sort((a, b) => (a.sortOrder ?? 99) - (b.sortOrder ?? 99));
 }
 
 export function getProjectSlugs(): string[] {

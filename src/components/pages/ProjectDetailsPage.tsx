@@ -30,28 +30,42 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
       {/* Hero Section */}
       <section className="mx-auto max-w-4xl px-4 py-12">
         <MotionFade duration={0.6}>
-          {/* Hero Image */}
-          {project.images.hero && (
-            <div className="mb-8 flex justify-center">
-              <div className="rounded-xl p-8 w-full max-w-md aspect-[16/10] flex items-center justify-center bg-black/5">
-                <img 
-                  src={project.images.hero} 
-                  alt={localizedTitle}
-                  className="max-h-full max-w-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
+          {/* Hero Image or HTML */}
+          {(project.images.heroHtml || project.images.hero) && (() => {
+            const bgStyle: React.CSSProperties = project.cardBackground
+              ? { background: project.cardBackground.replace(/_/g, ' ') }
+              : { background: 'rgba(0,0,0,0.05)' };
+            const content = project.images.heroHtml ? (
+              <div dangerouslySetInnerHTML={{ __html: project.images.heroHtml }} />
+            ) : (
+              <img 
+                src={project.images.hero} 
+                alt={localizedTitle}
+                className="max-h-full max-w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            );
+            return (
+              <div className="mb-8 flex justify-center">
+                {project.links.website ? (
+                  <a href={project.links.website} target="_blank" rel="noopener noreferrer" className="rounded-xl p-8 w-full max-w-md aspect-[16/10] flex items-center justify-center transition-opacity hover:opacity-90" style={bgStyle}>
+                    {content}
+                  </a>
+                ) : (
+                  <div className="rounded-xl p-8 w-full max-w-md aspect-[16/10] flex items-center justify-center" style={bgStyle}>
+                    {content}
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            );
+          })()}
           
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-black mb-2">{localizedTitle}</h1>
             <p className="text-xl text-black/70">{localizedSubtitle}</p>
             <div className="flex items-center justify-center gap-4 mt-4 text-sm text-black/60">
               <span>{project.year}</span>
-              <span>•</span>
-              <span className="capitalize">{project.status.replace('-', ' ')}</span>
             </div>
           </div>
           

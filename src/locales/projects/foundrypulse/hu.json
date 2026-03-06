@@ -3,22 +3,26 @@
   "subtitle": "Valós idejű gyártási teljesítmény monitoring",
   "description": "Valós idejű termelési átláthatóság és teljesítménymutatók — tiszta, gyors dashboardon.",
   "content": {
-    "overview": "A FoundryPulse egy átfogó gyártási monitoring platform, amely segít a gyártóknak optimalizálni folyamataikat és növelni hatékonyságukat.",
-    "challenge": "A gyártók gyakran küzdenek a termelési adatok valós idejű nyomon követésével és elemzésével.",
-    "solution": "Létrehoztunk egy intuitív dashboardot, amely valós időben jeleníti meg a kulcs teljesítménymutatókat."
+    "overview": "A FoundryPulse egy termelésmonitorozó platform, amely egy fémöntödei üzem számára készült. A kézi adatgyűjtést élő dashboardokkal váltja ki, amelyek megmutatják a sorok állapotát, a kibocsátási rátákat és az állásidőket — így az üzemi vezetők és a menedzsment egyaránt valós idejű képet kapnak a termelésről.",
+    "challenge": "Az üzem papíron és táblázatokban követte a termelést. A műszakjelentések késtek, az állásidők okait nehezen lehetett beazonosítani, a vezetőségnek pedig nem volt valós idejű rálátása a kibocsátásra. Probléma esetén órákba telt a gyokérok megtalálása — és még tovább a hatás felmérése.",
+    "solution": "Egy React + TypeScript dashboardot építettünk, amely WebSocket-en keresztül kapcsolódik a gyártósorokhoz. Az adatok a gépjelekből PostgreSQL-be áramlanak, ahol élő KPI-kká aggregálódnak: OEE, ciklusidők, selejtarányok és állásidő-bontások. A felület valós időben frissül, és asztali gépeken és üzemi tableteken egyaránt használható."
   },
   "features": [
     {
-      "title": "Valós idejű monitoring",
-      "description": "Azonnali betekintés a gyártási folyamatokba"
+      "title": "Élő termelési dashboard",
+      "description": "Az üzemi vezetők valós időben látják a sorok állapotát, a darabszámokat és a ciklusidőket — kézi frissítés nélkül"
     },
     {
-      "title": "Prediktív analitika",
-      "description": "Gépi tanulás alapú előrejelzések"
+      "title": "Állásidő-követés és besorolás",
+      "description": "Minden leállás okkóddal kerül naplózásra. A heti riportok pontosan megmutatják, hol veszik el az idő és mely okok ismétlődnek"
     },
     {
-      "title": "Testreszabható dashboard",
-      "description": "Személyre szabható riportok és metrikák"
+      "title": "Műszakalapú riportolás",
+      "description": "Automatikus műszak-összefoglalók váltják a kézzel írt naplókat — kibocsátás, selejt és állásidő műszakonként és soronként"
+    },
+    {
+      "title": "Szerep alapú nézetek",
+      "description": "Az operátorok a saját sorukat látják. A műszakvezetők az üzemcsarnokot. A menedzsment üzem szintű trendeket és összehasonlításokat"
     }
   ]
 }

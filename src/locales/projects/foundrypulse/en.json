@@ -3,22 +3,26 @@
   "subtitle": "Real-time manufacturing performance monitoring",
   "description": "Real-time production visibility and KPIs — delivered through a fast, clean dashboard.",
   "content": {
-    "overview": "FoundryPulse is a comprehensive manufacturing monitoring platform that helps manufacturers optimize their processes and increase efficiency.",
-    "challenge": "Manufacturers often struggle with real-time tracking and analysis of production data.",
-    "solution": "We created an intuitive dashboard that displays key performance indicators in real-time."
+    "overview": "FoundryPulse is a production monitoring platform built for a metal casting facility. It replaces manual data collection with live dashboards that show line status, output rates, and downtime — giving floor managers and leadership a shared, real-time picture of what's happening in the plant.",
+    "challenge": "The facility tracked production on paper and spreadsheets. Shift reports were delayed, downtime causes were hard to pinpoint, and management had no real-time view of output. When issues occurred, it took hours to identify the root cause — and even longer to measure the impact.",
+    "solution": "We built a React + TypeScript dashboard connected to the production floor via WebSocket. Data flows from machine signals into PostgreSQL, where it’s aggregated into live KPIs: OEE, cycle times, reject rates, and downtime breakdowns. The UI updates in real time and works on both desktop screens in the office and tablets on the floor."
   },
   "features": [
     {
-      "title": "Real-time monitoring",
-      "description": "Instant insights into manufacturing processes"
+      "title": "Live production dashboard",
+      "description": "Floor managers see line status, output counts, and cycle times updating in real time — no manual refresh needed"
     },
     {
-      "title": "Predictive analytics",
-      "description": "Machine learning-based predictions"
+      "title": "Downtime tracking & classification",
+      "description": "Every stop is logged with a reason code. Weekly reports show exactly where time is lost and which causes repeat"
     },
     {
-      "title": "Customizable dashboard",
-      "description": "Personalized reports and metrics"
+      "title": "Shift-based reporting",
+      "description": "Automatic shift summaries replace handwritten logs — output, rejects, and downtime broken down per shift and per line"
+    },
+    {
+      "title": "Role-based views",
+      "description": "Operators see their line. Shift leads see the floor. Management sees plant-wide trends and comparisons"
     }
   ]
 }

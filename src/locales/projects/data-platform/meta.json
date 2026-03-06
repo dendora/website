@@ -1,19 +1,19 @@
 {
-  "id": "analytics",
-  "slug": "analytics",
+  "id": "data-platform",
+  "slug": "data-platform",
   "year": "2024",
   "sortOrder": 4,
   "cardBackground": "linear-gradient(135deg,#4f46e5_0%,#4338ca_50%,#3730a3_100%)",
   "status": "in-progress",
   "category": "data-platform",
   "techStack": [
-    "Vue.js",
-    "Python",
-    "FastAPI",
-    "ClickHouse",
-    "Redis",
-    "Apache Kafka",
-    "Kubernetes"
+    "Go",
+    "React",
+    "PostgreSQL",
+    "Kubernetes",
+    "Docker",
+    "GitHub Actions",
+    "Prometheus"
   ],
   "images": {
     "hero": "/dendora-sw-dev-logo.png",

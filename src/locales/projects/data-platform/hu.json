@@ -1,0 +1,28 @@
+{
+  "title": "Adat- és Analitikai Platform",
+  "subtitle": "Valós idejű analitika és felhő infrastruktúra nagyvállalati ügyfélnek",
+  "description": "Teljes körű adatplatform valós idejű feldolgozással, interaktív dashboardokkal és automatizált felhő infrastruktúrával.",
+  "content": {
+    "overview": "Egy full-stack adatplatform, amely valós idejű analitikát, interaktív riportokat és automatizált felhő infrastruktúrát egyesít nagyvállalati környezetben.",
+    "challenge": "Az ügyfélnek egy egységes platformra volt szüksége, amely képes nagy mennyiségű adat feldolgozására, hasznos betekintéseket nyújt dashboardokon keresztül, és megbízhatóan működik skálázható felhő infrastruktúrán.",
+    "solution": "Egy integrált megoldást építettünk, amely lefedi az adatbevitelt, feldolgozási pipeline-okat, interaktív dashboardokat, valamint teljesen automatizált CI/CD-t konténer-orchestrációval."
+  },
+  "features": [
+    {
+      "title": "Valós idejű adatfeldolgozás",
+      "description": "Nagy áteresztőképességű pipeline-ok milliszekundumos válaszidővel"
+    },
+    {
+      "title": "Interaktív dashboardok",
+      "description": "Egyedileg épített riport és vizualizációs eszközök"
+    },
+    {
+      "title": "Automatizált infrastruktúra",
+      "description": "CI/CD pipeline-ok, konténerizált telepítés és monitoring"
+    },
+    {
+      "title": "Skálázható architektúra",
+      "description": "Kubernetes orchestráció beépített megfigyelhetőséggel"
+    }
+  ]
+}

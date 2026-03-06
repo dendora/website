@@ -1,0 +1,28 @@
+{
+  "title": "Data & Analytics Platform",
+  "subtitle": "Real-time analytics and cloud infrastructure for an enterprise client",
+  "description": "End-to-end data platform with real-time processing, interactive dashboards, and automated cloud infrastructure.",
+  "content": {
+    "overview": "A full-stack data platform combining real-time analytics, interactive reporting, and automated cloud infrastructure for an enterprise environment.",
+    "challenge": "The client needed a unified platform that could handle high-volume data processing, provide actionable insights through dashboards, and run reliably on scalable cloud infrastructure.",
+    "solution": "We built an integrated solution covering data ingestion, processing pipelines, interactive dashboards, and fully automated CI/CD with container orchestration."
+  },
+  "features": [
+    {
+      "title": "Real-time data processing",
+      "description": "High-throughput pipelines with millisecond response times"
+    },
+    {
+      "title": "Interactive dashboards",
+      "description": "Custom-built reporting and visualization tools"
+    },
+    {
+      "title": "Automated infrastructure",
+      "description": "CI/CD pipelines, containerized deployments, and monitoring"
+    },
+    {
+      "title": "Scalable architecture",
+      "description": "Kubernetes orchestration with observability built in"
+    }
+  ]
+}

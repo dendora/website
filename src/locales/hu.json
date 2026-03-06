@@ -84,13 +84,9 @@
         "details": "Részletek",
         "imageAlt": "FoundryPulse szómárka öntőkanállal és pulzus ikonnal"
       },
-      "analytics": {
-        "name": "Analitikai Platform", 
-        "description": "Valós idejű adatfeldolgozás Go mikroszolgáltatásokkal, PostgreSQL-lel és React dashboardokkal Kubernetes-en telepítve"
-      },
-      "infrastructure": {
-        "name": "Felhő Infrastruktúra",
-        "description": "Docker konténerizáció GitHub Actions CI/CD pipeline-okkal, monitorozással és automatizált Kubernetes telepítésekkel"
+      "dataPlatform": {
+        "name": "Adat- és Analitikai Platform",
+        "description": "Teljes körű adatplatform valós idejű feldolgozással, dashboardokkal és automatizált felhő infrastruktúrával nagyvállalati ügyfélnek"
       },
       "andiHealth": {
         "name": "AndiHealth",
@@ -137,6 +133,12 @@
     "cta": "Beszéljünk",
     "emailSubject": "Érdeklődés: {service}",
     "note": "Minden projektet egyedileg tervezünk. Az igényeket, ütemezést és költségvetést közösen beszéljük meg.",
+    "differentiators": [
+      "10+ év gyakorlati fejlesztési tapasztalat",
+      "Átlátható keretek és szállítás",
+      "Hosszú távú karbantarthatóság",
+      "Modern AI-támogatott eszközök"
+    ],
     "services": {
       "websites": {
         "name": "Weboldalak & Webappok",

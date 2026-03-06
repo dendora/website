@@ -38,12 +38,6 @@ const Navigation: React.FC<NavigationProps> = ({
     id: 'pricing',
     label: t(language, 'navigation.pricing')
   }, {
-    id: 'services',
-    label: t(language, 'navigation.services')
-  }, {
-    id: 'why-us',
-    label: t(language, 'navigation.about')
-  }, {
     id: 'contact',
     label: t(language, 'navigation.contact')
   }] as const;

@@ -60,18 +60,15 @@ export interface ProjectData {
 
 // Import project meta files
 import foundrypulseMeta from '../locales/projects/foundrypulse/meta.json';
-import analyticsMeta from '../locales/projects/analytics/meta.json';
-import infrastructureMeta from '../locales/projects/infrastructure/meta.json';
+import dataPlatformMeta from '../locales/projects/data-platform/meta.json';
 import andihealthMeta from '../locales/projects/andihealth/meta.json';
 import arielPilismarotMeta from '../locales/projects/ariel-pilismarot/meta.json';
 
 // Import project content files
 import foundrypulseEn from '../locales/projects/foundrypulse/en.json';
 import foundrypulseHu from '../locales/projects/foundrypulse/hu.json';
-import analyticsEn from '../locales/projects/analytics/en.json';
-import analyticsHu from '../locales/projects/analytics/hu.json';
-import infrastructureEn from '../locales/projects/infrastructure/en.json';
-import infrastructureHu from '../locales/projects/infrastructure/hu.json';
+import dataPlatformEn from '../locales/projects/data-platform/en.json';
+import dataPlatformHu from '../locales/projects/data-platform/hu.json';
 import andihealthEn from '../locales/projects/andihealth/en.json';
 import andihealthHu from '../locales/projects/andihealth/hu.json';
 import arielPilismarotEn from '../locales/projects/ariel-pilismarot/en.json';
@@ -82,13 +79,9 @@ const projectContentMap = {
     en: foundrypulseEn,
     hu: foundrypulseHu
   },
-  analytics: {
-    en: analyticsEn,
-    hu: analyticsHu
-  },
-  infrastructure: {
-    en: infrastructureEn,
-    hu: infrastructureHu
+  'data-platform': {
+    en: dataPlatformEn,
+    hu: dataPlatformHu
   },
   andihealth: {
     en: andihealthEn,
@@ -103,8 +96,7 @@ const projectContentMap = {
 const projectMetaMap = new Map<string, ProjectMeta>([
   ['foundrypulse', foundrypulseMeta as ProjectMeta],
   ['andihealth', andihealthMeta as ProjectMeta],
-  ['analytics', analyticsMeta as ProjectMeta],
-  ['infrastructure', infrastructureMeta as ProjectMeta],
+  ['data-platform', dataPlatformMeta as ProjectMeta],
   ['ariel-pilismarot', arielPilismarotMeta as ProjectMeta],
 ]);
 

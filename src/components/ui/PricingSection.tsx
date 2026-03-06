@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Globe, Code2, Bot, Wrench } from 'lucide-react';
+import { ArrowRight, Globe, Code2, Bot, Wrench, CheckCircle2 } from 'lucide-react';
 import { t, type Language } from '../../lib/variant-translations';
 import { MotionFade } from './MotionFade';
 import { SectionHeader } from './SectionHeader';
@@ -103,7 +103,21 @@ const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
         </div>
 
         <MotionFade delay={0.5}>
-          <p className="mt-12 text-center text-sm text-gray-500">
+          <div className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-3">
+            {((): React.ReactNode => {
+              const items: string[] = t(language, 'pricing.differentiators') || [];
+              return Array.isArray(items) && items.map((item, i) => (
+                <span key={i} className="inline-flex items-center gap-2 text-sm text-gray-500">
+                  <CheckCircle2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                  {item}
+                </span>
+              ));
+            })()}
+          </div>
+        </MotionFade>
+
+        <MotionFade delay={0.6}>
+          <p className="mt-8 text-center text-sm text-gray-500">
             {t(language, 'pricing.note')}
           </p>
         </MotionFade>

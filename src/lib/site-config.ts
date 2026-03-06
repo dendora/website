@@ -20,11 +20,11 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
     variant: 'default',
     layout: {
       // Proof-first: show work before promises
-      sectionsOrder: ['hero', 'work', 'pricing', 'services', 'about', 'contact'],
+      sectionsOrder: ['hero', 'work', 'pricing', 'contact'],
       showSections: {
-        services: true,
+        services: false,
         work: true,
-        about: true,
+        about: false,
         contact: true,
         pricing: true,
       },

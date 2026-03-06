@@ -84,13 +84,9 @@
         "details": "Details",
         "imageAlt": "FoundryPulse wordmark with pouring ladle and pulse icon"
       },
-      "analytics": {
-        "name": "Analytics Platform",
-        "description": "Real-time data processing with Go microservices, PostgreSQL, and React dashboards deployed on Kubernetes"
-      },
-      "infrastructure": {
-        "name": "Cloud Infrastructure",
-        "description": "Docker containerization with GitHub Actions CI/CD pipelines, monitoring, and automated Kubernetes deployments"
+      "dataPlatform": {
+        "name": "Data & Analytics Platform",
+        "description": "End-to-end data platform with real-time processing, dashboards, and automated cloud infrastructure for an enterprise client"
       },
       "andiHealth": {
         "name": "AndiHealth",
@@ -137,6 +133,12 @@
     "cta": "Let's talk",
     "emailSubject": "Inquiry: {service}",
     "note": "Every project is scoped individually. We'll discuss requirements, timeline, and budget together.",
+    "differentiators": [
+      "10+ years hands-on engineering",
+      "Transparent scope & delivery",
+      "Built for long-term maintainability",
+      "Modern AI-assisted tooling"
+    ],
     "services": {
       "websites": {
         "name": "Websites & Web Apps",

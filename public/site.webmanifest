@@ -1,7 +1,7 @@
 {
   "name": "Dendora - Software Development",
   "short_name": "Dendora",
-  "description": "Minimal software, maximal impact. Full-stack development with React, TypeScript, Go, and Kubernetes.",
+  "description": "Software you can build on. Custom web applications, AI integrations, and cloud infrastructure.",
   "icons": [
     {
       "src": "/dendora-icon-192.png",

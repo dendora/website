@@ -401,101 +401,6 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
     );
   };
 
-  // Services - bento layout, first card spans full width
-  const renderServices = () => {
-    if (!config.layout.showSections.services) return null;
-
-    const services = ['strategy', 'frontend', 'backend', 'ai'] as const;
-
-    return (
-      <section id="services" className="border-t border-black/5">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <SectionHeader
-            title={t(language, 'services.title')}
-            subtitle={t(language, 'services.subtitle')}
-          />
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {services.map((service, index) => (
-              <MotionFade key={service} delay={index * 0.08}>
-                <div className={cn(
-                  "rounded-xl border border-black/5 bg-white p-6 md:p-8 transition hover:shadow-md",
-                  index === 0 && "md:col-span-2"
-                )}>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {t(language, `services.features.${service}.title`)}
-                  </h3>
-                  <p className="text-gray-500 leading-relaxed">
-                    {t(language, `services.features.${service}.description`)}
-                  </p>
-                </div>
-              </MotionFade>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  // About / Why Us
-  const renderAbout = () => {
-    if (!config.layout.showSections.about) return null;
-
-    return (
-      <section id="why-us" className="border-t border-black/5">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="grid items-start gap-12 md:grid-cols-2">
-            <div>
-              <MotionFade>
-                <h2 className="text-2xl font-semibold tracking-tight md:text-3xl text-gray-900 mb-4">
-                  {t(language, 'about.title')}
-                </h2>
-              </MotionFade>
-              <MotionFade delay={0.1}>
-                <p className="text-gray-500 leading-relaxed mb-8">
-                  {t(language, 'about.description')}
-                </p>
-              </MotionFade>
-              <MotionFade delay={0.2}>
-                <ul className="space-y-3">
-                  {['engineering', 'delivery', 'maintainability', 'ai'].map((feat) => (
-                    <li key={feat} className="flex items-center gap-3 text-gray-700">
-                      <CheckCircle2 className="h-5 w-5 text-black flex-shrink-0" />
-                      <span>{t(language, `about.features.${feat}`)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </MotionFade>
-              <MotionFade delay={0.3}>
-                <div className="mt-8">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-black/85 cursor-pointer"
-                  >
-                    {t(language, 'about.cta')}
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </MotionFade>
-            </div>
-            <div>
-              <MotionFade delay={0.2}>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {['stack', 'approach', 'principles', 'engagement'].map((card) => (
-                    <div key={card} className="rounded-xl border border-black/5 bg-white p-6 transition hover:shadow-md">
-                      <div className="font-semibold text-gray-900 mb-1">{t(language, `about.cards.${card}.title`)}</div>
-                      <p className="text-sm text-gray-500">{t(language, `about.cards.${card}.description`)}</p>
-                    </div>
-                  ))}
-                </div>
-              </MotionFade>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
   // Contact — inline form + email fallback
   const renderContact = () => {
     if (!config.layout.showSections.contact) return null;
@@ -515,10 +420,6 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
           return config.layout.showSections.pricing ? (
             <PricingSection key="pricing" language={language} />
           ) : null;
-        case 'services':
-          return <div key="services">{renderServices()}</div>;
-        case 'about':
-          return <div key="about">{renderAbout()}</div>;
         case 'contact':
           return <div key="contact">{renderContact()}</div>;
         default:

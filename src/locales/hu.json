@@ -12,7 +12,7 @@
     }
   },
   "hero": {
-    "title": "Szoftver, amire építhetsz.",
+    "title": "Szoftver, amire építhetsz",
     "subtitle": "Digitális termékeket tervezünk és fejlesztünk — az ötlettől a működő rendszerig, egy helyen.",
     "cta": {
       "startProject": "Projekt indítása",
@@ -31,7 +31,7 @@
     "brandCard": {
       "companyName": "DENDORA",
       "tagline": "Szoftverfejlesztés",
-      "description": "Full-stack fejlesztés modern eszközökkel. Skálázható termékeket építünk modern felületekkel, robusztus backenddel és okos automatizálással — modern felhős infrastruktúrán."
+      "description": "Full-stack fejlesztés modern eszközökkel. Skálázható termékeket építünk — letisztult felületek, stabil backend, okos automatizálás — megbízható felhős infrastruktúrán."
     },
     "variants": {
       "location": "Magyarország",
@@ -49,28 +49,6 @@
         "wantSimilar": "Hasonló projektet szeretnék",
         "devTime": "3 hónap",
         "devTimeLabel": "Fejlesztési idő"
-      }
-    }
-  },
-  "services": {
-    "title": "Mit csinálunk",
-    "subtitle": "Fókusz, minőség, szállítás.",
-    "features": {
-      "strategy": {
-        "title": "Termékstratégia",
-        "description": "Megértjük az üzleti célt, megtervezzük a terméket, és csak utána kezdünk építeni."
-      },
-      "frontend": {
-        "title": "Frontend és Design",
-        "description": "React, TypeScript, modern eszközök. Gyors, letisztult felületek, amik jól néznek ki és jól működnek."
-      },
-      "backend": {
-        "title": "Backend és Infrastruktúra",
-        "description": "Stabil backend, skálázható infra. Go, PostgreSQL, Kubernetes — bevált eszközökkel."
-      },
-      "ai": {
-        "title": "AI és automatizálás",
-        "description": "LLM-integrációk, munkafolyamat-automatizálás és okos funkciók ott, ahol valódi értéket adnak — nem AI az AI kedvéért."
       }
     }
   },
@@ -97,35 +75,6 @@
     },
     "caseStudy": "Esettanulmány",
     "viewProject": "Projekt megtekintése"
-  },
-  "about": {
-    "title": "Miért válasszon minket",
-    "description": "Kicsi csapat, nagy tapasztalat. Tiszta keretek, pragmatikus döntések, és ami kész, az működik.",
-    "features": {
-      "engineering": "Tapasztalt, kézzel fogható fejlesztés",
-      "delivery": "Átlátható becslések és szállítás",
-      "maintainability": "Hosszú távú karbantarthatóság",
-      "ai": "Modern AI-támogatott eszközök"
-    },
-    "cta": "Beszéljünk",
-    "cards": {
-      "stack": {
-        "title": "Stack",
-        "description": "TypeScript, React, Go, Kubernetes"
-      },
-      "approach": {
-        "title": "Megközelítés",
-        "description": "Rövid ciklusok, gyakori szállítás, okos automatizálás"
-      },
-      "principles": {
-        "title": "Elvek",
-        "description": "Gyorsaság, használhatóság, minőség"
-      },
-      "engagement": {
-        "title": "Együttműködés",
-        "description": "Projekt vagy hosszú távú együttműködés"
-      }
-    }
   },
   "pricing": {
     "title": "Hogyan dolgozunk",

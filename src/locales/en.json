@@ -12,7 +12,7 @@
     }
   },
   "hero": {
-    "title": "Software you can build on.",
+    "title": "Software you can build on",
     "subtitle": "We design and build digital products — from first idea to production, all in one place.",
     "cta": {
       "startProject": "Start a project",
@@ -31,7 +31,7 @@
     "brandCard": {
       "companyName": "DENDORA",
       "tagline": "Software Engineering",
-      "description": "Full-stack development with modern tools. We build scalable products with modern frontends, robust backends, and smart automation — deployed on modern cloud infrastructure."
+      "description": "Full-stack development with modern tools. We build scalable products — clean frontends, solid backends, smart automation — deployed on reliable cloud infrastructure."
     },
     "variants": {
       "location": "Hungary",
@@ -49,28 +49,6 @@
         "wantSimilar": "I want something similar",
         "devTime": "3 months",
         "devTimeLabel": "Development time"
-      }
-    }
-  },
-  "services": {
-    "title": "What we do",
-    "subtitle": "Focus, quality, delivery.",
-    "features": {
-      "strategy": {
-        "title": "Product Strategy",
-        "description": "We understand the business goal, design the product, and only then start building."
-      },
-      "frontend": {
-        "title": "Frontend & Design",
-        "description": "React, TypeScript, modern tools. Fast, clean interfaces that look good and work well."
-      },
-      "backend": {
-        "title": "Backend & Infrastructure",
-        "description": "Solid backend, scalable infra. Go, PostgreSQL, Kubernetes — proven tools."
-      },
-      "ai": {
-        "title": "AI & Automation",
-        "description": "LLM integrations, workflow automation, and smart features where they add real value — not AI for the sake of AI."
       }
     }
   },
@@ -97,35 +75,6 @@
     },
     "caseStudy": "Case study",
     "viewProject": "View project"
-  },
-  "about": {
-    "title": "Why work with us",
-    "description": "Small team, deep experience. Clear scope, pragmatic decisions, and what we ship — works.",
-    "features": {
-      "engineering": "Experienced, hands-on engineering",
-      "delivery": "Transparent estimates and delivery",
-      "maintainability": "Long-term maintainability",
-      "ai": "Modern AI-assisted tooling"
-    },
-    "cta": "Let's talk",
-    "cards": {
-      "stack": {
-        "title": "Stack",
-        "description": "TypeScript, React, Go, Kubernetes"
-      },
-      "approach": {
-        "title": "Approach",
-        "description": "Short cycles, frequent delivery, smart automation"
-      },
-      "principles": {
-        "title": "Principles",
-        "description": "Speed, usability, quality"
-      },
-      "engagement": {
-        "title": "Engagement",
-        "description": "Project or ongoing support"
-      }
-    }
   },
   "pricing": {
     "title": "How We Work",

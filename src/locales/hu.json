@@ -3,7 +3,7 @@
     "home": "Főoldal",
     "services": "Szolgáltatások",
     "work": "Munkáink",
-    "pricing": "Csomagok",
+    "pricing": "Hogyan dolgozunk",
     "about": "Miért mi",
     "contact": "Kapcsolat",
     "ariaLabels": {
@@ -132,139 +132,55 @@
     }
   },
   "pricing": {
-    "note": "Árak EUR-ban. Egyedi igényekhez vagy kombinált ajánlatokért keressen minket.",
-    "recommendedForLabel": "Ajánlott",
-    "build": {
-      "title": "Weboldal Fejlesztés",
-      "subtitle": "Átlátható árazás kisvállalkozások professzionális weboldalaihoz.",
-      "cta": "Projekt indítása",
-      "emailSubject": "Érdeklődés: {tier} weboldal készítés",
-      "tiers": {
-        "starter": {
-          "name": "Starter",
-          "price": "€990",
-          "period": "egyszeri",
-          "description": "Egyszerű online jelenléthez.",
-          "features": [
-            "1–3 oldal",
-            "Mobilbarát, reszponzív design",
-            "Alap SEO beállítás",
-            "Kapcsolati űrlap",
-            "Domain és DNS beállítás",
-            "Cloudflare beállítás",
-            "Élesítés"
-          ],
-          "recommendedFor": [
-            "Vendégházak",
-            "Éttermek",
-            "Kis helyi vállalkozások"
-          ]
-        },
-        "business": {
-          "name": "Business",
-          "price": "€1790",
-          "period": "egyszeri",
-          "description": "Professzionális üzleti weboldal.",
-          "badge": "Legnépszerűbb",
-          "features": [
-            "Minden, ami a Starter-ben",
-            "Akár 6 oldal",
-            "Egyedi elrendezés",
-            "Képoptimalizálás",
-            "Analitika beállítás",
-            "Átirányítási és domain stratégia",
-            "Foglalás / külső integrációk",
-            "Teljesítmény-optimalizálás"
-          ],
-          "recommendedFor": [
-            "Vendéglátó vállalkozások",
-            "Szolgáltató cégek",
-            "Tanácsadók",
-            "Növekvő kisvállalkozások"
-          ]
-        },
-        "premium": {
-          "name": "Premium",
-          "price": "€2990",
-          "period": "egyszeri",
-          "description": "Haladó weboldal egyedi designnal és optimalizálással.",
-          "features": [
-            "Minden, ami a Business-ben",
-            "Egyedi UI design",
-            "Arculati igazítások",
-            "Haladó SEO beállítás",
-            "Teljesítmény-optimalizálás",
-            "Egyedi integrációk",
-            "Kiemelt támogatás a fejlesztés során"
-          ],
-          "recommendedFor": [
-            "Nagyobb vállalkozások",
-            "Marketing-központú weboldalak",
-            "Egyedi designt igénylő márkák"
-          ]
-        }
-      }
-    },
-    "maintenance": {
-      "title": "Weboldal Karbantartás",
-      "subtitle": "Tartsa weboldalát biztonságosnak, gyorsnak és naprakésznek.",
-      "cta": "Csomag választása",
-      "emailSubject": "Érdeklődés: {tier} karbantartási csomag",
-      "tiers": {
-        "lite": {
-          "name": "Lite",
-          "price": "€25",
-          "period": "/ hó",
-          "description": "Alap weboldal karbantartás.",
-          "features": [
-            "Hosting",
-            "Domain megújítás kezelése",
-            "SSL monitoring",
-            "DNS és Cloudflare kezelés",
-            "Biztonsági frissítések",
-            "Kisebb javítások"
-          ],
-          "recommendedFor": [
-            "Egyszerű weboldalak",
-            "Statikus oldalak",
-            "Ritkán frissülő oldalak"
-          ]
-        },
-        "standard": {
-          "name": "Standard",
-          "price": "€45",
-          "period": "/ hó",
-          "description": "A legnépszerűbb karbantartási csomag.",
-          "badge": "Ajánlott",
-          "features": [
-            "Minden, ami a Lite-ban",
-            "Havi mentések",
-            "Analitika monitoring",
-            "Kisebb tartalmi módosítások",
-            "Kiemelt támogatás"
-          ],
-          "recommendedFor": [
-            "Aktív üzleti weboldalak",
-            "Rendszeres tartalommal frissülő oldalak"
-          ]
-        },
-        "pro": {
-          "name": "Pro",
-          "price": "€90",
-          "period": "/ hó",
-          "description": "Gyakran változó, aktív weboldalakhoz.",
-          "features": [
-            "Minden, ami a Standard-ban",
-            "Landing oldal készítés",
-            "SEO finomhangolás",
-            "Marketing frissítések",
-            "Havi 2–3 óra módosítás"
-          ],
-          "recommendedFor": [
-            "Marketing-központú oldalak",
-            "Gyakran frissülő vállalkozások"
-          ]
-        }
+    "title": "Hogyan dolgozunk",
+    "subtitle": "Minden projekt más. Íme, miben tudunk segíteni.",
+    "cta": "Beszéljünk",
+    "emailSubject": "Érdeklődés: {service}",
+    "note": "Minden projektet egyedileg tervezünk. Az igényeket, ütemezést és költségvetést közösen beszéljük meg.",
+    "services": {
+      "websites": {
+        "name": "Weboldalak & Webappok",
+        "description": "Professzionális weboldalak és webalkalmazások nulláról építve. Reszponzív design, gyors betöltés, SEO-kész — az Ön vállalkozására szabva.",
+        "deliverables": [
+          "Egyedi design és fejlesztés",
+          "Mobilbarát, reszponzív elrendezés",
+          "SEO és teljesítmény-optimalizálás",
+          "Domain, DNS és hosting beállítás",
+          "Analitika integráció"
+        ]
+      },
+      "software": {
+        "name": "Egyedi szoftver",
+        "description": "Dashboardok, belső eszközök és platformok az Ön munkafolyamataira szabva. Modern technológia, skálázható architektúra.",
+        "deliverables": [
+          "Igényfelmérés és tervezés",
+          "Full-stack fejlesztés",
+          "Adatbázis tervezés és API fejlesztés",
+          "Felhő infrastruktúra és deploy",
+          "Felhasználói oktatás és dokumentáció"
+        ]
+      },
+      "ai": {
+        "name": "AI & Automatizálás",
+        "description": "Okos integrációk, amelyek időt takarítanak meg és valódi értéket teremtenek — nem öncélú AI. LLM munkafolyamatok, adatfeldolgozás és intelligens automatizálás.",
+        "deliverables": [
+          "LLM integráció és prompt engineering",
+          "Munkafolyamat automatizálás",
+          "Adatfeldolgozási pipeline-ok",
+          "Okos funkciók és ajánlások",
+          "Meglévő rendszerekkel való integráció"
+        ]
+      },
+      "support": {
+        "name": "Folyamatos támogatás",
+        "description": "Gondoskodunk a működésről, frissítésekről és fejlesztésekről. Hosting, biztonság, tartalmi frissítések és technikai támogatás — hogy Ön a vállalkozására koncentrálhasson.",
+        "deliverables": [
+          "Hosting és infrastruktúra kezelés",
+          "Biztonsági frissítések és monitoring",
+          "Tartalmi és funkcionális frissítések",
+          "Teljesítmény monitoring",
+          "Kiemelt technikai támogatás"
+        ]
       }
     }
   },

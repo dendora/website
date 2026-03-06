@@ -3,7 +3,7 @@
     "home": "Home",
     "services": "Services",
     "work": "Work",
-    "pricing": "Plans",
+    "pricing": "How We Work",
     "about": "Why Us",
     "contact": "Contact",
     "ariaLabels": {
@@ -132,139 +132,55 @@
     }
   },
   "pricing": {
-    "note": "Prices in EUR. Contact us for custom requirements or bundled offers.",
-    "recommendedForLabel": "Recommended for",
-    "build": {
-      "title": "Website Development",
-      "subtitle": "Simple pricing for professional websites for small businesses.",
-      "cta": "Start Project",
-      "emailSubject": "Inquiry: {tier} website build",
-      "tiers": {
-        "starter": {
-          "name": "Starter",
-          "price": "€990",
-          "period": "one-time",
-          "description": "Good for simple online presence websites.",
-          "features": [
-            "1–3 pages",
-            "Mobile responsive design",
-            "Basic SEO setup",
-            "Contact form",
-            "Domain & DNS setup",
-            "Cloudflare setup",
-            "Deployment"
-          ],
-          "recommendedFor": [
-            "Guesthouses",
-            "Restaurants",
-            "Small local businesses"
-          ]
-        },
-        "business": {
-          "name": "Business",
-          "price": "€1790",
-          "period": "one-time",
-          "description": "Professional business website.",
-          "badge": "Most Popular",
-          "features": [
-            "Everything in Starter",
-            "Up to 6 pages",
-            "Custom layout",
-            "Image optimization",
-            "Analytics setup",
-            "Redirect & domain strategy",
-            "Booking / external integrations",
-            "Performance optimization"
-          ],
-          "recommendedFor": [
-            "Hospitality businesses",
-            "Service companies",
-            "Consultants",
-            "Growing small businesses"
-          ]
-        },
-        "premium": {
-          "name": "Premium",
-          "price": "€2990",
-          "period": "one-time",
-          "description": "Advanced website with custom design and optimization.",
-          "features": [
-            "Everything in Business",
-            "Custom UI design",
-            "Branding adjustments",
-            "Advanced SEO setup",
-            "Performance optimization",
-            "Custom integrations",
-            "Priority support during development"
-          ],
-          "recommendedFor": [
-            "Larger businesses",
-            "Marketing-driven websites",
-            "Brands needing custom design"
-          ]
-        }
-      }
-    },
-    "maintenance": {
-      "title": "Website Care & Maintenance",
-      "subtitle": "Keep your website secure, fast, and up to date.",
-      "cta": "Choose Plan",
-      "emailSubject": "Inquiry: {tier} maintenance plan",
-      "tiers": {
-        "lite": {
-          "name": "Lite",
-          "price": "€25",
-          "period": "/ month",
-          "description": "Basic website maintenance.",
-          "features": [
-            "Hosting",
-            "Domain renewal management",
-            "SSL monitoring",
-            "DNS & Cloudflare management",
-            "Security updates",
-            "Small fixes"
-          ],
-          "recommendedFor": [
-            "Simple websites",
-            "Static sites",
-            "Low update frequency"
-          ]
-        },
-        "standard": {
-          "name": "Standard",
-          "price": "€45",
-          "period": "/ month",
-          "description": "Most popular maintenance plan.",
-          "badge": "Recommended",
-          "features": [
-            "Everything in Lite",
-            "Monthly backups",
-            "Analytics monitoring",
-            "Small content updates",
-            "Priority support"
-          ],
-          "recommendedFor": [
-            "Active business websites",
-            "Sites with regular content"
-          ]
-        },
-        "pro": {
-          "name": "Pro",
-          "price": "€90",
-          "period": "/ month",
-          "description": "For active websites that change frequently.",
-          "features": [
-            "Everything in Standard",
-            "Landing page creation",
-            "SEO tweaks",
-            "Marketing updates",
-            "Up to 2–3 hours updates per month"
-          ],
-          "recommendedFor": [
-            "Marketing-driven sites",
-            "Frequently updated businesses"
-          ]
-        }
+    "title": "How We Work",
+    "subtitle": "Every project is different. Here's what we can build together.",
+    "cta": "Let's talk",
+    "emailSubject": "Inquiry: {service}",
+    "note": "Every project is scoped individually. We'll discuss requirements, timeline, and budget together.",
+    "services": {
+      "websites": {
+        "name": "Websites & Web Apps",
+        "description": "Professional websites and web applications built from scratch. Responsive design, fast performance, SEO-ready — tailored to your business.",
+        "deliverables": [
+          "Custom design & development",
+          "Mobile-first, responsive layout",
+          "SEO & performance optimization",
+          "Domain, DNS & hosting setup",
+          "Analytics integration"
+        ]
+      },
+      "software": {
+        "name": "Custom Software",
+        "description": "Dashboards, internal tools, and platforms built for your specific workflow. Modern stack, scalable architecture.",
+        "deliverables": [
+          "Requirements analysis & scoping",
+          "Full-stack development",
+          "Database design & API development",
+          "Cloud infrastructure & deployment",
+          "User training & documentation"
+        ]
+      },
+      "ai": {
+        "name": "AI & Automation",
+        "description": "Smart integrations that save time and create real value — not AI for the sake of AI. LLM workflows, data processing, and intelligent automation.",
+        "deliverables": [
+          "LLM integration & prompt engineering",
+          "Workflow automation",
+          "Data processing pipelines",
+          "Smart features & recommendations",
+          "Integration with existing systems"
+        ]
+      },
+      "support": {
+        "name": "Ongoing Support",
+        "description": "We keep things running, updated, and improving. Hosting, security, content updates, and technical support — so you can focus on your business.",
+        "deliverables": [
+          "Hosting & infrastructure management",
+          "Security updates & monitoring",
+          "Content & feature updates",
+          "Performance monitoring",
+          "Priority technical support"
+        ]
       }
     }
   },

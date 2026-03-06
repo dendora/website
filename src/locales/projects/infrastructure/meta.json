@@ -3,7 +3,7 @@
   "slug": "infrastructure",
   "year": "2024",
   "sortOrder": 5,
-  "cardBackground": "linear-gradient(135deg,#9333ea_0%,#c026d3_100%)",
+  "cardBackground": "linear-gradient(135deg,#7c3aed_0%,#9333ea_50%,#a855f7_100%)",
   "status": "in-progress",
   "category": "infrastructure",
   "techStack": [

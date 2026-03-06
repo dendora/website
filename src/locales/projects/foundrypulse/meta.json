@@ -3,7 +3,7 @@
   "slug": "foundrypulse",
   "year": "2025",
   "sortOrder": 3,
-  "cardBackground": "linear-gradient(135deg,#0f172a_0%,#1e293b_100%)",
+  "cardBackground": "linear-gradient(135deg,#1e3a5f_0%,#0f172a_50%,#172554_100%)",
   "status": "in-progress",
   "category": "web-application",
   "techStack": [

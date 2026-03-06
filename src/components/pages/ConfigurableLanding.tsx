@@ -269,6 +269,13 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
     const detailProjects = new Set(['foundrypulse', 'andihealth', 'ariel-pilismarot']);
 
+    const categoryLabels: Record<string, Record<Language, string>> = {
+      'website': { en: 'Website', hu: 'Weboldal' },
+      'web-application': { en: 'Web App', hu: 'Webalkalmazás' },
+      'data-platform': { en: 'Platform', hu: 'Platform' },
+      'infrastructure': { en: 'Infrastructure', hu: 'Infrastruktúra' },
+    };
+
     const getProjectBackgroundStyle = (project: typeof projects[number]): React.CSSProperties => {
       if (project.cardBackground) {
         return { background: project.cardBackground.replace(/_/g, ' ') };
@@ -291,68 +298,105 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
               const projectUrl = language === 'hu'
                 ? `/work/${project.slug}`
                 : `/en/work/${project.slug}`;
+              const categoryLabel = categoryLabels[project.category]?.[language] ?? project.category;
+              const topTech = project.techStack.slice(0, 3);
 
               const cardContent = (
                 <ScrollFadeArticle
                   delay={index * 0.05}
                   className={cn(
-                    "group relative overflow-hidden rounded-xl border border-black/10 bg-white",
-                    isDetailProject && "cursor-pointer hover:border-black/20 transition-colors"
+                    "work-card group relative overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm",
+                    isDetailProject && "cursor-pointer"
                   )}
                 >
-                  <div className="aspect-[16/10]" style={isFoundryPulse ? { background: '#000' } : getProjectBackgroundStyle(project)}>
-                    {project.images.hero && isFoundryPulse ? (
-                      <div className="flex h-full w-full items-center justify-center p-8">
-                        <picture>
-                          <source srcSet={project.images.hero} />
-                          <img
-                            src={project.images.hero}
-                            alt={project.metadata.title}
-                            className="max-h-full max-w-full object-contain brightness-0 invert"
-                            width={850}
-                            height={295}
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </picture>
-                      </div>
-                    ) : project.images.heroHtml && isDetailProject ? (
-                      <div className="flex h-full w-full items-center justify-center p-6" dangerouslySetInnerHTML={{ __html: project.images.heroHtml }} />
-                    ) : project.images.hero && isDetailProject ? (
-                      <img
-                        src={project.images.hero}
-                        alt={project.metadata.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-between px-4 py-3">
-                        <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-white">
-                          <div className="relative h-8 w-8" aria-hidden="true">
-                            <div className="absolute inset-0 rounded-[6px] bg-white/10" />
-                            <div className="absolute left-1 top-1 h-6 w-6 rounded-[5px] bg-white" />
-                            <div className="absolute right-1 top-1 h-6 w-2.5 rounded-r-[5px] bg-black/80" />
+                  {/* Gradient hero area with pattern overlay */}
+                  <div
+                    className="relative aspect-[16/10] overflow-hidden"
+                    style={isFoundryPulse ? { background: '#000' } : getProjectBackgroundStyle(project)}
+                  >
+                    {/* Dot pattern overlay */}
+                    <div className="card-pattern absolute inset-0 z-[1]" />
+
+                    {/* Category badge — top-left */}
+                    <div className="absolute left-3 top-3 z-[2]">
+                      <span className="inline-block rounded-full bg-white/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                        {categoryLabel}
+                      </span>
+                    </div>
+
+                    {/* Year badge — top-right */}
+                    <div className="absolute right-3 top-3 z-[2]">
+                      <span className="inline-block text-[11px] font-medium text-white/50">
+                        {project.year}
+                      </span>
+                    </div>
+
+                    {/* Center content: logo / icon / project identity */}
+                    <div className="relative z-[2] flex h-full w-full items-center justify-center">
+                      {project.images.hero && isFoundryPulse ? (
+                        <div className="flex items-center justify-center p-8">
+                          <picture>
+                            <source srcSet={project.images.hero} />
+                            <img
+                              src={project.images.hero}
+                              alt={project.metadata.title}
+                              className="max-h-full max-w-[70%] object-contain brightness-0 invert"
+                              width={850}
+                              height={295}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </picture>
+                        </div>
+                      ) : project.images.heroHtml && isDetailProject ? (
+                        <div className="flex items-center justify-center p-6" dangerouslySetInnerHTML={{ __html: project.images.heroHtml }} />
+                      ) : project.images.hero && isDetailProject ? (
+                        <img
+                          src={project.images.hero}
+                          alt={project.metadata.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center gap-3">
+                          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm">
+                            <div className="relative h-8 w-8" aria-hidden="true">
+                              <div className="absolute inset-0 rounded-lg bg-white/20" />
+                              <div className="absolute left-1 top-1 h-6 w-6 rounded-[5px] bg-white" />
+                              <div className="absolute right-1 top-1 h-6 w-2.5 rounded-r-[5px] bg-black/80" />
+                            </div>
                           </div>
-                          <span className="text-sm font-medium tracking-tight">{project.metadata.title}</span>
+                          <span className="text-sm font-semibold tracking-tight text-white">{project.metadata.title}</span>
                         </div>
-                        <div className="text-[10px] uppercase tracking-[0.18em] text-white/70">
-                          <span>{t(language, 'work.caseStudy')}</span>
-                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Card body */}
+                  <div className="p-5">
+                    <h3 className="text-base font-semibold text-gray-900">
+                      {project.metadata.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-gray-500 line-clamp-3">
+                      {project.metadata.description}
+                    </p>
+
+                    {/* Tech chips */}
+                    {topTech.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {topTech.map((tech) => (
+                          <span key={tech} className="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-500">
+                            {tech}
+                          </span>
+                        ))}
                       </div>
                     )}
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-base font-semibold">
-                      <span>{project.metadata.title}</span>
-                    </h3>
-                    <p className="mt-1 text-sm text-black/70 line-clamp-3">
-                      <span>{project.metadata.description}</span>
-                    </p>
+
                     {isDetailProject && (
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm text-black/70 group-hover:text-black transition-colors">
-                        <span>{t(language, 'work.viewProject')}</span>
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-gray-900 group-hover:gap-2.5 transition-all">
+                        {t(language, 'work.viewProject')}
+                        <ArrowRight className="h-4 w-4" />
                       </span>
                     )}
                   </div>
@@ -360,7 +404,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
               );
 
               return isDetailProject ? (
-                <a key={project.id} href={projectUrl} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 rounded-xl">
+                <a key={project.id} href={projectUrl} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 rounded-2xl">
                   {cardContent}
                 </a>
               ) : <React.Fragment key={project.id}>{cardContent}</React.Fragment>;

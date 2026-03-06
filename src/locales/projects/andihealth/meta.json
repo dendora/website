@@ -3,7 +3,7 @@
   "slug": "andihealth",
   "year": "2026",
   "sortOrder": 2,
-  "cardBackground": "linear-gradient(135deg,#3a3a3a_0%,#1a1a2e_100%)",
+  "cardBackground": "linear-gradient(135deg,#e11d48_0%,#be123c_50%,#9f1239_100%)",
   "status": "completed",
   "category": "web-application",
   "techStack": [

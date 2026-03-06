@@ -3,7 +3,7 @@
   "slug": "ariel-pilismarot",
   "year": "2026",
   "sortOrder": 1,
-  "cardBackground": "linear-gradient(135deg,#2d4a4a_0%,#1a3535_100%)",
+  "cardBackground": "linear-gradient(135deg,#0d9488_0%,#115e59_50%,#134e4a_100%)",
   "status": "completed",
   "category": "website",
   "techStack": [

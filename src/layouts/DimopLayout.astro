@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
 
 // Single-language page (Hungarian only)
 const hreflangs = {
-  hu: '/dimop',
+  hu: '/dimop/',
 };
 ---
 
@@ -39,7 +39,7 @@ const hreflangs = {
     <meta name="theme-color" content="#059669" />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href={`${baseUrl}/dimop`} />
+    <link rel="canonical" href={`${baseUrl}/dimop/`} />
     
     <!-- Single language, no hreflang alternates needed -->
     <link rel="alternate" hreflang="hu" href={`${baseUrl}${hreflangs.hu}`} />

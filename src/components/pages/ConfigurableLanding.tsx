@@ -295,8 +295,8 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
             {projects.map((project, index) => {
               const isDetailProject = detailProjects.has(project.id);
               const projectUrl = language === 'hu'
-                ? `/work/${project.slug}`
-                : `/en/work/${project.slug}`;
+                ? `/work/${project.slug}/`
+                : `/en/work/${project.slug}/`;
               const categoryLabel = categoryLabels[project.category]?.[language] ?? project.category;
               const topTech = project.techStack.slice(0, 3);
 

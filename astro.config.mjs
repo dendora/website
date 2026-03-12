@@ -8,6 +8,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://dendora.hu',
+  trailingSlash: 'always',
   
   // i18n configuration
   i18n: {

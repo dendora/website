@@ -150,7 +150,7 @@
       "success": "Thanks. We'll be in touch soon.",
       "error": "Something went wrong. Please try again."
     },
-    "fallback": "or email us directly:",
+    "fallback": "or reach us directly:",
     "cta": {
       "email": "Send an email",
       "schedule": "Schedule a call"

@@ -48,6 +48,7 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
 
 // Centralized contact info
 export const CONTACT_EMAIL = 'hello@dendora.hu';
+export const CONTACT_PHONE = '+36 30 686 3734';
 export const SITE_URL = 'https://dendora.hu';
 
 export const CURRENT_SITE_VARIANT: SiteVariant = 'default';

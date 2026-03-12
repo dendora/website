@@ -1,7 +1,7 @@
 import React from 'react';
-import { ArrowRight, Mail, Menu, X } from 'lucide-react';
+import { ArrowRight, Mail, Menu, Phone, X } from 'lucide-react';
 import { dt, type DimopLanguage } from '../../lib/dimop-translations';
-import { CONTACT_EMAIL } from '../../lib/site-config';
+import { CONTACT_EMAIL, CONTACT_PHONE } from '../../lib/site-config';
 import { Logo, MotionFade } from '../ui';
 import { DimopHero } from './DimopHero';
 import { ProblemSection } from './ProblemSection';
@@ -170,6 +170,10 @@ const DimopFooter: React.FC<{ language: DimopLanguage }> = ({ language }) => {
           </a>
           <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-gray-900 transition-colors">
             {CONTACT_EMAIL}
+          </a>
+          <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors">
+            <Phone className="h-3.5 w-3.5" />
+            {CONTACT_PHONE}
           </a>
         </div>
       </div>

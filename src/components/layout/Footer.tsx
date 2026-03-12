@@ -1,7 +1,7 @@
 import React from 'react'
-import { Globe, Mail } from 'lucide-react'
+import { Globe, Mail, Phone } from 'lucide-react'
 import { t, type Language } from '../../lib/translations'
-import { CONTACT_EMAIL, SITE_URL } from '../../lib/site-config'
+import { CONTACT_EMAIL, CONTACT_PHONE, SITE_URL } from '../../lib/site-config'
 import { Logo } from '../ui'
 
 interface FooterProps {
@@ -24,6 +24,10 @@ export default function Footer({ language }: FooterProps) {
           <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-1 hover:text-black transition-colors">
             <Mail className="h-4 w-4" />
             <span>{CONTACT_EMAIL}</span>
+          </a>
+          <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-black transition-colors">
+            <Phone className="h-4 w-4" />
+            <span>{CONTACT_PHONE}</span>
           </a>
         </div>
       </div>

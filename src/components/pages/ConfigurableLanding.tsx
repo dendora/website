@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects } from '../../lib/projects-json';
 import { getCurrentSiteConfig } from '../../lib/runtime-variant';
-import { CONTACT_EMAIL } from '../../lib/site-config';
+import { CONTACT_EMAIL, CONTACT_PHONE } from '../../lib/site-config';
 import { 
   Navigation, 
   SectionHeader, 
@@ -205,6 +205,13 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
               className="text-gray-300 underline underline-offset-2 hover:text-white transition"
             >
               {CONTACT_EMAIL}
+            </a>
+            <span className="mx-2">·</span>
+            <a
+              href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+              className="text-gray-300 underline underline-offset-2 hover:text-white transition"
+            >
+              {CONTACT_PHONE}
             </a>
           </p>
         </MotionFade>

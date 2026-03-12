@@ -150,7 +150,7 @@
       "success": "Köszönjük. Hamarosan jelentkezünk.",
       "error": "Hiba történt. Kérjük próbálja újra."
     },
-    "fallback": "vagy írjon közvetlenül:",
+    "fallback": "vagy keressen minket közvetlenül:",
     "cta": {
       "email": "E-mail küldése",
       "schedule": "Időpont egyeztetés"

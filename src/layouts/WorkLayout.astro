@@ -10,9 +10,15 @@ interface Props {
   description: string
   projectTitle?: string
   projectSubtitle?: string
+  projectSlug?: string
+  projectCategory?: string
+  projectYear?: string
+  projectTechStack?: string[]
+  projectImage?: string
+  projectUrl?: string | null
 }
 
-const { title, description, projectTitle, projectSubtitle } = Astro.props
+const { title, description, projectTitle, projectSubtitle, projectSlug, projectCategory, projectYear, projectTechStack, projectImage, projectUrl } = Astro.props
 const lang = Astro.currentLocale as 'hu' | 'en'
 const baseUrl = 'https://dendora.hu'
 
@@ -33,10 +39,32 @@ const breadcrumbJsonLd = JSON.stringify({
     ...(item.href ? { "item": `${baseUrl}${item.href}` } : {})
   }))
 })
+
+// CreativeWork structured data for project pages (SEO)
+const projectJsonLd = projectSlug ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": projectCategory === 'website' ? 'WebSite' : 'SoftwareApplication',
+  "name": projectTitle,
+  "description": description,
+  "url": projectUrl || `${baseUrl}${lang === 'hu' ? '' : '/en'}/work/${projectSlug}/`,
+  ...(projectImage ? { "image": `${baseUrl}${projectImage}` } : {}),
+  "datePublished": projectYear,
+  ...(projectTechStack?.length ? {
+    "applicationCategory": projectCategory === 'website' ? 'BusinessApplication' : 'DeveloperApplication',
+    "operatingSystem": "Web",
+    "keywords": projectTechStack.join(', ')
+  } : {}),
+  "author": {
+    "@type": "Organization",
+    "@id": "https://dendora.hu/#organization",
+    "name": "Dendora Bt."
+  }
+}) : null
 ---
 
 <Layout title={title} description={description} lang={lang}>
   <script type="application/ld+json" set:html={breadcrumbJsonLd} />
+  {projectJsonLd && <script type="application/ld+json" set:html={projectJsonLd} />}
   <div class="min-h-dvh w-full bg-white text-black antialiased">
     {/* Header */}
     <header class="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">

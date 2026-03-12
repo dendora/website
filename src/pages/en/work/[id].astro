@@ -23,6 +23,18 @@ const title = project.metadata.title + ' - Dendora';
 const description = project.metadata.description;
 ---
 
-<WorkLayout title={title} description={description} lang={lang}>
+<WorkLayout 
+  title={title} 
+  description={description} 
+  lang={lang}
+  projectTitle={project.metadata.title}
+  projectSubtitle={project.metadata.subtitle}
+  projectSlug={project.slug}
+  projectCategory={project.category}
+  projectYear={project.year}
+  projectTechStack={project.techStack}
+  projectImage={project.images.hero || undefined}
+  projectUrl={project.links.website}
+>
   <ProjectDetailsPage project={project} language={lang} client:load />
 </WorkLayout>

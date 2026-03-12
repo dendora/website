@@ -72,8 +72,12 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Dendora - Software Development" />
     <meta property="og:site_name" content="Dendora" />
     <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'hu' ? 'en_US' : 'hu_HU'} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -81,6 +85,7 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
+    <meta property="twitter:image:alt" content="Dendora - Software Development" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/dendora-d-logo.png" />
@@ -118,7 +123,8 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
       "email": "hello@dendora.hu",
       "telephone": "+36306863734",
       "sameAs": [
-        "https://github.com/dendora"
+        "https://github.com/dendora",
+        "https://www.linkedin.com/company/dendora"
       ],
       "address": {
         "@type": "PostalAddress",

@@ -1,11 +1,12 @@
 ---
 import DimopLayout from '../layouts/DimopLayout.astro';
 import { DimopLanding } from '../components/dimop';
+import dimopTranslations from '../locales/dimop/hu.json';
 
 const lang = 'hu' as const;
-const title = 'DIMOP Plusz-1.2.6/B-26 — 90%-os Digitalizációs Pályázat | Dendora';
-const description = 'DIMOP Plusz-1.2.6/B-26: 90%-os támogatássál teljes digitális szintlépés Budapesten kívüli mikro- és kisvállalkozásoknak. 3–12M Ft, beadás: 2026.03.31–06.30.';
-const keywords = 'DIMOP Plusz-1.2.6/B-26, DIMOP pályázat, 90%-os digitalizációs pályázat, KKV digitalizáció támogatás, CRM bevezetés pályázatból, AI megoldás KKV, digitális transzformáció, DIMOP támogatás 2026';
+const title = dimopTranslations.meta.title;
+const description = dimopTranslations.meta.description;
+const keywords = dimopTranslations.meta.keywords;
 ---
 
 <DimopLayout title={title} description={description} keywords={keywords} lang={lang}>

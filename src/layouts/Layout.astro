@@ -44,11 +44,19 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     
     <!-- SEO Meta Tags -->
     <meta name="description" content={description} />
-    <meta name="keywords" content="software development, web development, web applications, React, TypeScript, Go, Kubernetes, full-stack development, AI integration, cloud infrastructure, custom software, Hungary" />
+    <meta name="keywords" content={lang === 'hu'
+      ? "szoftverfejlesztés, webfejlesztés, webalkalmazás, egyedi szoftver, szoftverfejlesztés esztergom, webfejlesztés esztergom, szoftverfejlesztő cég, komárom-esztergom megye, React, TypeScript, Go, Kubernetes, full-stack fejlesztés, AI integráció, felhő infrastruktúra, magyar szoftverfejlesztés"
+      : "software development, web development, web applications, React, TypeScript, Go, Kubernetes, full-stack development, AI integration, cloud infrastructure, custom software, Hungary, Esztergom"} />
     <meta name="author" content="Dendora Bt." />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
+    
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="HU-KE" />
+    <meta name="geo.placename" content="Esztergom" />
+    <meta name="geo.position" content="47.7856;18.7403" />
+    <meta name="ICBM" content="47.7856, 18.7403" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonical || `${baseUrl}${currentPath}`} />
@@ -84,31 +92,59 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Dendora",
-      "description": "Software development agency specializing in full-stack web applications, cloud infrastructure, and AI integrations",
+      "@type": "LocalBusiness",
+      "@id": "https://dendora.hu/#organization",
+      "name": "Dendora Bt.",
+      "description": "Egyedi szoftverfejlesztés, webfejlesztés és AI megoldások Esztergomban. Full-stack fejlesztés modern eszközökkel.",
       "url": "https://dendora.hu",
       "logo": "https://dendora.hu/dendora-sw-dev-logo.png",
+      "image": "https://dendora.hu/dendora-sw-dev-logo.png",
       "email": "hello@dendora.hu",
+      "telephone": "+36306863734",
       "sameAs": [
         "https://github.com/dendora"
       ],
       "address": {
         "@type": "PostalAddress",
+        "addressLocality": "Esztergom",
+        "addressRegion": "Komárom-Esztergom",
         "addressCountry": "HU"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.7856,
+        "longitude": 18.7403
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Esztergom"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Komárom-Esztergom megye"
+        },
+        {
+          "@type": "Country",
+          "name": "Hungary"
+        }
+      ],
       "foundingDate": "2014",
       "numberOfEmployees": "2-10",
+      "priceRange": "$$",
       "knowsAbout": [
-        "Web Development",
+        "Szoftverfejlesztés",
+        "Webfejlesztés",
         "React",
         "TypeScript",
         "Go",
         "Kubernetes",
-        "Full-stack Development",
-        "Artificial Intelligence",
-        "Cloud Infrastructure"
+        "Full-stack fejlesztés",
+        "Mesterséges intelligencia",
+        "Felhő infrastruktúra",
+        "AI integráció"
       ],
+      "knowsLanguage": ["hu", "en"],
       "serviceType": [
         "Web Application Development",
         "Custom Software Development",

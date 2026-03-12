@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Szoftverfejlesztés Esztergom & Komárom-Esztergom Megye | Dendora Bt.",
+    "description": "Egyedi szoftverfejlesztés, webfejlesztés és AI megoldások Esztergomban. Full-stack fejlesztés, felhő infrastruktúra, modern webalkalmazások — az ötlettől az éles rendszerig."
+  },
   "navigation": {
     "home": "Főoldal",
     "services": "Szolgáltatások",
@@ -12,7 +16,7 @@
     }
   },
   "hero": {
-    "title": "Szoftver, amire építhetsz",
+    "title": "Szoftver, amire építhetsz.",
     "subtitle": "Digitális termékeket tervezünk és fejlesztünk — az ötlettől a működő rendszerig, egy helyen.",
     "cta": {
       "startProject": "Projekt indítása",

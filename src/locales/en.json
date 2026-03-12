@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Software Development Hungary | Dendora Bt.",
+    "description": "Custom software development, web applications and AI solutions from Hungary. Full-stack development, cloud infrastructure, and modern web apps — from idea to production."
+  },
   "navigation": {
     "home": "Home",
     "services": "Services",
@@ -12,7 +16,7 @@
     }
   },
   "hero": {
-    "title": "Software you can build on",
+    "title": "Software you can build your business on.",
     "subtitle": "We design and build digital products — from first idea to production, all in one place.",
     "cta": {
       "startProject": "Start a project",

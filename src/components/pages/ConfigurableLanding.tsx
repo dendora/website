@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { ArrowRight, Mail, CheckCircle2, Send, Loader2 } from 'lucide-react';
+import { ArrowRight, Mail, Phone, CheckCircle2, Send, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects } from '../../lib/projects-json';
@@ -198,22 +198,28 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
         )}
 
         <MotionFade delay={0.3}>
-          <p className="mt-10 text-center text-sm text-gray-500">
-            {t(language, 'contact.fallback')}{' '}
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="text-gray-300 underline underline-offset-2 hover:text-white transition"
-            >
-              {CONTACT_EMAIL}
-            </a>
-            <span className="mx-2">·</span>
-            <a
-              href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
-              className="text-gray-300 underline underline-offset-2 hover:text-white transition"
-            >
-              {CONTACT_PHONE}
-            </a>
-          </p>
+          <div className="mt-10 flex flex-col items-center gap-3">
+            <p className="text-sm text-gray-500">
+              {t(language, 'contact.fallback')}
+            </p>
+            <div className="flex items-center gap-4 text-sm">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition"
+              >
+                <Mail className="h-3.5 w-3.5" />
+                {CONTACT_EMAIL}
+              </a>
+              <span className="text-gray-600">|</span>
+              <a
+                href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+                className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition"
+              >
+                <Phone className="h-3.5 w-3.5" />
+                {CONTACT_PHONE}
+              </a>
+            </div>
+          </div>
         </MotionFade>
       </div>
     </section>

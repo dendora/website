@@ -162,7 +162,7 @@ const DimopFooter: React.FC<{ language: DimopLanguage }> = ({ language }) => {
       <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
         <div className="flex items-center gap-3">
           <Logo size="sm" />
-          <span>© {new Date().getFullYear()} Dendora. {language === 'hu' ? 'Minden jog fenntartva.' : 'All rights reserved.'}</span>
+          <span>© {new Date().getFullYear()} Dendora Bt. {language === 'hu' ? 'Minden jog fenntartva.' : 'All rights reserved.'}</span>
         </div>
         <div className="flex items-center gap-6">
           <a href={homeHref} className="hover:text-gray-900 transition-colors">

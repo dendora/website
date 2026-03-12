@@ -88,7 +88,23 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     <link rel="apple-touch-icon" sizes="180x180" href="/dendora-d-logo.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Structured Data -->
+    <!-- WebSite Schema (Google knowledge panel: name, alternateName, url) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://dendora.hu/#website",
+      "name": "Dendora",
+      "alternateName": ["Dendora Bt.", "Dendora Software Development"],
+      "url": "https://dendora.hu",
+      "inLanguage": ["hu-HU", "en-US"],
+      "publisher": {
+        "@id": "https://dendora.hu/#organization"
+      }
+    }
+    </script>
+
+    <!-- Organization / LocalBusiness Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

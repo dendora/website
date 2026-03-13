@@ -23,7 +23,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/generate-og-images.mjs && astro build",
+    "build:og": "node scripts/generate-og-images.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
@@ -35,7 +36,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.0.3",
+    "astro": "^6.0.4",
     "clsx": "^2.1.1",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
@@ -44,7 +45,9 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.0",
-    "prettier": "^3.8.1"
+    "baseline-browser-mapping": "^2.10.7",
+    "prettier": "^3.8.1",
+    "satori": "^0.25.0",
+    "sharp": "^0.34.5"
   }
 }

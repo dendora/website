@@ -21,12 +21,14 @@ if (!project) {
 
 const title = project.metadata.title + ' - Dendora';
 const description = project.metadata.description;
+const ogImage = `/og/work-${project.slug}-${lang}.png`;
 ---
 
 <WorkLayout 
   title={title} 
   description={description} 
   lang={lang}
+  ogImage={ogImage}
   projectTitle={project.metadata.title}
   projectSubtitle={project.metadata.subtitle}
   projectSlug={project.slug}

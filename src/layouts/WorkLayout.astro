@@ -16,9 +16,10 @@ interface Props {
   projectTechStack?: string[]
   projectImage?: string
   projectUrl?: string | null
+  ogImage?: string
 }
 
-const { title, description, projectTitle, projectSubtitle, projectSlug, projectCategory, projectYear, projectTechStack, projectImage, projectUrl } = Astro.props
+const { title, description, projectTitle, projectSubtitle, projectSlug, projectCategory, projectYear, projectTechStack, projectImage, projectUrl, ogImage } = Astro.props
 const lang = Astro.currentLocale as 'hu' | 'en'
 const baseUrl = 'https://dendora.hu'
 
@@ -62,7 +63,7 @@ const projectJsonLd = projectSlug ? JSON.stringify({
 }) : null
 ---
 
-<Layout title={title} description={description} lang={lang}>
+<Layout title={title} description={description} lang={lang} ogImage={ogImage}>
   <script type="application/ld+json" set:html={breadcrumbJsonLd} />
   {projectJsonLd && <script type="application/ld+json" set:html={projectJsonLd} />}
   <div class="min-h-dvh w-full bg-white text-black antialiased">

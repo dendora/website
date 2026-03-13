@@ -27,6 +27,19 @@ print(\"'self' \" + ' '.join(sorted(all_hashes)))
 
 Then update the `script-src` directive in `public/_headers` with the output.
 
+## OG Image Generation
+
+When adding, removing, or renaming projects, you **must** update the page list in `scripts/generate-og-images.mjs` to add/remove the corresponding OG image entries (both HU and EN variants).
+
+The script generates 1200×630 social preview cards for every page. It runs automatically as part of `npm run build`, or standalone via `npm run build:og`.
+
+Current pages with OG images:
+- `home-hu.png`, `home-en.png` — homepage cards
+- `dimop.png` — DIMOP landing card
+- `work-{slug}-hu.png`, `work-{slug}-en.png` — per-project cards
+
+After changes, verify images at `public/og/` or via `npx astro preview`.
+
 ## Browser Testing
 
 VS Code 1.110+ includes built-in agentic browser tools. Enable with `"workbench.browser.enableChatTools": true` and activate the browser tools in the chat tools picker.

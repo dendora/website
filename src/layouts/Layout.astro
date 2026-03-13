@@ -6,13 +6,17 @@ export interface Props {
   description: string;
   lang: 'hu' | 'en';
   canonical?: string;
+  ogImage?: string;
 }
 
-const { title, description, lang, canonical } = Astro.props;
+const { title, description, lang, canonical, ogImage } = Astro.props;
 
 // Get current URL for hreflang
 const currentPath = Astro.url.pathname;
 const baseUrl = 'https://dendora.hu';
+
+// Resolve OG image URL
+const ogImageUrl = ogImage ? `${baseUrl}${ogImage}` : `${baseUrl}/og/home-${lang}.png`;
 
 // Generate hreflang URLs
 const hreflangs = {
@@ -71,10 +75,10 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     <meta property="og:url" content={`${baseUrl}${currentPath}`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Dendora - Software Development" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:site_name" content="Dendora" />
     <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_US'} />
     <meta property="og:locale:alternate" content={lang === 'hu' ? 'en_US' : 'hu_HU'} />
@@ -84,8 +88,8 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     <meta property="twitter:url" content={`${baseUrl}${currentPath}`} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={`${baseUrl}/dendora-sw-dev-logo.png`} />
-    <meta property="twitter:image:alt" content="Dendora - Software Development" />
+    <meta property="twitter:image" content={ogImageUrl} />
+    <meta property="twitter:image:alt" content={title} />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/dendora-d-logo.png" />

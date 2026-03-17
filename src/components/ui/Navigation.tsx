@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { Logo } from './Logo';
 import { LanguageSwitcher } from '../features/LanguageSwitcher';
 import { t, type Language } from '../../lib/translations';
@@ -100,6 +100,16 @@ const Navigation: React.FC<NavigationProps> = ({
           ))}
           
           <LanguageSwitcher currentLang={language} />
+
+          {language === 'hu' && (
+            <a
+              href="/dimop/"
+              className="inline-flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-800 cursor-pointer"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              {t(language, 'navigation.dimop')}
+            </a>
+          )}
         </nav>
 
         {/* Mobile menu button */}
@@ -132,6 +142,16 @@ const Navigation: React.FC<NavigationProps> = ({
               <div className="mt-2 mb-1 flex justify-center">
                 <LanguageSwitcher currentLang={language} />
               </div>
+              {language === 'hu' && (
+                <a
+                  href="/dimop/"
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-black px-3 py-2 text-sm font-semibold text-white cursor-pointer"
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {t(language, 'navigation.dimop')}
+                </a>
+              )}
             </div>
           </nav>
         </div>

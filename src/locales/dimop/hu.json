@@ -86,7 +86,7 @@
       {
         "id": "location",
         "question": "Hol van a cég székhelye vagy telephelye?",
-        "options": ["Vidék (Budapesten és Pest megyén kívül)", "Pest megye", "Budapest", "Nem tudom"]
+        "options": ["Vidék (Budapesten és Pest megyén kívül)", "Pest megye", "Budapest"]
       },
       {
         "id": "companySize",

@@ -50,9 +50,10 @@ interface StoredState {
   contact: { name: string; email: string; phone: string };
   phase: Phase;
   catIdx: number;
+  excludeReason: string;
 }
 
-type Phase = 'qualification' | 'assessment' | 'results' | 'contact' | 'done';
+type Phase = 'qualification' | 'excluded' | 'assessment' | 'results' | 'contact' | 'done';
 
 const STORAGE_KEY = 'dendora_dimop_assessment';
 
@@ -97,6 +98,7 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
   const [contact, setContact] = useState({ name: '', email: '', phone: '' });
   const [submitting, setSubmitting] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [excludeReason, setExcludeReason] = useState('');
   const sectionRef = useRef<HTMLElement>(null);
 
   /* ── Hydrate from sessionStorage once ── */
@@ -108,6 +110,7 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
       setContact(saved.contact);
       setPhase(saved.phase === 'done' ? 'qualification' : saved.phase);
       setCatIdx(saved.catIdx);
+      if (saved.excludeReason) setExcludeReason(saved.excludeReason);
     }
     setHydrated(true);
   }, []);
@@ -115,8 +118,8 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
   /* ── Persist to sessionStorage on changes ── */
   useEffect(() => {
     if (!hydrated) return;
-    saveState({ qualAnswers, assessAnswers, contact, phase, catIdx });
-  }, [qualAnswers, assessAnswers, contact, phase, catIdx, hydrated]);
+    saveState({ qualAnswers, assessAnswers, contact, phase, catIdx, excludeReason });
+  }, [qualAnswers, assessAnswers, contact, phase, catIdx, hydrated, excludeReason]);
 
   /* ── Helpers ── */
   const assessedCount = Object.keys(assessAnswers).length;
@@ -153,6 +156,20 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
   const handleQualAnswer = useCallback((id: string, value: string) => {
     setQualAnswers(prev => ({ ...prev, [id]: value }));
     setTimeout(() => {
+      // Budapest = ineligible
+      if (id === 'location' && value === 'Budapest') {
+        setExcludeReason('budapest');
+        setPhase('excluded');
+        scrollToTop();
+        return;
+      }
+      // 50+ employees = ineligible (only micro/kis)
+      if (id === 'companySize' && value === '50+ fő') {
+        setExcludeReason('companySize');
+        setPhase('excluded');
+        scrollToTop();
+        return;
+      }
       if (qualStep < qualQuestions.length - 1) {
         setQualStep(s => s + 1);
       } else {
@@ -181,6 +198,7 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
     setQualAnswers({});
     setAssessAnswers({});
     setContact({ name: '', email: '', phone: '' });
+    setExcludeReason('');
     setPhase('qualification');
     setQualStep(0);
     setCatIdx(0);
@@ -256,6 +274,55 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
 
   if (!hydrated) return null;
 
+  /* ─────────────────── PHASE: EXCLUDED ──── */
+  if (phase === 'excluded') {
+    const reasonKey = excludeReason || 'budapest';
+    return (
+      <section ref={sectionRef} id="eligibility" className="py-24 bg-gray-50/80">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <MotionFade>
+            <div className="h-16 w-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-6">
+              <Shield className="h-8 w-8 text-amber-600" />
+            </div>
+            <h2 className="text-2xl font-extrabold text-gray-900 mb-3">
+              {dt(language, `unified.excluded.${reasonKey}.title`)}
+            </h2>
+            <p className="text-base text-gray-500 mb-6 max-w-md mx-auto">
+              {dt(language, `unified.excluded.${reasonKey}.desc`)}
+            </p>
+            <div className="flex flex-col items-center gap-3">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-gray-800 transition cursor-pointer"
+              >
+                <Mail className="h-4 w-4" />
+                {dt(language, 'unified.excludedCta')}
+              </a>
+              <button
+                onClick={() => {
+                  const stepIdx = qualQuestions.findIndex(q => q.id === excludeReason);
+                  setPhase('qualification');
+                  setQualStep(stepIdx >= 0 ? stepIdx : 0);
+                  scrollToTop();
+                }}
+                className="text-sm text-gray-500 hover:text-gray-700 transition cursor-pointer"
+              >
+                {dt(language, 'unified.excludedBack')}
+              </button>
+              <button
+                onClick={handleRestart}
+                className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition cursor-pointer"
+              >
+                <RotateCcw className="h-3 w-3" />
+                {labels.restart}
+              </button>
+            </div>
+          </MotionFade>
+        </div>
+      </section>
+    );
+  }
+
   /* ─────────────────── PHASE: DONE ─────────────────── */
   if (phase === 'done') {
     return (
@@ -303,20 +370,35 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
 
         {/* Phase Steps */}
         <div className="flex items-center justify-center gap-1 mb-8">
-          {phases.map((p, i) => (
-            <React.Fragment key={p.key}>
-              {i > 0 && <div className="w-8 h-px bg-gray-200" />}
-              <div className={cn(
-                'flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-colors',
-                i < phaseIdx ? 'bg-emerald-50 text-emerald-700' :
-                i === phaseIdx ? 'bg-gray-900 text-white' :
-                'bg-gray-100 text-gray-400'
-              )}>
-                {i < phaseIdx && <Check className="h-3 w-3" />}
-                {p.label}
-              </div>
-            </React.Fragment>
-          ))}
+          {phases.map((p, i) => {
+            const completed = i < phaseIdx;
+            const current = i === phaseIdx;
+            const handleClick = completed ? () => {
+              if (p.key === 'qualification') { setPhase('qualification'); setQualStep(0); }
+              else if (p.key === 'assessment') { setPhase('assessment'); setCatIdx(0); }
+              else if (p.key === 'results') { setPhase('results'); }
+              scrollToTop();
+            } : undefined;
+            return (
+              <React.Fragment key={p.key}>
+                {i > 0 && <div className="w-8 h-px bg-gray-200" />}
+                <button
+                  type="button"
+                  disabled={!completed}
+                  onClick={handleClick}
+                  className={cn(
+                    'flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-colors',
+                    completed ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 cursor-pointer' :
+                    current ? 'bg-gray-900 text-white cursor-default' :
+                    'bg-gray-100 text-gray-400 cursor-default'
+                  )}
+                >
+                  {completed && <Check className="h-3 w-3" />}
+                  {p.label}
+                </button>
+              </React.Fragment>
+            );
+          })}
         </div>
 
         {/* ─── PHASE 1: Qualification ─── */}
@@ -367,6 +449,39 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
                   );
                 })}
               </div>
+
+              {/* Inline feedback for previously answered steps */}
+              {qualStep > 0 && (() => {
+                const feedbackItems: Array<{ text: string; ok: boolean }> = [];
+                // Location feedback
+                const loc = qualAnswers['location'];
+                if (loc && loc !== 'Budapest') {
+                  const variant = loc.includes('Pest') ? 'C-26' : 'B-26';
+                  feedbackItems.push({
+                    text: dt(language, 'unified.feedback.locationOk') as string + ` (${variant})`,
+                    ok: true,
+                  });
+                }
+                // Size feedback
+                const size = qualAnswers['companySize'];
+                if (size && size !== '50+ fő') {
+                  feedbackItems.push({
+                    text: dt(language, 'unified.feedback.sizeOk') as string,
+                    ok: true,
+                  });
+                }
+                if (feedbackItems.length === 0) return null;
+                return (
+                  <div className="mt-4 space-y-1.5">
+                    {feedbackItems.map((f, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
+                        <span className="text-emerald-700">{f.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
 
               {qualStep > 0 && (
                 <button

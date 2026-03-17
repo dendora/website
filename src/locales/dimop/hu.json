@@ -115,7 +115,23 @@
     "phaseQualification": "Alapadatok",
     "phaseAssessment": "Digitális szint",
     "phaseResults": "Eredmény",
-    "contactTitle": "Küldjük el a személyes visszajelzést!"
+    "contactTitle": "Küldjük el a személyes visszajelzést!",
+    "excluded": {
+      "budapest": {
+        "title": "Budapest sajnos nem jogosult",
+        "desc": "A DIMOP Plusz-1.2.6 pályázat kizárólag Budapesten kívüli mikro- és kisvállalkozásoknak szól (vidék: B-26, Pest megye: C-26). Ha van vidéki vagy Pest megyei telephelye, az alapján pályázhat."
+      },
+      "companySize": {
+        "title": "Középvállalkozás sajnos nem jogosult",
+        "desc": "A DIMOP Plusz-1.2.6 pályázat kizárólag mikrovállalkozásoknak (1–9 fő) és kisvállalkozásoknak (10–49 fő) szól. 50 vagy annál több alkalmazottal nem lehet pályázni."
+      }
+    },
+    "excludedCta": "Kérdése van? Írjon nekünk",
+    "excludedBack": "← Válasz módosítása",
+    "feedback": {
+      "locationOk": "✓ Székhely jogosult régióban",
+      "sizeOk": "✓ Vállalkozásméret megfelel (mikro- vagy kisvállalkozás)"
+    }
   },
   "preAssessment": {
     "eyebrow": "Gyors digitális felmérés",

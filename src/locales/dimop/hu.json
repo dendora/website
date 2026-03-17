@@ -1,16 +1,16 @@
 {
   "meta": {
     "title": "DIMOP Plusz digitalizáció — 3–12M Ft támogatás | Dendora",
-    "description": "Pályázzon a DIMOP Plusz-1.2.6/B-26 (II. kör) felhívásra. 3–12 millió Ft vissza nem térítendő támogatás mikro- és kisvállalkozásoknak, kulcsrakész megvalósítással.",
-    "keywords": "DIMOP Plusz pályázat, digitalizáció támogatás, KKV digitalizáció, DIMOP 2026, DIMOP Plusz 1.2.6"
+    "description": "Pályázzon a DIMOP Plusz-1.2.6 (II. kör) felhívásra. 3–12 millió Ft vissza nem térítendő támogatás Budapesten kívüli mikro- és kisvállalkozásoknak, kulcsrakész megvalósítással.",
+    "keywords": "DIMOP Plusz pályázat, digitalizáció támogatás, KKV digitalizáció, DIMOP 2026, DIMOP Plusz 1.2.6, DIMOP B-26, DIMOP C-26, Pest megye pályázat"
   },
   "hero": {
-    "badge": "DIMOP Plusz-1.2.6/B-26 — Beadás: 2026.03.31. – 06.30.",
+    "badge": "DIMOP Plusz-1.2.6 (B-26 / C-26) — Beadás: 2026.03.31. – 06.30.",
     "title": "Digitalizálja cégét.\nAkár 90% támogatással.",
     "subtitle": "A DIMOP Plusz keretében 3–12 millió Ft támogatás érhető el mikro- és kisvállalkozásoknak. A szükséges szoftvert és hardvert szállítjuk, a bevezetést és a képzést is végigvisszük.",
     "cta": "Jogosultság ellenőrzése",
     "proofItems": [
-      "Budapesten kívüli mikro- és kisvállalkozásoknak",
+      "Budapesten kívüli mikro- és kisvállalkozásoknak (vidék + Pest megye)",
       "MKIK digitális felmérés és fejlesztési koncepció szükséges",
       "Hardver és szoftver együtt támogatható"
     ],
@@ -85,8 +85,8 @@
     "questions": [
       {
         "id": "location",
-        "question": "Van Budapesten kívüli székhely vagy telephely?",
-        "options": ["Igen", "Nem", "Nem tudom"]
+        "question": "Hol van a cég székhelye vagy telephelye?",
+        "options": ["Vidék (Budapesten és Pest megyén kívül)", "Pest megye", "Budapest", "Nem tudom"]
       },
       {
         "id": "companySize",
@@ -113,7 +113,7 @@
     "items": [
       {
         "question": "Ki pályázhat?",
-        "answer": "Budapesten kívüli székhellyel vagy telephellyel rendelkező mikro- és kisvállalkozások, akik jelenleg alacsony digitális intenzitással működnek. A pályázathoz szükséges egy digitális felmérés és Digitális Fejlesztési Koncepció (az MKIK közreműködésével)."
+        "answer": "Budapesten kívüli székhellyel vagy telephellyel rendelkező mikro- és kisvállalkozások — vidéken (B-26) és Pest megyében (C-26) egyaránt. Feltétel az alacsony digitális intenzitás, valamint egy digitális felmérés és Digitális Fejlesztési Koncepció (az MKIK közreműködésével)."
       },
       {
         "question": "Mennyi a támogatás?",
@@ -130,6 +130,14 @@
       {
         "question": "Mi a különbség köztetek és egy pályázatíró iroda között?",
         "answer": "Egy pályázatíró iroda elsősorban a beadásban segít. Mi a teljes projektet visszük végig: tervezés, fejlesztés, beszerzés, betanítás és üzemeltetés. Egy partner, kulcsrakészen."
+      },
+      {
+        "question": "Ez egy hivatalos program?",
+        "answer": "Igen. A DIMOP Plusz pályázatot 2026. március 16-án az MKIK sajtótájékoztatóján hivatalosan is bemutatták. A programot a Magyar Kereskedelmi és Iparkamara koordinálja, a részleteket a palyazat.gov.hu oldalon is megtalálja."
+      },
+      {
+        "question": "Mi a különbség a B-26 és C-26 között?",
+        "answer": "Ugyanaz a pályázat, két régióra bontva. A B-26 a vidéki (Budapesten és Pest megyén kívüli) vállalkozásoknak szól, a C-26 a Pest megyeieknek. A feltételek, összegek és határidők azonosak. Budapest nem jogosult egyikre sem."
       }
     ]
   },

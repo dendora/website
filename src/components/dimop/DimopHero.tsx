@@ -40,7 +40,7 @@ export const DimopHero: React.FC<DimopHeroProps> = ({ language }) => {
         <MotionFade delay={0.3}>
           <div className="mt-10">
             <a
-              href="#qualification"
+              href="#eligibility"
               className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-8 py-4 text-base font-semibold text-white hover:bg-gray-800 transition cursor-pointer group"
             >
               {dt(language, 'hero.cta')}

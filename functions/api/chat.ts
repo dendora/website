@@ -41,6 +41,24 @@ JOGOSULTSÁG:
 - C-26: Pest megyei székhellyel vagy telephellyel rendelkező mikro- és kisvállalkozások
 - Mindkettő: akik jelenleg nagyon alacsony digitális intenzitással működnek
 - Szükséges a digitális intenzitási szint felmérése és egy Digitális Fejlesztési Koncepció elkészítése (az MKIK közreműködésével)
+- A felmérésre a kkvdigital.dkf.hu oldalon lehet regisztrálni (kkvdigital.dkf.hu/regisztracio) — ez a pályázat kötelező előfeltétele
+
+KÖTELEZŐ DIGITÁLIS FELMÉRÉS (kkvdigital.dkf.hu):
+A pályázat előfeltétele a digitális intenzitási szintfelmérés kitöltése a kkvdigital.dkf.hu oldalon.
+A felmérés 26 kérdésből áll, 6 kategóriában:
+1) Internethasználat (K1-5): sávszélesség, dolgozók internetelérése, mobil eszközök, távoli hozzáférés, online meetingek
+2) Internetes jelenlét (K6-8): saját weboldal és funkciói, közösségi média, fizetős online hirdetés
+3) IKT-készségek (K9-10): IKT-képzés biztosítása, IKT-szakember alkalmazása
+4) IKT-biztonság (K11-13): biztonságtudatossági képzés, biztonsági intézkedések (jelszó, 2FA, titkosítás, mentés, VPN stb.), biztonsági dokumentáció
+5) Üzleti szoftverek (K14-16): ERP rendszer, CRM megoldás, elektronikus számlázás
+6) Technológiahasználat és e-kereskedelem (K17-26): felhőszolgáltatások, adatanalitika, MI (mesterséges intelligencia), robotok, IoT, webes értékesítés aránya
+
+A kérdésekre adott válaszok alapján a DII (Digital Intensity Index) pontszám számítódik. Az alacsony szint (pályázati jogosultsághoz szükséges) jellemzően azt jelenti, hogy a legtöbb területen alapszintű vagy hiányzó digitális megoldásokat használ a vállalkozás.
+A minta kérdőív nyilvánosan elérhető: kkvdigital.dkf.hu/assets/pdf/Minta_kerdoiv.pdf
+A módszertani útmutató: kkvdigital.dkf.hu/assets/pdf/DIMOP_felmeresi_modszertan.pdf
+A kitöltés kb. 15-20 perc, a válaszok automatikusan mentődnek, később is folytatható. Regisztráció: kkvdigital.dkf.hu/regisztracio
+
+Ha valaki a felmérésről kérdez, segíts eligazodni a kategóriákban. A Dendora a felmérés kitöltéséhez útmutatást ad, és a projekt tervezésekor a felmérés eredményeire építünk.
 
 MIRE LEHET KÖLTENI:
 - Hardver: laptop, PC, monitor, hálózati eszköz, mobiltelefon, tablet, multifunkciós nyomtató

@@ -11,3 +11,5 @@ export { AiServicesSection } from './AiServicesSection';
 export { LeadQualificationForm } from './LeadQualificationForm';
 export { FaqSection } from './FaqSection';
 export { AiChatWidget } from './AiChatWidget';
+export { PreAssessmentSection } from './PreAssessmentSection';
+export { EligibilityAssessment } from './EligibilityAssessment';

@@ -63,7 +63,7 @@
       {
         "step": "1",
         "title": "Felmérés",
-        "description": "Kitölti a rövid kérdőívet. 24 órán belül visszajelzünk, hogy jogosult lehet-e, és milyen fejlesztés férhet bele."
+        "description": "Kitölti a rövid kérdőívet. 24 órán belül visszajelzünk, hogy jogosult lehet-e, és milyen fejlesztés férhet bele. Közben érdemes a kötelező MKIK felmérésre is regisztrálni a kkvdigital.dkf.hu oldalon."
       },
       {
         "step": "2",
@@ -108,6 +108,223 @@
       "phonePlaceholder": "+36 20 123 4567"
     }
   },
+  "unified": {
+    "eyebrow": "Jogosultsági felmérés",
+    "title": "Jogosult a 90%-os támogatásra?",
+    "subtitle": "3 gyors kérdés + 12 digitális felmérő kérdés — megtudja, milyen eséllyel pályázhat a DIMOP Pluszra.",
+    "phaseQualification": "Alapadatok",
+    "phaseAssessment": "Digitális szint",
+    "phaseResults": "Eredmény",
+    "contactTitle": "Küldjük el a személyes visszajelzést!"
+  },
+  "preAssessment": {
+    "eyebrow": "Gyors digitális felmérés",
+    "title": "Hol tart a cége digitálisan?",
+    "subtitle": "Válaszoljon 12 egyszerű kérdésre, és megtudja, jogosult-e a DIMOP pályázatra. Ez nem a hivatalos felmérés — az a kkvdigital.dkf.hu oldalon végezhető el.",
+    "prev": "Előző",
+    "next": "Következő",
+    "submit": "Eredmény megtekintése",
+    "categories": [
+      {
+        "id": "internet",
+        "name": "Internet",
+        "questions": [
+          {
+            "id": "q1_bandwidth",
+            "question": "Milyen sebességű a cég internetkapcsolata?",
+            "hint": "A helyhez kötött internetelőfizetés szerinti maximális letöltési sebesség.",
+            "options": [
+              { "value": "low", "label": "Nincs vagy < 30 Mbps" },
+              { "value": "high", "label": "30 Mbps felett" }
+            ],
+            "diiPositive": ["high"]
+          },
+          {
+            "id": "q2_access",
+            "question": "A dolgozók többsége (>50%) rendelkezik interneteléréssel a munkahelyén?",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          },
+          {
+            "id": "q3_remote",
+            "question": "Van távoli hozzáférés a céges e-mailhez, dokumentumokhoz vagy rendszerekhez?",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          },
+          {
+            "id": "q4_meetings",
+            "question": "Tartott a cég legalább 4 online megbeszélést az elmúlt 12 hónapban?",
+            "hint": "Pl. Teams, Zoom, Google Meet.",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          }
+        ]
+      },
+      {
+        "id": "presence",
+        "name": "Jelenlét",
+        "questions": [
+          {
+            "id": "q5_website",
+            "question": "Rendelkezik a cég saját, bárki által elérhető weboldallal, saját domain-nel?",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          },
+          {
+            "id": "q6_social",
+            "question": "Használ a cég közösségi médiát (Facebook, Instagram, LinkedIn stb.)?",
+            "hint": "Saját profil, legalább havi egy bejegyzés.",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "one", "label": "1 platformot" },
+              { "value": "multi", "label": "2 vagy többet" }
+            ],
+            "diiPositive": ["one", "multi"]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "Biztonság",
+        "questions": [
+          {
+            "id": "q7_ikt_training",
+            "question": "Kaptak a dolgozók IKT-képzést vagy IT-biztonsági tájékoztatást az elmúlt 12 hónapban?",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          },
+          {
+            "id": "q8_security",
+            "question": "Alkalmaz a cég legalább 3 biztonsági intézkedést? (erős jelszó, 2FA, mentés, VPN, titkosítás stb.)",
+            "options": [
+              { "value": "no", "label": "Nem / kevesebbet" },
+              { "value": "yes", "label": "Igen, legalább 3-at" }
+            ],
+            "diiPositive": ["yes"]
+          }
+        ]
+      },
+      {
+        "id": "software",
+        "name": "Szoftverek",
+        "questions": [
+          {
+            "id": "q9_erp",
+            "question": "Használ a cég vállalatirányítási rendszert (ERP)?",
+            "hint": "Pl. SAP, Microsoft Dynamics, vagy bármilyen integrált üzleti szoftver.",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          },
+          {
+            "id": "q10_crm",
+            "question": "Használ a cég ügyfélkapcsolat-kezelő (CRM) rendszert?",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          }
+        ]
+      },
+      {
+        "id": "tech",
+        "name": "Technológia",
+        "questions": [
+          {
+            "id": "q11_cloud",
+            "question": "Használ a cég fizetős felhőszolgáltatást?",
+            "hint": "Pl. Office 365, Google Workspace, Amazon AWS, bármilyen SaaS megoldás.",
+            "options": [
+              { "value": "no", "label": "Nem" },
+              { "value": "yes", "label": "Igen" }
+            ],
+            "diiPositive": ["yes"]
+          },
+          {
+            "id": "q12_ecommerce",
+            "question": "Az árbevétel hány százaléka származik webes értékesítésből?",
+            "hint": "Saját webshop, piactér (pl. eMag, Etsy) vagy webes foglalás.",
+            "options": [
+              { "value": "none", "label": "Nincs webes értékesítés" },
+              { "value": "low", "label": "1% alatt" },
+              { "value": "above", "label": "1% felett" }
+            ],
+            "diiPositive": ["above"]
+          }
+        ]
+      }
+    ],
+    "checklist": [
+      {
+        "category": "Internet",
+        "items": [
+          "Készítse elő az internet-előfizetés adatait (sebesség, szolgáltató)",
+          "Számolja meg, hány dolgozónak van internet-hozzáférése"
+        ]
+      },
+      {
+        "category": "Jelenlét",
+        "items": [
+          "Ellenőrizze, hogy a weboldal elérhető-e és saját domain-en fut",
+          "Nézze meg, milyen közösségi média profiljai vannak a cégnek"
+        ]
+      },
+      {
+        "category": "Biztonság",
+        "items": [
+          "Gondolja végig, volt-e IT-biztonsági tájékoztató vagy képzés",
+          "Listázza ki a használt biztonsági megoldásokat (jelszópolitika, 2FA, VPN, mentés)"
+        ]
+      },
+      {
+        "category": "Szoftverek",
+        "items": [
+          "Tudja, milyen üzleti szoftvereket használ (számlázó, ERP, CRM)",
+          "Ellenőrizze, küld-e a cég automatikus feldolgozásra alkalmas e-számlát"
+        ]
+      },
+      {
+        "category": "Technológia",
+        "items": [
+          "Listázza a fizetős felhőszolgáltatásokat (Office 365, Google, stb.)",
+          "Becsülje meg a webes értékesítés arányát az árbevételben"
+        ]
+      }
+    ],
+    "results": {
+      "title": "Az Ön eredménye",
+      "low": "Alacsony digitális szint — nagy eséllyel jogosult",
+      "lowDesc": "Vállalkozása a legtöbb területen fejlesztésre szorul. Ez pont az a helyzet, amire a DIMOP Plusz pályázat készült.",
+      "medium": "Közepes digitális szint — érdemes ellenőrizni",
+      "mediumDesc": "Vannak meglévő megoldásai, de több területen is van fejlesztési lehetőség. Konzultáljon velünk a jogosultságról.",
+      "high": "Magas digitális szint — valószínűleg nem jogosult",
+      "highDesc": "Vállalkozása már sok digitális megoldást használ. A DIMOP Plusz kifejezetten az alacsony szintű vállalkozásoknak szól.",
+      "ctaLow": "Igen, kérem a jogosultsági visszajelzést",
+      "ctaMedium": "Kérem a jogosultsági visszajelzést",
+      "ctaHigh": "Azért ellenőrizném a jogosultságot",
+      "restart": "Újrakezdés",
+      "disclaimer": "Ez egy tájékoztató jellegű előszűrés. A hivatalos digitális intenzitási szintfelmérést a kkvdigital.dkf.hu oldalon kell elvégezni a pályázat beadásához.",
+      "checklistTitle": "Készüljön fel — ezt érdemes kéznél tartani:"
+    }
+  },
   "faq": {
     "title": "Gyakori kérdések",
     "items": [
@@ -138,6 +355,14 @@
       {
         "question": "Mi a különbség a B-26 és C-26 között?",
         "answer": "Ugyanaz a pályázat, két régióra bontva. A B-26 a vidéki (Budapesten és Pest megyén kívüli) vállalkozásoknak szól, a C-26 a Pest megyeieknek. A feltételek, összegek és határidők azonosak. Budapest nem jogosult egyikre sem."
+      },
+      {
+        "question": "Mi az a kötelező digitális felmérés?",
+        "answer": "A pályázat előfeltétele egy 26 kérdéses digitális intenzitási felmérés a kkvdigital.dkf.hu oldalon. A kérdőív 6 területet vizsgál: internethasználat, internetes jelenlét, IKT-készségek, IKT-biztonság, üzleti szoftverek és technológiahasználat. A kitöltés ~15-20 perc, a válaszok automatikusan mentődnek. A regisztrálás után az ügyfélfiókból letölthető a digitális szint igazolása, ami a pályázat beadásának előfeltétele. A minta kérdőív nyilvánosan elérhető a kkvdigital.dkf.hu oldalon."
+      },
+      {
+        "question": "Milyen kérdéseket tartalmaz a felmérés?",
+        "answer": "A 26 kérdés a vállalkozás jelenlegi digitális megoldásait méri fel: internet sávszélesség, dolgozók számítógép/internet-elérése, weboldal létezése, közösségi média, IT-biztonsági intézkedések, ERP/CRM használat, felhőszolgáltatások, e-kereskedelem aránya, AI használat stb. Nincs szabad szöveges válasz, csak feleletválasztós kérdések. A Dendora segít felkészülni a kitöltésre és az eredmény alapján megtervezzük a fejlesztést."
       }
     ]
   },
@@ -149,7 +374,8 @@
   },
   "navigation": {
     "process": "Hogyan működik?",
+    "assessment": "Felmérés",
     "faq": "GYIK",
-    "cta": "Jogosultság"
+    "cta": "Felmérés indítása"
   }
 }

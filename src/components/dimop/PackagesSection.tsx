@@ -100,7 +100,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ language }) =>
 
                 {/* CTA */}
                 <a
-                  href="#qualification"
+                  href="#eligibility"
                   className={cn(
                     'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition group cursor-pointer',
                     item.popular

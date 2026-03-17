@@ -4,7 +4,7 @@ import { dt, type DimopLanguage } from '../../lib/dimop-translations';
 import { CONTACT_EMAIL, CONTACT_PHONE } from '../../lib/site-config';
 import { Logo, MotionFade } from '../ui';
 import { DimopHero } from './DimopHero';
-import { LeadQualificationForm } from './LeadQualificationForm';
+import { EligibilityAssessment } from './EligibilityAssessment';
 import { FaqSection } from './FaqSection';
 import { AiChatWidget } from './AiChatWidget';
 
@@ -25,16 +25,17 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+    <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <a href={homeHref} className="flex items-center gap-3 cursor-pointer" aria-label="Dendora home">
           <Logo size="md" showText textContent={{ companyName: 'DENDORA', tagline: 'Digitalizációs Partner' }} />
         </a>
 
         <nav className="hidden items-center gap-6 md:flex">
           <a href="#process" className="text-sm text-black/50 hover:text-black transition cursor-pointer">{dt(language, 'navigation.process')}</a>
+          <a href="#eligibility" className="text-sm text-black/50 hover:text-black transition cursor-pointer">{dt(language, 'navigation.assessment')}</a>
           <a href="#faq" className="text-sm text-black/50 hover:text-black transition cursor-pointer">{dt(language, 'navigation.faq')}</a>
-          <a href="#qualification" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 transition cursor-pointer">
+          <a href="#eligibility" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 transition cursor-pointer">
             {dt(language, 'navigation.cta')}
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
@@ -47,10 +48,11 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
 
       {menuOpen && (
         <div className="border-t border-black/5 bg-white md:hidden">
-          <nav className="mx-auto max-w-5xl px-4 py-2 grid gap-1">
+          <nav className="mx-auto max-w-6xl px-4 py-2 grid gap-1">
             <a href="#process" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-2 text-sm text-black/70 hover:bg-black/5 block">{dt(language, 'navigation.process')}</a>
+            <a href="#eligibility" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-2 text-sm text-black/70 hover:bg-black/5 block">{dt(language, 'navigation.assessment')}</a>
             <a href="#faq" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-2 text-sm text-black/70 hover:bg-black/5 block">{dt(language, 'navigation.faq')}</a>
-            <a href="#qualification" onClick={() => setMenuOpen(false)} className="mt-1 inline-flex items-center gap-2 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">
+            <a href="#eligibility" onClick={() => setMenuOpen(false)} className="mt-1 inline-flex items-center gap-2 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">
               {dt(language, 'navigation.cta')} <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </nav>
@@ -179,7 +181,7 @@ const FinalCtaSection: React.FC<{ language: DimopLanguage }> = ({ language }) =>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="#qualification"
+              href="#eligibility"
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-gray-950 hover:bg-gray-100 transition cursor-pointer"
             >
               {dt(language, 'cta.primary')}
@@ -238,7 +240,7 @@ export const DimopLanding: React.FC<DimopLandingProps> = ({ language }) => (
       <ValueSection language={language} />
       <TrustSection language={language} />
       <ProcessSection language={language} />
-      <LeadQualificationForm language={language} />
+      <EligibilityAssessment language={language} />
       <FaqSection language={language} />
       <FinalCtaSection language={language} />
     </main>

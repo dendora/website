@@ -32,13 +32,13 @@ const Card: React.FC<CardProps> = ({
   onClick,
   href
 }) => {
-  const baseStyles = 'relative rounded-xl border border-black/5 bg-white transition';
+  const baseStyles = 'relative rounded-xl border border-black/5 bg-white transition-all duration-200';
   
   const variants = {
-    feature: 'group p-6 shadow-sm hover:shadow-md',
+    feature: 'group p-6 shadow-sm hover:shadow-md hover:border-black/10',
     project: 'group overflow-hidden border-black/10',
-    info: 'p-4 border-black/10',
-    tech: 'p-4 border-black/10'
+    info: 'p-4 border-black/10 hover:border-black/15',
+    tech: 'p-4 border-black/10 hover:border-black/15'
   };
 
   const cardContent = (

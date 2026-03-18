@@ -236,8 +236,8 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
   // Hero - centered, confident, minimal
   const renderHero = () => (
-    <section id="hero" className="min-h-[85vh] flex items-center justify-center px-4">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="hero" className="hero-gradient min-h-[85vh] flex items-center justify-center px-4">
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
         <MotionFade>
           <div className="mb-8 flex justify-center">
             <Logo size="md" />
@@ -307,6 +307,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
           <div className="grid gap-6 md:grid-cols-2 items-start">
             {projects.map((project, index) => {
+              const staggerDelay = Math.floor(index / 2) * 0.08 + (index % 2) * 0.04;
               const isDetailProject = detailProjects.has(project.id);
               const projectUrl = language === 'hu'
                 ? `/work/${project.slug}/`
@@ -316,7 +317,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
 
               const cardContent = (
                 <ScrollFadeArticle
-                  delay={index * 0.05}
+                  delay={staggerDelay}
                   className={cn(
                     "work-card group relative overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm",
                     isDetailProject && "cursor-pointer"

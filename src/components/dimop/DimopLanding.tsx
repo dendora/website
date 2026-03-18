@@ -13,6 +13,25 @@ interface DimopLandingProps {
   language: DimopLanguage;
 }
 
+/* ── Scroll progress indicator ──────────────────────────────────── */
+const ScrollProgress: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const onScroll = () => {
+      const h = document.documentElement;
+      const pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+      el.style.transform = `scaleX(${Math.min(pct, 1)})`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return <div ref={ref} className="scroll-progress" style={{ transform: 'scaleX(0)' }} />;
+};
+
 /* ── Nav ───────────────────────────────────────────────────────── */
 const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -252,6 +271,7 @@ const DimopFooter: React.FC<{ language: DimopLanguage }> = ({ language }) => {
 /* ── Page ──────────────────────────────────────────────────────── */
 export const DimopLanding: React.FC<DimopLandingProps> = ({ language }) => (
   <div className="min-h-screen bg-white">
+    <ScrollProgress />
     <DimopNav language={language} />
     <main>
       <DimopHero language={language} />

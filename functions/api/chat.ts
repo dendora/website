@@ -14,11 +14,13 @@ interface Env {
 
 interface ChatPayload {
   messages: Array<{ role: 'user' | 'assistant'; content: string }>;
+  context?: 'dimop' | 'general';
+  language?: 'hu' | 'en';
 }
 
 // Sources: MKIK Facebook (fb.com/photo.php?fbid=1312961421032849), palyazat.gov.hu,
 //          MKIK press conference 2026-03-16 (facebook.com/digitalis.megujulas)
-const SYSTEM_PROMPT = `Te a Dendora digitális asszisztense vagy. A DIMOP pályázatról és a Dendora szolgáltatásairól segítesz a látogatóknak. Magyarul válaszolj, röviden és lényegre törően.
+const DIMOP_SYSTEM_PROMPT = `Te a Dendora digitális asszisztense vagy. A DIMOP pályázatról és a Dendora szolgáltatásairól segítesz a látogatóknak. Magyarul válaszolj, röviden és lényegre törően.
 
 A DIMOP PÁLYÁZATRÓL (hivatalosan megerősített adatok):
 - Hivatalos neve: „KKV-k növekedési lehetőségeinek támogatása a digitális infrastruktúra és transzformáció elősegítésére (II. kör)"
@@ -111,6 +113,48 @@ SZABÁLYOK:
 - NE találj ki információt — ha valamit nem tudsz biztosan, mondd meg
 - Ha nem DIMOP/Dendora témáról kérdeznek, udvariasan tereld vissza`;
 
+const GENERAL_SYSTEM_PROMPT = `Te a Dendora AI asszisztense vagy. A Dendora Bt. szolgáltatásairól, munkamódszeréről és referenciáiról segítesz a látogatóknak. A felhasználó nyelvén válaszolj (ha magyarul ír: magyarul, ha angolul: angolul). Röviden és lényegre törően.
+
+A DENDORÁRÓL:
+- Esztergomi (Komárom-Esztergom megye) szoftverfejlesztő csapat, 10+ év tapasztalattal
+- Full-stack fejlesztés modern eszközökkel, 100% távmunka
+- Az ötlettől a működő rendszerig egy helyen: tervezés, fejlesztés, deploy, üzemeltetés
+- Elérhetőség: hello@dendora.hu, +36 30 686 3734
+
+SZOLGÁLTATÁSAINK:
+1. Weboldalak & Webappok: Egyedi design, reszponzív fejlesztés, SEO-optimalizálás, domain/hosting beállítás, analitika
+2. Egyedi szoftver: Dashboardok, belső eszközök, platformok — igényfelmérés, full-stack fejlesztés, adatbázis/API, felhő deploy, oktatás
+3. AI & Automatizálás: LLM integráció, munkafolyamat-automatizálás, adatfeldolgozás, okos funkciók, meglévő rendszerekkel integráció
+4. Folyamatos támogatás: Hosting kezelés, biztonsági frissítések, tartalom- és funkciófrissítések, monitoring, kiemelt support
+
+HOGYAN DOLGOZUNK:
+- Minden projekt egyéni árazás — nincs csomagár, a konkrét igények alapján adunk ajánlatot
+- Első lépés: beszélgetés a projektről, igényfelmérés
+- Általában 24 órán belül válaszolunk
+
+REFERENCIÁK:
+- FoundryPulse: autóipari gyártás-monitorozó rendszer
+- AndiHealth: egészségügyi webalkalmazás
+- Ariel Pilismarót: szálláshely weboldal
+- Data Platform: adatintegrációs platform
+
+DIMOP PÁLYÁZAT:
+- A Dendora segít a DIMOP Plusz pályázat keretében is — weboldal/webshop fejlesztés, CRM/ERP bevezetés, hardver+szoftver beszerzés, 90% támogatási intenzitás
+- Ha a pályázatról kérdeznek részletesen, irányítsd a dendora.hu/dimop oldalra
+
+SZABÁLYOK:
+- Légy barátságos, de szakmai
+- Rövid válaszokat adj (2-4 mondat)
+- Ha nem tudod a választ, javasolj konzultációt: hello@dendora.hu
+- Ha érdeklődik, bátorítsd, hogy írjon vagy töltse ki a kapcsolati űrlapot az oldalon
+- NE találj ki információt
+- Ha nem Dendora-releváns témáról kérdeznek, udvariasan tereld vissza`;
+
+const SYSTEM_PROMPTS: Record<string, string> = {
+  dimop: DIMOP_SYSTEM_PROMPT,
+  general: GENERAL_SYSTEM_PROMPT,
+};
+
 const MAX_MESSAGES = 20;
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -120,7 +164,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   };
 
   try {
-    const { messages } = (await context.request.json()) as ChatPayload;
+    const payload = (await context.request.json()) as ChatPayload;
+    const { messages } = payload;
+    const chatContext = payload.context === 'dimop' ? 'dimop' : 'general';
+    const lang = payload.language === 'en' ? 'en' : 'hu';
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return new Response(
@@ -148,8 +195,17 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       }
     }
 
+    const systemPrompt = chatContext === 'dimop'
+      ? SYSTEM_PROMPTS[chatContext]
+      : (lang === 'en'
+        ? SYSTEM_PROMPTS[chatContext].replace(
+            'A felhasználó nyelvén válaszolj (ha magyarul ír: magyarul, ha angolul: angolul).',
+            'Always respond in English.'
+          )
+        : SYSTEM_PROMPTS[chatContext]);
+
     const aiMessages = [
-      { role: 'system' as const, content: SYSTEM_PROMPT },
+      { role: 'system' as const, content: systemPrompt },
       ...trimmed.map((m) => ({ role: m.role as 'user' | 'assistant', content: m.content })),
     ];
 

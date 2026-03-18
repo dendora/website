@@ -13,6 +13,7 @@ import {
   PricingSection 
 } from '../ui';
 import { Footer } from '../layout';
+import { AiChatWidget } from '../dimop/AiChatWidget';
 
 interface ConfigurableLandingProps {
   language: Language;
@@ -450,6 +451,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
       </main>
 
       <Footer language={language} />
+      <AiChatWidget context="general" language={language} />
     </div>
   );
 };

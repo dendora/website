@@ -8,10 +8,10 @@ interface Message {
 }
 
 const WELCOME_MESSAGE =
-  'Szia! A DIMOP Plusz jogosultságról, a támogatható fejlesztésekről és a beadási időszakról tudok segíteni.';
+  'Szia! A DIMOP Plusz pályázatról tudok segíteni. Kérdezhet a jogosultságról, a támogatható fejlesztésekről, vagy akár végig is mehetünk együtt egy gyors jogosultsági ellenőrzésen!';
 
 const SUGGESTIONS = [
-  'Jogosult lehet a cégem?',
+  'Nézzük meg, jogosult vagyok-e!',
   'Mire lehet költeni?',
   'Meddig lehet beadni?',
 ];

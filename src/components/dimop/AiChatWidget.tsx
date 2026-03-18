@@ -204,7 +204,7 @@ export const AiChatWidget: React.FC = () => {
           {/* Footer */}
           <div className="px-3 pb-2 text-center">
             <span className="text-[10px] text-gray-400">
-              Cloudflare AI · válaszok tájékoztató jellegűek
+              Dendora AI · válaszok tájékoztató jellegűek
             </span>
           </div>
         </div>

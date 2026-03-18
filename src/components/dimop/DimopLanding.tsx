@@ -197,9 +197,9 @@ const FinalCtaSection: React.FC<{ language: DimopLanguage }> = ({ language }) =>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-white/55">
-            <span>24 órán belüli visszajelzés</span>
+            <span>{dt(language, 'cta.responseTime')}</span>
             <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
-            <span>3 kérdéses előszűrés</span>
+            <span>{dt(language, 'cta.quickCheck')}</span>
             <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
             <span>{CONTACT_PHONE}</span>
           </div>
@@ -220,7 +220,7 @@ const DimopFooter: React.FC<{ language: DimopLanguage }> = ({ language }) => {
           <span>© {new Date().getFullYear()} Dendora Bt.</span>
         </div>
         <div className="flex items-center gap-5">
-          <a href={homeHref} className="hover:text-gray-900 transition-colors">Főoldal</a>
+          <a href={homeHref} className="hover:text-gray-900 transition-colors">{dt(language, 'footer.home')}</a>
           <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-gray-900 transition-colors">{CONTACT_EMAIL}</a>
           <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors">
             <Phone className="h-3 w-3" />{CONTACT_PHONE}

@@ -7,9 +7,10 @@ export interface Props {
   lang: 'hu' | 'en';
   canonical?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, lang, canonical, ogImage } = Astro.props;
+const { title, description, lang, canonical, ogImage, noindex } = Astro.props;
 
 // Get current URL for hreflang
 const currentPath = Astro.url.pathname;
@@ -52,7 +53,7 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
       ? "szoftverfejlesztés, webfejlesztés, webalkalmazás, egyedi szoftver, szoftverfejlesztés esztergom, webfejlesztés esztergom, szoftverfejlesztő cég, komárom-esztergom megye, React, TypeScript, Go, Kubernetes, full-stack fejlesztés, AI integráció, felhő infrastruktúra, magyar szoftverfejlesztés"
       : "software development, web development, web applications, React, TypeScript, Go, Kubernetes, full-stack development, AI integration, cloud infrastructure, custom software, Hungary, Esztergom"} />
     <meta name="author" content="Dendora Bt." />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <meta name="theme-color" content="#000000" />
     <meta name="msapplication-TileColor" content="#000000" />
     

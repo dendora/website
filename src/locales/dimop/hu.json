@@ -386,7 +386,12 @@
     "eyebrow": "Következő lépés",
     "title": "Kérjen gyors jogosultsági visszajelzést.",
     "subtitle": "Ha az alapfeltételek stimmelnek, 24 órán belül jelezzük, milyen fejlesztés férhet bele a DIMOP Plusz keretébe.",
-    "primary": "Jogosultság ellenőrzése"
+    "primary": "Jogosultság ellenőrzése",
+    "responseTime": "24 órán belüli visszajelzés",
+    "quickCheck": "3 kérdéses előszűrés"
+  },
+  "footer": {
+    "home": "Főoldal"
   },
   "navigation": {
     "process": "Hogyan működik?",

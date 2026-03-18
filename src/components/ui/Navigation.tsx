@@ -19,6 +19,7 @@ const Navigation: React.FC<NavigationProps> = ({
   className = ''
 }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState<string>('');
   const menuRef = React.useRef<HTMLDivElement>(null);
 
   // Close mobile menu on Escape key
@@ -30,6 +31,26 @@ const Navigation: React.FC<NavigationProps> = ({
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen]);
+
+  // Active section tracking via IntersectionObserver
+  React.useEffect(() => {
+    if (variant !== 'landing') return;
+    const ids = ['work', 'pricing', 'contact'];
+    const sections = ids.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (sections.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    sections.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [variant]);
   
   const navItems = [{
     id: 'work',
@@ -93,7 +114,10 @@ const Navigation: React.FC<NavigationProps> = ({
             <a 
               key={n.id} 
               href={`#${n.id}`} 
-              className="text-sm text-black/70 transition hover:text-black cursor-pointer"
+              className={cn(
+                'text-sm transition cursor-pointer',
+                activeSection === n.id ? 'text-black font-medium' : 'text-black/70 hover:text-black'
+              )}
             >
               <span>{n.label}</span>
             </a>
@@ -133,7 +157,10 @@ const Navigation: React.FC<NavigationProps> = ({
                   key={n.id} 
                   href={`#${n.id}`} 
                   onClick={() => setMenuOpen(false)}
-                  className="w-full rounded-md px-2 py-2 text-left text-sm text-black/80 hover:bg-black/5 cursor-pointer block"
+                  className={cn(
+                    'w-full rounded-md px-2 py-2 text-left text-sm cursor-pointer block',
+                    activeSection === n.id ? 'text-black font-medium bg-black/5' : 'text-black/80 hover:bg-black/5'
+                  )}
                 >
                   <span>{n.label}</span>
                 </a>

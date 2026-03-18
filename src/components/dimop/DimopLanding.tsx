@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Mail, Menu, Phone, X, Compass, Hammer, HeartHandshake } from 'lucide-react';
 import { dt, type DimopLanguage } from '../../lib/dimop-translations';
+import { cn } from '../../lib/utils';
 import { CONTACT_EMAIL, CONTACT_PHONE } from '../../lib/site-config';
 import { Logo, MotionFade } from '../ui';
 import { DimopHero } from './DimopHero';
@@ -15,6 +16,7 @@ interface DimopLandingProps {
 /* ── Nav ───────────────────────────────────────────────────────── */
 const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState<string>('');
   const homeHref = language === 'hu' ? '/' : '/en/';
 
   React.useEffect(() => {
@@ -24,6 +26,22 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
     return () => document.removeEventListener('keydown', h);
   }, [menuOpen]);
 
+  React.useEffect(() => {
+    const ids = ['process', 'eligibility', 'faq'];
+    const sections = ids.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (sections.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    sections.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
@@ -32,9 +50,9 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
         </a>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <a href="#process" className="text-sm text-black/50 hover:text-black transition cursor-pointer">{dt(language, 'navigation.process')}</a>
-          <a href="#eligibility" className="text-sm text-black/50 hover:text-black transition cursor-pointer">{dt(language, 'navigation.assessment')}</a>
-          <a href="#faq" className="text-sm text-black/50 hover:text-black transition cursor-pointer">{dt(language, 'navigation.faq')}</a>
+          <a href="#process" className={cn('text-sm transition cursor-pointer', activeSection === 'process' ? 'text-black font-medium' : 'text-black/50 hover:text-black')}>{dt(language, 'navigation.process')}</a>
+          <a href="#eligibility" className={cn('text-sm transition cursor-pointer', activeSection === 'eligibility' ? 'text-black font-medium' : 'text-black/50 hover:text-black')}>{dt(language, 'navigation.assessment')}</a>
+          <a href="#faq" className={cn('text-sm transition cursor-pointer', activeSection === 'faq' ? 'text-black font-medium' : 'text-black/50 hover:text-black')}>{dt(language, 'navigation.faq')}</a>
           <a href="#eligibility" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 transition cursor-pointer">
             {dt(language, 'navigation.cta')}
             <ArrowRight className="h-3.5 w-3.5" />
@@ -49,9 +67,9 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
       {menuOpen && (
         <div className="border-t border-black/5 bg-white md:hidden">
           <nav className="mx-auto max-w-6xl px-4 py-2 grid gap-1">
-            <a href="#process" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-2 text-sm text-black/70 hover:bg-black/5 block">{dt(language, 'navigation.process')}</a>
-            <a href="#eligibility" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-2 text-sm text-black/70 hover:bg-black/5 block">{dt(language, 'navigation.assessment')}</a>
-            <a href="#faq" onClick={() => setMenuOpen(false)} className="rounded-md px-2 py-2 text-sm text-black/70 hover:bg-black/5 block">{dt(language, 'navigation.faq')}</a>
+            <a href="#process" onClick={() => setMenuOpen(false)} className={cn('rounded-md px-2 py-2 text-sm block', activeSection === 'process' ? 'text-black font-medium bg-black/5' : 'text-black/70 hover:bg-black/5')}>{dt(language, 'navigation.process')}</a>
+            <a href="#eligibility" onClick={() => setMenuOpen(false)} className={cn('rounded-md px-2 py-2 text-sm block', activeSection === 'eligibility' ? 'text-black font-medium bg-black/5' : 'text-black/70 hover:bg-black/5')}>{dt(language, 'navigation.assessment')}</a>
+            <a href="#faq" onClick={() => setMenuOpen(false)} className={cn('rounded-md px-2 py-2 text-sm block', activeSection === 'faq' ? 'text-black font-medium bg-black/5' : 'text-black/70 hover:bg-black/5')}>{dt(language, 'navigation.faq')}</a>
             <a href="#eligibility" onClick={() => setMenuOpen(false)} className="mt-1 inline-flex items-center gap-2 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">
               {dt(language, 'navigation.cta')} <ArrowRight className="h-3.5 w-3.5" />
             </a>

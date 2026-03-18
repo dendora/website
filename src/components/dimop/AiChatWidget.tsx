@@ -69,6 +69,7 @@ export const AiChatWidget: React.FC<AiChatWidgetProps> = ({
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -82,6 +83,32 @@ export const AiChatWidget: React.FC<AiChatWidgetProps> = ({
     if (open && inputRef.current) {
       inputRef.current.focus();
     }
+  }, [open]);
+
+  // Focus trap: keep Tab cycling within the chat panel
+  useEffect(() => {
+    if (!open) return;
+    const panel = panelRef.current;
+    if (!panel) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setOpen(false); return; }
+      if (e.key !== 'Tab') return;
+      const focusable = panel.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open]);
 
   const sendMessage = useCallback(
@@ -138,7 +165,11 @@ export const AiChatWidget: React.FC<AiChatWidgetProps> = ({
     <>
       {/* Chat panel */}
       {open && (
-        <div className="fixed bottom-20 right-4 z-50 w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-gray-200 bg-white shadow-2xl flex flex-col overflow-hidden"
+        <div
+          ref={panelRef}
+          role="dialog"
+          aria-label="Dendora AI Chat"
+          className="fixed bottom-20 right-4 z-50 w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-gray-200 bg-white shadow-2xl flex flex-col overflow-hidden"
           style={{ height: 'min(520px, calc(100vh - 8rem))' }}
         >
           {/* Header */}

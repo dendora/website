@@ -51,7 +51,7 @@ const Logo: React.FC<LogoProps> = ({
             size === 'lg' ? 'text-xl' : 'text-sm'
           )}>{textContent.companyName}</span>
           <span className={cn(
-            "uppercase tracking-[0.18em] text-black/60",
+            "uppercase tracking-[0.18em] text-black/70",
             size === 'lg' ? 'text-xs tracking-[0.22em]' : 'text-[10px]'
           )}>{textContent.tagline}</span>
         </div>

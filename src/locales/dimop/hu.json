@@ -79,7 +79,7 @@
   },
   "qualification": {
     "title": "Ellenőrizze, jogosult lehet-e a 90%-os támogatásra.",
-    "subtitle": "3 kérdés, kb. 30 másodperc.",
+    "subtitle": "4 kérdés, kb. 30 másodperc.",
     "submit": "Kérek gyors visszajelzést",
     "success": "Köszönjük! 24 órán belül jelezzük, hogy a megadott adatok alapján milyen irány jöhet szóba.",
     "questions": [
@@ -92,6 +92,11 @@
         "id": "companySize",
         "question": "Hány alkalmazottja van?",
         "options": ["1–9 fő (mikro)", "10–49 fő (kis)", "50+ fő"]
+      },
+      {
+        "id": "sector",
+        "question": "Mi a cég fő tevékenysége?",
+        "options": ["Kereskedelem, szolgáltatás, ipar, IT, vendéglátás", "Mezőgazdaság, halászat, erdészet", "Szerencsejáték, dohány, fegyver, pénzügy", "Egyéb / nem vagyok biztos"]
       },
       {
         "id": "need",
@@ -111,7 +116,7 @@
   "unified": {
     "eyebrow": "Jogosultsági felmérés",
     "title": "Jogosult a 90%-os támogatásra?",
-    "subtitle": "3 gyors kérdés + 12 digitális felmérő kérdés — megtudja, milyen eséllyel pályázhat a DIMOP Pluszra.",
+    "subtitle": "4 gyors kérdés + 12 digitális felmérő kérdés — megtudja, milyen eséllyel pályázhat a DIMOP Pluszra.",
     "phaseQualification": "Alapadatok",
     "phaseAssessment": "Digitális szint",
     "phaseResults": "Eredmény",
@@ -124,6 +129,10 @@
       "companySize": {
         "title": "Középvállalkozás sajnos nem jogosult",
         "desc": "A DIMOP Plusz-1.2.6 pályázat kizárólag mikrovállalkozásoknak (1–9 fő) és kisvállalkozásoknak (10–49 fő) szól. 50 vagy annál több alkalmazottal nem lehet pályázni."
+      },
+      "sector": {
+        "title": "Ez a tevékenységi kör nem támogatható",
+        "desc": "A DIMOP Plusz-1.2.6 néhány ágazatot kizár (pl. szerencsejáték, mezőgazdasági elsődleges termelés, pénzügyi szolgáltatások). Pályázaton kívül viszont szívesen segítünk weboldalban, hardverben vagy szoftverben — írjon nekünk!"
       }
     },
     "excludedCta": "Kérdése van? Írjon nekünk",

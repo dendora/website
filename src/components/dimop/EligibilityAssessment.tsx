@@ -170,6 +170,17 @@ export const EligibilityAssessment: React.FC<{ language: DimopLanguage }> = ({ l
         scrollToTop();
         return;
       }
+      // Excluded sectors per EU 651/2014 + DIMOP call (gambling, primary agriculture, finance)
+      if (
+        id === 'sector' &&
+        (value === 'Mezőgazdaság, halászat, erdészet' ||
+          value === 'Szerencsejáték, dohány, fegyver, pénzügy')
+      ) {
+        setExcludeReason('sector');
+        setPhase('excluded');
+        scrollToTop();
+        return;
+      }
       if (qualStep < qualQuestions.length - 1) {
         setQualStep(s => s + 1);
       } else {

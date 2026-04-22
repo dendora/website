@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react'
-import { ArrowLeft, Check, ExternalLink, Github } from 'lucide-react'
+import { ArrowLeft, Check, ExternalLink } from 'lucide-react'
+
+const GithubIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+    <path d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.15 8.96 7.52 10.42.55.1.75-.24.75-.53 0-.26-.01-1.13-.02-2.05-3.06.66-3.71-1.3-3.71-1.3-.5-1.27-1.22-1.61-1.22-1.61-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.92.1-.71.38-1.2.69-1.48-2.44-.28-5-1.22-5-5.43 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.39.11-2.9 0 0 .92-.29 3.02 1.13a10.5 10.5 0 0 1 5.5 0c2.1-1.42 3.02-1.13 3.02-1.13.6 1.51.22 2.62.11 2.9.7.77 1.13 1.75 1.13 2.95 0 4.22-2.57 5.15-5.02 5.42.39.34.74 1 .74 2.02 0 1.46-.01 2.64-.01 3 0 .29.2.64.76.53A11.01 11.01 0 0 0 23 11.5C23 5.24 18.27.5 12 .5Z" />
+  </svg>
+)
 import { type Language, t } from '../../lib/translations'
 import { type ProjectData } from '../../lib/projects-json'
 import { MotionFade, SectionHeader } from '../ui'
@@ -38,10 +44,10 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
             const content = project.images.heroHtml ? (
               <div dangerouslySetInnerHTML={{ __html: project.images.heroHtml }} />
             ) : (
-              <img 
-                src={project.images.hero} 
+              <img
+                src={project.images.hero}
                 alt={localizedTitle}
-                className="max-h-full max-w-full object-contain"
+                className="max-h-full max-w-[65%] object-contain brightness-0 invert drop-shadow-lg"
                 loading="lazy"
                 decoding="async"
               />
@@ -224,7 +230,7 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium hover:bg-black/5 cursor-pointer"
                 >
-                  <Github className="h-4 w-4" />
+                  <GithubIcon className="h-4 w-4" />
                   {t(language, 'projectDetails.github')}
                 </a>
               )}

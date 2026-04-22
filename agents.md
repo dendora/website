@@ -2,9 +2,19 @@
 
 ## CSP Script Hashes
 
-If you upgrade Astro or change inline scripts, the CSP hashes in `public/_headers` will need to be regenerated.
+Inline-script SHA-256 hashes in the `script-src` directive of `dist/_headers`
+are regenerated automatically by `scripts/update-csp-hashes.mjs`, which runs
+as the final step of `npm run build`. Re-run standalone with `npm run build:csp`
+after a fresh `astro build` if you want to inspect the result without rebuilding
+OG images.
 
-Run this after `npm run build` to compute the new hashes:
+The script:
+1. Walks every `dist/**/*.html` and hashes each inline `<script>` block.
+2. Rewrites only the `script-src` directive in `dist/_headers` (the source
+   `public/_headers` keeps the old hashes — Cloudflare Pages serves the deploy
+   output, so this is sufficient).
+
+If you ever need to compute hashes manually:
 
 ```bash
 python3 -c "
@@ -24,8 +34,6 @@ print('script-src value for _headers:')
 print(\"'self' \" + ' '.join(sorted(all_hashes)))
 "
 ```
-
-Then update the `script-src` directive in `public/_headers` with the output.
 
 ## OG Image Generation
 

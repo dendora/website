@@ -20,7 +20,8 @@ interface Env {
 }
 
 interface ContactPayload {
-  source: 'dimop' | 'main';
+  source: 'dimop' | 'main' | 'ai-automatizalas';
+  serviceCategory?: string;
   name: string;
   email: string;
   phone?: string;
@@ -37,7 +38,16 @@ function escapeHtml(str: string): string {
 }
 
 function buildEmailHtml(data: ContactPayload): string {
-  const source = data.source === 'dimop' ? 'DIMOP Pályázat' : 'Főoldal';
+  const sourceLabel =
+    data.source === 'dimop'
+      ? 'DIMOP Pályázat'
+      : data.source === 'ai-automatizalas'
+        ? 'AI Automatizálás'
+        : 'Főoldal';
+
+  const categoryRow = data.serviceCategory
+    ? `<tr><td style="padding:4px 0;color:#6b7280;">Szolgáltatás:</td><td style="font-weight:600;">${escapeHtml(data.serviceCategory)}</td></tr>`
+    : '';
 
   let answersHtml = '';
   if (data.answers?.length) {
@@ -66,13 +76,14 @@ function buildEmailHtml(data: ContactPayload): string {
   return `
     <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#065f46;color:white;padding:20px 24px;border-radius:8px 8px 0 0;">
-        <h2 style="margin:0;font-size:20px;">Új megkeresés — ${escapeHtml(source)}</h2>
+        <h2 style="margin:0;font-size:20px;">Új megkeresés — ${escapeHtml(sourceLabel)}</h2>
       </div>
       <div style="padding:24px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;">
         <table style="width:100%;">
           <tr><td style="padding:4px 0;color:#6b7280;width:100px;">Név:</td><td style="font-weight:600;">${escapeHtml(data.name)}</td></tr>
           <tr><td style="padding:4px 0;color:#6b7280;">Email:</td><td><a href="mailto:${escapeHtml(data.email)}" style="color:#065f46;">${escapeHtml(data.email)}</a></td></tr>
           ${data.phone ? `<tr><td style="padding:4px 0;color:#6b7280;">Telefon:</td><td><a href="tel:${escapeHtml(data.phone)}" style="color:#065f46;">${escapeHtml(data.phone)}</a></td></tr>` : ''}
+          ${categoryRow}
         </table>
         ${answersHtml}
         ${messageHtml}
@@ -84,7 +95,11 @@ function buildSubject(data: ContactPayload): string {
   if (data.source === 'dimop') {
     return `DIMOP Konzultáció — ${data.name}`;
   }
-  return `Új megkeresés — ${data.name}`;
+  if (data.source === 'ai-automatizalas') {
+    return `AI felmérés — ${data.name}`;
+  }
+  const suffix = data.serviceCategory ? ` · ${data.serviceCategory}` : '';
+  return `Új megkeresés — ${data.name}${suffix}`;
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {

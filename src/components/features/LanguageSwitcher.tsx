@@ -7,6 +7,19 @@ interface LanguageSwitcherProps {
 }
 
 /**
+ * HU paths that have no EN counterpart. When the user is on one of these
+ * and clicks the language switcher, send them to the EN homepage instead
+ * of generating a 404 (e.g. /en/ai-automatizalas/ does not exist).
+ */
+const HU_ONLY_PATH_PREFIXES = ['/ai-automatizalas', '/dimop'];
+
+function isHuOnlyPath(path: string): boolean {
+  return HU_ONLY_PATH_PREFIXES.some(
+    (p) => path === p || path === `${p}/` || path.startsWith(`${p}/`),
+  );
+}
+
+/**
  * Computes the default (SSR-safe) path for the language switcher.
  * The actual path is resolved client-side via useEffect to avoid hydration mismatch.
  */
@@ -25,6 +38,10 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     const hash = window.location.hash;
 
     if (currentLang === 'hu') {
+      if (isHuOnlyPath(path)) {
+        setHref('/en/');
+        return;
+      }
       const enPath = path === '/' ? '/en/' : `/en${path}`;
       setHref(enPath + hash);
     } else {

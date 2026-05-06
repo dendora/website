@@ -9,17 +9,20 @@ interface FaqSectionProps {
 }
 
 const FaqItem: React.FC<{
+  id: string;
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
-}> = ({ question, answer, isOpen, onToggle }) => (
+}> = ({ id, question, answer, isOpen, onToggle }) => (
   <div className="border-b border-gray-100 last:border-0">
     <button
       type="button"
       onClick={onToggle}
       className="w-full flex items-center justify-between py-5 text-left group cursor-pointer"
       aria-expanded={isOpen}
+      aria-controls={`${id}-panel`}
+      id={`${id}-trigger`}
     >
       <span className="text-base font-medium text-gray-900 pr-4 group-hover:text-gray-600 transition-colors">
         {question}
@@ -32,6 +35,10 @@ const FaqItem: React.FC<{
       />
     </button>
     <div
+      id={`${id}-panel`}
+      role="region"
+      aria-labelledby={`${id}-trigger`}
+      hidden={!isOpen}
       className={cn(
         'overflow-hidden transition-all duration-300',
         isOpen ? 'max-h-96 pb-5' : 'max-h-0'
@@ -81,6 +88,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ language }) => {
             {items.map((item, index) => (
               <FaqItem
                 key={index}
+                id={`dimop-faq-${index}`}
                 question={item.question}
                 answer={item.answer}
                 isOpen={openIndex === index}

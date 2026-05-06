@@ -62,7 +62,14 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+      >
+        {language === 'hu' ? 'Ugrás a tartalomhoz' : 'Skip to main content'}
+      </a>
+      <header className="sticky top-0 z-40 w-full border-b border-black/5 bg-white/70 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <a href={homeHref} className="flex items-center gap-3 cursor-pointer" aria-label="Dendora home">
           <Logo size="md" showText textContent={{ companyName: 'DENDORA', tagline: 'Digitalizációs Partner' }} />
@@ -96,6 +103,7 @@ const DimopNav: React.FC<{ language: DimopLanguage }> = ({ language }) => {
         </div>
       )}
     </header>
+    </>
   );
 };
 
@@ -273,7 +281,7 @@ export const DimopLanding: React.FC<DimopLandingProps> = ({ language }) => (
   <div className="min-h-screen bg-white">
     <ScrollProgress />
     <DimopNav language={language} />
-    <main>
+    <main id="main-content">
       <DimopHero language={language} />
       <ValueSection language={language} />
       <TrustSection language={language} />

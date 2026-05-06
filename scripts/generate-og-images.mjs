@@ -228,6 +228,14 @@ const pages = [
     badge: 'DIMOP',
     accentColor: 'linear-gradient(90deg, #059669 0%, #10b981 100%)',
   },
+  {
+    filename: 'ai-automatizalas.png',
+    title: 'AI automatizálás KKV-knak',
+    subtitle: 'Dokumentumfeldolgozás, AI asszisztensek, munkafolyamat automatizálás és egyedi integrációk — gyakorlatiasan.',
+    url: 'dendora.hu/ai-automatizalas',
+    badge: 'AI',
+    accentColor: 'linear-gradient(90deg, #6366f1 0%, #10b981 100%)',
+  },
   // Project pages — Hungarian
   {
     filename: 'work-ariel-pilismarot-hu.png',

@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { AiAutomationLanding } from '../components/pages';
+
+const lang = 'hu' as const;
+const title = 'AI automatizálás KKV-knak | Dendora Bt.';
+const description = 'Gyakorlatias AI automatizálás kis- és középvállalkozásoknak: dokumentumfeldolgozás, belső AI asszisztensek, munkafolyamat automatizálás és egyedi integrációk.';
+---
+
+<Layout title={title} description={description} lang={lang} ogImage="/og/ai-automatizalas.png" huOnly>
+  <AiAutomationLanding client:load />
+</Layout>

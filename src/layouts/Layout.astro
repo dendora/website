@@ -8,9 +8,11 @@ export interface Props {
   canonical?: string;
   ogImage?: string;
   noindex?: boolean;
+  /** Skip emitting EN/x-default hreflang for HU-only pages without a translation. */
+  huOnly?: boolean;
 }
 
-const { title, description, lang, canonical, ogImage, noindex } = Astro.props;
+const { title, description, lang, canonical, ogImage, noindex, huOnly } = Astro.props;
 
 // Get current URL for hreflang
 const currentPath = Astro.url.pathname;
@@ -68,8 +70,12 @@ if (hreflangs.en === '/en') hreflangs.en = '/en/';
     
     <!-- Hreflang for multilingual SEO -->
     <link rel="alternate" hreflang="hu" href={`${baseUrl}${hreflangs.hu}`} />
-    <link rel="alternate" hreflang="en" href={`${baseUrl}${hreflangs.en}`} />
-    <link rel="alternate" hreflang="x-default" href={`${baseUrl}${hreflangs.hu}`} />
+    {!huOnly && (
+      <>
+        <link rel="alternate" hreflang="en" href={`${baseUrl}${hreflangs.en}`} />
+        <link rel="alternate" hreflang="x-default" href={`${baseUrl}${hreflangs.hu}`} />
+      </>
+    )}
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />

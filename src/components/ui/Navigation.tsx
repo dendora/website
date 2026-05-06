@@ -124,14 +124,13 @@ const Navigation: React.FC<NavigationProps> = ({
           ))}
           
           <LanguageSwitcher currentLang={language} />
-
           {language === 'hu' && (
             <a
-              href="/dimop/"
+              href="/ai-automatizalas/"
               className="inline-flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-800 cursor-pointer"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              {t(language, 'navigation.dimop')}
+              {t(language, 'navigation.aiAutomationCta')}
             </a>
           )}
         </nav>
@@ -166,19 +165,20 @@ const Navigation: React.FC<NavigationProps> = ({
                 </a>
               ))}
               
+              {language === 'hu' && (
+                <a
+                  href="/ai-automatizalas/"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-md bg-black px-3 py-2 text-sm font-semibold text-white cursor-pointer"
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {t(language, 'navigation.aiAutomationCta')}
+                </a>
+              )}
+
               <div className="mt-2 mb-1 flex justify-center">
                 <LanguageSwitcher currentLang={language} />
               </div>
-              {language === 'hu' && (
-                <a
-                  href="/dimop/"
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-black px-3 py-2 text-sm font-semibold text-white cursor-pointer"
-                >
-                  <Sparkles className="h-3.5 w-3.5" />
-                  {t(language, 'navigation.dimop')}
-                </a>
-              )}
             </div>
           </nav>
         </div>

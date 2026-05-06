@@ -16,7 +16,7 @@ export default function Footer({ language }: FooterProps) {
           <Logo size="sm" />
           <span>{t(language, 'footer.copyright', { year: new Date().getFullYear() })}</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
           <a href={SITE_URL} className="inline-flex items-center gap-1 hover:text-black transition-colors">
             <Globe className="h-4 w-4" />
             <span>dendora.hu</span>

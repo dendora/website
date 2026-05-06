@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { ArrowRight, Mail, Phone, CheckCircle2, Send, Loader2 } from 'lucide-react';
+import { ArrowRight, Mail, Phone, CheckCircle2, Send, Loader2, X, Tag } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects } from '../../lib/projects-json';
@@ -65,6 +65,33 @@ type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
   const [status, setStatus] = useState<FormStatus>('idle');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [serviceCategory, setServiceCategory] = useState<string | null>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  // Listen for prefill events from pricing card CTAs
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{
+        message?: string;
+        serviceCategory?: string;
+      }>).detail;
+      if (!detail) return;
+      if (detail.serviceCategory) setServiceCategory(detail.serviceCategory);
+      if (detail.message) {
+        setFormData((prev) => ({ ...prev, message: detail.message ?? prev.message }));
+      }
+      // Defer focus until after smooth-scroll settles
+      window.setTimeout(() => {
+        messageRef.current?.focus();
+        messageRef.current?.setSelectionRange(
+          messageRef.current.value.length,
+          messageRef.current.value.length,
+        );
+      }, 600);
+    };
+    window.addEventListener('dendora:prefill-contact', handler);
+    return () => window.removeEventListener('dendora:prefill-contact', handler);
+  }, []);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -82,17 +109,22 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ source: 'main', ...formData }),
+          body: JSON.stringify({
+            source: 'main',
+            ...(serviceCategory ? { serviceCategory } : {}),
+            ...formData,
+          }),
         });
 
         if (!res.ok) throw new Error('send failed');
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
+        setServiceCategory(null);
       } catch {
         setStatus('error');
       }
     },
-    [formData],
+    [formData, serviceCategory],
   );
 
   const isBusy = status === 'sending';
@@ -123,6 +155,22 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
         ) : (
           <MotionFade delay={0.2}>
             <form onSubmit={handleSubmit} className="space-y-5">
+              {serviceCategory && (
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                    <Tag className="h-3 w-3" />
+                    {serviceCategory}
+                    <button
+                      type="button"
+                      onClick={() => setServiceCategory(null)}
+                      aria-label="Szolgáltatás eltávolítása"
+                      className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full hover:bg-emerald-400/20 cursor-pointer"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </span>
+                </div>
+              )}
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="contact-name" className="sr-only">
@@ -166,6 +214,7 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
                   id="contact-message"
                   name="message"
                   rows={4}
+                  ref={messageRef}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t(language, 'contact.form.messagePlaceholder')}
@@ -203,7 +252,7 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
             <p className="text-sm text-gray-500">
               {t(language, 'contact.fallback')}
             </p>
-            <div className="flex items-center gap-4 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition"
@@ -281,8 +330,6 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
   const renderWork = () => {
     if (!config.layout.showSections.work) return null;
 
-    const detailProjects = new Set(['foundrypulse', 'andihealth', 'ariel-pilismarot']);
-
     const categoryLabels: Record<string, Record<Language, string>> = {
       'website': { en: 'Website', hu: 'Weboldal' },
       'web-application': { en: 'Web App', hu: 'Webalkalmazás' },
@@ -308,7 +355,7 @@ export const ConfigurableLanding: React.FC<ConfigurableLandingProps> = (props) =
           <div className="grid gap-6 md:grid-cols-2 items-start">
             {projects.map((project, index) => {
               const staggerDelay = Math.floor(index / 2) * 0.08 + (index % 2) * 0.04;
-              const isDetailProject = detailProjects.has(project.id);
+              const isDetailProject = true;
               const projectUrl = language === 'hu'
                 ? `/work/${project.slug}/`
                 : `/en/work/${project.slug}/`;

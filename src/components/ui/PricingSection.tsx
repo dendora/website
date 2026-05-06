@@ -3,7 +3,6 @@ import { ArrowRight, Globe, Code2, Bot, Wrench, CheckCircle2 } from 'lucide-reac
 import { t, type Language } from '../../lib/variant-translations';
 import { MotionFade } from './MotionFade';
 import { SectionHeader } from './SectionHeader';
-import { CONTACT_EMAIL } from '../../lib/site-config';
 
 interface ServiceCard {
   key: string;
@@ -90,7 +89,16 @@ const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
                   </ul>
 
                   <a
-                    href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t(language, 'pricing.emailSubject', { service: t(language, card.nameKey) }))}`}
+                    href="#contact"
+                    onClick={() => {
+                      if (typeof window !== 'undefined') {
+                        window.dispatchEvent(
+                          new CustomEvent('dendora:prefill-contact', {
+                            detail: { serviceCategory: t(language, card.nameKey) },
+                          }),
+                        );
+                      }
+                    }}
                     className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 transition group mt-auto hover:text-black"
                   >
                     {t(language, 'pricing.cta')}

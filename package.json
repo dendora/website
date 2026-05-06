@@ -37,16 +37,16 @@
     "@tailwindcss/vite": "^4.2.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.1.9",
+    "astro": "^6.2.2",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.8.0",
+    "lucide-react": "^1.14.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.21",
+    "baseline-browser-mapping": "^2.10.27",
     "prettier": "^3.8.3",
     "satori": "^0.26.0",
     "sharp": "^0.34.5"

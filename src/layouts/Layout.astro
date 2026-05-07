@@ -10,9 +10,11 @@ export interface Props {
   noindex?: boolean;
   /** Skip emitting EN/x-default hreflang for HU-only pages without a translation. */
   huOnly?: boolean;
+  /** Override the auto-derived alternate-language URL when the slug differs across languages. */
+  hreflangAlternate?: string;
 }
 
-const { title, description, lang, canonical, ogImage, noindex, huOnly } = Astro.props;
+const { title, description, lang, canonical, ogImage, noindex, huOnly, hreflangAlternate } = Astro.props;
 
 // Get current URL for hreflang
 const currentPath = Astro.url.pathname;
@@ -34,6 +36,15 @@ const hreflangs = {
 // Ensure clean URLs
 if (hreflangs.hu === '/') hreflangs.hu = '/';
 if (hreflangs.en === '/en') hreflangs.en = '/en/';
+
+// Allow explicit override when slugs differ across languages.
+if (hreflangAlternate) {
+  if (lang === 'hu') {
+    hreflangs.en = hreflangAlternate;
+  } else {
+    hreflangs.hu = hreflangAlternate;
+  }
+}
 ---
 
 <!doctype html>

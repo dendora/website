@@ -236,6 +236,14 @@ const pages = [
     badge: 'AI',
     accentColor: 'linear-gradient(90deg, #6366f1 0%, #10b981 100%)',
   },
+  {
+    filename: 'ai-automation-en.png',
+    title: 'AI Automation for SMEs',
+    subtitle: 'Document processing, AI assistants, workflow automation and custom integrations — practical.',
+    url: 'dendora.hu/en/ai-automation',
+    badge: 'AI',
+    accentColor: 'linear-gradient(90deg, #6366f1 0%, #10b981 100%)',
+  },
   // Project pages — Hungarian
   {
     filename: 'work-ariel-pilismarot-hu.png',

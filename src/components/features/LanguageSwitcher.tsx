@@ -9,9 +9,24 @@ interface LanguageSwitcherProps {
 /**
  * HU paths that have no EN counterpart. When the user is on one of these
  * and clicks the language switcher, send them to the EN homepage instead
- * of generating a 404 (e.g. /en/ai-automatizalas/ does not exist).
+ * of generating a 404.
  */
-const HU_ONLY_PATH_PREFIXES = ['/ai-automatizalas', '/dimop'];
+const HU_ONLY_PATH_PREFIXES = ['/dimop'];
+
+/**
+ * Cross-language slug map for pages where the slug differs.
+ * Keys are HU paths (with leading slash, no trailing slash) → EN paths.
+ */
+const SLUG_MAP_HU_TO_EN: Record<string, string> = {
+  '/ai-automatizalas': '/en/ai-automation',
+};
+const SLUG_MAP_EN_TO_HU: Record<string, string> = Object.fromEntries(
+  Object.entries(SLUG_MAP_HU_TO_EN).map(([hu, en]) => [en, hu]),
+);
+
+function normalizePath(path: string): string {
+  return path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+}
 
 function isHuOnlyPath(path: string): boolean {
   return HU_ONLY_PATH_PREFIXES.some(
@@ -36,15 +51,26 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   useEffect(() => {
     const path = window.location.pathname;
     const hash = window.location.hash;
+    const normalized = normalizePath(path);
 
     if (currentLang === 'hu') {
       if (isHuOnlyPath(path)) {
         setHref('/en/');
         return;
       }
+      const mapped = SLUG_MAP_HU_TO_EN[normalized];
+      if (mapped) {
+        setHref(`${mapped}/${hash}`);
+        return;
+      }
       const enPath = path === '/' ? '/en/' : `/en${path}`;
       setHref(enPath + hash);
     } else {
+      const mapped = SLUG_MAP_EN_TO_HU[normalized];
+      if (mapped) {
+        setHref(`${mapped}/${hash}`);
+        return;
+      }
       const huPath = path.replace(/^\/en\/?/, '/') || '/';
       setHref(huPath + hash);
     }

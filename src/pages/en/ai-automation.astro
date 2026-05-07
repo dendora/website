@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { AiAutomationLanding } from '../../components/pages';
+
+const lang = 'en' as const;
+const title = 'AI Automation for SMEs | Dendora Bt.';
+const description = 'Practical AI automation for small and medium businesses: document processing, internal AI assistants, workflow automation and custom integrations.';
+---
+
+<Layout title={title} description={description} lang={lang} ogImage="/og/ai-automation-en.png" hreflangAlternate="/ai-automatizalas/">
+  <AiAutomationLanding language={lang} client:load />
+</Layout>

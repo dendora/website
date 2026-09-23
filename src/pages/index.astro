@@ -8,6 +8,6 @@ const title = t(lang, 'meta.title');
 const description = t(lang, 'meta.description');
 ---
 
-<Layout title={title} description={description} lang={lang}>
+<Layout title={title} description={description} lang={lang} preloadDisplayFont>
   <ConfigurableLanding language={lang} client:load />
 </Layout>

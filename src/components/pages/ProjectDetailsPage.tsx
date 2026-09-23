@@ -26,7 +26,6 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
   }, [])
 
   const localizedTitle = project.metadata.title;
-  const localizedSubtitle = project.metadata.subtitle;
   const localizedOverview = project.content.overview;
   const localizedChallenge = project.content.challenge;
   const localizedSolution = project.content.solution;
@@ -67,13 +66,8 @@ export default function ProjectDetailsPage({ language, project }: ProjectDetails
             );
           })()}
           
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-black mb-2">{localizedTitle}</h1>
-            <p className="text-xl text-black/70">{localizedSubtitle}</p>
-            <div className="flex items-center justify-center gap-4 mt-4 text-sm text-black/60">
-              <span>{project.year}</span>
-            </div>
-          </div>
+          {/* Title + subtitle are the page H1 in WorkLayout; only the year is added here. */}
+          <p className="mb-8 text-center text-sm text-black/60">{project.year}</p>
           
           <div className="prose prose-gray max-w-none">
             <p className="text-black/65 leading-relaxed text-lg">

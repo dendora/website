@@ -25,7 +25,7 @@ const baseUrl = 'https://dendora.hu'
 
 const breadcrumbItems = [
   { label: t(lang, 'navigation.home'), href: lang === 'hu' ? '/' : '/en/' },
-  { label: t(lang, 'navigation.work'), href: (lang === 'hu' ? '/' : '/en/') + '#work' },
+  { label: t(lang, 'navigation.work'), href: (lang === 'hu' ? '/#munkaink' : '/en/#work') },
   ...(projectTitle ? [{ label: projectTitle, current: true }] : [])
 ]
 
@@ -85,7 +85,7 @@ const projectJsonLd = projectSlug ? JSON.stringify({
         {/* Navigation & Language Switcher */}
         <div class="flex items-center gap-4">
           <LanguageSwitcher currentLang={lang} client:load />
-          <a href="mailto:hello@dendora.hu" class="hidden md:inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/85">
+          <a href="mailto:hello@dendora.hu" class="hidden md:inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-hover">
             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
@@ -116,7 +116,7 @@ const projectJsonLd = projectSlug ? JSON.stringify({
             
             {/* Back to Work Link */}
             <a 
-              href={lang === 'hu' ? '/#work' : '/en/#work'}
+              href={lang === 'hu' ? '/#munkaink' : '/en/#work'}
               class="inline-flex items-center gap-2 text-sm text-black/70 hover:text-black transition-colors"
             >
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

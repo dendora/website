@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe } from 'lucide-react';
+import { SECTION_IDS } from '../../lib/site-config';
 
 interface LanguageSwitcherProps {
   currentLang: 'hu' | 'en';
@@ -42,6 +42,13 @@ function getDefaultPath(currentLang: 'hu' | 'en'): string {
   return currentLang === 'hu' ? '/en/' : '/';
 }
 
+// Translate a homepage section hash (#kapcsolat ↔ #contact); other hashes pass through.
+function mapHash(hash: string, from: 'hu' | 'en', to: 'hu' | 'en'): string {
+  const key = (Object.keys(SECTION_IDS[from]) as (keyof typeof SECTION_IDS.hu)[])
+    .find((k) => `#${SECTION_IDS[from][k]}` === hash);
+  return key ? `#${SECTION_IDS[to][key]}` : hash;
+}
+
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ 
   currentLang, 
   className = '' 
@@ -49,49 +56,71 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   const [href, setHref] = useState(() => getDefaultPath(currentLang));
 
   useEffect(() => {
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    const normalized = normalizePath(path);
+    const update = () => {
+      const path = window.location.pathname;
+      const hash = mapHash(window.location.hash, currentLang, currentLang === 'hu' ? 'en' : 'hu');
+      const normalized = normalizePath(path);
 
-    if (currentLang === 'hu') {
-      if (isHuOnlyPath(path)) {
-        setHref('/en/');
-        return;
+      if (currentLang === 'hu') {
+        if (isHuOnlyPath(path)) {
+          setHref('/en/');
+          return;
+        }
+        const mapped = SLUG_MAP_HU_TO_EN[normalized];
+        if (mapped) {
+          setHref(`${mapped}/${hash}`);
+          return;
+        }
+        const enPath = path === '/' ? '/en/' : `/en${path}`;
+        setHref(enPath + hash);
+      } else {
+        const mapped = SLUG_MAP_EN_TO_HU[normalized];
+        if (mapped) {
+          setHref(`${mapped}/${hash}`);
+          return;
+        }
+        const huPath = path.replace(/^\/en\/?/, '/') || '/';
+        setHref(huPath + hash);
       }
-      const mapped = SLUG_MAP_HU_TO_EN[normalized];
-      if (mapped) {
-        setHref(`${mapped}/${hash}`);
-        return;
-      }
-      const enPath = path === '/' ? '/en/' : `/en${path}`;
-      setHref(enPath + hash);
-    } else {
-      const mapped = SLUG_MAP_EN_TO_HU[normalized];
-      if (mapped) {
-        setHref(`${mapped}/${hash}`);
-        return;
-      }
-      const huPath = path.replace(/^\/en\/?/, '/') || '/';
-      setHref(huPath + hash);
-    }
+    };
+    update();
+    // Nav clicks change the hash; keep the switch pointing at the same section.
+    window.addEventListener('hashchange', update);
+    return () => window.removeEventListener('hashchange', update);
   }, [currentLang]);
 
-  const otherLang = currentLang === 'hu' 
-    ? { code: 'en' as const, name: 'English', flag: '🇺🇸' }
-    : { code: 'hu' as const, name: 'Magyar', flag: '🇭🇺' };
+  const langs = [
+    { code: 'hu' as const, label: 'HU', name: 'Magyar' },
+    { code: 'en' as const, label: 'EN', name: 'English' },
+  ];
 
   return (
-    <div className={`relative inline-block ${className}`}>
-      <a
-        href={href}
-        hrefLang={otherLang.code}
-        className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-black transition hover:bg-black/5 cursor-pointer"
-        aria-label={`Switch to ${otherLang.name}`}
-      >
-        <Globe className="h-4 w-4" />
-        <span>{otherLang.flag}</span>
-        <span>{otherLang.name}</span>
-      </a>
+    <div
+      role="group"
+      aria-label={currentLang === 'hu' ? 'Nyelv' : 'Language'}
+      className={`inline-flex items-center text-sm ${className}`}
+    >
+      {langs.map((l, i) => (
+        <React.Fragment key={l.code}>
+          {i > 0 && <span className="text-black/20" aria-hidden="true">/</span>}
+          {l.code === currentLang ? (
+            <span aria-current="true" className="px-1.5 py-2 font-medium text-black">
+              {l.label}
+              <span className="sr-only"> – {l.name}</span>
+            </span>
+          ) : (
+            <a
+              href={href}
+              hrefLang={l.code}
+              lang={l.code}
+              className="rounded px-1.5 py-2 text-black/55 transition-colors hover:text-accent"
+            >
+              {l.label}
+              <span className="sr-only"> – {l.name}</span>
+            </a>
+          )}
+        </React.Fragment>
+      ))}
     </div>
   );
 };

@@ -10,6 +10,49 @@ export interface MotionFadeProps {
   margin?: string;
 }
 
+type RevealState = 'idle' | 'armed' | 'visible';
+
+/**
+ * Content is rendered visible (SSR, no JS, reduced motion). Only elements that start
+ * below the viewport after mount are "armed" (hidden via CSS) until they scroll in.
+ */
+export function useReveal<T extends HTMLElement>(once = true, margin = '0px') {
+  const ref = useRef<T>(null);
+  const [state, setState] = useState<RevealState>('idle');
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+
+    setState('armed');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setState('visible');
+          if (once) observer.disconnect();
+        } else if (!once) {
+          setState('armed');
+        }
+      },
+      { rootMargin: margin }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [once, margin]);
+
+  const className = state === 'idle' ? 'reveal' : state === 'armed' ? 'reveal reveal-armed' : 'reveal reveal-armed is-visible';
+  return { ref, className };
+}
+
+const transforms: Record<NonNullable<MotionFadeProps['direction']>, string> = {
+  up: 'translateY(8px)',
+  down: 'translateY(-8px)',
+  left: 'translateX(8px)',
+  right: 'translateX(-8px)',
+  scale: 'scale(0.98)',
+};
+
 const MotionFade: React.FC<MotionFadeProps> = ({
   children,
   delay = 0,
@@ -17,61 +60,18 @@ const MotionFade: React.FC<MotionFadeProps> = ({
   direction = 'up',
   className,
   once = true,
-  margin = '-50px'
+  margin = '0px'
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const { ref, className: revealClass } = useReveal<HTMLDivElement>(once, margin);
 
-  // Check prefers-reduced-motion inside useEffect to avoid SSR/hydration mismatch
-  useEffect(() => {
-    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mql.matches) {
-      setPrefersReducedMotion(true);
-      setIsVisible(true);
-      return;
-    }
-
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (once) observer.unobserve(el);
-        } else if (!once) {
-          setIsVisible(false);
-        }
-      },
-      { rootMargin: margin }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [once, margin]);
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  const transforms: Record<string, string> = {
-    up: 'translateY(8px)',
-    down: 'translateY(-8px)',
-    left: 'translateX(8px)',
-    right: 'translateX(-8px)',
-    scale: 'scale(0.98)',
-  };
-
-  const style: React.CSSProperties = {
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'none' : transforms[direction],
-    transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
-    willChange: isVisible ? 'auto' : 'opacity, transform',
-  };
+  const style = {
+    '--reveal-delay': `${delay}s`,
+    '--reveal-duration': `${duration}s`,
+    '--reveal-from': transforms[direction],
+  } as React.CSSProperties;
 
   return (
-    <div ref={ref} style={style} className={className}>
+    <div ref={ref} style={style} className={className ? `${revealClass} ${className}` : revealClass}>
       {children}
     </div>
   );

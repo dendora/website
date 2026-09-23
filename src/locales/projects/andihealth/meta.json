@@ -4,7 +4,7 @@
   "year": "2026",
   "sortOrder": 2,
   "cardBackground": "linear-gradient(135deg,#e11d48_0%,#be123c_50%,#9f1239_100%)",
-  "status": "completed",
+  "status": "in-progress",
   "category": "web-application",
   "techStack": [
     "Hono",
@@ -16,6 +16,7 @@
   ],
   "images": {
     "hero": "/andihealth-logo.png",
+    "screenshot": "andihealth",
     "gallery": []
   },
   "links": {

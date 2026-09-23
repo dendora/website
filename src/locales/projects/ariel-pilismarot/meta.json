@@ -4,7 +4,7 @@
   "year": "2026",
   "sortOrder": 1,
   "cardBackground": "linear-gradient(135deg,#0d9488_0%,#115e59_50%,#134e4a_100%)",
-  "status": "completed",
+  "status": "in-progress",
   "category": "website",
   "techStack": [
     "Astro",
@@ -13,6 +13,7 @@
   ],
   "images": {
     "hero": "",
+    "screenshot": "ariel-pilismarot",
     "heroHtml": "<div class='flex items-center gap-4'><img src='/ariel-pilismarot-icon-512.png' alt='' class='h-14 w-auto' style='filter:brightness(0) invert(1)'><div class='flex flex-col'><span style='font-family:Georgia,serif;font-size:1.25rem;font-weight:700;color:white;line-height:1.1'>Ariel</span><span style='font-size:0.625rem;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.7);line-height:1.1'>Pilismarót Vendégház</span></div></div>",
     "gallery": []
   },

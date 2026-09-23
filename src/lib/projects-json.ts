@@ -20,6 +20,10 @@ export interface ProjectFeature {
 export interface ProjectImages {
   hero: string;
   heroHtml?: string;
+  /** Basename of the optimised files in public/work/ (see scripts/optimize-screenshots.mjs). */
+  screenshot?: string;
+  /** Hairline system schematic for projects under NDA (see WorkDiagram). */
+  diagram?: 'production' | 'pipeline';
   gallery: string[];
 }
 

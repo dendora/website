@@ -18,5 +18,9 @@
   Cache-Control: public, max-age=15768000
 *.jpg
   Cache-Control: public, max-age=15768000
+*.avif
+  Cache-Control: public, max-age=15768000
+*.webp
+  Cache-Control: public, max-age=15768000
 *.svg
   Cache-Control: public, max-age=15768000

@@ -4,7 +4,7 @@
   "year": "2024",
   "sortOrder": 4,
   "cardBackground": "linear-gradient(135deg,#4f46e5_0%,#4338ca_50%,#3730a3_100%)",
-  "status": "in-progress",
+  "status": "completed",
   "category": "data-platform",
   "techStack": [
     "Go",
@@ -17,6 +17,7 @@
   ],
   "images": {
     "hero": "/dendora-sw-dev-logo.png",
+    "diagram": "pipeline",
     "gallery": []
   },
   "links": {

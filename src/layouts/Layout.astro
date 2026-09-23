@@ -12,9 +12,11 @@ export interface Props {
   huOnly?: boolean;
   /** Override the auto-derived alternate-language URL when the slug differs across languages. */
   hreflangAlternate?: string;
+  /** Preload the display serif used by the homepage H1. */
+  preloadDisplayFont?: boolean;
 }
 
-const { title, description, lang, canonical, ogImage, noindex, huOnly, hreflangAlternate } = Astro.props;
+const { title, description, lang, canonical, ogImage, noindex, huOnly, hreflangAlternate, preloadDisplayFont } = Astro.props;
 
 // Get current URL for hreflang
 const currentPath = Astro.url.pathname;
@@ -59,6 +61,8 @@ if (hreflangAlternate) {
     <!-- Self-hosted Inter font (no third-party requests) -->
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    {preloadDisplayFont && <link rel="preload" href="/fonts/instrument-serif-regular.woff2" as="font" type="font/woff2" crossorigin />}
+    {preloadDisplayFont && <link rel="preload" href="/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin />}
     
     <!-- SEO Meta Tags -->
     <meta name="description" content={description} />
@@ -244,8 +248,16 @@ if (hreflangAlternate) {
       // Scroll to hash target after React components have mounted
       if (window.location.hash) {
         const hash = window.location.hash;
+        // Old anchors from before the HU sections got Hungarian ids (keeps shared links working)
+        const legacy: Record<string, string[]> = {
+          '#contact': ['#kapcsolat'],
+          '#work': ['#munkaink'],
+          '#pricing': ['#szolgaltatasok', '#services'],
+        };
         const tryScroll = () => {
-          const el = document.querySelector(hash);
+          const el = [hash, ...(legacy[hash] ?? [])]
+            .map((sel) => document.getElementById(sel.slice(1)))
+            .find(Boolean);
           if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }

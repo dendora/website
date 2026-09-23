@@ -7,7 +7,7 @@
     "home": "Főoldal",
     "services": "Szolgáltatások",
     "work": "Munkáink",
-    "pricing": "Hogyan dolgozunk",
+    "pricing": "Szolgáltatások",
     "about": "Miért mi",
     "contact": "Kapcsolat",
     "dimop": "DIMOP Pályázat",
@@ -19,7 +19,7 @@
     }
   },
   "hero": {
-    "title": "Szoftver, amire építhetsz.",
+    "title": "Szoftver, amire *építhet*.",
     "subtitle": "Digitális termékeket tervezünk és fejlesztünk — az ötlettől a működő rendszerig, egy helyen.",
     "cta": {
       "startProject": "Projekt indítása",
@@ -81,12 +81,15 @@
       }
     },
     "caseStudy": "Esettanulmány",
-    "viewProject": "Projekt megtekintése"
+    "viewProject": "Projekt megtekintése",
+    "ongoing": "Folyamatos fejlesztés",
+    "schematic": "Rendszervázlat",
+    "screenshotAlt": "{title} – képernyőkép"
   },
   "pricing": {
-    "title": "Hogyan dolgozunk",
+    "title": "Szolgáltatások",
     "subtitle": "Minden projekt más. Íme, miben tudunk segíteni.",
-    "cta": "Beszéljünk",
+    "cta": "Beszéljünk a projektjéről",
     "emailSubject": "Érdeklődés: {service}",
     "note": "Minden projektet egyedileg tervezünk. Az igényeket, ütemezést és költségvetést közösen beszéljük meg.",
     "differentiators": [
@@ -102,9 +105,7 @@
         "deliverables": [
           "Egyedi design és fejlesztés",
           "Mobilbarát, reszponzív elrendezés",
-          "SEO és teljesítmény-optimalizálás",
-          "Domain, DNS és hosting beállítás",
-          "Analitika integráció"
+          "SEO és teljesítmény-optimalizálás"
         ]
       },
       "software": {
@@ -113,9 +114,7 @@
         "deliverables": [
           "Igényfelmérés és tervezés",
           "Full-stack fejlesztés",
-          "Adatbázis tervezés és API fejlesztés",
-          "Felhő infrastruktúra és deploy",
-          "Felhasználói oktatás és dokumentáció"
+          "Felhő infrastruktúra és deploy"
         ]
       },
       "ai": {
@@ -124,8 +123,6 @@
         "deliverables": [
           "LLM integráció és prompt engineering",
           "Munkafolyamat automatizálás",
-          "Adatfeldolgozási pipeline-ok",
-          "Okos funkciók és ajánlások",
           "Meglévő rendszerekkel való integráció"
         ]
       },
@@ -135,9 +132,7 @@
         "deliverables": [
           "Hosting és infrastruktúra kezelés",
           "Biztonsági frissítések és monitoring",
-          "Tartalmi és funkcionális frissítések",
-          "Teljesítmény monitoring",
-          "Kiemelt technikai támogatás"
+          "Tartalmi és funkcionális frissítések"
         ]
       }
     }
@@ -147,9 +142,9 @@
     "subtitle": "Írja le projektötletét — jellemzően 24 órán belül válaszolunk.",
     "form": {
       "name": "Név",
-      "namePlaceholder": "Kovács János",
+      "namePlaceholder": "Név",
       "email": "E-mail",
-      "emailPlaceholder": "janos@cegnev.hu",
+      "emailPlaceholder": "E-mail-cím",
       "message": "Üzenet",
       "messagePlaceholder": "Meséljen a projektjéről…",
       "submit": "Üzenet küldése",

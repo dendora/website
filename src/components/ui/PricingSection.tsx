@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Globe, Code2, Bot, Wrench, CheckCircle2 } from 'lucide-react';
 import { t, type Language } from '../../lib/variant-translations';
+import { SECTION_IDS } from '../../lib/site-config';
 import { MotionFade } from './MotionFade';
 import { SectionHeader } from './SectionHeader';
 
@@ -49,16 +50,16 @@ export interface PricingSectionProps {
 
 const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
   return (
-    <section id="pricing" className="border-t border-black/5">
-      <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <section id={SECTION_IDS[language].services} className="border-t border-black/5">
+      <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
         <SectionHeader
           title={t(language, 'pricing.title')}
           subtitle={t(language, 'pricing.subtitle')}
-          alignment="center"
-          className="mb-16"
+          display
+          className="mb-12"
         />
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6">
           {serviceCards.map((card, index) => {
             const Icon = card.icon;
             const deliverables: string[] = t(language, card.deliverablesKey) || [];
@@ -79,7 +80,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
                     {t(language, card.descriptionKey)}
                   </p>
 
-                  <ul className="mb-8 space-y-2.5 flex-1">
+                  <ul className="space-y-2.5">
                     {Array.isArray(deliverables) && deliverables.map((item, i) => (
                       <li key={i} className="flex items-start gap-2.5">
                         <span className="mt-2 h-1 w-1 rounded-full bg-gray-400 flex-shrink-0" />
@@ -87,31 +88,24 @@ const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
                       </li>
                     ))}
                   </ul>
-
-                  <a
-                    href="#contact"
-                    onClick={() => {
-                      if (typeof window !== 'undefined') {
-                        window.dispatchEvent(
-                          new CustomEvent('dendora:prefill-contact', {
-                            detail: { serviceCategory: t(language, card.nameKey) },
-                          }),
-                        );
-                      }
-                    }}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 transition group mt-auto hover:text-black"
-                  >
-                    {t(language, 'pricing.cta')}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
                 </div>
               </MotionFade>
             );
           })}
         </div>
 
-        <MotionFade delay={0.5}>
-          <div className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-3">
+        <div className="mt-10">
+          <a
+            href={`#${SECTION_IDS[language].contact}`}
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-base font-medium text-white transition-colors hover:bg-accent-hover group"
+          >
+            {t(language, 'pricing.cta')}
+            <ArrowRight className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-1" />
+          </a>
+        </div>
+
+        <MotionFade delay={0.2}>
+          <div className="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-black/5 pt-8">
             {((): React.ReactNode => {
               const items: string[] = t(language, 'pricing.differentiators') || [];
               return Array.isArray(items) && items.map((item, i) => (
@@ -124,8 +118,8 @@ const PricingSection: React.FC<PricingSectionProps> = ({ language }) => {
           </div>
         </MotionFade>
 
-        <MotionFade delay={0.6}>
-          <p className="mt-8 text-center text-sm text-gray-500">
+        <MotionFade delay={0.3}>
+          <p className="mt-6 text-sm text-gray-500">
             {t(language, 'pricing.note')}
           </p>
         </MotionFade>

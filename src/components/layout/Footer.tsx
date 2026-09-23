@@ -17,15 +17,15 @@ export default function Footer({ language }: FooterProps) {
           <span>{t(language, 'footer.copyright', { year: new Date().getFullYear() })}</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-          <a href={SITE_URL} className="inline-flex items-center gap-1 hover:text-black transition-colors">
+          <a href={SITE_URL} className="inline-flex items-center gap-1 hover:text-accent transition-colors">
             <Globe className="h-4 w-4" />
             <span>dendora.hu</span>
           </a>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-1 hover:text-black transition-colors">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-1 hover:text-accent transition-colors">
             <Mail className="h-4 w-4" />
             <span>{CONTACT_EMAIL}</span>
           </a>
-          <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-black transition-colors">
+          <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-accent transition-colors">
             <Phone className="h-4 w-4" />
             <span>{CONTACT_PHONE}</span>
           </a>

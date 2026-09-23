@@ -1,13 +1,16 @@
 import React from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { LanguageSwitcher } from '../features/LanguageSwitcher';
 import { t, type Language } from '../../lib/translations';
+import { SECTION_IDS } from '../../lib/site-config';
 import { cn } from '../../lib/utils';
 
 export interface NavigationProps {
   language: Language;
   variant?: 'landing' | 'work';
+  /** Marks the matching nav item as the current page. */
+  current?: 'ai';
   homeUrl?: string;
   className?: string;
 }
@@ -15,6 +18,7 @@ export interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({
   language,
   variant = 'landing',
+  current,
   homeUrl,
   className = ''
 }) => {
@@ -32,11 +36,12 @@ const Navigation: React.FC<NavigationProps> = ({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen]);
 
+  const ids = SECTION_IDS[language];
+
   // Active section tracking via IntersectionObserver
   React.useEffect(() => {
     if (variant !== 'landing') return;
-    const ids = ['work', 'pricing', 'contact'];
-    const sections = ids.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const sections = [ids.work, ids.services, ids.contact].map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     if (sections.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,20 +55,30 @@ const Navigation: React.FC<NavigationProps> = ({
     );
     sections.forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, [variant]);
+  }, [variant, ids]);
   
-  const navItems = [{
-    id: 'work',
-    label: t(language, 'navigation.work')
-  }, {
-    id: 'pricing',
-    label: t(language, 'navigation.pricing')
-  }, {
-    id: 'contact',
-    label: t(language, 'navigation.contact')
-  }] as const;
-
   const logoUrl = homeUrl || (language === 'hu' ? '/' : '/en/');
+  // Section links jump in-page on the homepage, otherwise back to the homepage section.
+  const sectionHref = (id: string) => (variant === 'landing' ? `#${id}` : `${logoUrl}#${id}`);
+
+  const navItems = [
+    { key: 'work', href: sectionHref(ids.work), label: t(language, 'navigation.work'), active: activeSection === ids.work },
+    { key: 'services', href: sectionHref(ids.services), label: t(language, 'navigation.pricing'), active: activeSection === ids.services },
+    {
+      key: 'ai',
+      href: language === 'hu' ? '/ai-automatizalas/' : '/en/ai-automation/',
+      label: t(language, 'navigation.aiAutomation'),
+      active: current === 'ai',
+      page: current === 'ai',
+    },
+    {
+      key: 'contact',
+      // The AI page has its own contact form under the same id.
+      href: current === 'ai' ? `#${ids.contact}` : sectionHref(ids.contact),
+      label: t(language, 'navigation.contact'),
+      active: activeSection === ids.contact,
+    },
+  ];
 
   return (
     <>
@@ -110,13 +125,14 @@ const Navigation: React.FC<NavigationProps> = ({
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
-          {variant === 'landing' && navItems.map(n => (
+          {navItems.map(n => (
             <a 
-              key={n.id} 
-              href={`#${n.id}`} 
+              key={n.key} 
+              href={n.href} 
+              aria-current={n.page ? 'page' : undefined}
               className={cn(
                 'text-sm transition cursor-pointer',
-                activeSection === n.id ? 'text-black font-medium' : 'text-black/70 hover:text-black'
+                n.active ? 'text-black font-medium' : 'text-black/70 hover:text-accent'
               )}
             >
               <span>{n.label}</span>
@@ -124,13 +140,6 @@ const Navigation: React.FC<NavigationProps> = ({
           ))}
           
           <LanguageSwitcher currentLang={language} />
-          <a
-            href={language === 'hu' ? '/ai-automatizalas/' : '/en/ai-automation/'}
-            className="inline-flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-800 cursor-pointer"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            {t(language, 'navigation.aiAutomationCta')}
-          </a>
         </nav>
 
         {/* Mobile menu button */}
@@ -149,28 +158,20 @@ const Navigation: React.FC<NavigationProps> = ({
         <div className="border-t border-black/5 bg-white md:hidden">
           <nav className="mx-auto max-w-6xl px-4 py-2">
             <div className="grid gap-1">
-              {variant === 'landing' && navItems.map(n => (
+              {navItems.map(n => (
                 <a 
-                  key={n.id} 
-                  href={`#${n.id}`} 
+                  key={n.key} 
+                  href={n.href} 
+                  aria-current={n.page ? 'page' : undefined}
                   onClick={() => setMenuOpen(false)}
                   className={cn(
                     'w-full rounded-md px-2 py-2 text-left text-sm cursor-pointer block',
-                    activeSection === n.id ? 'text-black font-medium bg-black/5' : 'text-black/80 hover:bg-black/5'
+                    n.active ? 'text-black font-medium bg-black/5' : 'text-black/80 hover:bg-black/5'
                   )}
                 >
                   <span>{n.label}</span>
                 </a>
               ))}
-              
-              <a
-                href={language === 'hu' ? '/ai-automatizalas/' : '/en/ai-automation/'}
-                onClick={() => setMenuOpen(false)}
-                className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-md bg-black px-3 py-2 text-sm font-semibold text-white cursor-pointer"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                {t(language, 'navigation.aiAutomationCta')}
-              </a>
 
               <div className="mt-2 mb-1 flex justify-center">
                 <LanguageSwitcher currentLang={language} />

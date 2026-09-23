@@ -17,12 +17,12 @@ import {
   FlaskConical,
   Rocket,
   LifeBuoy,
-  Sparkles,
   AlertCircle,
 } from 'lucide-react';
 import { Navigation, MotionFade } from '../ui';
+import { renderEmphasis } from '../ui/renderEmphasis';
 import { Footer } from '../layout';
-import { CONTACT_EMAIL, CONTACT_PHONE } from '../../lib/site-config';
+import { CONTACT_EMAIL, CONTACT_PHONE, SECTION_IDS } from '../../lib/site-config';
 import type { Language } from '../../lib/variant-translations';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
@@ -80,7 +80,7 @@ const COPY: Record<Language, Copy> = {
   hu: {
     trustBadge:
       'Egyedi szoftverfejlesztés · AI támogatott folyamatok · Esztergomból, országosan',
-    heroTitle: 'AI automatizálás KKV-knak, érthetően és gyakorlatiasan',
+    heroTitle: 'AI automatizálás KKV-knak, érthetően és *gyakorlatiasan*',
     heroSubtitle:
       'Segítünk megtalálni és automatizálni azokat a céges folyamatokat, ahol ma még túl sok idő megy el e-mailekre, PDF-ekre, Excel táblákra és ismétlődő adminisztrációra.',
     heroBullets: [
@@ -258,7 +258,7 @@ const COPY: Record<Language, Copy> = {
   en: {
     trustBadge:
       'Custom software development · AI-supported workflows · Hungary, working internationally',
-    heroTitle: 'Practical AI automation for SMEs — clear, hands-on, no hype',
+    heroTitle: 'Practical AI automation for SMEs — clear, *hands-on*, no hype',
     heroSubtitle:
       'We help you find and automate the business processes where too much time is still lost on emails, PDFs, spreadsheets and repetitive admin work.',
     heroBullets: [
@@ -435,7 +435,7 @@ const COPY: Record<Language, Copy> = {
   },
 };
 
-const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
+const ContactForm: React.FC<{ copy: Copy; sectionId: string }> = ({ copy, sectionId }) => {
   const [status, setStatus] = useState<FormStatus>('idle');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
@@ -469,10 +469,10 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
   const isBusy = status === 'sending';
 
   return (
-    <section id="contact" className="bg-gray-900">
-      <div className="mx-auto max-w-2xl px-4 py-16 md:py-20">
+    <section id={sectionId} className="on-dark bg-gray-900">
+      <div className="mx-auto max-w-2xl px-4 py-16 md:py-24">
         <MotionFade>
-          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl text-white mb-2 text-center">
+          <h2 className="display-heading text-4xl leading-[1.05] md:text-5xl text-white mb-3 text-center">
             {copy.contactTitle}
           </h2>
         </MotionFade>
@@ -500,7 +500,7 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
                   placeholder={copy.formName}
                   disabled={isBusy}
                   aria-label={copy.formName}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/25 focus:outline-none focus:ring-1 focus:ring-white/25 transition disabled:opacity-50"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-accent-on-dark focus:outline-none focus:ring-1 focus:ring-accent-on-dark transition disabled:opacity-50"
                 />
                 <input
                   name="email"
@@ -511,7 +511,7 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
                   placeholder={copy.formEmail}
                   disabled={isBusy}
                   aria-label={copy.formEmail}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/25 focus:outline-none focus:ring-1 focus:ring-white/25 transition disabled:opacity-50"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-accent-on-dark focus:outline-none focus:ring-1 focus:ring-accent-on-dark transition disabled:opacity-50"
                 />
               </div>
               <textarea
@@ -522,7 +522,7 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
                 placeholder={copy.formMessage}
                 disabled={isBusy}
                 aria-label={copy.formMessage}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/25 focus:outline-none focus:ring-1 focus:ring-white/25 transition resize-none disabled:opacity-50"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 focus:border-accent-on-dark focus:outline-none focus:ring-1 focus:ring-accent-on-dark transition resize-none disabled:opacity-50"
               />
 
               {status === 'error' && (
@@ -533,7 +533,7 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
                 <button
                   type="submit"
                   disabled={isBusy}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-medium text-gray-900 transition hover:bg-gray-100 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-base font-medium text-white transition-colors hover:bg-accent-hover cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isBusy ? (
                     <Loader2 className="h-5 w-5 animate-spin" />
@@ -549,19 +549,19 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
 
         <MotionFade delay={0.3}>
           <div className="mt-10 flex flex-col items-center gap-3">
-            <p className="text-sm text-gray-500">{copy.contactFallback}</p>
+            <p className="text-sm text-gray-400">{copy.contactFallback}</p>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition"
+                className="inline-flex items-center gap-1.5 text-gray-300 hover:text-accent-on-dark transition-colors"
               >
                 <Mail className="h-3.5 w-3.5" />
                 {CONTACT_EMAIL}
               </a>
-              <span className="text-gray-600">|</span>
+              <span className="text-gray-600" aria-hidden="true">|</span>
               <a
                 href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
-                className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition"
+                className="inline-flex items-center gap-1.5 text-gray-300 hover:text-accent-on-dark transition-colors"
               >
                 <Phone className="h-3.5 w-3.5" />
                 {CONTACT_PHONE}
@@ -577,14 +577,14 @@ const ContactForm: React.FC<{ copy: Copy }> = ({ copy }) => {
 const HeroMockPanel: React.FC<{ copy: Copy }> = ({ copy }) => (
   <div className="rounded-2xl border border-black/[0.08] bg-white shadow-sm p-5 text-left">
     <div className="flex items-center gap-2 mb-4">
-      <div className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-600">
+      <div className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-black/5 text-gray-900">
         <FileText className="h-4 w-4" />
       </div>
       <div>
         <p className="text-sm font-semibold text-gray-900">{copy.mockTitle}</p>
         <p className="text-[11px] text-gray-500">{copy.mockFile}</p>
       </div>
-      <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+      <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-700">
         <CheckCircle2 className="h-3 w-3" /> {copy.mockDone}
       </span>
     </div>
@@ -611,62 +611,49 @@ const HeroMockPanel: React.FC<{ copy: Copy }> = ({ copy }) => (
   </div>
 );
 
-const Hero: React.FC<{ copy: Copy }> = ({ copy }) => (
-  <section className="hero-gradient pt-12 pb-20 md:pt-16 md:pb-24 px-4">
-    <div className="mx-auto max-w-6xl grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
+// Rendered without fade so the H1 paints immediately (LCP), matching the homepage hero.
+const Hero: React.FC<{ copy: Copy; contactId: string }> = ({ copy, contactId }) => (
+  <section className="relative overflow-hidden">
+    <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-16 pb-20 md:pt-24 md:pb-28 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
       <div>
-        <MotionFade>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-gray-700">
-            <Sparkles className="h-3 w-3" />
-            {copy.trustBadge}
-          </span>
-        </MotionFade>
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-gray-500">
+          {copy.trustBadge}
+        </p>
 
-        <MotionFade delay={0.05}>
-          <h1 className="mt-5 text-4xl md:text-5xl lg:text-[3.4rem] font-normal tracking-tight text-gray-900 leading-[1.08]">
-            {copy.heroTitle}
-          </h1>
-        </MotionFade>
+        <h1 className="display-heading hero-title mt-5 text-[2.75rem] text-gray-900 sm:text-5xl md:text-6xl lg:text-[4.25rem]">
+          {renderEmphasis(copy.heroTitle)}
+        </h1>
 
-        <MotionFade delay={0.1}>
-          <p className="mt-5 text-lg text-gray-600 max-w-xl leading-relaxed">{copy.heroSubtitle}</p>
-        </MotionFade>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-600 md:text-xl">{copy.heroSubtitle}</p>
 
-        <MotionFade delay={0.15}>
-          <ul className="mt-6 space-y-2 text-sm md:text-base text-gray-700">
-            {copy.heroBullets.map((b) => (
-              <li key={b} className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600 flex-shrink-0" />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-        </MotionFade>
+        <ul className="mt-6 space-y-2 text-sm text-gray-700 md:text-base">
+          {copy.heroBullets.map((b) => (
+            <li key={b} className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-900" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
 
-        <MotionFade delay={0.2}>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 text-base font-medium text-white transition hover:bg-black/85 cursor-pointer group"
-            >
-              {copy.ctaPrimary}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#demo"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-base font-medium text-black transition hover:border-black/20 hover:bg-black/5 cursor-pointer"
-            >
-              {copy.ctaSecondary}
-            </a>
-          </div>
-        </MotionFade>
+        <div className="mt-10 flex flex-col items-stretch gap-5 sm:flex-row sm:items-center sm:gap-8">
+          <a
+            href={`#${contactId}`}
+            className="group inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-base font-medium text-white transition-colors hover:bg-accent-hover"
+          >
+            {copy.ctaPrimary}
+            <ArrowRight className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-1" />
+          </a>
+          <a
+            href="#demo"
+            className="self-start text-base font-medium text-gray-900 underline decoration-black/20 underline-offset-[6px] transition-colors hover:text-accent hover:decoration-current sm:self-auto"
+          >
+            {copy.ctaSecondary}
+          </a>
+        </div>
       </div>
 
-      <MotionFade delay={0.25}>
-        <div className="relative">
-          <div className="absolute -inset-4 bg-gradient-to-br from-emerald-200/40 via-transparent to-blue-200/30 blur-2xl -z-10 rounded-3xl" />
-          <HeroMockPanel copy={copy} />
-        </div>
+      <MotionFade delay={0.1}>
+        <HeroMockPanel copy={copy} />
       </MotionFade>
     </div>
   </section>
@@ -676,7 +663,7 @@ const ProblemSection: React.FC<{ copy: Copy }> = ({ copy }) => (
   <section className="border-t border-black/5">
     <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <MotionFade>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 mb-10 text-center">
+        <h2 className="display-heading text-4xl leading-[1.05] text-gray-900 md:text-5xl mb-10">
           {copy.problemTitle}
         </h2>
       </MotionFade>
@@ -705,12 +692,12 @@ const WhatWeBuild: React.FC<{ copy: Copy }> = ({ copy }) => (
   <section className="bg-gray-50 border-t border-black/5">
     <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <MotionFade>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 mb-3 text-center">
+        <h2 className="display-heading text-4xl leading-[1.05] text-gray-900 md:text-5xl mb-4">
           {copy.whatTitle}
         </h2>
       </MotionFade>
       <MotionFade delay={0.05}>
-        <p className="max-w-2xl mx-auto text-base text-gray-500 mb-10 text-center leading-relaxed">
+        <p className="max-w-2xl text-base text-gray-500 mb-10 leading-relaxed">
           {copy.whatIntro}
         </p>
       </MotionFade>
@@ -719,7 +706,7 @@ const WhatWeBuild: React.FC<{ copy: Copy }> = ({ copy }) => (
         {copy.whatItems.map((it, i) => (
           <MotionFade key={it.title} delay={0.05 + i * 0.05}>
             <div className="h-full rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm">
-              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-emerald-500/10 text-emerald-600 mb-4">
+              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-black/5 text-gray-900 mb-4">
                 {WHAT_ICONS[i]}
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-3">{it.title}</h3>
@@ -749,7 +736,7 @@ const Industries: React.FC<{ copy: Copy }> = ({ copy }) => (
   <section className="border-t border-black/5">
     <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <MotionFade>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 mb-10 text-center">
+        <h2 className="display-heading text-4xl leading-[1.05] text-gray-900 md:text-5xl mb-10">
           {copy.industriesTitle}
         </h2>
       </MotionFade>
@@ -757,7 +744,7 @@ const Industries: React.FC<{ copy: Copy }> = ({ copy }) => (
         {copy.industries.map((it, i) => (
           <MotionFade key={it.title} delay={0.05 + i * 0.05}>
             <div className="h-full rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm">
-              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-gray-900 text-white mb-4">
+              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-black/5 text-gray-900 mb-4">
                 {INDUSTRY_ICONS[i]}
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-2">{it.title}</h3>
@@ -767,7 +754,7 @@ const Industries: React.FC<{ copy: Copy }> = ({ copy }) => (
         ))}
       </div>
       <MotionFade delay={0.25}>
-        <p className="mt-8 max-w-3xl mx-auto text-center text-sm text-gray-500 italic">
+        <p className="mt-8 max-w-3xl text-sm text-gray-500">
           {copy.industriesNote}
         </p>
       </MotionFade>
@@ -786,7 +773,7 @@ const HowWeWork: React.FC<{ copy: Copy }> = ({ copy }) => (
   <section className="bg-gray-50 border-t border-black/5">
     <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <MotionFade>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 mb-10 text-center">
+        <h2 className="display-heading text-4xl leading-[1.05] text-gray-900 md:text-5xl mb-10">
           {copy.howTitle}
         </h2>
       </MotionFade>
@@ -797,7 +784,7 @@ const HowWeWork: React.FC<{ copy: Copy }> = ({ copy }) => (
               <span className="absolute right-5 top-5 text-xs font-semibold text-gray-300">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-emerald-500/10 text-emerald-600 mb-4">
+              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-black/5 text-gray-900 mb-4">
                 {STEP_ICONS[i]}
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-2">{s.title}</h3>
@@ -812,20 +799,20 @@ const HowWeWork: React.FC<{ copy: Copy }> = ({ copy }) => (
 
 const WhyDendora: React.FC<{ copy: Copy }> = ({ copy }) => (
   <section className="border-t border-black/5">
-    <div className="mx-auto max-w-4xl px-4 py-16 md:py-20">
+    <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <MotionFade>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 mb-8 text-center">
+        <h2 className="display-heading text-4xl leading-[1.05] text-gray-900 md:text-5xl mb-8">
           {copy.whyTitle}
         </h2>
       </MotionFade>
       <MotionFade delay={0.1}>
-        <ul className="grid gap-3 sm:grid-cols-2">
+        <ul className="grid max-w-4xl gap-3 sm:grid-cols-2">
           {copy.whyPoints.map((p) => (
             <li
               key={p}
               className="flex items-start gap-3 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm"
             >
-              <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="h-5 w-5 text-gray-900 flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700 leading-relaxed">{p}</span>
             </li>
           ))}
@@ -836,10 +823,10 @@ const WhyDendora: React.FC<{ copy: Copy }> = ({ copy }) => (
 );
 
 const DemoConcept: React.FC<{ copy: Copy }> = ({ copy }) => (
-  <section id="demo" className="bg-gray-950 text-white border-t border-black/5">
+  <section id="demo" className="on-dark bg-gray-950 text-white border-t border-black/5">
     <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <MotionFade>
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-10 text-center">
+        <h2 className="display-heading text-4xl leading-[1.05] md:text-5xl mb-10">
           {copy.demoTitle}
         </h2>
       </MotionFade>
@@ -911,14 +898,14 @@ const Faq: React.FC<{ copy: Copy }> = ({ copy }) => {
 
   return (
     <section className="bg-white border-t border-black/5">
-      <div className="max-w-3xl mx-auto px-4 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
         <MotionFade>
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 mb-10 text-center">
+          <h2 className="display-heading text-4xl leading-[1.05] text-gray-900 md:text-5xl mb-10">
             {copy.faqTitle}
           </h2>
         </MotionFade>
         <MotionFade delay={0.1}>
-          <div className="rounded-2xl border border-gray-100 bg-gray-50/50 px-6">
+          <div className="max-w-3xl rounded-2xl border border-gray-100 bg-gray-50/50 px-6">
             {copy.faqs.map((it, i) => (
               <FaqItem
                 key={it.question}
@@ -942,12 +929,13 @@ const Faq: React.FC<{ copy: Copy }> = ({ copy }) => {
 
 export const AiAutomationLanding: React.FC<AiAutomationLandingProps> = ({ language }) => {
   const copy = COPY[language];
+  const contactId = SECTION_IDS[language].contact;
   return (
     <div className="min-h-screen bg-white">
-      <Navigation language={language} variant="work" />
+      <Navigation language={language} variant="work" current="ai" />
 
       <main id="main-content">
-        <Hero copy={copy} />
+        <Hero copy={copy} contactId={contactId} />
         <ProblemSection copy={copy} />
         <WhatWeBuild copy={copy} />
         <Industries copy={copy} />
@@ -955,7 +943,7 @@ export const AiAutomationLanding: React.FC<AiAutomationLandingProps> = ({ langua
         <WhyDendora copy={copy} />
         <DemoConcept copy={copy} />
         <Faq copy={copy} />
-        <ContactForm copy={copy} />
+        <ContactForm copy={copy} sectionId={contactId} />
       </main>
 
       <Footer language={language} />

@@ -51,6 +51,12 @@ export const CONTACT_EMAIL = 'hello@dendora.hu';
 export const CONTACT_PHONE = '+36 30 686 3734';
 export const SITE_URL = 'https://dendora.hu';
 
+// Homepage section anchors per language (HU URLs stay readable: /#kapcsolat).
+export const SECTION_IDS = {
+  hu: { work: 'munkaink', services: 'szolgaltatasok', contact: 'kapcsolat' },
+  en: { work: 'work', services: 'services', contact: 'contact' },
+} as const;
+
 export const CURRENT_SITE_VARIANT: SiteVariant = 'default';
 
 export function getSiteConfig(): SiteConfig {

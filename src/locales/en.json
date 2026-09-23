@@ -7,7 +7,7 @@
     "home": "Home",
     "services": "Services",
     "work": "Work",
-    "pricing": "How We Work",
+    "pricing": "Services",
     "about": "Why Us",
     "contact": "Contact",
     "dimop": "DIMOP Grant",
@@ -19,7 +19,7 @@
     }
   },
   "hero": {
-    "title": "Software you can build your business on.",
+    "title": "Software you can *build* your business on.",
     "subtitle": "We design and build digital products — from first idea to production, all in one place.",
     "cta": {
       "startProject": "Start a project",
@@ -81,12 +81,15 @@
       }
     },
     "caseStudy": "Case study",
-    "viewProject": "View project"
+    "viewProject": "View project",
+    "ongoing": "Ongoing development",
+    "schematic": "System schematic",
+    "screenshotAlt": "{title} – screenshot"
   },
   "pricing": {
-    "title": "How We Work",
+    "title": "Services",
     "subtitle": "Every project is different. Here's what we can build together.",
-    "cta": "Let's talk",
+    "cta": "Tell us about your project",
     "emailSubject": "Inquiry: {service}",
     "note": "Every project is scoped individually. We'll discuss requirements, timeline, and budget together.",
     "differentiators": [
@@ -102,9 +105,7 @@
         "deliverables": [
           "Custom design & development",
           "Mobile-first, responsive layout",
-          "SEO & performance optimization",
-          "Domain, DNS & hosting setup",
-          "Analytics integration"
+          "SEO & performance optimization"
         ]
       },
       "software": {
@@ -113,9 +114,7 @@
         "deliverables": [
           "Requirements analysis & scoping",
           "Full-stack development",
-          "Database design & API development",
-          "Cloud infrastructure & deployment",
-          "User training & documentation"
+          "Cloud infrastructure & deployment"
         ]
       },
       "ai": {
@@ -124,8 +123,6 @@
         "deliverables": [
           "LLM integration & prompt engineering",
           "Workflow automation",
-          "Data processing pipelines",
-          "Smart features & recommendations",
           "Integration with existing systems"
         ]
       },
@@ -135,9 +132,7 @@
         "deliverables": [
           "Hosting & infrastructure management",
           "Security updates & monitoring",
-          "Content & feature updates",
-          "Performance monitoring",
-          "Priority technical support"
+          "Content & feature updates"
         ]
       }
     }
@@ -147,9 +142,9 @@
     "subtitle": "Describe your project — we typically reply within 24 hours.",
     "form": {
       "name": "Name",
-      "namePlaceholder": "Jane Doe",
+      "namePlaceholder": "Name",
       "email": "Email",
-      "emailPlaceholder": "jane@company.com",
+      "emailPlaceholder": "Email address",
       "message": "Message",
       "messagePlaceholder": "Tell us about your project…",
       "submit": "Send message",

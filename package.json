@@ -23,8 +23,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/generate-og-images.mjs && astro build && node scripts/update-csp-hashes.mjs",
+    "build": "node scripts/generate-og-images.mjs && node scripts/optimize-screenshots.mjs && astro build && node scripts/update-csp-hashes.mjs",
     "build:og": "node scripts/generate-og-images.mjs",
+    "build:screenshots": "node scripts/optimize-screenshots.mjs",
     "build:csp": "node scripts/update-csp-hashes.mjs",
     "preview": "astro preview",
     "astro": "astro",

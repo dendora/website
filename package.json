@@ -32,23 +32,23 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@astrojs/react": "^5.0.7",
-    "@astrojs/sitemap": "^3.7.3",
-    "@tailwindcss/vite": "^4.3.1",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "astro": "^6.4.7",
+    "@astrojs/react": "^7.0.0",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "astro": "^7.3.4",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.18.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.1"
+    "lucide-react": "^1.47.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.37",
-    "prettier": "^3.8.4",
-    "satori": "^0.26.0",
-    "sharp": "^0.35.1"
+    "baseline-browser-mapping": "^2.11.25",
+    "prettier": "^3.9.9",
+    "satori": "^0.33.5",
+    "sharp": "^0.35.4"
   }
 }

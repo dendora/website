@@ -60,8 +60,8 @@ No external dependencies required.
 
 The DIMOP grant requires applicants to complete a 26-question digital intensity assessment on kkvdigital.dkf.hu. Official reference PDFs are saved locally:
 
-- `docs/dkf/Minta_kerdoiv.pdf` — Sample questionnaire with all 26 questions, answer options, and DII/RCR13 scoring rules
-- `docs/dkf/DIMOP_felmeresi_modszertan.pdf` — Full methodology guide
+- `docs/dimop/dkf/Minta_kerdoiv.pdf` — Sample questionnaire with all 26 questions, answer options, and DII/RCR13 scoring rules
+- `docs/dimop/dkf/DIMOP_felmeresi_modszertan.pdf` — Full methodology guide
 
 Original URLs (may change):
 - https://kkvdigital.dkf.hu/assets/pdf/Minta_kerdoiv.pdf
@@ -78,3 +78,11 @@ Original URLs (may change):
 Scoring: each question maps to DII and/or RCR13 indicators (binary 0/1). Low DII score = eligible for DIMOP grant.
 
 When modifying the chatbot system prompt (`functions/api/chat.ts`) or FAQ (`src/locales/dimop/hu.json`), consult these PDFs for accuracy.
+
+## Contact Details
+
+Contact constants live in `src/lib/site-config.ts`. The phone number is hidden site-wide (`SHOW_PHONE = false`, spam calls) — don't hard-code it in pages, JSON-LD or the chatbot prompts.
+
+## Brand, Promo Video & Social Images
+
+`brand/` is outside the site build. The promo video (`brand/promo/`, `npm run promo`) and Facebook images (`npm run promo:social`) are documented in `brand/README.md`. After re-rendering the video, check a contact sheet (`ffmpeg -i out.mp4 -vf "fps=1/2,scale=360:-1,tile=7x2" -frames:v 1 sheet.jpg`) before handing it over.

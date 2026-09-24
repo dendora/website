@@ -1,66 +1,49 @@
-# Dendora
+# Dendora website
 
-> Minimal software, maximal impact.
+Source of [dendora.hu](https://dendora.hu) — Dendora Bt., software development from Esztergom.
 
-We build lean, dependable web and mobile products. Strategy, design, and engineering — delivered with clarity.
+## Stack
 
-## About
-
-Dendora is a software development company specializing in full-stack applications with modern React frontends and robust Go backends, deployed on Kubernetes.
-
-**Services:**
-- Product Strategy & Validation
-- Frontend Development (React, TypeScript)
-- Backend & Infrastructure (Go, PostgreSQL, Kubernetes)
-
-## Tech Stack
-
-This website is built with:
-- **Astro 5** - Static site generator with island architecture
-- **React 19** - Interactive components
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **Cloudflare Pages** - Hosting and deployment
+- **Astro 7** (static output) with **React 19** islands, TypeScript
+- **Tailwind CSS 4**
+- **Cloudflare Pages** hosting + Pages Functions in `functions/api/` (chatbot via Workers AI, contact form via Resend)
 
 ## Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev       # dev server
+npm run build     # OG images → screenshots → astro build → CSP hashes
+npm run preview   # serve dist/
 ```
 
-## Features
+## Repository layout
 
-- ✅ Multilingual support (Hungarian/English)
-- ✅ SEO optimized with proper meta tags
-- ✅ Responsive design
-- ✅ Static site generation
-- ✅ Automatic sitemap with hreflang
-- ✅ Fast loading with minimal JavaScript
+| Path | Contents |
+|------|----------|
+| `src/` | Pages, components, layouts, HU/EN locales |
+| `public/` | Static assets served as-is (fonts, icons, `_headers`) |
+| `functions/api/` | Cloudflare Pages Functions: `chat.ts`, `contact.ts` |
+| `scripts/` | Build steps: OG images, screenshot optimisation, CSP hashes |
+| `brand/` | Logo, print, social images and promo video tooling — not part of the site build ([brand/README.md](brand/README.md)) |
+| `docs/dimop/` | DIMOP strategy documents and the official DKF assessment PDFs |
+| `docs/prompts/` | Agent prompts that pages were built from |
+| `AGENTS.md` | Notes for coding agents (CSP hashes, OG images, DKF assessment) |
 
 ## Deployment
 
-This site is deployed on **Cloudflare Pages** with automatic builds from the main branch.
+Cloudflare Pages builds `main` automatically.
 
-**Build Settings:**
-- Build command: `npm run build`
-- Build output directory: `dist`
-- Root directory: `/` (repository root)
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+- Build command: `npm run build` · output directory: `dist` · root: `/`
+- Bindings and variables (Pages → Settings):
+  - `AI` — Workers AI binding (declared in `wrangler.jsonc`), used by `/api/chat`
+  - `RESEND_API_KEY` — secret, required by `/api/contact`
+  - `CONTACT_EMAIL` — optional recipient, defaults to hello@dendora.hu
 
 ## Contact
 
-- **Website:** [dendora.hu](https://dendora.hu)
-- **Email:** [hello@dendora.hu](mailto:hello@dendora.hu)
-- **GitHub:** [@dendora](https://github.com/dendora)
+[hello@dendora.hu](mailto:hello@dendora.hu) · [dendora.hu](https://dendora.hu) · [Facebook](https://www.facebook.com/dendora.hu/)
+
+## License
+
+MIT — see [LICENSE](LICENSE).

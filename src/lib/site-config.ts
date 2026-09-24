@@ -48,8 +48,12 @@ export const siteConfigs: Record<SiteVariant, SiteConfig> = {
 
 // Centralized contact info
 export const CONTACT_EMAIL = 'hello@dendora.hu';
-export const CONTACT_PHONE = '+36 30 686 3734';
+// Hidden to cut spam calls; set true to show it everywhere again (JSON-LD "telephone" in the layouts must be re-added by hand).
+export const SHOW_PHONE = false;
+// Folded to '' at build time while hidden, so the number never ships in the client bundle.
+export const CONTACT_PHONE = SHOW_PHONE ? '+36 30 686 3734' : '';
 export const SITE_URL = 'https://dendora.hu';
+export const FACEBOOK_URL = 'https://www.facebook.com/dendora.hu/';
 
 // Homepage section anchors per language (HU URLs stay readable: /#kapcsolat).
 export const SECTION_IDS = {

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Dendora — közösségi képek</title>
+<style>
+@font-face{font-family:'Inter';font-weight:100 900;src:url('../../public/fonts/inter-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Inter';font-weight:100 900;src:url('../../public/fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:normal;src:url('../../public/fonts/instrument-serif-regular.woff2') format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;src:url('../../public/fonts/instrument-serif-italic.woff2') format('woff2')}
+:root{--ink:#111827;--ink2:#374151;--mut:#6b7280;--acc:#0f766e;--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink);background:#fff}
+.art{position:relative;overflow:hidden;background:#fff;display:none}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(17,24,39,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(17,24,39,.05) 1px,transparent 1px);background-size:40px 40px;background-position:center;-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+.hud{position:absolute;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+.cross{position:relative;width:20px;height:20px}
+.cross::before,.cross::after{content:"";position:absolute;background:currentColor;opacity:.7}
+.cross::before{left:50%;top:0;bottom:0;width:1px}
+.cross::after{top:50%;left:0;right:0;height:1px}
+
+/* Cover 1640×624. Mobile shows only the centre ~1110 px (x 265–1375), so everything stays inside it. */
+#cover{width:1640px;height:624px}
+#cover .tl{left:285px;top:40px}#cover .tr{right:285px;top:40px}#cover .br{right:285px;bottom:40px}
+#cover .br span{text-transform:none;letter-spacing:.08em}
+.center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1040px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.kicker{font-family:var(--mono);font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:112px;line-height:1;letter-spacing:-.025em;margin-top:26px;white-space:nowrap}
+h1 em{font-style:italic;color:var(--acc)}
+.sub{font-size:23px;line-height:1.45;color:var(--ink2);margin-top:24px;white-space:nowrap}
+.url{margin-top:30px;display:flex;align-items:center;gap:14px;font-size:22px;font-weight:600;letter-spacing:-.01em}
+.url i{width:7px;height:7px;border-radius:50%;background:var(--acc)}
+
+/* Profile 1080×1080, shown as a circle. */
+#profile{width:1080px;height:1080px;display:none;align-items:center;justify-content:center}
+#profile img{width:560px;transform:translate(-6px,-4px)}
+</style>
+</head>
+<body>
+<section class="art" id="cover">
+  <div class="grid"></div>
+  <div class="hud tl"><i class="cross"></i><span>Dendora / Szoftverfejlesztés</span></div>
+  <div class="hud tr"><span>Esztergom · HU</span><i class="cross"></i></div>
+  <div class="hud br"><span>hello@dendora.hu</span><i class="cross"></i></div>
+  <div class="center">
+    <div class="kicker">Weboldalak · Egyedi szoftver · AI &amp; automatizálás · Támogatás</div>
+    <h1>Szoftver, amire <em>építhet</em>.</h1>
+    <p class="sub">Digitális termékeket tervezünk és fejlesztünk — az ötlettől a működő rendszerig, egy helyen.</p>
+    <div class="url"><i></i>dendora.hu</div>
+  </div>
+</section>
+
+<section class="art" id="profile">
+  <img src="../logo/dendora-d-logo.svg" alt="Dendora">
+</section>
+
+<script>
+const kind = new URLSearchParams(location.search).get('kind') || 'cover';
+document.getElementById(kind).style.display = kind === 'cover' ? 'block' : 'flex';
+window.socialReady = (async () => {
+  const txt = 'AaőűŐŰé';
+  await Promise.all([
+    ...[400, 600].map((w) => document.fonts.load(`${w} 16px Inter`, txt)),
+    document.fonts.load('16px "Instrument Serif"', txt),
+    document.fonts.load('italic 16px "Instrument Serif"', txt),
+  ]);
+  await Promise.all([...document.images].map((i) => i.decode()));
+  return true;
+})();
+</script>
+</body>
+</html>

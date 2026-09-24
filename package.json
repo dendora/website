@@ -27,6 +27,9 @@
     "build:og": "node scripts/generate-og-images.mjs",
     "build:screenshots": "node scripts/optimize-screenshots.mjs",
     "build:csp": "node scripts/update-csp-hashes.mjs",
+    "promo": "node brand/promo/record.mjs",
+    "promo:shots": "node brand/promo/shots.mjs",
+    "promo:social": "node brand/promo/social.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
@@ -48,6 +51,7 @@
   },
   "devDependencies": {
     "baseline-browser-mapping": "^2.11.25",
+    "playwright-core": "^1.63.0",
     "prettier": "^3.9.9",
     "satori": "^0.33.5",
     "sharp": "^0.35.4"

@@ -1,0 +1,1153 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Dendora — promó</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;src:url('../../public/fonts/inter-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;src:url('../../public/fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('../../public/fonts/instrument-serif-regular.woff2') format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;src:url('../../public/fonts/instrument-serif-italic.woff2') format('woff2')}
+
+:root{
+  --ink:#111827;--ink2:#374151;--mut:#6b7280;--hair:rgba(0,0,0,.06);--hair2:rgba(17,24,39,.12);
+  --acc:#0f766e;--acc2:#115e59;--accd:#5eead4;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+  --hatch:repeating-linear-gradient(45deg,rgba(17,24,39,.14) 0 1px,transparent 1px .7rem);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink);background:#d1d5db;overflow:hidden}
+#stage{position:absolute;left:0;top:0;overflow:hidden;background:#fff;transform-origin:0 0}
+.scene{position:absolute;inset:0;display:none}
+.abs{position:absolute}
+.mono{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;font-size:1.4rem;color:var(--mut)}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;font-synthesis:none}
+.serif em,em.serif{font-style:italic;color:var(--acc)}
+.card{background:#fff;border:1px solid var(--hair);border-radius:1.2rem;box-shadow:0 2rem 4rem -2.4rem rgba(0,0,0,.22),0 .2rem .6rem rgba(0,0,0,.03);overflow:hidden}
+.bar{display:block;height:1rem;border-radius:.5rem;background:#e5e7eb}
+[data-at]{opacity:0}
+
+/* ---------- HUD ---------- */
+#hud{position:absolute;inset:0;pointer-events:none;z-index:50;color:var(--hudc,#6b7280)}
+.hud{position:absolute;display:flex;align-items:center;gap:1.6rem;font-family:var(--mono);font-size:1.5rem;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;font-variant-numeric:tabular-nums}
+.hud.tl{left:4.6rem;top:4.6rem}.hud.tr{right:4.6rem;top:4.6rem}
+.hud.bl{left:4.6rem;bottom:4.6rem}.hud.br{right:4.6rem;bottom:4.6rem}
+.cross{position:relative;width:2.2rem;height:2.2rem;flex:none}
+.cross::before,.cross::after{content:"";position:absolute;background:currentColor;opacity:.7}
+.cross::before{left:50%;top:0;bottom:0;width:1px}
+.cross::after{top:50%;left:0;right:0;height:1px}
+#prog{position:absolute;left:8.4rem;right:8.4rem;bottom:8.6rem;height:2px;background:var(--hudl,rgba(17,24,39,.08))}
+#progFill{height:100%;width:0;background:var(--huda,var(--acc))}
+#chapWrap{overflow:hidden;height:2rem;display:flex;align-items:center}
+#tc{text-transform:none}
+
+/* ---------- S1 chaos ---------- */
+.frag{position:absolute;will-change:transform;z-index:6}
+.fbar{display:flex;align-items:center;gap:1rem;padding:1rem 1.4rem;border-bottom:1px solid var(--hair);font-size:1.3rem}
+.fbar .mono{font-size:1.15rem;letter-spacing:.06em;text-transform:none;color:var(--ink2)}
+.xl{width:2rem;height:2rem;border-radius:.4rem;background:#1f7a47;color:#fff;font:700 1.2rem Inter;display:grid;place-items:center}
+#fx1{width:44rem}
+.sheet{display:grid;grid-template-columns:3.2rem repeat(4,1fr);font-size:1.2rem;color:var(--ink2)}
+.sheet span{border-right:1px solid #eef0f2;border-bottom:1px solid #eef0f2;height:2.8rem;padding:0 .6rem;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+.sheet .hd{background:#f7f7f8;color:var(--mut);justify-content:center;font-family:var(--mono);font-size:1.05rem}
+.sheet .err{color:#b91c1c;font-weight:600;font-family:var(--mono)}
+.sheet .hl{background:#fef9c3}
+#fx2{width:42rem}
+.mrow{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;border-bottom:1px solid var(--hair);font-size:1.45rem}
+.mrow i{width:.9rem;height:.9rem;border-radius:50%;flex:none}
+.mrow i.ud{background:#2563eb}
+.mrow b{font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mrow span{color:var(--mut);font-size:1.2rem}
+#fx3{width:32rem;padding:1.6rem;background:#fcfbf7}
+.calh{font-size:3.4rem;line-height:1;margin-bottom:1rem}
+.calg{display:grid;grid-template-columns:repeat(7,1fr);gap:.3rem;font-family:var(--mono);font-size:1.1rem;color:var(--mut)}
+.calg span{height:2.9rem;border:1px solid #ecebe4;padding:.2rem .3rem;position:relative}
+.calg span.c::after{content:"";position:absolute;inset:.1rem;border:2px solid #b91c1c;border-radius:50%;transform:rotate(-8deg);opacity:.7}
+.calg span.x{text-decoration:line-through;color:var(--ink)}
+.caln{font-size:2.2rem;margin-top:1rem;color:#1d4ed8;font-style:italic;line-height:1.1}
+#fx4{width:21rem;height:19rem;background:#fde68a;padding:2rem;box-shadow:0 1.6rem 3rem -1.6rem rgba(0,0,0,.35);font-size:3.2rem;line-height:1.05;color:#422006}
+#fx5{width:38rem;display:flex;gap:1.2rem;padding:1.4rem 1.6rem;align-items:flex-start}
+.av{width:3.6rem;height:3.6rem;border-radius:50%;background:#e5e7eb;display:grid;place-items:center;font-weight:600;font-size:1.5rem;flex:none}
+#fx5 b{font-size:1.4rem}#fx5 p{font-size:1.7rem;margin-top:.3rem;color:var(--ink2)}
+#fx6{width:36rem;display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.4rem;font-size:1.5rem;font-weight:500}
+.ficon{width:3.4rem;height:4.2rem;border-radius:.5rem;background:#b91c1c;color:#fff;font:700 1.05rem Inter;display:grid;place-items:end center;padding-bottom:.5rem;flex:none}
+
+#s1words{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:8}
+.kw{display:block;font-weight:800;letter-spacing:-.05em;line-height:.98;position:relative;width:max-content;margin:0 auto;color:var(--ink)}
+.kw .strike{position:absolute;left:-2%;right:-2%;top:54%;height:.09em;background:var(--ink);transform-origin:0 50%;transform:scaleX(0)}
+html.land .kw{font-size:15rem}html.port .kw{font-size:12.5rem}html.tall .kw{font-size:14.5rem}
+
+#app{position:absolute;opacity:0;display:flex;flex-direction:column;background:rgba(255,255,255,.96)}
+html.land #app{left:calc(50% - 56rem);width:112rem;top:25rem;height:58rem}
+html.port #app{left:9rem;width:82rem;top:28rem;height:72rem}
+html.tall #app{left:8rem;width:84rem;top:44rem;height:92rem}
+.apph{height:5.4rem;display:flex;align-items:center;gap:1.2rem;padding:0 2rem;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.7);flex:none}
+.mk{width:2.8rem;height:2.8rem;flex:none}
+.apph b{font-size:1.7rem;font-weight:600}
+.apph .srch{margin-left:auto;width:24rem;height:3rem;border-radius:.8rem;background:#f3f4f6;display:flex;align-items:center;padding:0 1.2rem;font-size:1.3rem;color:var(--mut)}
+html.tall .apph .srch,html.port .apph .srch{width:18rem}
+.appb{flex:1;display:flex;min-height:0}
+.side{width:19rem;border-right:1px solid var(--hair);padding:2rem 1.4rem;display:flex;flex-direction:column;gap:.4rem;flex:none}
+html.port .side,html.tall .side{display:none}
+.side span{font-size:1.5rem;padding:1rem 1.2rem;border-radius:.8rem;color:var(--ink2)}
+.side span.on{background:#f3f4f6;color:var(--ink);font-weight:600}
+.grid{flex:1;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:1.6rem;padding:1.6rem;min-width:0}
+html.tall .grid{grid-template-columns:1fr;grid-template-rows:1.3fr 1fr 1fr 1fr}
+.pan{border:1px solid var(--hair);border-radius:1rem;padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:.9rem;min-height:0;overflow:hidden}
+.pan h4{font-size:1.2rem;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:400;display:flex;justify-content:space-between}
+.trow{display:flex;align-items:center;gap:1rem;font-size:1.5rem;padding:.55rem 0;border-bottom:1px solid var(--hair)}
+html.port .trow,html.tall .trow{font-size:1.9rem;padding:.9rem 0}
+html.port .ev,html.tall .ev{font-size:1.8rem;padding:1rem 1.2rem}
+html.port .pan h4,html.tall .pan h4{font-size:1.4rem}
+html.port .chip,html.tall .chip{font-size:1.4rem}
+.trow:last-child{border-bottom:0}
+.trow b{font-weight:500;flex:1;white-space:nowrap}
+.chip{font-size:1.15rem;padding:.3rem .9rem;border-radius:99rem;background:#f3f4f6;color:var(--ink2);white-space:nowrap}
+.chip.ok{background:rgba(15,118,110,.1);color:var(--acc)}
+.dotu{width:.8rem;height:.8rem;border-radius:50%;background:var(--acc);flex:none}
+.ev{border-left:.35rem solid var(--acc);background:rgba(15,118,110,.06);border-radius:.4rem;padding:.7rem 1rem;font-size:1.4rem}
+.ev small{display:block;font-family:var(--mono);font-size:1.1rem;color:var(--mut);letter-spacing:.06em}
+.cb{width:1.8rem;height:1.8rem;border-radius:.4rem;border:1.5px solid #d1d5db;flex:none;display:grid;place-items:center}
+.cb.on{background:var(--acc);border-color:var(--acc)}
+.cb.on::after{content:"";width:.8rem;height:.45rem;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:translateY(-.1rem) rotate(-45deg)}
+#s1cap{position:absolute;left:0;right:0;text-align:center;line-height:1}
+html.land #s1cap{top:12rem;font-size:9rem}html.port #s1cap{top:13rem;font-size:9rem}html.tall #s1cap{top:26rem;font-size:10.5rem}
+#s1cap span{display:inline-block}
+
+/* ---------- S2 mark + tagline ---------- */
+#mark{position:absolute;overflow:visible}
+html.land #mark{right:13rem;top:calc(50% - 25rem);width:42rem}
+html.port #mark{left:calc(50% - 19rem);top:14rem;width:38rem}
+html.tall #mark{left:calc(50% - 23rem);top:28rem;width:46rem}
+#mark .hm-grid{fill:none;stroke:rgba(17,24,39,.07);stroke-width:.05}
+#mark .hm-hatch{stroke:rgba(17,24,39,.28);stroke-width:.08}
+#mark .hm-line{fill:none;stroke:rgba(17,24,39,.7);stroke-width:.13;stroke-dasharray:1;stroke-dashoffset:1}
+#mark .hm-thin{fill:none;stroke:rgba(17,24,39,.38);stroke-width:.09;stroke-dasharray:1;stroke-dashoffset:1}
+#mark .hm-text{fill:#6b7280;font-family:var(--mono);font-size:1.5px;letter-spacing:.08em;opacity:0}
+#mOuter,#mInner{transform-box:fill-box;transform-origin:center;opacity:0}
+#mHalf{opacity:0}
+#s2text{position:absolute}
+html.land #s2text{left:14rem;top:50%;transform:translateY(-50%);width:104rem}
+html.port #s2text{left:9rem;top:61rem;width:84rem}
+html.tall #s2text{left:9rem;top:89rem;width:84rem}
+#tag{line-height:.98;letter-spacing:-.025em}
+html.land #tag{font-size:15rem}html.port #tag{font-size:12.4rem}html.tall #tag{font-size:14rem}
+#tag span{display:inline-block}
+#tag em{font-style:italic;color:var(--acc)}
+#sub{font-size:2.9rem;line-height:1.45;color:var(--ink2);margin-top:3.6rem;max-width:80rem}
+html.tall #sub{font-size:3.2rem}
+
+/* ---------- S3 services ---------- */
+#meter{position:absolute;display:flex;gap:1.2rem}
+html.land #meter{left:14rem;top:13rem;width:64rem}
+html.port #meter{left:9rem;top:12.5rem;width:82rem}
+html.tall #meter{left:9rem;top:21rem;width:82rem}
+.seg{flex:1;display:flex;flex-direction:column;gap:1rem}
+.seg .mono{font-size:1.25rem}
+.seg i{display:block;height:3px;background:rgba(17,24,39,.08);position:relative}
+.seg i b{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--acc)}
+.stx{position:absolute}
+html.land .stx{left:14rem;top:25rem;width:64rem}
+html.port .stx{left:9rem;top:19.5rem;width:84rem}
+html.tall .stx{left:9rem;top:29rem;width:84rem}
+.stx .num{font-size:1.6rem;color:var(--acc);letter-spacing:.18em}
+.stx h2{line-height:.95;margin-top:1.6rem;letter-spacing:-.02em}
+html.land .stx h2{font-size:10rem}html.port .stx h2{font-size:7.6rem}html.tall .stx h2{font-size:8.6rem}
+.stx ul{list-style:none;margin-top:3.4rem;display:flex;flex-direction:column}
+html.port .stx ul{margin-top:2.2rem}
+.stx li{font-size:2.5rem;color:var(--ink2);padding:1.2rem 0;border-top:1px solid var(--hair2);display:flex;gap:2rem;align-items:baseline}
+html.port .stx li{font-size:2.1rem;padding:.8rem 0}
+html.tall .stx li{font-size:2.6rem;padding:1.3rem 0}
+.stx li .mono{font-size:1.3rem;color:var(--mut)}
+.vis{position:absolute;opacity:0}
+html.land .vis{left:88rem;top:15rem;width:76rem;height:66rem}
+html.port .vis{left:9rem;top:47rem;width:82rem;height:62rem}
+html.tall .vis{left:9rem;top:67rem;width:82rem;height:76rem}
+/* v1 browser */
+.bbar{height:4.2rem;display:flex;align-items:center;gap:.8rem;padding:0 1.6rem;border-bottom:1px solid var(--hair);background:#fff;flex:none}
+.bbar i{width:1.1rem;height:1.1rem;border-radius:50%;background:rgba(0,0,0,.1)}
+.urlpill{margin-left:1.4rem;width:50%;height:2.6rem;border-radius:.8rem;background:#f3f4f6;display:flex;align-items:center;padding:0 1.2rem;font-family:var(--mono);font-size:1.35rem;color:var(--ink2);white-space:nowrap}
+.urlpill .pre{color:var(--mut)}
+.caret{display:inline-block;width:2px;height:1.6rem;background:var(--ink);margin-left:.2rem}
+#v1{display:flex;flex-direction:column}
+.v1body{flex:1;padding:3rem 3.6rem 3.2rem;display:flex;flex-direction:column;gap:3rem;min-height:0;position:relative}
+.v1nav{display:flex;align-items:center;gap:2rem}
+.v1nav .bar{width:7rem;background:#eceef1}
+.v1nav .sq{width:2.8rem;height:2.8rem;border-radius:.7rem;background:var(--ink);margin-right:auto}
+.v1nav .cta{width:11rem;height:3rem;border-radius:.7rem;background:var(--ink)}
+.v1h{font-size:6.4rem;line-height:.95;letter-spacing:-.02em;max-width:44rem}
+html.tall .v1h{font-size:7rem}
+.v1hero{display:flex;flex-direction:column;gap:1.6rem}
+.v1hero .bar{background:#eceef1;height:1.2rem}
+.v1btn{align-self:flex-start;background:var(--acc);color:#fff;font-weight:600;font-size:1.8rem;padding:1.3rem 2.2rem;border-radius:.8rem;margin-top:.8rem}
+.v1cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;flex:1;min-height:0}
+.v1c{border:1px solid var(--hair);border-radius:1rem;padding:1.2rem;display:flex;flex-direction:column;gap:1rem}
+.v1c .img{flex:1;border-radius:.6rem;background:var(--hatch);min-height:4rem}
+.v1c .bar{height:.9rem;background:#eceef1}
+.v1score{position:absolute;right:3.6rem;top:9rem;width:13rem;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.v1score svg{width:12rem;height:12rem;transform:rotate(-90deg)}
+.v1score circle{fill:none;stroke-width:5}
+.v1score .n{position:absolute;top:0;width:12rem;height:12rem;display:grid;place-items:center;font-size:4rem;font-weight:600;color:var(--acc);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.v1score .mono{font-size:1.1rem}
+/* v2 dashboard */
+#v2{padding:2.8rem;display:flex;flex-direction:column;gap:2rem}
+.rowsb{display:flex;justify-content:space-between;align-items:center}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.kpi{border:1px solid var(--hair);border-radius:1rem;padding:1.6rem 1.8rem}
+.kpi .mono{font-size:1.15rem}
+.kpi b{display:block;font-size:4.4rem;font-weight:600;letter-spacing:-.035em;margin-top:.6rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi small{font-size:1.3rem;color:var(--acc);font-weight:600}
+.chart{position:relative;flex:1;min-height:0;border:1px solid var(--hair);border-radius:1rem}
+.chart svg{position:absolute;inset:2rem 2rem 2rem 2rem;width:calc(100% - 4rem);height:calc(100% - 4rem);overflow:visible}
+.chart .gl{stroke:rgba(17,24,39,.07);stroke-width:1;vector-effect:non-scaling-stroke}
+.chart .ln{fill:none;stroke:var(--acc);stroke-width:3;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.chart .ar{fill:url(#v2g)}
+.chart .hd{position:absolute;width:1.6rem;height:1.6rem;margin:-.8rem 0 0 -.8rem;border-radius:50%;background:#fff;border:3px solid var(--acc);box-shadow:0 0 0 .7rem rgba(15,118,110,.12)}
+.chart .lbl{position:absolute;left:2.2rem;top:1.8rem}
+.bars{height:9rem;display:flex;align-items:flex-end;gap:.7rem;flex:none}
+.bars i{flex:1;background:var(--ink);border-radius:.3rem .3rem 0 0;transform-origin:50% 100%;transform:scaleY(0)}
+.bars i:nth-child(3n){background:var(--acc)}
+/* v3 AI */
+.dark{background:#0b0f19;border-color:rgba(255,255,255,.08);color:#e5e7eb}
+.dark .mono{color:rgba(255,255,255,.5)}
+#v3{padding:2.8rem;display:flex;flex-direction:column;gap:2.4rem}
+.v3prompt{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1.6rem 2rem;font-size:2.2rem;display:flex;gap:1.2rem;min-height:6.6rem;align-items:center}
+.v3prompt .mono{color:var(--accd);font-size:2rem}
+.v3out{font-size:3rem;line-height:1.55;flex:1;white-space:pre-wrap;color:#f9fafb;letter-spacing:-.01em}
+html.port .v3out,html.tall .v3out{font-size:3.5rem}
+.tok{border-radius:.4rem;opacity:0}
+.v3meta{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.08);padding-top:1.8rem}
+.v3meta b{color:#fff;font-weight:600;font-family:Inter;letter-spacing:-.02em;font-size:3.6rem;font-variant-numeric:tabular-nums;text-transform:none}
+.v3stat{display:flex;align-items:center;gap:.8rem}
+.v3stat i{width:1rem;height:1rem;border-radius:50%;background:var(--accd)}
+/* v4 monitoring */
+#v4{padding:2.8rem;display:flex;flex-direction:column;gap:2.2rem}
+.v4top{display:flex;align-items:center;gap:1.4rem;font-size:2.3rem;font-weight:600}
+.v4top .mono{margin-left:auto}
+.v4dot{width:1.5rem;height:1.5rem;border-radius:50%;background:var(--acc)}
+.v4upt{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--hair);padding-top:1.8rem}
+.v4upt b{font-size:6.4rem;line-height:.9;font-variant-numeric:tabular-nums}
+.v4bars{display:flex;gap:.3rem;height:5.2rem;flex:none}
+.v4bars i{flex:1;background:var(--acc);border-radius:.3rem;opacity:0}
+.v4bars i.inc{background:#d1d5db}
+.v4line{flex:1;min-height:0;position:relative;border:1px solid var(--hair);border-radius:1rem}
+.v4line svg{position:absolute;left:0;top:2.8rem;width:100%;height:calc(100% - 4rem)}
+.v4line path{fill:none;stroke:var(--ink);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.v4line .th{stroke:rgba(15,118,110,.45);stroke-dasharray:4 4}
+.v4line .mono{position:absolute;left:1.8rem;top:1.4rem;font-size:1.15rem}
+.v4line .mono.r{left:auto;right:1.8rem;color:var(--ink);letter-spacing:.08em}
+.v4log{display:flex;flex-direction:column;gap:.9rem;font-family:var(--mono);font-size:1.45rem;color:var(--ink2)}
+.v4log div{display:flex;gap:1.4rem}
+.v4log span{color:var(--mut)}
+.v4log em{font-style:normal;color:var(--acc)}
+html.land #v4 .v4log div:nth-child(n+4),html.port #v4 .v4log div:nth-child(n+4){display:none}
+
+/* ---------- S4 work ---------- */
+#wkHead{position:absolute;display:flex;align-items:baseline;gap:2.4rem}
+html.land #wkHead{left:14rem;top:11rem}html.port #wkHead{left:9rem;top:11.5rem}html.tall #wkHead{left:9rem;top:21rem}
+#wkHead h2{font-size:8.4rem;line-height:1}
+html.tall #wkHead h2{font-size:10rem}
+#wkCount{position:absolute;font-size:1.6rem;color:var(--ink)}
+html.land #wkCount{right:14rem;top:16rem}html.port #wkCount{right:9rem;top:16rem}html.tall #wkCount{right:9rem;top:27rem}
+#track{position:absolute;left:0;top:0;will-change:transform}
+.wk{position:absolute;top:0}
+.wkBrowser{position:absolute;left:0;top:0;display:flex;flex-direction:column}
+.wkBrowser .host{margin-left:1.4rem;font-size:1.35rem;color:var(--mut)}
+.shot{flex:1;overflow:hidden;position:relative;background:#f9fafb}
+.shot img{position:absolute;left:0;top:0;width:100%;will-change:transform;transform-origin:50% 0}
+.wkPhone{position:absolute;background:#0b0b0c;border-radius:3.6rem;padding:.9rem;box-shadow:0 3rem 5rem -2.4rem rgba(0,0,0,.45)}
+.wkPhone .scr{width:100%;height:100%;border-radius:2.8rem;overflow:hidden;position:relative;background:#fff}
+.wkPhone img{position:absolute;left:0;top:0;width:100%;transform-origin:50% 0}
+.wkCap{position:absolute;left:0;display:flex;flex-direction:column;gap:1rem}
+.wkCap b{font-size:5.2rem;line-height:1}
+.wkCap .mono{font-size:1.4rem}
+.schem{background:#fff}
+.schem svg{width:100%;height:100%}
+.schematic .hm-grid{fill:none;stroke:rgb(17 24 39 / .06);stroke-width:1px;vector-effect:non-scaling-stroke}
+.schematic .hm-hatch{stroke:rgb(17 24 39 / .28);stroke-width:.3}
+.schematic .hm-line,.schematic .hm-thin{fill:none;stroke-width:1.4px;vector-effect:non-scaling-stroke}
+.schematic .hm-line{stroke:rgb(17 24 39 / .7)}
+.schematic .hm-thin{stroke:rgb(17 24 39 / .35)}
+.schematic .hm-dot{fill:rgb(17 24 39 / .7)}
+.schematic .hm-text{fill:#6b7280;font-family:var(--mono);letter-spacing:.08em;font-size:3px}
+.schematic .pulse{fill:none;stroke:var(--acc);stroke-width:2.2px;vector-effect:non-scaling-stroke}
+
+/* ---------- S5 proof ---------- */
+#pfHead{position:absolute}
+html.land #pfHead{left:14rem;top:13rem}html.port #pfHead{left:9rem;top:13rem}html.tall #pfHead{left:9rem;top:28rem}
+#pfBig{position:absolute;display:flex;flex-direction:column}
+html.land #pfBig{left:14rem;top:21rem;width:64rem}html.port #pfBig{left:9rem;top:17rem;width:82rem}html.tall #pfBig{left:9rem;top:34rem;width:82rem}
+.pfNum{display:flex;align-items:flex-start;line-height:.82;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+html.land .pfNum{font-size:40rem}html.port .pfNum{font-size:32rem}html.tall .pfNum{font-size:38rem}
+.pfNum em{font-size:.55em;margin-top:.08em;display:inline-block}
+#pfLbl{font-size:3.4rem;line-height:1.25;color:var(--ink2);max-width:52rem;margin-top:2.6rem}
+#pfList{position:absolute;list-style:none}
+html.land #pfList{left:92rem;top:25rem;width:72rem}html.port #pfList{left:9rem;top:66rem;width:82rem}html.tall #pfList{left:9rem;top:94rem;width:82rem}
+#pfList li{position:relative;display:flex;align-items:center;gap:2.8rem;padding:3rem 0;font-size:3.6rem;font-weight:500;letter-spacing:-.02em}
+html.port #pfList li{padding:2.4rem 0;font-size:3.3rem}
+html.tall #pfList li{padding:3.6rem 0;font-size:4rem}
+html.tall #pfLbl{font-size:3.8rem}
+#pfList li .ln{position:absolute;left:0;right:0;top:0;height:1px;background:var(--hair2);transform-origin:0 50%;transform:scaleX(0)}
+#pfList li:last-child .ln2{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--hair2);transform-origin:0 50%;transform:scaleX(0)}
+.chk{width:5.2rem;height:5.2rem;flex:none}
+.chk *{fill:none;stroke:var(--acc);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.chk circle{stroke:rgba(15,118,110,.35);stroke-width:1.2}
+#pfList li span{opacity:0}
+
+/* ---------- S6 receipt ---------- */
+#rcCap{position:absolute;line-height:1;letter-spacing:-.02em}
+html.land #rcCap{left:14rem;top:calc(50% - 12rem);width:70rem;font-size:11rem}
+html.port #rcCap{left:9rem;top:12rem;width:84rem;font-size:8.4rem}
+html.tall #rcCap{left:9rem;top:28rem;width:84rem;font-size:10rem}
+#rcCap span{display:inline-block}
+#slot{position:absolute;height:1.2rem;border-radius:.6rem;background:var(--ink);transform-origin:50% 50%}
+#rcClip{position:absolute;overflow:hidden}
+html.land #slot{left:100rem;width:54rem;top:13rem}html.land #rcClip{left:103rem;width:48rem;top:13.6rem;height:76rem}
+html.port #slot{left:19rem;width:62rem;top:32rem}html.port #rcClip{left:22rem;width:56rem;top:32.6rem;height:80rem}
+html.tall #slot{left:12rem;width:76rem;top:56rem}html.tall #rcClip{left:15rem;width:70rem;top:56.6rem;height:92rem}
+#rcpt{background:#fff;padding:3.6rem 3.2rem 5rem;font-family:var(--mono);font-size:1.9rem;line-height:1.75;color:var(--ink);box-shadow:inset 0 1.6rem 1.6rem -1.6rem rgba(0,0,0,.18);border:1px solid rgba(0,0,0,.08);border-top:0;background-image:linear-gradient(#fafafa,#fff 30%)}
+html.port #rcpt{font-size:2rem}html.tall #rcpt{font-size:2.5rem}
+#rcpt .c{text-align:center}
+#rcpt .t{font-weight:700;letter-spacing:.2em}
+#rcpt .m{color:var(--mut);font-size:.85em;letter-spacing:.06em}
+#rcpt hr{border:0;border-top:2px dashed rgba(17,24,39,.25);margin:1.4rem 0}
+.rl{display:flex;align-items:baseline;gap:.8rem;position:relative}
+.rl .ld{flex:1;border-bottom:2px dotted rgba(17,24,39,.3);transform:translateY(-.4rem)}
+.rl.hi .mk2{position:absolute;left:-1rem;right:-1rem;top:.1rem;bottom:.1rem;background:rgba(94,234,212,.45);transform-origin:0 50%;transform:scaleX(0);z-index:0;border-radius:.3rem}
+.rl>*{position:relative;z-index:1}
+.rl.tot{font-weight:700;font-size:1.15em}
+.bc{display:flex;justify-content:center;gap:2px;height:5rem;margin-top:1.4rem}
+.bc i{background:var(--ink)}
+
+/* ---------- S7 end ---------- */
+#blk{position:absolute;left:50%;top:50%;background:#000}
+#endBox{position:absolute;left:0;right:0;top:50%;display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff}
+#endMark{width:13rem;height:13rem}
+html.tall #endMark{width:16rem;height:16rem}
+#endWord{display:flex;flex-direction:column;align-items:center;gap:.8rem;margin-top:3rem}
+#endWord b{font-size:3.4rem;font-weight:600;letter-spacing:.1em}
+#endWord .mono{color:rgba(255,255,255,.55);font-size:1.5rem;letter-spacing:.32em}
+#endCta{line-height:.98;letter-spacing:-.025em;margin-top:6rem}
+html.land #endCta{font-size:12rem}html.port #endCta{font-size:11.4rem}html.tall #endCta{font-size:14rem}
+#endCta span{display:inline-block}
+html.port #endCta span,html.tall #endCta span{display:block}
+#endCta em{font-style:italic;color:var(--accd)}
+#endContact{display:flex;align-items:center;gap:2.4rem;margin-top:6rem;font-size:3.8rem;font-weight:500;color:rgba(255,255,255,.9);letter-spacing:-.01em}
+html.tall #endContact{flex-direction:column;gap:1.4rem;font-size:4.4rem}
+#endContact i{width:.8rem;height:.8rem;border-radius:50%;background:var(--accd)}
+html.tall #endContact i{display:none}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- ================= S1: A PROBLÉMA ================= -->
+<section class="scene" id="s1">
+  <div class="frag card" id="fx1">
+    <div class="fbar"><span class="xl">X</span><span class="mono">ugyfelek_VEGLEGES_v3(2).xlsx</span></div>
+    <div class="sheet" id="sheet"></div>
+  </div>
+  <div class="frag card" id="fx2">
+    <div class="fbar"><span class="mono">Beérkezett · 37 olvasatlan</span></div>
+    <div class="mrow"><i class="ud"></i><b>Re: Fw: Re: Ajánlat (javított)</b><span>09:14</span></div>
+    <div class="mrow"><i class="ud"></i><b>SÜRGŐS: melyik a legfrissebb?</b><span>09:02</span></div>
+    <div class="mrow"><i></i><b>Fw: táblázat_final_FINAL</b><span>tegnap</span></div>
+  </div>
+  <div class="frag card" id="fx3">
+    <div class="calh serif">Október</div>
+    <div class="calg" id="calg"></div>
+    <div class="caln serif">fogorvos?? · Kovácsékat hívni!</div>
+  </div>
+  <div class="frag" id="fx4"><span class="serif"><i>NE FELEJTSD:<br>számla!!<br>(melyik?)</i></span></div>
+  <div class="frag card" id="fx5"><span class="av">K</span><div><b>Kata</b><p>Valaki elküldte már az ajánlatot??</p></div></div>
+  <div class="frag card" id="fx6"><span class="ficon">PDF</span><span>szamla_final_FINAL_v2.pdf</span></div>
+
+  <div id="s1words">
+    <span class="kw">Excel-tábla.<i class="strike"></i></span>
+    <span class="kw">E-mail.<i class="strike"></i></span>
+    <span class="kw">Papírnaptár.<i class="strike"></i></span>
+  </div>
+
+  <div id="s1cap" class="serif"><span data-at="2.45">Minden</span> <span data-at="2.55"><em>egy helyen.</em></span></div>
+
+  <div id="app" class="card">
+    <div class="apph">
+      <svg class="mk" viewBox="0 0 32 32"><path fill="#000" fill-rule="evenodd" d="M8 0h16a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8zM16 4h-4a8 8 0 0 0-8 8v8a8 8 0 0 0 8 8h4z"/></svg>
+      <b>Ügyfélportál</b>
+      <span class="srch">Keresés…</span>
+    </div>
+    <div class="appb">
+      <div class="side">
+        <span class="on">Áttekintés</span><span>Ügyfelek</span><span>Naptár</span><span>Üzenetek</span><span>Számlák</span>
+      </div>
+      <div class="grid">
+        <div class="pan" id="pTable">
+          <h4 data-at="2.22"><span>Ügyfelek</span><span>5</span></h4>
+          <div class="trow" data-at="2.26"><b>Kovács Kft.</b><span class="chip ok">Aktív</span></div>
+          <div class="trow" data-at="2.30"><b>Nagy és Társa Bt.</b><span class="chip">Ajánlat</span></div>
+          <div class="trow" data-at="2.34"><b>Szabó Pékség</b><span class="chip ok">Aktív</span></div>
+          <div class="trow" data-at="2.38"><b>Tóth Autószerviz</b><span class="chip">Új</span></div>
+          <div class="trow" data-at="2.42"><b>Varga Kertészet</b><span class="chip ok">Aktív</span></div>
+        </div>
+        <div class="pan" id="pCal">
+          <h4 data-at="2.28"><span>Naptár</span><span>Szerda</span></h4>
+          <div class="ev" data-at="2.32"><small>10:00</small>Bemutató — Kovács Kft.</div>
+          <div class="ev" data-at="2.36"><small>14:30</small>Egyeztetés — Nagy Bt.</div>
+          <div class="ev" data-at="2.40"><small>Péntek 09:00</small>Szerződés — Tóth</div>
+        </div>
+        <div class="pan" id="pInbox">
+          <h4 data-at="2.32"><span>Üzenetek</span><span>2 új</span></h4>
+          <div class="trow" data-at="2.36"><span class="dotu"></span><b>Ajánlat elfogadva</b><span class="chip">09:14</span></div>
+          <div class="trow" data-at="2.40"><span class="dotu"></span><b>Kata: ajánlat elküldve</b><span class="chip">09:02</span></div>
+          <div class="trow" data-at="2.44"><span class="dotu" style="background:#d1d5db"></span><b>Új időpontfoglalás</b><span class="chip">tegnap</span></div>
+        </div>
+        <div class="pan" id="pTodo">
+          <h4 data-at="2.36"><span>Teendők</span><span>2 / 3</span></h4>
+          <div class="trow" data-at="2.40"><span class="cb on"></span><b>Számla kiküldve</b></div>
+          <div class="trow" data-at="2.44"><span class="cb on"></span><b>Ajánlat — Nagy Bt.</b></div>
+          <div class="trow" data-at="2.48"><span class="cb"></span><b>Szerződés aláírása</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S2: MÁRKA ================= -->
+<section class="scene" id="s2">
+  <svg id="mark" viewBox="-3 -10 45 54" aria-hidden="true">
+    <defs>
+      <pattern id="hmg" width="2" height="2" patternUnits="userSpaceOnUse"><path d="M2 0H0V2" class="hm-grid"/></pattern>
+      <pattern id="hmh" width="1.1" height="1.1" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="1.1" class="hm-hatch"/></pattern>
+      <radialGradient id="hmfg"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+      <mask id="hmfm"><rect x="-4" y="-4" width="42" height="42" fill="url(#hmfg)"/></mask>
+      <clipPath id="hmclip"><rect width="32" height="32" rx="8"/></clipPath>
+    </defs>
+    <rect id="mGrid" x="-4" y="-4" width="42" height="42" fill="url(#hmg)" mask="url(#hmfm)" opacity="0"/>
+    <path id="mHatch" fill="url(#hmh)" fill-rule="evenodd" opacity="0" d="M8 0h16a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8zM16 4h-4a8 8 0 0 0-8 8v8a8 8 0 0 0 8 8h4z"/>
+    <rect id="mOuter" width="32" height="32" rx="8" fill="#000"/>
+    <rect id="mInner" x="4" y="4" width="24" height="24" rx="8" fill="#fff"/>
+    <g clip-path="url(#hmclip)"><path id="mHalf" fill="#000" d="M16 4h4a8 8 0 0 1 8 8v8a8 8 0 0 1-8 8h-4z"/></g>
+    <path id="mSolid" fill="#000" fill-rule="evenodd" opacity="0" d="M8 0h16a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8zM16 4h-4a8 8 0 0 0-8 8v8a8 8 0 0 0 8 8h4z"/>
+    <path id="mLine" class="hm-line" pathLength="1" d="M8 0h16a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8zM16 4h-4a8 8 0 0 0-8 8v8a8 8 0 0 0 8 8h4z"/>
+    <path class="hm-thin dim" pathLength="1" d="M14.8 16h2.4M16 14.8v2.4"/>
+    <path class="hm-thin dim" pathLength="1" d="M0 -1.5V-6.5M16 -1.5V-6.5M32 -1.5V-6.5M-1 -5H33M-0.6 -4.4l1.2-1.2M15.4 -4.4l1.2-1.2M31.4 -4.4l1.2-1.2"/>
+    <path class="hm-thin dim" pathLength="1" d="M33.5 0H38.5M33.5 32H38.5M37 -1V33M36.4 0.6l1.2-1.2M36.4 32.6l1.2-1.2"/>
+    <path class="hm-thin dim" pathLength="1" d="M2.34 29.66L-0.5 34.5H5"/>
+    <path class="hm-thin dim" pathLength="1" d="M0 38.5H32"/>
+    <text class="hm-text" x="8" y="-6.4" text-anchor="middle">16</text>
+    <text class="hm-text" x="24" y="-6.4" text-anchor="middle">16</text>
+    <text class="hm-text" x="39.6" y="16" text-anchor="middle" transform="rotate(90 39.6 16)">32</text>
+    <text class="hm-text" x="5.6" y="35" dominant-baseline="middle">R 8</text>
+    <text class="hm-text" x="0" y="41">DENDORA — D-01</text>
+    <text class="hm-text" x="32" y="41" text-anchor="end">1 : 1</text>
+  </svg>
+  <div id="s2text">
+    <h1 id="tag" class="serif"><span data-at=".35" data-y="4">Szoftver,</span> <span data-at=".5" data-y="4">amire</span> <span data-at=".68" data-y="4"><em>építhet</em>.</span></h1>
+    <p id="sub" data-at="1.1">Digitális termékeket tervezünk és fejlesztünk — az ötlettől a működő rendszerig, egy helyen.</p>
+  </div>
+</section>
+
+<!-- ================= S3: SZOLGÁLTATÁSOK ================= -->
+<section class="scene" id="s3">
+  <div id="meter">
+    <div class="seg"><span class="mono">01 Web</span><i><b></b></i></div>
+    <div class="seg"><span class="mono">02 Szoftver</span><i><b></b></i></div>
+    <div class="seg"><span class="mono">03 AI</span><i><b></b></i></div>
+    <div class="seg"><span class="mono">04 Támogatás</span><i><b></b></i></div>
+  </div>
+
+  <div class="stx">
+    <div class="num mono" data-at="0">01 / 04 — Szolgáltatás</div>
+    <h2 class="serif" data-at=".04" data-y="3.5">Weboldalak <em>&amp;</em> Webappok</h2>
+    <ul><li data-at=".14"><span class="mono">a</span>Egyedi design és fejlesztés</li><li data-at=".2"><span class="mono">b</span>Mobilbarát, reszponzív elrendezés</li><li data-at=".26"><span class="mono">c</span>SEO és teljesítmény-optimalizálás</li></ul>
+  </div>
+  <div class="stx">
+    <div class="num mono" data-at="0">02 / 04 — Szolgáltatás</div>
+    <h2 class="serif" data-at=".04" data-y="3.5">Egyedi <em>szoftver</em></h2>
+    <ul><li data-at=".14"><span class="mono">a</span>Igényfelmérés és tervezés</li><li data-at=".2"><span class="mono">b</span>Full-stack fejlesztés</li><li data-at=".26"><span class="mono">c</span>Felhő infrastruktúra és deploy</li></ul>
+  </div>
+  <div class="stx">
+    <div class="num mono" data-at="0">03 / 04 — Szolgáltatás</div>
+    <h2 class="serif" data-at=".04" data-y="3.5">AI <em>&amp;</em> Automatizálás</h2>
+    <ul><li data-at=".14"><span class="mono">a</span>LLM integráció és prompt engineering</li><li data-at=".2"><span class="mono">b</span>Munkafolyamat automatizálás</li><li data-at=".26"><span class="mono">c</span>Meglévő rendszerekkel való integráció</li></ul>
+  </div>
+  <div class="stx">
+    <div class="num mono" data-at="0">04 / 04 — Szolgáltatás</div>
+    <h2 class="serif" data-at=".04" data-y="3.5">Folyamatos <em>támogatás</em></h2>
+    <ul><li data-at=".14"><span class="mono">a</span>Hosting és infrastruktúra kezelés</li><li data-at=".2"><span class="mono">b</span>Biztonsági frissítések és monitoring</li><li data-at=".26"><span class="mono">c</span>Tartalmi és funkcionális frissítések</li></ul>
+  </div>
+
+  <!-- v1: browser builds itself -->
+  <div class="vis card" id="v1">
+    <div class="bbar"><i></i><i></i><i></i><div class="urlpill"><span class="pre">https://</span><span id="url1"></span><span class="caret" id="caret1"></span></div></div>
+    <div class="v1body">
+      <div class="v1nav" data-at=".3" data-y="1.5"><span class="sq"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="cta"></span></div>
+      <div class="v1hero">
+        <div class="v1h serif" data-at=".4">Az Ön vállalkozása, <em>online.</em></div>
+        <span class="bar" data-at=".5" style="width:62%"></span>
+        <span class="bar" data-at=".55" style="width:44%"></span>
+        <span class="v1btn" data-at=".62">Ajánlatkérés →</span>
+      </div>
+      <div class="v1cards">
+        <div class="v1c" data-at=".7"><div class="img"></div><span class="bar" style="width:80%"></span><span class="bar" style="width:55%"></span></div>
+        <div class="v1c" data-at=".76"><div class="img"></div><span class="bar" style="width:70%"></span><span class="bar" style="width:50%"></span></div>
+        <div class="v1c" data-at=".82"><div class="img"></div><span class="bar" style="width:75%"></span><span class="bar" style="width:60%"></span></div>
+      </div>
+      <div class="v1score" data-at=".85" data-y="1">
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" stroke="rgba(15,118,110,.15)"/><circle id="ring1" cx="24" cy="24" r="20" stroke="#0f766e" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="round"/></svg>
+        <span class="n" id="score1">0</span>
+        <span class="mono">Teljesítmény</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- v2: dashboard -->
+  <div class="vis card" id="v2">
+    <div class="rowsb" data-at=".08" data-y="1"><span class="mono">Áttekintés · Q3</span><span class="mono">Élő adat</span></div>
+    <div class="kpis">
+      <div class="kpi" data-at=".12"><span class="mono">Bevétel</span><b id="k1">+0,0%</b></div>
+      <div class="kpi" data-at=".17"><span class="mono">Rendelések</span><b id="k2">0</b></div>
+      <div class="kpi" data-at=".22"><span class="mono">Átfutás</span><b id="k3">0%</b></div>
+    </div>
+    <div class="chart" data-at=".25">
+      <span class="mono lbl">Heti bevétel</span>
+      <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="v2g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f766e" stop-opacity=".18"/><stop offset="1" stop-color="#0f766e" stop-opacity="0"/></linearGradient>
+          <clipPath id="v2clip"><rect id="v2clipR" x="0" y="-20" width="0" height="200"/></clipPath>
+        </defs>
+        <line class="gl" x1="0" x2="400" y1="40" y2="40"/><line class="gl" x1="0" x2="400" y1="80" y2="80"/><line class="gl" x1="0" x2="400" y1="120" y2="120"/><line class="gl" x1="0" x2="400" y1="160" y2="160"/>
+        <g clip-path="url(#v2clip)"><path class="ar" id="v2area"/><path class="ln" id="v2line"/></g>
+      </svg>
+      <span class="hd" id="v2head"></span>
+    </div>
+    <div class="bars" id="v2bars"></div>
+  </div>
+
+  <!-- v3: LLM token stream -->
+  <div class="vis card dark" id="v3">
+    <div class="rowsb"><span class="mono">LLM · munkafolyamat</span><span class="mono v3stat"><i id="v3dot"></i><span id="v3stat">Gondolkodik…</span></span></div>
+    <div class="v3prompt"><span class="mono">›</span><span id="v3p"></span></div>
+    <div class="v3out" id="v3out"></div>
+    <div class="v3meta">
+      <div><span class="mono">Első token</span><br><b id="v3ft">— ms</b></div>
+      <div style="text-align:right"><span class="mono">Sebesség</span><br><b><span id="v3tps">0</span> <span style="font-size:.5em;color:rgba(255,255,255,.55)">tok/s</span></b></div>
+    </div>
+  </div>
+
+  <!-- v4: uptime / monitoring -->
+  <div class="vis card" id="v4">
+    <div class="v4top" data-at=".06" data-y="1"><span class="v4dot" id="v4dot"></span>Minden rendszer működik<span class="mono">Élő</span></div>
+    <div class="v4upt" data-at=".1" data-y="1"><span class="mono">Rendelkezésre állás · 90 nap</span><b class="serif" id="v4pct">99,00%</b></div>
+    <div class="v4bars" id="v4bars"></div>
+    <div class="v4line" data-at=".3" data-y="1">
+      <span class="mono">Válaszidő</span><span class="mono r" id="v4ms">p95 · 142 ms</span>
+      <svg viewBox="0 0 400 100" preserveAspectRatio="none"><path class="th" d="M0 30H400"/><path id="v4path"/></svg>
+    </div>
+    <div class="v4log">
+      <div data-at=".55" data-y="1"><span>03:00</span><em>✓</em>Napi mentés kész</div>
+      <div data-at=".7" data-y="1"><span>03:12</span><em>✓</em>Biztonsági frissítés telepítve</div>
+      <div data-at=".85" data-y="1"><span>04:40</span><em>✓</em>SSL tanúsítvány megújítva</div>
+      <div data-at="1.0" data-y="1"><span>09:15</span><em>✓</em>Tartalom frissítve</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S4: MUNKÁINK ================= -->
+<section class="scene" id="s4">
+  <div id="wkHead"><h2 class="serif" data-at="0" data-y="3">Munkáink</h2><span class="mono" data-at=".1">Amire büszkék vagyunk</span></div>
+  <div id="wkCount" class="mono" data-at=".1"><span id="wkN">01</span> / 04</div>
+  <div id="track">
+    <div class="wk">
+      <div class="wkBrowser card"><div class="bbar"><i></i><i></i><i></i><span class="host">andihealth.hu</span></div><div class="shot"><img src="assets/shots/andihealth-desktop.jpg" alt=""></div></div>
+      <div class="wkPhone"><div class="scr"><img src="assets/shots/andihealth-mobile.jpg" alt=""></div></div>
+      <div class="wkCap"><b class="serif">AndiHealth</b><span class="mono">Webalkalmazás · online foglalás</span></div>
+    </div>
+    <div class="wk">
+      <div class="wkBrowser card"><div class="bbar"><i></i><i></i><i></i><span class="host">ariel-pilismarot.hu</span></div><div class="shot"><img src="assets/shots/ariel-pilismarot-desktop.jpg" alt=""></div></div>
+      <div class="wkPhone"><div class="scr"><img src="assets/shots/ariel-pilismarot-mobile.jpg" alt=""></div></div>
+      <div class="wkCap"><b class="serif">Ariel Pilismarót Vendégház</b><span class="mono">Weboldal · közvetlen foglalás</span></div>
+    </div>
+    <div class="wk">
+      <div class="wkBrowser card schem">
+        <svg class="schematic" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid meet">
+          <defs><pattern id="wdp-grid" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M5 0H0V5" class="hm-grid"/></pattern><pattern id="wdp-hatch" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="2" class="hm-hatch"/></pattern></defs>
+          <rect x="-40" width="240" height="100" fill="url(#wdp-grid)"/>
+          <path class="hm-thin" d="M16 14V56H146"/><path class="hm-thin" d="M16 26H146"/>
+          <text class="hm-text" x="146" y="23.5" text-anchor="end">T max</text><text class="hm-text" x="19" y="17">°C</text><text class="hm-text" x="146" y="61" text-anchor="end">t</text>
+          <path class="pulse" id="fpPulse" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M16 44L26 43L34 45L42 42L50 44L58 43L66 44L72 41L76 44L80 30L84 49L88 38L92 44L100 43L108 45L116 42L124 44L132 43L140 44L146 43"/>
+          <circle class="hm-dot" cx="80" cy="30" r="1.1"/><path class="hm-thin" d="M80 30V20H92"/><text class="hm-text" x="93.5" y="21">PULSE</text>
+          <rect class="hm-line" x="16" y="66" width="34" height="13" rx="2"/><rect x="63" y="66" width="34" height="13" rx="2" fill="url(#wdp-hatch)"/><rect class="hm-line" x="63" y="66" width="34" height="13" rx="2"/><rect class="hm-line" x="110" y="66" width="36" height="13" rx="2"/>
+          <path class="hm-thin" d="M50 72.5H63M97 72.5H110M60 70.5l3 2-3 2M107 70.5l3 2-3 2"/>
+          <text class="hm-text" x="21" y="73.6">L1</text><text class="hm-text" x="68" y="73.6">L2</text><text class="hm-text" x="115" y="73.6">L3</text>
+          <circle class="hm-dot" cx="45" cy="72.5" r="1"/><circle class="hm-dot" cx="141" cy="72.5" r="1"/>
+          <path class="hm-thin" d="M16 87H146"/><text class="hm-text" x="16" y="93">GYÁRTÁSI MONITORING</text><text class="hm-text" x="146" y="93" text-anchor="end">NDA</text>
+        </svg>
+      </div>
+      <div class="wkCap"><b class="serif">FoundryPulse</b><span class="mono">Valós idejű gyártásmonitoring · NDA</span></div>
+    </div>
+    <div class="wk">
+      <div class="wkBrowser card schem">
+        <svg class="schematic" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid meet">
+          <defs><pattern id="wdd-grid" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M5 0H0V5" class="hm-grid"/></pattern><pattern id="wdd-hatch" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="2" class="hm-hatch"/></pattern></defs>
+          <rect x="-40" width="240" height="100" fill="url(#wdd-grid)"/>
+          <circle class="hm-line" cx="18" cy="26" r="3"/><circle class="hm-line" cx="18" cy="42" r="3"/><circle class="hm-line" cx="18" cy="58" r="3"/>
+          <path class="hm-thin" d="M21 26L36 38M21 42H36M21 58L36 46"/>
+          <rect class="hm-line" x="36" y="33" width="26" height="18" rx="2"/><text class="hm-text" x="49" y="43" text-anchor="middle">INGEST</text>
+          <path class="hm-thin" d="M62 42H76M73 40l3 2-3 2"/>
+          <rect x="76" y="33" width="26" height="18" rx="2" fill="url(#wdd-hatch)"/><rect class="hm-line" x="76" y="33" width="26" height="18" rx="2"/><text class="hm-text" x="89" y="57" text-anchor="middle">STREAM</text>
+          <path class="hm-thin" d="M102 42H116M113 40l3 2-3 2"/>
+          <path class="hm-line" d="M116 33a15 4 0 0 0 30 0a15 4 0 0 0-30 0V51a15 4 0 0 0 30 0V33"/><text class="hm-text" x="131" y="45" text-anchor="middle">DWH</text>
+          <path class="hm-thin" d="M131 55V64M129 61l2 3 2-3"/>
+          <rect class="hm-line" x="110" y="64" width="36" height="16" rx="2"/>
+          <path class="pulse" id="dpBars" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M115 76V72M120 76V69M125 76V71M130 76V67M135 76V70M140 76V68"/>
+          <text class="hm-text" x="106" y="74" text-anchor="end">BI</text>
+          <path class="hm-thin" d="M16 87H146"/><text class="hm-text" x="16" y="93">ADATPLATFORM</text><text class="hm-text" x="146" y="93" text-anchor="end">NDA</text>
+        </svg>
+      </div>
+      <div class="wkCap"><b class="serif">Adat- és Analitikai Platform</b><span class="mono">Valós idejű analitika · NDA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S5: MIÉRT MI ================= -->
+<section class="scene" id="s5">
+  <div id="pfHead" class="mono" data-at="0">Miért a Dendora</div>
+  <div id="pfBig">
+    <div class="pfNum serif" data-at=".05" data-y="3"><span id="pfN">0</span><em id="pfPlus">+</em></div>
+    <div id="pfLbl" data-at=".35">év gyakorlati fejlesztési tapasztalat</div>
+  </div>
+  <ul id="pfList">
+    <li><i class="ln"></i><svg class="chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg><span>Átlátható keretek és szállítás</span></li>
+    <li><i class="ln"></i><svg class="chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg><span>Hosszú távú karbantarthatóság</span></li>
+    <li><i class="ln"></i><i class="ln2"></i><svg class="chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg><span>Modern AI-támogatott eszközök</span></li>
+  </ul>
+</section>
+
+<!-- ================= S6: NYUGTA ================= -->
+<section class="scene" id="s6">
+  <div id="rcCap" class="serif"><span data-at=".05" data-y="3">Ez a videó is</span> <span data-at=".18" data-y="3"><em>kódból</em></span> <span data-at=".28" data-y="3">készült.</span></div>
+  <div id="slot"></div>
+  <div id="rcClip">
+    <div id="rcpt">
+      <div class="c t">DENDORA BT.</div>
+      <div class="c m">dendora.hu · Esztergom</div>
+      <div class="c m">NYUGTA #001</div>
+      <hr>
+      <div class="m">EZ A VIDEÓ:</div>
+      <div class="rl"><span>HTML + JS</span><i class="ld"></i><span>1</span></div>
+      <div class="rl"><span>Playwright</span><i class="ld"></i><span>1</span></div>
+      <div class="rl"><span>ffmpeg</span><i class="ld"></i><span>1</span></div>
+      <div class="rl"><span>Képkocka</span><i class="ld"></i><span id="rcFrames">750</span></div>
+      <div class="rl hi"><i class="mk2"></i><span>Videógeneráló AI</span><i class="ld"></i><b id="rcZero">0</b></div>
+      <hr>
+      <div class="rl tot"><span>ÖSSZESEN</span><i class="ld" style="border:0"></i><span id="rcDur">25,0 s</span></div>
+      <hr>
+      <div class="c m">KÖSZÖNJÜK, HOGY VÉGIGNÉZTE!</div>
+      <div class="bc" id="bc"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S7: KAPCSOLAT ================= -->
+<section class="scene" id="s7">
+  <div id="blk"></div>
+  <div id="endBox">
+    <svg id="endMark" viewBox="0 0 32 32"><path fill="#fff" fill-rule="evenodd" d="M8 0h16a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8zM16 4h-4a8 8 0 0 0-8 8v8a8 8 0 0 0 8 8h4z"/></svg>
+    <div id="endWord" data-at=".62" data-y="1.5"><b>DENDORA</b><span class="mono">Szoftverfejlesztés</span></div>
+    <h2 id="endCta" class="serif"><span data-at=".78" data-y="4">Beszéljünk a</span> <span data-at=".9" data-y="4"><em>projektjéről.</em></span></h2>
+    <div id="endContact" data-at="1.1" data-y="2"><span>hello@dendora.hu</span><i></i><span>dendora.hu</span></div>
+  </div>
+</section>
+
+<!-- ================= HUD ================= -->
+<div id="hud">
+  <div class="hud tl"><i class="cross"></i><span>Dendora / Promó 01</span></div>
+  <div class="hud tr"><span id="tc">T+00.000s</span><i class="cross"></i></div>
+  <div class="hud bl"><i class="cross"></i><div id="chapWrap"><span id="chap"></span></div></div>
+  <div class="hud br"><span id="spec"></span><i class="cross"></i></div>
+  <div id="prog"><div id="progFill"></div></div>
+</div>
+</div>
+
+<script>
+(() => {
+// ---------- stage ----------
+const Q = new URLSearchParams(location.search);
+const FORMATS = { '4x5': [1080, 1350], '9x16': [1080, 1920], '16x9': [1920, 1080] };
+const [W, H] = FORMATS[Q.get('f')] || [Number(Q.get('w')) || 1080, Number(Q.get('h')) || 1350];
+const RENDER = Q.has('render');
+const FPS = 30;
+const LAYOUT = W / H > 1.2 ? 'land' : H / W > 1.5 ? 'tall' : 'port';
+const REM = Math.min(W, H) / 100;
+document.documentElement.classList.add(LAYOUT);
+document.documentElement.style.fontSize = REM + 'px';
+const stage = document.getElementById('stage');
+stage.style.width = W + 'px';
+stage.style.height = H + 'px';
+
+const CH = 2.8; // seconds per service chapter
+// Scene lengths: problem, brand, services, work, proof, receipt, end card.
+const LEN = [4.8, 5.2, 4 * CH, 6.6, 4.4, 3.6, 3.8];
+const T = LEN.reduce((a, l) => [...a, +(a[a.length - 1] + l).toFixed(2)], [0]);
+const DURATION = T[7];
+window.DURATION = DURATION;
+
+// ---------- helpers ----------
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const p = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, k) => a + (b - a) * k;
+const out3 = (x) => 1 - (1 - x) ** 3;
+const inOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2);
+const back = (x) => { const c = 1.70158, c3 = c + 1; return x <= 0 ? 0 : 1 + c3 * (x - 1) ** 3 + c * (x - 1) ** 2; };
+const hash = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+const snoise = (x) => { const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f); return lerp(hash(i), hash(i + 1), u) * 2 - 1; };
+const rng = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const hu = (n, d = 0) => n.toFixed(d).replace('.', ',');
+const huInt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+
+function rise(el, t, at, d = 0.45, dist = 2.5) {
+  const k = out3(p(t, at, at + d));
+  el.style.opacity = k;
+  el.style.transform = k >= 1 ? 'none' : `translateY(${(1 - k) * dist}rem)`;
+  return k;
+}
+function pop(el, t, at, d = 0.4, from = 0.85) {
+  const k = p(t, at, at + d);
+  el.style.opacity = clamp(k * 3);
+  el.style.transform = `scale(${lerp(from, 1, back(k))})`;
+  return k;
+}
+function riseAll(root, t) {
+  root._at ||= $$('[data-at]', root).map((el) => [el, +el.dataset.at, +(el.dataset.d || 0.45), +(el.dataset.y || 2.5)]);
+  for (const [el, at, d, y] of root._at) rise(el, t, at, d, y);
+}
+const draw = (el, k) => { el.style.strokeDashoffset = 1 - k; };
+
+// ---------- one-time DOM generation ----------
+{
+  const sheet = $('#sheet');
+  const cols = ['', 'A', 'B', 'C', 'D'];
+  const rows = [
+    ['Ügyfél', 'Tel.', 'Státusz', 'Összeg'],
+    ['Kovács Kft.', '06 30…', 'ajánlat?', '#HIV!'],
+    ['Nagy Bt', '—', 'VISSZAHÍV', '120 000'],
+    ['Szabó P.', '06 20…', '', '??'],
+    ['Kovács kft', 'ua.', 'duplikált', '#HIV!'],
+  ];
+  let html = cols.map((c) => `<span class="hd">${c}</span>`).join('');
+  rows.forEach((r, i) => {
+    html += `<span class="hd">${i + 1}</span>`;
+    r.forEach((c, j) => { const cls = c === '#HIV!' ? 'err' : i === 2 && j === 2 ? 'hl' : ''; html += `<span class="${cls}">${c}</span>`; });
+  });
+  sheet.innerHTML = html;
+
+  const calg = $('#calg');
+  let ch = '';
+  for (let d = 1; d <= 28; d++) ch += `<span class="${[3, 9, 17, 22].includes(d) ? 'c' : [11, 12, 24].includes(d) ? 'x' : ''}">${d}</span>`;
+  calg.innerHTML = ch;
+
+  // dashboard line data
+  const r = rng(7);
+  const pts = Array.from({ length: 25 }, (_, i) => [i * (400 / 24), 132 - i * 3.9 - (r() - 0.5) * 22 - (i === 16 ? -12 : 0)]);
+  window.__v2pts = pts;
+  const d = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join('');
+  $('#v2line').setAttribute('d', d);
+  $('#v2area').setAttribute('d', `${d}L400 160L0 160Z`);
+  const r2 = rng(11);
+  $('#v2bars').innerHTML = Array.from({ length: 16 }, (_, i) => `<i style="height:${(30 + i * 3.4 + r2() * 26).toFixed(1)}%"></i>`).join('');
+
+  // token stream
+  const TOKS = ['3', ' sürgős', ' teendő', ' a', ' héten', ':', '\n', '–', ' Kovács', ' Kft.', ':', ' árajánlat', ' péntekig', '\n', '–', ' Számla', ' #2041', ' hiány', 'zik', '\n', '–', ' Szerda', ' 10:00', ':', ' bemutató'];
+  $('#v3out').innerHTML = TOKS.map((t) => (t === '\n' ? '\n' : `<span class="tok">${t}</span>`)).join('');
+
+  $('#v4bars').innerHTML = Array.from({ length: 60 }, (_, i) => `<i class="${i === 41 ? 'inc' : ''}"></i>`).join('');
+
+  const r3 = rng(3);
+  $('#bc').innerHTML = Array.from({ length: 46 }, () => `<i style="width:${(1 + Math.floor(r3() * 3)) * 2}px"></i>`).join('');
+  $('#rcFrames').textContent = huInt(DURATION * FPS);
+  $('#rcDur').textContent = hu(DURATION, 1) + ' s';
+  $('#spec').textContent = `${W}×${H} · ${FPS} FPS · HU`;
+
+  // receipt zigzag bottom edge
+  const n = 24;
+  let poly = '0 0,100% 0';
+  for (let i = n; i >= 0; i--) poly += `,${(i / n) * 100}% ${i % 2 ? '100%' : 'calc(100% - 1.2rem)'}`;
+  $('#rcpt').style.clipPath = `polygon(${poly})`;
+}
+
+// ---------- S1: fragments ----------
+const FR_POS = {
+  land: [[0.05, 0.13, -4], [0.66, 0.1, 3], [0.76, 0.5, 5], [0.08, 0.6, -6], [0.5, 0.74, 2], [0.2, 0.42, -2]],
+  port: [[0.03, 0.1, -4], [0.52, 0.08, 3], [0.62, 0.6, 5], [0.05, 0.69, -6], [0.36, 0.85, 2], [0.02, 0.43, -2]],
+  tall: [[0.08, 0.14, -4], [0.5, 0.24, 3], [0.56, 0.6, 5], [0.1, 0.66, -6], [0.36, 0.8, 2], [0.06, 0.4, -2]],
+}[LAYOUT];
+const FS = LAYOUT === 'tall' ? 1.3 : 1;
+const FR_TARGET = ['#pTable', '#pInbox', '#pCal', '#pTodo', '#pInbox', '#pTodo'];
+const FR = ['#fx1', '#fx2', '#fx3', '#fx4', '#fx5', '#fx6'].map((id, i) => {
+  const el = $(id);
+  el.style.left = FR_POS[i][0] * 100 + '%';
+  el.style.top = FR_POS[i][1] * 100 + '%';
+  return { el, r: FR_POS[i][2], target: $(FR_TARGET[i]) };
+});
+const KW = $$('.kw');
+
+// ---------- S4 work layout ----------
+const WK = {
+  land: { top: 22, bw: 80, ph: 21, phx: 70, phy: 14, capy: 57, gap: 11 },
+  port: { top: 30, bw: 78, ph: 22, phx: 62, phy: 22, capy: 57, gap: 14 },
+  tall: { top: 36, bw: 82, ph: 30, phx: 52, phy: 36, capy: 58, gap: 14 },
+}[LAYOUT];
+const WKS = $$('.wk').map((el) => {
+  const b = $('.wkBrowser', el), ph = $('.wkPhone', el), cap = $('.wkCap', el);
+  const bh = (WK.bw * 10) / 16 + 4.2;
+  b.style.width = WK.bw + 'rem';
+  b.style.height = bh + 'rem';
+  if (ph) {
+    ph.style.width = WK.ph + 'rem';
+    ph.style.height = WK.ph * (844 / 390) + 0.6 + 'rem';
+    ph.style.left = WK.phx + 'rem';
+    ph.style.top = WK.phy + 'rem';
+  }
+  cap.style.top = WK.capy + 'rem';
+  cap.style.width = (ph ? WK.phx - 2 : WK.bw) + 'rem';
+  return { el, b, ph, cap, img: $('.shot img', el), pimg: ph && $('img', ph), svgPath: $('.pulse', el) };
+});
+const WK_W = Math.max(WK.bw, WK.phx + WK.ph);
+const WK_STEP = WK_W + WK.gap;
+$('#track').style.top = WK.top + 'rem';
+WKS.forEach((w, i) => (w.el.style.left = i * WK_STEP + 'rem'));
+
+// ---------- measure (after fonts) ----------
+function measure() {
+  const s1 = $('#s1');
+  s1.style.display = 'block';
+  const app = $('#app');
+  app.style.transform = 'none';
+  const sr = stage.getBoundingClientRect();
+  const rc = (el) => { const r = el.getBoundingClientRect(); return { x: r.left - sr.left + r.width / 2, y: r.top - sr.top + r.height / 2, w: r.width, h: r.height }; };
+  for (const f of FR) {
+    f.el.style.transform = 'none';
+    const a = rc(f.el), b = rc(f.target);
+    Object.assign(f, { dx: b.x - a.x, dy: b.y - a.y, s: Math.min(b.w / a.w, b.h / a.h) });
+  }
+  s1.style.display = 'none';
+}
+
+// ---------- scenes ----------
+function s1(real) {
+  // Choreography authored for 3.4 s, played 20 % slower for readability.
+  const t = real / 1.2;
+  const amp = lerp(0.35, 1, p(t, 0, 1.8));
+  const q = Math.floor(t * 12);
+  FR.forEach((f, i) => {
+    const inK = p(t, 0.02 + i * 0.07, 0.34 + i * 0.07);
+    const f0 = 1.95 + i * 0.05;
+    const fk = inOut(p(t, f0, f0 + 0.42));
+    const calm = 1 - p(t, 1.9, 2.0);
+    const jx = (hash(i * 31 + q) - 0.5) * 1.4 * amp * calm;
+    const jy = (hash(i * 57 + q + 7) - 0.5) * 1.4 * amp * calm;
+    const jr = (hash(i * 13 + q + 3) - 0.5) * 3.2 * amp * calm;
+    const ps = lerp(0.88, 1, back(inK));
+    f.el.style.opacity = clamp(inK * 3) * (1 - p(fk, 0.45, 0.9));
+    f.el.style.transform = `translate(${f.dx * fk}px,${f.dy * fk}px) translate(${jx}rem,${jy}rem) rotate(${lerp(f.r, 0, fk) + jr}deg) scale(${lerp(FS, f.s, fk) * ps})`;
+  });
+  KW.forEach((w, i) => {
+    const at = [0.12, 0.62, 1.12][i];
+    const k = p(t, at, at + 0.2);
+    const out = out3(p(t, 1.9 + i * 0.04, 2.15 + i * 0.04));
+    const jx = (hash(i * 91 + q) - 0.5) * 0.9 * (t < 1.9 ? 1 : 0);
+    w.style.opacity = clamp(k * 5) * (1 - out);
+    w.style.transform = `translate(${jx}rem,${-out * 5}rem) scale(${lerp(1.18, 1, out3(k))})`;
+    w.firstElementChild.style.transform = `scaleX(${out3(p(t, 1.55 + i * 0.09, 1.75 + i * 0.09))})`;
+  });
+  const app = $('#app');
+  const ak = out3(p(t, 1.98, 2.4));
+  app.style.opacity = ak;
+  app.style.transform = `scale(${lerp(0.965, 1, ak)})`;
+  riseAll(app, t);
+  riseAll($('#s1cap'), t);
+}
+
+const mOuter = $('#mOuter'), mInner = $('#mInner'), mHalf = $('#mHalf'), mLine = $('#mLine');
+const DIMS = $$('#mark .dim'), DIMT = $$('#mark .hm-text');
+function s2(t) {
+  $('#mGrid').setAttribute('opacity', out3(p(t, 0, 0.4)));
+  draw(mLine, inOut(p(t, 0.05, 0.85)));
+  mLine.style.opacity = 1 - 0.5 * p(t, 1.5, 1.9);
+  DIMS.forEach((d, i) => draw(d, out3(p(t, 0.3 + i * 0.08, 0.75 + i * 0.08))));
+  DIMT.forEach((d, i) => (d.style.opacity = out3(p(t, 0.55 + i * 0.04, 0.85 + i * 0.04))));
+  $('#mHatch').setAttribute('opacity', p(t, 0.45, 0.8));
+  const ko = p(t, 0.8, 1.15);
+  mOuter.style.opacity = clamp(ko * 4);
+  mOuter.style.transform = `scale(${lerp(0.82, 1, back(ko))})`;
+  const ki = p(t, 1.0, 1.3);
+  mInner.style.opacity = ki > 0 ? 1 : 0;
+  mInner.style.transform = `scale(${back(ki)})`;
+  const kh = out3(p(t, 1.2, 1.5));
+  // Swap the assembled pieces for one evenodd path so anti-aliased seams disappear.
+  const solid = kh >= 1;
+  mHalf.style.opacity = kh > 0 && !solid ? 1 : 0;
+  mHalf.style.transform = `translateX(${(1 - kh) * 14}px)`;
+  $('#mSolid').setAttribute('opacity', solid ? 1 : 0);
+  if (solid) mOuter.style.opacity = mInner.style.opacity = 0;
+  riseAll($('#s2text'), t);
+}
+
+const VSLOW = 0.7;
+const STX = $$('.stx'), VIS = $$('.vis'), SEGS = $$('.seg');
+const URL1 = 'sajatcege.hu';
+const PROMPT = 'Foglald össze a heti ügyféllevelek teendőit.';
+const TOKS = $$('#v3out .tok');
+const V4BARS = $$('#v4bars i');
+const BARS2 = $$('#v2bars i');
+function s3(t) {
+  const idx = Math.min(3, Math.floor(t / CH));
+  SEGS.forEach((s, i) => {
+    $('b', s).style.width = p(t, i * CH, (i + 1) * CH) * 100 + '%';
+    $('.mono', s).style.color = i === idx ? 'var(--ink)' : '';
+  });
+  riseAll($('#meter'), t);
+  $('#meter').style.opacity = out3(p(t, 0, 0.3));
+  STX.forEach((el, i) => {
+    const c = t - i * CH;
+    const on = c >= 0 && c < CH;
+    el.style.display = on ? '' : 'none';
+    VIS[i].style.display = on ? '' : 'none';
+    if (!on) return;
+    riseAll(el, c);
+    const out = i < 3 ? out3(p(c, CH - 0.16, CH)) : 0;
+    el.style.opacity = 1 - out;
+    el.style.transform = `translateY(${-out * 3}rem)`;
+    const v = VIS[i];
+    const vk = out3(p(c, 0, 0.32));
+    v.style.opacity = vk * (1 - out);
+    v.style.transform = `translateY(${(1 - vk) * 5 - out * 3}rem) scale(${lerp(0.97, 1, vk)})`;
+    VFN[i](c * VSLOW, v);
+  });
+}
+const VFN = [
+  (c, v) => {
+    const n = Math.round(URL1.length * p(c, 0.05, 0.32));
+    $('#url1').textContent = URL1.slice(0, n);
+    $('#caret1').style.opacity = c < 0.4 || Math.floor(c * 4) % 2 ? 1 : 0;
+    riseAll(v, c);
+    const k = out3(p(c, 0.9, 1.35));
+    draw($('#ring1'), k);
+    $('#score1').textContent = Math.round(k * 100);
+  },
+  (c, v) => {
+    riseAll(v, c);
+    const k = out3(p(c, 0.2, 1.1));
+    $('#k1').textContent = '+' + hu(18.4 * k, 1) + '%';
+    $('#k2').textContent = huInt(1284 * k);
+    $('#k3').textContent = '−' + Math.round(32 * k) + '%';
+    const lk = inOut(p(c, 0.3, 1.2));
+    $('#v2clipR').setAttribute('width', 400 * lk);
+    const pts = window.__v2pts, fx = lk * 24, i0 = Math.min(23, Math.floor(fx)), fr = fx - i0;
+    const y = lerp(pts[i0][1], pts[i0 + 1][1], fr);
+    const head = $('#v2head');
+    head.style.left = `calc(2rem + (100% - 4rem) * ${lk})`;
+    head.style.top = `calc(2rem + (100% - 4rem) * ${y / 160})`;
+    head.style.opacity = clamp(lk * 8);
+    BARS2.forEach((b, i) => (b.style.transform = `scaleY(${out3(p(c, 0.45 + i * 0.03, 0.75 + i * 0.03))})`));
+  },
+  (c) => {
+    const n = Math.round(PROMPT.length * p(c, 0.05, 0.38));
+    $('#v3p').textContent = PROMPT.slice(0, n);
+    const t0 = 0.45, dt = 0.03;
+    let shown = 0;
+    TOKS.forEach((tk, i) => {
+      const a = t0 + i * dt;
+      const k = p(c, a, a + 0.06);
+      if (k > 0) shown++;
+      tk.style.opacity = k;
+      const hl = 1 - p(c, a + 0.05, a + 0.35);
+      tk.style.background = `rgba(94,234,212,${0.2 * hl * (k > 0 ? 1 : 0)})`;
+    });
+    const done = c > t0 + TOKS.length * dt + 0.08;
+    $('#v3stat').textContent = done ? 'Kész · 0,78 s' : c > t0 ? 'Generál…' : 'Gondolkodik…';
+    $('#v3dot').style.opacity = done ? 1 : 0.35 + 0.65 * (Math.floor(c * 8) % 2);
+    $('#v3ft').textContent = c > t0 ? '38 ms' : '— ms';
+    $('#v3tps').textContent = Math.round(142 * out3(p(c, t0, t0 + 0.5)));
+  },
+  (c, v) => {
+    riseAll(v, c);
+    V4BARS.forEach((b, i) => (b.style.opacity = p(c, 0.12 + i * 0.008, 0.2 + i * 0.008)));
+    $('#v4pct').textContent = hu(99 + 0.98 * out3(p(c, 0.15, 0.9)), 2) + '%';
+    $('#v4dot').style.boxShadow = `0 0 0 ${(0.3 + 0.9 * ((c * 1.6) % 1)).toFixed(2)}rem rgba(15,118,110,${(0.25 * (1 - ((c * 1.6) % 1))).toFixed(3)})`;
+    const lk = out3(p(c, 0.3, 0.8));
+    let d = '';
+    const N = 60;
+    for (let j = 0; j <= N * lk; j++) {
+      const s = j * 0.45 + c * 6;
+      const spike = j === 38 ? -22 : 0;
+      d += `${j ? 'L' : 'M'}${((j / N) * 400).toFixed(1)} ${(62 + snoise(s) * 14 + snoise(s * 3.1) * 5 + spike).toFixed(1)}`;
+    }
+    $('#v4path').setAttribute('d', d || 'M0 0');
+    $('#v4ms').textContent = `p95 · ${Math.round(138 + snoise(c * 3) * 6)} ms`;
+  },
+];
+
+const MOVES = [1.7, 3.3, 4.9];
+function s4(t) {
+  riseAll($('#s4'), t);
+  let idx = -1 + out3(p(t, 0, 0.5));
+  for (const m of MOVES) idx += inOut(p(t, m, m + 0.45));
+  const base = W / REM / 2 - WK_W / 2;
+  $('#track').style.transform = `translateX(${base - idx * WK_STEP}rem)`;
+  const active = clamp(Math.round(idx), 0, 3);
+  $('#wkN').textContent = String(active + 1).padStart(2, '0');
+  WKS.forEach((w, i) => {
+    const d = Math.abs(idx - i);
+    const f = 1 - clamp(d);
+    w.el.style.opacity = lerp(0.25, 1, f);
+    w.b.style.transform = `scale(${lerp(0.94, 1, f)})`;
+    w.b.style.transformOrigin = '50% 50%';
+    const vel = idx - i;
+    if (w.ph) w.ph.style.transform = `translateX(${vel * -6}rem) translateY(${(1 - f) * 4}rem)`;
+    w.cap.style.opacity = out3(clamp(1 - d * 1.6));
+    w.cap.style.transform = `translateY(${d * 2}rem)`;
+    const local = t - (i === 0 ? 0.2 : MOVES[i - 1]);
+    const sc = clamp(local / 1.2);
+    if (w.img) w.img.style.transform = `scale(${1 + sc * 0.04})`;
+    if (w.pimg) w.pimg.style.transform = `scale(${1 + sc * 0.05})`;
+    if (w.svgPath) draw(w.svgPath, inOut(p(local, 0.25, 0.9)));
+  });
+}
+
+const PF_ROWS = $$('#pfList li');
+function s5(t) {
+  riseAll($('#s5'), t);
+  const k = out3(p(t, 0.1, 0.8));
+  $('#pfN').textContent = Math.round(10 * k);
+  pop($('#pfPlus'), t, 0.78, 0.35, 0.3);
+  PF_ROWS.forEach((li, i) => {
+    const a = 0.8 + i * 0.35;
+    $('.ln', li).style.transform = `scaleX(${out3(p(t, a, a + 0.35))})`;
+    const l2 = $('.ln2', li);
+    if (l2) l2.style.transform = `scaleX(${out3(p(t, a + 0.1, a + 0.45))})`;
+    const [ci, ck] = $$('.chk *', li);
+    draw(ci, out3(p(t, a + 0.05, a + 0.4)));
+    draw(ck, out3(p(t, a + 0.2, a + 0.4)));
+    rise($('span', li), t, a + 0.06, 0.4, 2);
+  });
+}
+
+function s6(t) {
+  riseAll($('#rcCap'), t);
+  const slot = $('#slot');
+  const sk = out3(p(t, 0, 0.2));
+  slot.style.opacity = sk;
+  slot.style.transform = `scaleX(${lerp(0.4, 1, sk)})`;
+  const k = p(t, 0.15, 1.4);
+  const steps = 22;
+  const ratchet = (Math.floor(k * steps) + out3((k * steps) % 1)) / steps;
+  const rc = $('#rcpt');
+  rc.style.transform = `translateY(${(ratchet - 1) * 100}%)`;
+  const hk = out3(p(t, 1.55, 1.8));
+  $('.mk2').style.transform = `scaleX(${hk})`;
+  const z = $('#rcZero');
+  const zk = p(t, 1.6, 1.95);
+  z.style.display = 'inline-block';
+  z.style.transform = `scale(${lerp(1, 1.5, Math.sin(zk * Math.PI))})`;
+  z.style.color = zk > 0 ? 'var(--acc2)' : '';
+}
+
+function s7(t) {
+  const k = inOut(p(t, 0, 0.55));
+  const diag = Math.hypot(W, H);
+  const side = lerp(0, diag * 1.02, k);
+  const blk = $('#blk');
+  blk.style.width = blk.style.height = side + 'px';
+  blk.style.borderRadius = side * 0.25 + 'px';
+  blk.style.transform = `translate(-50%,-50%) rotate(${lerp(-12, 0, k)}deg)`;
+  const box = $('#endBox');
+  box.style.transform = 'translateY(-50%)';
+  pop($('#endMark'), t, 0.4, 0.45, 0.4);
+  riseAll(box, t);
+}
+
+const SC = [
+  { el: $('#s1'), a: T[0], b: T[1], fn: s1 },
+  { el: $('#s2'), a: T[1], b: T[2], fn: s2 },
+  { el: $('#s3'), a: T[2], b: T[3], fn: s3 },
+  { el: $('#s4'), a: T[3], b: T[4], fn: s4 },
+  { el: $('#s5'), a: T[4], b: T[5], fn: s5 },
+  { el: $('#s6'), a: T[5], b: T[6] + 0.6, fo: 0, fn: s6 },
+  { el: $('#s7'), a: T[6], b: DURATION + 1, fo: 0, fn: s7 },
+];
+const CHAPTERS = ['01 — A probléma', '02 — A márka', '03 — Szolgáltatások', '04 — Munkáink', '05 — Miért mi', '06 — A nyugta', '07 — Kapcsolat'].map((l, i) => [T[i], l]);
+
+const mix = (a, b, k) => `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], k))).join(',')})`;
+function hud(t) {
+  $('#tc').textContent = 'T+' + t.toFixed(3).padStart(6, '0') + 's';
+  let ci = 0;
+  CHAPTERS.forEach(([a], i) => { if (t >= a) ci = i; });
+  const chap = $('#chap');
+  chap.textContent = CHAPTERS[ci][1];
+  const ck = out3(p(t, CHAPTERS[ci][0], CHAPTERS[ci][0] + 0.3));
+  chap.style.display = 'inline-block';
+  chap.style.transform = `translateY(${(1 - ck) * 100}%)`;
+  chap.style.opacity = ck;
+  $('#progFill').style.width = (t / DURATION) * 100 + '%';
+  const dk = p(t, T[6] + 0.25, T[6] + 0.5);
+  const h = $('#hud').style;
+  h.setProperty('--hudc', mix([107, 114, 128], [150, 156, 166], dk));
+  h.setProperty('--hudl', `rgba(${mix([17, 24, 39], [255, 255, 255], dk).slice(4, -1)},${lerp(0.08, 0.16, dk)})`);
+  h.setProperty('--huda', mix([15, 118, 110], [94, 234, 212], dk));
+}
+
+function seek(t) {
+  t = clamp(t, 0, DURATION);
+  for (const s of SC) {
+    const on = t >= s.a && t < s.b;
+    s.el.style.display = on ? 'block' : 'none';
+    if (!on) continue;
+    const fo = s.fo ?? 0.22;
+    const k = fo ? 1 - out3(p(t, s.b - fo, s.b)) : 1;
+    s.el.style.opacity = k;
+    s.el.style.transform = k < 1 ? `translateY(${-(1 - k) * 2.5}rem)` : '';
+    s.fn(t - s.a, t);
+  }
+  hud(t);
+}
+window.seek = seek;
+
+window.promoReady = (async () => {
+  const txt = 'AaőűŐŰé';
+  await Promise.all([
+    ...[400, 500, 600, 700, 800].map((w) => document.fonts.load(`${w} 16px Inter`, txt)),
+    document.fonts.load('400 16px "Instrument Serif"', txt),
+    document.fonts.load('italic 400 16px "Instrument Serif"', txt),
+  ]);
+  await document.fonts.ready;
+  await Promise.all([...document.images].map((i) => i.decode()));
+  measure();
+  seek(0);
+  return true;
+})();
+
+if (!RENDER) {
+  const fit = () => {
+    const s = Math.min(innerWidth / W, innerHeight / H);
+    stage.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;
+  };
+  window.promoReady.then(() => {
+    fit();
+    addEventListener('resize', fit);
+    if (Q.has('t')) return seek(Number(Q.get('t')));
+    const t0 = performance.now();
+    const loop = (now) => { seek((((now - t0) / 1000) % DURATION)); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  });
+}
+})();
+</script>
+</body>
+</html>

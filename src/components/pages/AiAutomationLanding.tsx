@@ -22,7 +22,7 @@ import {
 import { Navigation, MotionFade } from '../ui';
 import { renderEmphasis } from '../ui/renderEmphasis';
 import { Footer } from '../layout';
-import { CONTACT_EMAIL, CONTACT_PHONE, SECTION_IDS } from '../../lib/site-config';
+import { CONTACT_EMAIL, CONTACT_PHONE, SECTION_IDS, SHOW_PHONE } from '../../lib/site-config';
 import type { Language } from '../../lib/variant-translations';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
@@ -558,14 +558,18 @@ const ContactForm: React.FC<{ copy: Copy; sectionId: string }> = ({ copy, sectio
                 <Mail className="h-3.5 w-3.5" />
                 {CONTACT_EMAIL}
               </a>
-              <span className="text-gray-600" aria-hidden="true">|</span>
-              <a
-                href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
-                className="inline-flex items-center gap-1.5 text-gray-300 hover:text-accent-on-dark transition-colors"
-              >
-                <Phone className="h-3.5 w-3.5" />
-                {CONTACT_PHONE}
-              </a>
+              {SHOW_PHONE && (
+                <>
+                  <span className="text-gray-600" aria-hidden="true">|</span>
+                  <a
+                    href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+                    className="inline-flex items-center gap-1.5 text-gray-300 hover:text-accent-on-dark transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5" />
+                    {CONTACT_PHONE}
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </MotionFade>

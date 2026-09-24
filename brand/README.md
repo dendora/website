@@ -11,6 +11,26 @@ nyomdának küldhető forrásfájlok vannak.
 | `dendora-d-logo.svg` | A Dendora „D" jel vektoros (skálázható) változata. A `public/dendora-icon-512.png`-ből `potrace`-szel vektorizálva, `svgo`-val optimalizálva. Fekete kitöltés, átlátszó háttér, `viewBox 0 0 1576 1505`. |
 | `dendora-d-logo.pdf` | Ugyanaz a logó valódi vektoros PDF-ben (`rsvg-convert`-tel exportálva), ha a logó külön kell. |
 
+## `social/`
+
+| Fájl | Leírás |
+|------|--------|
+| `dendora-fb-profile.png` | Facebook/Instagram profilkép, 1080×1080 (a `logo/dendora-d-logo.svg`-ből). Körbe vágva is teljes a jel. |
+| `dendora-fb-cover.png` | Facebook borítókép, 1640×624. Minden tartalom a mobilon látható középső ~1110 px-en belül van. |
+
+Forrás: `promo/social.html`, újragenerálás: `npm run promo:social`.
+
+## `promo/`
+
+A promóvideó és a közösségi képek forrása (HTML + JS, Playwright + ffmpeg, rendszer-Chrome kell hozzá).
+
+| Parancs | Mit csinál |
+|---------|------------|
+| `npm run promo -- 4x5 9x16 16x9` | Videó renderelése → `promo/out/dendora-promo-*.mp4` (gitignore-olt) |
+| `npm run promo -- serve` | Böngészős előnézet: `http://127.0.0.1:4555/brand/promo/index.html?f=4x5` |
+| `npm run promo:shots` | Élő oldalak (AndiHealth, Ariel) képernyőképei → `promo/assets/shots/` |
+| `npm run promo:social` | Facebook-profilkép és -borító → `social/` |
+
 ## `print/`
 
 | Fájl | Leírás |

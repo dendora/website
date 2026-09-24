@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 import { t, type Language } from '../../lib/variant-translations';
 import { getAllProjects, type ProjectData } from '../../lib/projects-json';
 import { getCurrentSiteConfig } from '../../lib/runtime-variant';
-import { CONTACT_EMAIL, CONTACT_PHONE, SECTION_IDS } from '../../lib/site-config';
+import { CONTACT_EMAIL, CONTACT_PHONE, SECTION_IDS, SHOW_PHONE } from '../../lib/site-config';
 import { 
   Navigation, 
   SectionHeader, 
@@ -456,14 +456,18 @@ const ContactSection: React.FC<{ language: Language }> = ({ language }) => {
                 <Mail className="h-3.5 w-3.5" />
                 {CONTACT_EMAIL}
               </a>
-              <span className="text-gray-600" aria-hidden="true">|</span>
-              <a
-                href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
-                className="inline-flex items-center gap-1.5 text-gray-300 hover:text-accent-on-dark transition-colors"
-              >
-                <Phone className="h-3.5 w-3.5" />
-                {CONTACT_PHONE}
-              </a>
+              {SHOW_PHONE && (
+                <>
+                  <span className="text-gray-600" aria-hidden="true">|</span>
+                  <a
+                    href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+                    className="inline-flex items-center gap-1.5 text-gray-300 hover:text-accent-on-dark transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5" />
+                    {CONTACT_PHONE}
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </MotionFade>

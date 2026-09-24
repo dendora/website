@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Mail, Menu, Phone, X, Compass, Hammer, HeartHandshake } from 'lucide-react';
 import { dt, type DimopLanguage } from '../../lib/dimop-translations';
 import { cn } from '../../lib/utils';
-import { CONTACT_EMAIL, CONTACT_PHONE } from '../../lib/site-config';
+import { CONTACT_EMAIL, CONTACT_PHONE, SHOW_PHONE } from '../../lib/site-config';
 import { Logo, MotionFade } from '../ui';
 import { DimopHero } from './DimopHero';
 import { EligibilityAssessment } from './EligibilityAssessment';
@@ -245,8 +245,12 @@ const FinalCtaSection: React.FC<{ language: DimopLanguage }> = ({ language }) =>
             <span>{dt(language, 'cta.responseTime')}</span>
             <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
             <span>{dt(language, 'cta.quickCheck')}</span>
-            <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
-            <span>{CONTACT_PHONE}</span>
+            {SHOW_PHONE && (
+              <>
+                <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" />
+                <span>{CONTACT_PHONE}</span>
+              </>
+            )}
           </div>
         </div>
       </MotionFade>
@@ -267,9 +271,11 @@ const DimopFooter: React.FC<{ language: DimopLanguage }> = ({ language }) => {
         <div className="flex items-center gap-5">
           <a href={homeHref} className="hover:text-gray-900 transition-colors">{dt(language, 'footer.home')}</a>
           <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-gray-900 transition-colors">{CONTACT_EMAIL}</a>
-          <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors">
-            <Phone className="h-3 w-3" />{CONTACT_PHONE}
-          </a>
+          {SHOW_PHONE && (
+            <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <Phone className="h-3 w-3" />{CONTACT_PHONE}
+            </a>
+          )}
         </div>
       </div>
     </footer>

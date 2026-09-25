@@ -79,7 +79,7 @@ interface Copy {
 const COPY: Record<Language, Copy> = {
   hu: {
     trustBadge:
-      'Egyedi szoftverfejlesztés · AI támogatott folyamatok · Esztergomból, országosan',
+      'Egyedi szoftverfejlesztés · AI támogatott folyamatok · Országosan',
     heroTitle: 'AI automatizálás KKV-knak, érthetően és *gyakorlatiasan*',
     heroSubtitle:
       'Segítünk megtalálni és automatizálni azokat a céges folyamatokat, ahol ma még túl sok idő megy el e-mailekre, PDF-ekre, Excel táblákra és ismétlődő adminisztrációra.',

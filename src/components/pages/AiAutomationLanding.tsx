@@ -78,8 +78,7 @@ interface Copy {
 
 const COPY: Record<Language, Copy> = {
   hu: {
-    trustBadge:
-      'Egyedi szoftverfejlesztés · AI támogatott folyamatok · Országosan',
+    trustBadge: 'Egyedi szoftverfejlesztés · AI támogatott folyamatok',
     heroTitle: 'AI automatizálás KKV-knak, érthetően és *gyakorlatiasan*',
     heroSubtitle:
       'Segítünk megtalálni és automatizálni azokat a céges folyamatokat, ahol ma még túl sok idő megy el e-mailekre, PDF-ekre, Excel táblákra és ismétlődő adminisztrációra.',
@@ -197,7 +196,6 @@ const COPY: Record<Language, Copy> = {
       'Több évtizedes szoftverfejlesztési tapasztalat',
       'Backend, frontend és infrastruktúra egy kézben',
       'Nem csak AI eszközöket kötünk össze, hanem működő üzleti rendszert építünk',
-      'Helyi jelenlét Esztergom környékén, személyes egyeztetési lehetőséggel',
       'Egyedi fejlesztés, nem mindenkire ráhúzott sablon',
     ],
     demoTitle: 'Mit lehet megmutatni egy rövid demón?',
@@ -237,11 +235,6 @@ const COPY: Record<Language, Copy> = {
         answer:
           'Egy jól kiválasztott részfolyamatnál akár rövid időn belül készülhet működő prototípus. A cél nem a nagy ígéret, hanem egy kis, mérhető első lépés.',
       },
-      {
-        question: 'Csak Esztergom környékén dolgoztok?',
-        answer:
-          'Nem, de helyi cégeknek előny lehet, hogy személyesen is át tudjuk beszélni a folyamatokat.',
-      },
     ],
     contactTitle: 'Nézzük meg, nálatok hol tudna időt spórolni az AI',
     contactSubtitle:
@@ -256,8 +249,7 @@ const COPY: Record<Language, Copy> = {
     formSubmit: 'Kérek egy rövid AI felmérést',
   },
   en: {
-    trustBadge:
-      'Custom software development · AI-supported workflows · Hungary, working internationally',
+    trustBadge: 'Custom software development · AI-supported workflows',
     heroTitle: 'Practical AI automation for SMEs — clear, *hands-on*, no hype',
     heroSubtitle:
       'We help you find and automate the business processes where too much time is still lost on emails, PDFs, spreadsheets and repetitive admin work.',
@@ -375,7 +367,6 @@ const COPY: Record<Language, Copy> = {
       'Decades of software engineering experience',
       'Backend, frontend and infrastructure under one roof',
       'We do not just glue AI tools together — we build a working business system',
-      'Hungary-based, available for on-site discussions in the region',
       'Custom builds, not one-size-fits-all templates',
     ],
     demoTitle: 'What can we show in a short demo?',
@@ -414,11 +405,6 @@ const COPY: Record<Language, Copy> = {
         question: 'How quickly do we see results?',
         answer:
           'For a well-chosen sub-process, a working prototype can be ready in a short time. The goal is not a big promise — it is a small, measurable first step.',
-      },
-      {
-        question: 'Do you only work in Hungary?',
-        answer:
-          'No. We work internationally and remotely; for local clients we can also meet in person to walk through processes.',
       },
     ],
     contactTitle: 'Let us see where AI could save you time',

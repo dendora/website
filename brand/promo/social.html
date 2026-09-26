@@ -34,6 +34,38 @@ h1 em{font-style:italic;color:var(--acc)}
 /* Profile 1080×1080, shown as a circle. */
 #profile{width:1080px;height:1080px;display:none;align-items:center;justify-content:center}
 #profile img{width:560px;transform:translate(-6px,-4px)}
+
+/* Match-stats post 1080×1350 (HU–UA, 2026-09-25). Neutral palette: ink vs gray, no national colours. */
+#meccs{width:1080px;height:1350px}
+#meccs .tl{left:56px;top:52px}#meccs .tr{right:56px;top:52px}
+.mc{position:absolute;left:96px;right:96px;top:130px;bottom:80px;display:flex;flex-direction:column}
+.mc .kicker{text-align:left}
+.mc-title{display:flex;align-items:baseline;justify-content:space-between;margin-top:18px}
+.mc-title h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:84px;line-height:1;letter-spacing:-.02em}
+.mc-score{font-family:'Instrument Serif',Georgia,serif;font-size:120px;line-height:.9;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.mc-lead{font-family:'Instrument Serif',Georgia,serif;font-size:50px;line-height:1.05;letter-spacing:-.015em;margin-top:26px}
+.mc-lead em{font-style:italic;color:var(--acc)}
+.mc-head{display:flex;justify-content:space-between;margin-top:44px;padding-bottom:14px;border-bottom:1px solid rgba(17,24,39,.12);font-family:var(--mono);font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.row{display:grid;grid-template-columns:130px 1fr 130px;align-items:center;column-gap:24px;padding:17px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.row b{font-size:36px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.row b:last-child{text-align:right;color:var(--ink2)}
+.row .mid{display:flex;flex-direction:column;gap:10px}
+.row .lbl{font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);text-align:center}
+.row .trk{display:flex;gap:4px;height:10px}
+.row .trk i{display:block;height:100%;border-radius:5px}
+.row .trk i:first-child{background:var(--ink)}
+.row .trk i:last-child{background:#d1d5db}
+.row.goal{background:rgba(15,118,110,.07);border-radius:12px;border-bottom:0;margin-top:10px;padding:20px 16px}
+.row.goal .lbl{color:var(--acc)}
+.row.goal b{font-size:44px}
+.row.goal b:last-child{color:var(--acc)}
+.row.goal .trk i:last-child{background:var(--acc)}
+.mc-foot{margin-top:auto;display:flex;flex-direction:column;gap:22px}
+.mc-foot p{font-size:25px;line-height:1.4;color:var(--ink2)}
+.mc-foot p strong{color:var(--ink);font-weight:600}
+.mc-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(17,24,39,.12);padding-top:18px}
+.mc-meta .src{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.mc-meta .url{margin-top:0}
 </style>
 </head>
 <body>
@@ -53,9 +85,44 @@ h1 em{font-style:italic;color:var(--acc)}
   <img src="../logo/dendora-d-logo.svg" alt="Dendora">
 </section>
 
+<section class="art" id="meccs">
+  <div class="grid"></div>
+  <div class="hud tl"><i class="cross"></i><span>Dendora / Meccsadatok</span></div>
+  <div class="hud tr"><span>Nemzetek Ligája · B · 1. ford.</span><i class="cross"></i></div>
+  <div class="mc">
+    <div class="kicker">2026. szeptember 25. · Puskás Aréna · 56 799 néző</div>
+    <div class="mc-title"><h2>Magyarország–Ukrajna</h2><span class="mc-score">0–1</span></div>
+    <div class="mc-lead">Az adatok nekünk kedveztek. <em>Az eredmény nem.</em></div>
+    <div class="mc-head"><span>Magyarország</span><span>Ukrajna</span></div>
+    <div id="rows"></div>
+    <div class="mc-foot">
+      <p>Egy vállalkozásban is így van: <strong>nem az adat mennyisége dönt, hanem hogy mit kezdünk vele.</strong></p>
+      <div class="mc-meta"><span class="src">Forrás: FotMob (Opta) · MLSZ</span><span class="url"><i></i>dendora.hu</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// [label, HU, UA, display HU, display UA]
+const STATS = [
+  ['Labdabirtoklás', 57, 43, '57%', '43%'],
+  ['Lövések', 17, 10, '17', '10'],
+  ['Kaput eltaláló lövések', 4, 3, '4', '3'],
+  ['Várható gólok (xG)', 2.0, 1.03, '2,00', '1,03'],
+  ['Passzok', 527, 400, '527', '400'],
+  ['Passzpontosság', 85, 84, '85%', '84%'],
+  ['Szögletek', 4, 2, '4', '2'],
+];
+const row = ([l, a, b, da, db], cls = '') => {
+  const pa = (a / (a + b)) * 100;
+  return `<div class="row ${cls}"><b>${da}</b><div class="mid"><span class="lbl">${l}</span><div class="trk"><i style="width:${pa}%"></i><i style="flex:1"></i></div></div><b>${db}</b></div>`;
+};
+document.getElementById('rows').innerHTML = STATS.map((s) => row(s)).join('') + row(['Gólok', 0, 1, '0', '1'], 'goal');
+</script>
+
 <script>
 const kind = new URLSearchParams(location.search).get('kind') || 'cover';
-document.getElementById(kind).style.display = kind === 'cover' ? 'block' : 'flex';
+document.getElementById(kind).style.display = kind === 'profile' ? 'flex' : 'block';
 window.socialReady = (async () => {
   const txt = 'AaőűŐŰé';
   await Promise.all([

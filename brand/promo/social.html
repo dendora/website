@@ -66,6 +66,17 @@ h1 em{font-style:italic;color:var(--acc)}
 .mc-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(17,24,39,.12);padding-top:18px}
 .mc-meta .src{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 .mc-meta .url{margin-top:0}
+.mtr{margin-top:30px;margin-bottom:26px;display:flex;flex-direction:column;gap:14px}
+.mtr-h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.mtr-h span:last-child{color:var(--mut)}
+.mtr-bar{display:flex;gap:4px;height:18px}
+.mtr-bar i{display:block;height:100%;border-radius:6px;background:#d1d5db}
+.mtr-bar i:first-child{background:var(--ink)}
+.mtr-bar i:nth-child(2){background:#9ca3af}
+.mtr-l{display:flex;justify-content:space-between;font-size:21px;color:var(--ink2)}
+.mtr-l b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.mc-title h2.long{font-size:60px}
+.row .trk.unk i{background:#e5e7eb !important}
 
 /* Szerencse-bontás carousel (3 × 1080×1350). Key content stays in the centre square because FB crops multi-photo tiles. */
 .sz{width:1080px;height:1350px}
@@ -126,36 +137,99 @@ h1 em{font-style:italic;color:var(--acc)}
 <section class="art" id="meccs">
   <div class="grid"></div>
   <div class="hud tl"><i class="cross"></i><span>Dendora / Meccsadatok</span></div>
-  <div class="hud tr"><span>Nemzetek Ligája · B · 1. ford.</span><i class="cross"></i></div>
+  <div class="hud tr"><span id="mComp"></span><i class="cross"></i></div>
   <div class="mc">
-    <div class="kicker">2026. szeptember 25. · Puskás Aréna · 56 799 néző</div>
-    <div class="mc-title"><h2>Magyarország–Ukrajna</h2><span class="mc-score">0–1</span></div>
-    <div class="mc-lead">Az adatok nekünk kedveztek. <em>Az eredmény nem.</em></div>
-    <div class="mc-head"><span>Magyarország</span><span>Ukrajna</span></div>
+    <div class="kicker" id="mKicker"></div>
+    <div class="mc-title"><h2 id="mTitle"></h2><span class="mc-score" id="mScore"></span></div>
+    <div class="mc-lead" id="mLead"></div>
+    <div class="mc-head"><span id="mLeft"></span><span id="mRight"></span></div>
     <div id="rows"></div>
+    <div id="meter"></div>
     <div class="mc-foot">
-      <p>Egy vállalkozásban is így van: <strong>nem az adat mennyisége dönt, hanem hogy mit kezdünk vele.</strong></p>
-      <div class="mc-meta"><span class="src">Forrás: FotMob (Opta) · MLSZ</span><span class="url"><i></i>dendora.hu</span></div>
+      <p id="mFoot"></p>
+      <div class="mc-meta"><span class="src" id="mSrc"></span><span class="url"><i></i>dendora.hu</span></div>
     </div>
   </div>
 </section>
 
 <script>
-// [label, HU, UA, display HU, display UA]
-const STATS = [
-  ['Labdabirtoklás', 57, 43, '57%', '43%'],
-  ['Lövések', 17, 10, '17', '10'],
-  ['Kaput eltaláló lövések', 4, 3, '4', '3'],
-  ['Várható gólok (xG)', 2.0, 1.03, '2,00', '1,03'],
-  ['Passzok', 527, 400, '527', '400'],
-  ['Passzpontosság', 85, 84, '85%', '84%'],
-  ['Szögletek', 4, 2, '4', '2'],
-];
-const row = ([l, a, b, da, db], cls = '') => {
-  const pa = (a / (a + b)) * 100;
-  return `<div class="row ${cls}"><b>${da}</b><div class="mid"><span class="lbl">${l}</span><div class="trk"><i style="width:${pa}%"></i><i style="flex:1"></i></div></div><b>${db}</b></div>`;
+// "Adatokban a meccs" series. Hungary always in the left column; stats: [label, left, right, suffix, decimals]. null = not yet known.
+const MATCHES = {
+  'hu-ua-2026-09-25': {
+    comp: 'Nemzetek Ligája · B · 1. ford.',
+    kicker: '2026. szeptember 25. · Puskás Aréna · 56 799 néző',
+    title: 'Magyarország–Ukrajna', score: '0–1',
+    lead: 'Az adatok nekünk kedveztek. <em>Az eredmény nem.</em>',
+    left: 'Magyarország', right: 'Ukrajna',
+    stats: [
+      ['Labdabirtoklás', 57, 43, '%'],
+      ['Lövések', 17, 10],
+      ['Kaput eltaláló lövések', 4, 3],
+      ['Várható gólok (xG)', 2.0, 1.03, '', 2],
+      ['Passzok', 527, 400],
+      ['Passzpontosság', 85, 84, '%'],
+      ['Szögletek', 4, 2],
+    ],
+    goals: [0, 1],
+    xg: null,
+    foot: 'Egy vállalkozásban is így van: <strong>nem az adat mennyisége dönt, hanem hogy mit kezdünk vele.</strong>',
+    src: 'Forrás: FotMob (Opta) · MLSZ',
+  },
+  // Template for Monday: fill in after the match, then `node brand/promo/social.mjs meccs:nir-hu-2026-09-28`.
+  'nir-hu-2026-09-28': {
+    comp: 'Nemzetek Ligája · B · 2. ford.',
+    kicker: '2026. szeptember 28. · Belfast',
+    title: 'Észak-Írország–Magyarország', score: '?–?',
+    lead: 'Mit mutatnak az adatok?',
+    left: 'Magyarország', right: 'Észak-Írország',
+    stats: [
+      ['Labdabirtoklás', null, null, '%'],
+      ['Lövések', null, null],
+      ['Kaput eltaláló lövések', null, null],
+      ['Várható gólok (xG)', null, null, '', 2],
+      ['Kapura tartó lövések értéke (xGOT)', null, null, '', 2],
+    ],
+    goals: [null, null],
+    xg: [null, null],
+    foot: 'A jó adatelemzés nem ott ér véget, hogy látjuk az eredményt. <strong>Az AI segíthet feltárni az okokat is.</strong>',
+    src: 'Forrás: FotMob (Opta) · MLSZ',
+  },
 };
-document.getElementById('rows').innerHTML = STATS.map((s) => row(s)).join('') + row(['Gólok', 0, 1, '0', '1'], 'goal');
+
+const huNum = (v, dec = 0) => (v == null ? '—' : v.toFixed(dec).replace('.', ','));
+const row = ([l, a, b, suf = '', dec = 0], cls = '') => {
+  const known = a != null && b != null && a + b > 0;
+  const pa = known ? (a / (a + b)) * 100 : 50;
+  const val = (v) => (v == null ? '—' : huNum(v, dec) + suf);
+  return `<div class="row ${cls}"><b>${val(a)}</b><div class="mid"><span class="lbl">${l}</span><div class="trk${known ? '' : ' unk'}"><i style="width:${pa}%"></i><i style="flex:1"></i></div></div><b>${val(b)}</b></div>`;
+};
+const pois = (k, l) => Math.exp(-l) * l ** k / [...Array(k).keys()].reduce((f, i) => f * (i + 1), 1);
+// Win/draw/loss probabilities for the left team from both xG values (independent Poisson).
+function deserved(l1, l2) {
+  let w = 0, d = 0, x = 0;
+  for (let i = 0; i < 12; i++) for (let j = 0; j < 12; j++) {
+    const p = pois(i, l1) * pois(j, l2);
+    if (i > j) w += p; else if (i === j) d += p; else x += p;
+  }
+  return [w, d, x];
+}
+
+const M = MATCHES[new URLSearchParams(location.search).get('m') || 'hu-ua-2026-09-25'];
+if (M) {
+  const set = (id, html) => (document.getElementById(id).innerHTML = html);
+  set('mComp', M.comp); set('mKicker', M.kicker); set('mTitle', M.title); set('mScore', M.score);
+  set('mLead', M.lead); set('mLeft', M.left); set('mRight', M.right); set('mFoot', M.foot); set('mSrc', M.src);
+  if (M.title.length > 22) document.getElementById('mTitle').classList.add('long');
+  set('rows', M.stats.map((s) => row(s)).join('') + row(['Gólok', ...M.goals], 'goal'));
+  if (M.xg) {
+    const known = M.xg.every((v) => v != null);
+    const [w, d, x] = known ? deserved(...M.xg) : [null, null, null];
+    const pct = (v) => (v == null ? '—' : Math.round(v * 100) + '%');
+    set('meter', `<div class="mtr"><div class="mtr-h"><span>Megérdemelt-mérő</span><span>xG alapján</span></div>
+      <div class="mtr-bar">${known ? `<i style="width:${w * 100}%"></i><i style="width:${d * 100}%"></i><i style="flex:1"></i>` : '<i style="flex:1;opacity:.25"></i>'}</div>
+      <div class="mtr-l"><span><b>${pct(w)}</b> ${M.left} nyer</span><span><b>${pct(d)}</b> döntetlen</span><span><b>${pct(x)}</b> ${M.right} nyer</span></div></div>`);
+  }
+}
 </script>
 
 <section class="art sz" id="szerencse1">
@@ -206,7 +280,7 @@ document.getElementById('rows').innerHTML = STATS.map((s) => row(s)).join('') + 
       <div class="bx n"><span class="k">Ami nem</span><b>21,1 vs 24,1</b><p>Kevesebb helyzetet alakítottunk ki (xG), mint amennyit engedtünk. Tökéletes szerencsével is kb. 1,35 pont jönne meccsenként.</p></div>
     </div>
     <div class="mc-foot">
-      <p>Egy vállalkozásban is így van: <strong>egy rossz negyedévnél nem elég az eredményt nézni — szét kell bontani, mi múlt rajtunk és mi nem.</strong></p>
+      <p>A jó adatelemzés nem ott ér véget, hogy látjuk az eredményt. <strong>Az AI segíthet feltárni az okokat is.</strong></p>
       <div class="mc-meta"><span class="src">15 tétmeccs · FotMob (Opta) xG/xGOT · Poisson-modell</span><span class="url"><i></i>dendora.hu</span></div>
     </div>
   </div>

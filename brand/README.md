@@ -30,6 +30,7 @@ A promóvideó és a közösségi képek forrása (HTML + JS, Playwright + ffmpe
 | `npm run promo -- serve` | Böngészős előnézet: `http://127.0.0.1:4555/brand/promo/index.html?f=4x5` |
 | `npm run promo:shots` | Élő oldalak (AndiHealth, Ariel) képernyőképei → `promo/assets/shots/` |
 | `npm run promo:social` | Facebook-profilkép és -borító → `social/` |
+| `npm run promo:social -- meccs:<id>` | „Adatokban a meccs" kártya a `social.html` `MATCHES` listájából → `social/posts/meccs-<id>.png` (pl. `szerencse1 szerencse2 szerencse3` is) |
 
 ## `print/`
 

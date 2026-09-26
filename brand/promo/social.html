@@ -66,6 +66,44 @@ h1 em{font-style:italic;color:var(--acc)}
 .mc-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(17,24,39,.12);padding-top:18px}
 .mc-meta .src{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 .mc-meta .url{margin-top:0}
+
+/* Szerencse-bontás carousel (3 × 1080×1350). Key content stays in the centre square because FB crops multi-photo tiles. */
+.sz{width:1080px;height:1350px}
+.sz .tl{left:56px;top:52px}.sz .tr{right:56px;top:52px}
+.sz h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:84px;line-height:1;letter-spacing:-.02em;margin-top:20px}
+.sz h2 em{font-style:italic;color:var(--acc)}
+.sz .note{font-size:26px;line-height:1.45;color:var(--ink2)}
+.fun{margin-top:80px;display:flex;flex-direction:column;gap:48px}
+.fun .st{display:grid;grid-template-columns:1fr 190px;align-items:end;column-gap:28px}
+.fun .st .lbl{font-family:var(--mono);font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:14px;display:block}
+.fun .st .bar{height:42px;border-radius:8px;background:rgba(17,24,39,.06);position:relative;overflow:hidden}
+.fun .st .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:var(--ink)}
+.fun .st b{font-size:92px;font-weight:600;letter-spacing:-.04em;line-height:.85;text-align:right;font-variant-numeric:tabular-nums}
+.fun .st.g b{color:var(--acc)}
+.cmp{margin-top:56px;padding:24px 28px;border-radius:14px;background:rgba(17,24,39,.035);display:flex;justify-content:space-between;align-items:center;font-size:27px;color:var(--ink2)}
+.cmp b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.big{display:flex;align-items:baseline;gap:26px;margin-top:28px}
+.big b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:160px;line-height:.85;letter-spacing:-.03em}
+.big span{font-size:30px;color:var(--ink2);line-height:1.3}
+.wf{margin-top:56px;display:flex;flex-direction:column;gap:30px}
+.wf .r{display:grid;grid-template-columns:1fr 140px;align-items:end;column-gap:24px}
+.wf .lbl{font-family:var(--mono);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:11px}
+.wf .ax{position:relative;height:34px;border-right:2px solid rgba(17,24,39,.35)}
+.wf .ax i{position:absolute;top:0;bottom:0;border-radius:5px;background:var(--ink)}
+.wf .ax i.ext{background:repeating-linear-gradient(45deg,#9ca3af 0 3px,#e5e7eb 3px 8px)}
+.wf .ax i.ref{background:#cbd5e1}
+.wf .ax i.tot{background:var(--acc)}
+.wf b{font-size:38px;font-weight:600;letter-spacing:-.03em;text-align:right;font-variant-numeric:tabular-nums}
+.wf .r.t b{color:var(--acc)}
+.lg{display:flex;gap:36px;margin-top:34px;font-size:21px;color:var(--ink2);align-items:center}
+.lg i{display:inline-block;width:26px;height:16px;border-radius:3px;margin-right:12px;vertical-align:-1px;background:var(--ink)}
+.lg i.ext{background:repeating-linear-gradient(45deg,#9ca3af 0 3px,#e5e7eb 3px 8px)}
+.two{margin-top:64px;display:flex;flex-direction:column;gap:32px}
+.two .bx{border:1px solid rgba(0,0,0,.07);border-radius:18px;padding:40px 42px}
+.two .bx .k{font-family:var(--mono);font-size:17px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.two .bx.n .k{color:var(--ink)}
+.two .bx b{display:block;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:100px;line-height:1;letter-spacing:-.02em;margin-top:12px}
+.two .bx p{font-size:27px;line-height:1.45;color:var(--ink2);margin-top:14px}
 </style>
 </head>
 <body>
@@ -118,6 +156,81 @@ const row = ([l, a, b, da, db], cls = '') => {
   return `<div class="row ${cls}"><b>${da}</b><div class="mid"><span class="lbl">${l}</span><div class="trk"><i style="width:${pa}%"></i><i style="flex:1"></i></div></div><b>${db}</b></div>`;
 };
 document.getElementById('rows').innerHTML = STATS.map((s) => row(s)).join('') + row(['Gólok', 0, 1, '0', '1'], 'goal');
+</script>
+
+<section class="art sz" id="szerencse1">
+  <div class="grid"></div>
+  <div class="hud tl"><i class="cross"></i><span>Dendora / Szerencse-bontás</span></div>
+  <div class="hud tr"><span>1 / 3</span><i class="cross"></i></div>
+  <div class="mc">
+    <div class="kicker">Magyarország–Ukrajna 0–1 · 2026. szeptember 25.</div>
+    <h2>Ezen nem a szerencse múlt. <em>A helyzetek megvoltak, a lövések nem.</em></h2>
+    <div class="fun">
+      <div class="st"><div><span class="lbl">Helyzetek értéke (xG)</span><div class="bar"><i style="width:100%"></i></div></div><b>2,00</b></div>
+      <div class="st"><div><span class="lbl">Kaput eltaláló lövések értéke (xGOT)</span><div class="bar"><i style="width:18%"></i></div></div><b>0,36</b></div>
+      <div class="st g"><div><span class="lbl">Gól</span><div class="bar"></div></div><b>0</b></div>
+    </div>
+    <div class="cmp"><span>Ukrajna ugyanez:</span><span><b>1,03</b> → <b>0,53</b> → <b>1</b> gól</span></div>
+    <div class="mc-foot">
+      <p class="note">A 2,00 xG azt jelenti, hogy ilyen helyzetekből átlagosan két gól születik. A kaput eltaláló lövéseink viszont csak 0,36 gólnyi veszélyt jelentettek — a többi mellé ment vagy blokkolták.</p>
+      <div class="mc-meta"><span class="src">Forrás: FotMob (Opta)</span><span class="url"><i></i>dendora.hu</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="art sz" id="szerencse2">
+  <div class="grid"></div>
+  <div class="hud tl"><i class="cross"></i><span>Dendora / Szerencse-bontás</span></div>
+  <div class="hud tr"><span>2 / 3</span><i class="cross"></i></div>
+  <div class="mc">
+    <div class="kicker">Két év · 15 tétmeccs · 2024. szept. – 2026. szept.</div>
+    <h2>Hová lett <em>6 pont?</em></h2>
+    <div class="big"><b>14</b><span>pont a helyzetek alapján<br>várható 20,2 helyett</span></div>
+    <div class="wf" id="wf"></div>
+    <div class="lg"><span><i></i>Rajtunk múlt</span><span><i class="ext"></i>Kevés ráhatás (ellenfél)</span></div>
+    <div class="mc-foot">
+      <div class="mc-meta"><span class="src">Gólkülönbség · FotMob (Opta) · barátságosak nélkül</span><span class="url"><i></i>dendora.hu</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="art sz" id="szerencse3">
+  <div class="grid"></div>
+  <div class="hud tl"><i class="cross"></i><span>Dendora / Szerencse-bontás</span></div>
+  <div class="hud tr"><span>3 / 3</span><i class="cross"></i></div>
+  <div class="mc">
+    <div class="kicker">Mit mutatnak az adatok?</div>
+    <h2>Szerencse <em>vagy alapok?</em></h2>
+    <div class="two">
+      <div class="bx"><span class="k">Ami szerencse</span><b>≈ 8 gól</b><p>múlt olyan tényezőkön, amelyekre kevés a ráhatásunk: az ellenfél kapusainak bravúrjain és az ellenfelek kiemelkedő befejezésein.</p></div>
+      <div class="bx n"><span class="k">Ami nem</span><b>21,1 vs 24,1</b><p>Kevesebb helyzetet alakítottunk ki (xG), mint amennyit engedtünk. Tökéletes szerencsével is kb. 1,35 pont jönne meccsenként.</p></div>
+    </div>
+    <div class="mc-foot">
+      <p>Egy vállalkozásban is így van: <strong>egy rossz negyedévnél nem elég az eredményt nézni — szét kell bontani, mi múlt rajtunk és mi nem.</strong></p>
+      <div class="mc-meta"><span class="src">15 tétmeccs · FotMob (Opta) xG/xGOT · Poisson-modell</span><span class="url"><i></i>dendora.hu</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Goal-difference waterfall: [label, from, to, class]; 0 sits on the right edge.
+const WF = [
+  ['Várható gólkülönbség (xG)', 0, -3.03, 'ref'],
+  ['Saját befejezés', -3.03, -3.78, ''],
+  ['Ellenfél kapusai', -3.78, -8.08, 'ext'],
+  ['Ellenfelek befejezése', -8.08, -11.94, 'ext'],
+  ['Magyar kapusok', -11.94, -12.0, ''],
+  ['Tényleges gólkülönbség', 0, -12.0, 'tot'],
+];
+const SPAN = 12.5;
+const x = (v) => (1 - Math.abs(v) / SPAN) * 100;
+const fmt = (v) => (v < 0 ? '−' : '+') + Math.abs(v).toFixed(2).replace('.', ',');
+document.getElementById('wf').innerHTML = WF.map(([l, a, b, c]) => {
+  const lo = x(Math.min(a, b)), hi = x(Math.max(a, b));
+  const w = Math.max(hi - lo, 0.6);
+  const val = c === 'ref' || c === 'tot' ? b : b - a;
+  return `<div class="r ${c === 'tot' ? 't' : ''}"><div><span class="lbl">${l}</span><div class="ax"><i class="${c}" style="left:${hi - w}%;width:${w}%"></i></div></div><b>${c === 'tot' ? '−12' : fmt(val)}</b></div>`;
+}).join('');
 </script>
 
 <script>
